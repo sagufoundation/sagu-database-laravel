@@ -17,8 +17,10 @@
             <div class="row">
                 <div class="col-md-6 mx-auto">
 
-                    <div class="card shadow">
-                        <div class="card-body p-5">
+                    <div class="card shadow p-5">
+                        <img src="{{ asset('gambar/logo_meta.jpg') }}" alt="Logo" class="card-img-top">
+                        <div class="card-body">
+                            <p class="text-muted">Gunakan alamat email dan kata sandi Anda untuk mengakses halaman dasbor.</p>
                             <!-- FORM START -->
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
