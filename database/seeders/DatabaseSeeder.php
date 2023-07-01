@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
 
             SiswaSeeder::class,
+            ProgramSeeder::class,
         ]);
     }
 }

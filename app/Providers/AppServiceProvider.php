@@ -3,15 +3,16 @@
 namespace App\Providers;
 
 // MODELS
+use App\Models\Pengaturan;
 use App\Models\User;
 use App\Models\Siswa;
+use App\Models\Program;
 
 use App\Models\Banner;
 use App\Models\Faq;
 use App\Models\Halaman;
 use App\Models\LayananOnline;
 use App\Models\LinkTerkait;
-use App\Models\Pengaturan;
 use App\Models\Berita\Berita;
 use App\Models\Berita\KategoriBerita;
 use App\Models\InformasiLingkungan;
@@ -65,7 +66,7 @@ class AppServiceProvider extends ServiceProvider
         |
         */
         $Pengaturan = Pengaturan::first();
-        $Pengaturan->visit()->withIP();
+        // $Pengaturan->visit()->withIP();
 
         /*
         | DATE CONFIGURATIONS
@@ -113,6 +114,10 @@ class AppServiceProvider extends ServiceProvider
             'dasbor_jml_siswa'                 => Siswa::where('status','Publish')->count(),
             'dasbor_jml_siswa_semua'           => Siswa::count(),
             'dasbor_jml_siswa_draft'           => Siswa::where('status','Draft')->count(),
+
+            'dasbor_jml_program'                 => Program::where('status','Publish')->count(),
+            'dasbor_jml_program_semua'           => Program::count(),
+            'dasbor_jml_program_draft'           => Program::where('status','Draft')->count(),
 
             'dasbor_jml_berita'                 => Berita::where('status','Publish')->count(),
             'dasbor_jml_berita_semua'           => Berita::count(),

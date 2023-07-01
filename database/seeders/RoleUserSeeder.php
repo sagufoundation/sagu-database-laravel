@@ -21,30 +21,37 @@ class RoleUserSeeder extends Seeder
         // ASIGN ROLES
         $adminRole = Role::create(
             [
-            'guard_name'        => 'web',
-            'name'              => 'administrator',
-            'display_name'      => 'Administrator',
+            'guard_name' => 'web',
+            'name' => 'administrator',
+            'display_name' => 'Administrator',
+        ]);
+
+        $guestRole = Role::create(
+            [
+            'guard_name' => 'web',
+            'name' => 'guest',
+            'display_name' => 'Guest',
         ]);
 
         $editorRole = Role::create(
             [
-            'guard_name'        => 'web',
-            'name'              => 'editor',
-            'display_name'      => 'Editor',
+            'guard_name' => 'web',
+            'name' => 'editor',
+            'display_name' => 'Editor',
         ]);
 
         $authorRole = Role::create(
             [
-            'guard_name'        => 'web',
-            'name'              => 'author',
-            'display_name'      => 'Author',
+            'guard_name' => 'web',
+            'name' => 'author',
+            'display_name' => 'Author',
         ]);
 
         $supervisorRole = Role::create(
             [
-            'guard_name'        => 'web',
-            'name'              => 'supervisor',
-            'display_name'      => 'Supervisor',
+            'guard_name' => 'web',
+            'name' => 'supervisor',
+            'display_name' => 'Supervisor',
         ]);
 
         /*
@@ -56,44 +63,62 @@ class RoleUserSeeder extends Seeder
         // ADMIN
 
         $adminJF = User::create([
-            'name'              => 'Janzen Faidiban',
-            'slug'              => 'janzen-faidiban',
-            'picture'           => 'Janzen-3-200x200.jpg',
-            'email'             => 'janzen.faidiban@sagufoundation.org',
-            'password'          => bcrypt('janzen.faidiban@sagufoundation.org'),
-            'status'           => 'Publish',
+            'name' => 'Janzen Faidiban',
+            'slug' => 'janzen-faidiban',
+            'picture' => 'Janzen-3-200x200.jpg',
+            'email' => 'janzen.faidiban@sagufoundation.org',
+            'password' => bcrypt('janzen.faidiban@sagufoundation.org'),
+            'status' => 'Publish',
         ]);
         $adminJF->assignRole($adminRole);
 
         $adminFW = User::create([
-            'name'              => 'Febe Worabay',
-            'slug'              => 'febe-worabay',
-            'picture'           => 'Febe-200x200.jpg',
-            'email'             => 'febe-woaraby@sagufoundation.org',
-            'password'          => bcrypt('febe-woaraby@sagufoundation.org'),
-            'status'           => 'Publish',
+            'name' => 'Febe Worabay',
+            'slug' => 'febe-worabay',
+            'picture' => 'Febe-200x200.jpg',
+            'email' => 'febe-woaraby@sagufoundation.org',
+            'password' => bcrypt('febe-woaraby@sagufoundation.org'),
+            'status' => 'Publish',
         ]);
         $adminFW->assignRole($adminRole);
 
         $adminTR = User::create([
-            'name'              => 'Tisha Rumbewas',
-            'slug'              => 'tisha-rumbewas',
-            'picture'           => 'Tisha-200x200.jpg',
-            'email'             => 'tisha-rumbewas@sagufoundation.org',
-            'password'          => bcrypt('tisha-rumbewas@sagufoundation.org'),
-            'status'           => 'Publish',
+            'name' => 'Tisha Rumbewas',
+            'slug' => 'tisha-rumbewas',
+            'picture' => 'Tisha-200x200.jpg',
+            'email' => 'tisha-rumbewas@sagufoundation.org',
+            'password' => bcrypt('tisha-rumbewas@sagufoundation.org'),
+            'status' => 'Publish',
         ]);
         $adminTR->assignRole($adminRole);
 
         $adminEJ = User::create([
-            'name'              => 'Elisabeth Jakarimilena',
-            'slug'              => 'elisabeth-jakarimilena',
-            'picture'           => 'Ellysabeth-200x200.jpg',
-            'email'             => 'elisabeth.jakarimilena@sagufoundation.org',
-            'password'          => bcrypt('elisabeth.jakarimilena@sagufoundation.org'),
-            'status'           => 'Publish',
+            'name' => 'Elisabeth Jakarimilena',
+            'slug' => 'elisabeth-jakarimilena',
+            'picture' => 'Ellysabeth-200x200.jpg',
+            'email' => 'elisabeth.jakarimilena@sagufoundation.org',
+            'password' => bcrypt('elisabeth.jakarimilena@sagufoundation.org'),
+            'status' => 'Publish',
         ]);
         $adminEJ->assignRole($adminRole);
+
+        // GUEST
+        $guestBPSDM = User::create([
+            'name' => 'BPSDM',
+            'slug' => 'bpsdm',
+            'picture' => 'bpsdm-papua.jpg',
+            'email' => 'admin.bpsdm@papua.go.id',
+            'password' => bcrypt('admin.bpsdm@papua.go.id'),
+            'status' => 'Publish',
+        ]);
+        $guestBPSDM->assignRole($guestRole);
+
+
+
+
+
+
+
 
         // EDITOR
         $editorDLHK = User::create([

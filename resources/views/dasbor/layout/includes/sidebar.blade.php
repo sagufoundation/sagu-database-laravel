@@ -53,22 +53,36 @@
                     <!--- Sidemenu -->
                     @if (Auth::user()->hasRole('administrator'))
                         <div id="sidebar-menu">
-
                             <ul id="side-menu">
-
                                 <li class="menu-title mt-2">Menu Utama</li>
-
                                 <li>
                                     <a href="{{ url('dasbor') }}">
                                         <i data-feather="airplay"></i>
                                         <span> Dasbor </span>
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="{{ url('dasbor/program') }}">
+                                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ $dasbor_jml_program ?? '0' }}
+                                        </span>
+                                        <span> Program </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('dasbor/siswa') }}">
+                                        <i class="mdi mdi-account-group"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ $dasbor_jml_siswa ?? '0' }}
+                                        </span>
+                                        <span> Siswa</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="#siswa" data-toggle="collapse">
                                         <i class="mdi mdi-newspaper"></i>
-                                        <span> Manajemen </span>
+                                        <span> Laporan </span>
                                         <span class="menu-arrow"></span>
                                     </a>
                                     <div class="collapse" id="siswa">
@@ -76,56 +90,41 @@
                                             <li>
 
                                                 <a href="{{ url('dasbor/siswa') }}">
-                                                    <span class="badge badge-success badge-pill float-right">
-                                                        {{ $dasbor_jml_siswa ?? '0' }}
-                                                    </span>
                                                     Siswa
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="{{ url('dasbor/siswa/kategori') }}">
-                                                    <span class="badge badge-success badge-pill float-right">
-                                                        {{ '0' }}
-                                                    </span>
                                                     Kelompok
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
-
+                                <li class="menu-title mt-2">Area Admin</li>
                                 <li>
-                                    <a href="{{ url('dasbor/halaman') }}">
-                                        <i class="mdi mdi-text-box-multiple-outline"></i>
-                                        <span class="badge badge-success badge-pill float-right">
-                                            {{ $dasbor_jml_halaman ?? '' }}
-                                        </span>
-                                        <span> Halaman </span>
+                                    <a href="#pengaturan" data-toggle="collapse">
+                                        <i class="mdi mdi-newspaper"></i>
+                                        <span> Pengaturan </span>
+                                        <span class="menu-arrow"></span>
                                     </a>
-                                </li>
+                                    <div class="collapse" id="pengaturan">
+                                        <ul class="nav-second-level">
+                                            <li>
 
-                                <li>
-                                    <a href="{{ url('dasbor/informasi') }}">
-                                        <i class="mdi mdi-leaf"></i>
-                                        <span class="badge badge-success badge-pill float-right">
-                                            0
-                                        </span>
-                                        <span> Informasi </span>
-                                    </a>
+                                                <a href="{{ url('dasbor/pengguna') }}">
+                                                    Pengguna
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('dasbor/hak-akses') }}">
+                                                    Hak Akses
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </li>
-
-                                <li>
-                                    <a href="{{ url('dasbor/pengguna') }}">
-                                        <i class="mdi mdi-account-group"></i>
-                                        <span class="badge badge-success badge-pill float-right">
-                                            {{ $dasbor_jml_pengguna ?? '' }}
-                                        </span>
-                                        <span> Pengguna</span>
-                                    </a>
-                                </li>
-
                             </ul>
-
                         </div>
 
                     @elseif (Auth::user()->hasRole('editor'))
