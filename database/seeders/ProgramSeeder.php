@@ -54,5 +54,24 @@ class ProgramSeeder extends Seeder
             ]
         );
 
+        Program::create(
+            [
+
+                'program_title' => 'YKM 2020',
+                'short_description' => 'Program Beasiswa Mahasiswa Yahukimo di Jayapura, Tahun 2020',
+                'full_description' => 'Program beasiswa Pemerintah Daerah Kabupaten Yahukimo bagi Mahasiswa yang sedang studi di Jayapura.',
+
+                'start_date' => '2020',
+                'end_date' => '-',
+
+                // other
+                'status' => 'Publish',
+
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+
+            ]
+        );
+
     }
 }
