@@ -120,38 +120,38 @@ class RoleUserSeeder extends Seeder
 
 
 
-        // EDITOR
-        $editorDLHK = User::create([
-            'name'              => 'Editor',
-            'slug'              => 'editor'.time().Str::random(12),
-            'picture'           => '04.jpg',
-            'email'             => 'editor@sagufoundation.org',
-            'password'          => bcrypt('editor@sagufoundation.org'),
-            'status'           => 'Publish',
-        ]);
-        $editorDLHK->assignRole($editorRole);
+        // // EDITOR
+        // $editorDLHK = User::create([
+        //     'name'              => 'Editor',
+        //     'slug'              => 'editor'.time().Str::random(12),
+        //     'picture'           => '04.jpg',
+        //     'email'             => 'editor@sagufoundation.org',
+        //     'password'          => bcrypt('editor@sagufoundation.org'),
+        //     'status'           => 'Publish',
+        // ]);
+        // $editorDLHK->assignRole($editorRole);
 
-        // AUTHOR
-        $authorDLHK = User::create([
-            'name'              => 'Author',
-            'slug'              => 'author'.time().Str::random(12),
-            'picture'           => '02.jpg',
-            'email'             => 'author@sagufoundation.org',
-            'password'          => bcrypt('author@sagufoundation.org'),
-            'status'           => 'Publish',
-        ]);
-        $authorDLHK->assignRole($authorRole);
+        // // AUTHOR
+        // $authorDLHK = User::create([
+        //     'name'              => 'Author',
+        //     'slug'              => 'author'.time().Str::random(12),
+        //     'picture'           => '02.jpg',
+        //     'email'             => 'author@sagufoundation.org',
+        //     'password'          => bcrypt('author@sagufoundation.org'),
+        //     'status'           => 'Publish',
+        // ]);
+        // $authorDLHK->assignRole($authorRole);
 
-        // SUPERVISOR
-        $supervisorDLHK = User::create([
-            'name'              => 'Supervisor DLHK',
-            'slug'              => 'supervisor-dlhk'.time().Str::random(12),
-            'picture'           => '03.jpg',
-            'email'             => 'supervisor@sagufoundation.org',
-            'password'          => bcrypt('supervisor@sagufoundation.org'),
-            'status'           => 'Publish',
-        ]);
-        $supervisorDLHK->assignRole($supervisorRole);
+        // // SUPERVISOR
+        // $supervisorDLHK = User::create([
+        //     'name'              => 'Supervisor DLHK',
+        //     'slug'              => 'supervisor-dlhk'.time().Str::random(12),
+        //     'picture'           => '03.jpg',
+        //     'email'             => 'supervisor@sagufoundation.org',
+        //     'password'          => bcrypt('supervisor@sagufoundation.org'),
+        //     'status'           => 'Publish',
+        // ]);
+        // $supervisorDLHK->assignRole($supervisorRole);
 
     }
 }
