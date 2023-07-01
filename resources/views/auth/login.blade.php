@@ -6,10 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $pengaturan->judul_situs ?? 'SAGU Foundation' }}</title>
     
+    <meta property="og:title" content="{{ $pengaturan->judul_situs }}">
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{ $pengaturan->logo_meta }}">
+    <meta property="og:url" content="{{ $pengaturan->alamat_web }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="{{ $pengaturan->logo_meta }}">
+    <meta property="og:description" content="{{ $pengaturan->deskripsi_situs }}">
+    <meta property="og:site_name" content="{{ $pengaturan->judul_situs }}">
+    <meta name="twitter:image:alt" content="Cover {{ $pengaturan->judul_situs ?? 'SAGU Foundation' }}">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 </head>
-<body class="bg-light">
+<body class="bg-light" style="background-image: url('{{ asset('gambar/latar-belakang/1.jpg') }}'); background-size:cover;">
 
 
     <section class="py-5">
@@ -54,7 +64,6 @@
                                         </span>
                                         @enderror
                                     </div>
-                                    <a href="" class="text-muted float-end"><small>Lupa Kata Sandi?</small></a>
                                 </div>
                                 <!-- group item end -->
 
