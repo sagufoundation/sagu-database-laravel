@@ -41,11 +41,11 @@ use Illuminate\Support\Facades\Route;
             Route::post('program','store')->name('dasbor.program.store');
 
             // show
-            Route::get('program/{slug}/detail','show')
+            Route::get('program/{id}/detail','show')
                 ->name('dasbor.program.show');
 
             // edit
-            Route::get('program/{slug}/edit','edit')
+            Route::get('program/{id}/edit','edit')
                 ->name('dasbor.program.edit');
 
             // update

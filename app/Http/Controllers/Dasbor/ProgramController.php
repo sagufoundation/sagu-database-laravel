@@ -104,9 +104,10 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function show(Program $program)
+    public function show($id)
     {
-        //
+        $data = Program::where('id', $id)->first();
+        return view('dasbor.program.edit', compact('data'));
     }
 
     /**
@@ -115,9 +116,10 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function edit(Program $program)
+    public function edit($id)
     {
-        //
+        $data = Program::where('id', $id)->first();
+        return view('dasbor.program.edit', compact('data'));
     }
 
     /**
@@ -127,9 +129,33 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Program $program)
+    public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'program_title' => 'required',
+        ],
+        [
+            'program_title.required' => 'Bagian ini wajib dilengkapi',
+        ]);
+
+        $data = Program::find($id);
+
+        $data->program_title = $request->program_title;
+        $data->short_description = $request->short_description;
+        $data->full_description = $request->full_description;
+        
+        $data->start_date = $request->start_date;
+        $data->end_date = $request->end_date;
+        
+        // other
+        $data->status = $request->status;
+
+        $data->update();
+
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+
+        return redirect()->route('dasbor.program');
     }
 
     

@@ -1,156 +1,172 @@
-@extends('layouts.base_panel')
+@extends('dasbor.layout.app')
 @section('content')
-    <!-- start page content wrapper-->
-      <!-- start page title -->
-	  <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">App</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
-                                            <li class="breadcrumb-item active">halaman</li>
-                                        </ol>
-                                    </div>
-                                    <h4 class="page-title">halaman</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end page title -->
-                        @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> Ada Form Yang Belum diisi.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">FORM</h5>
-                                        <!-- <form action="{{ url('app/halaman') }}" method="POST" enctype="multipart/form-data"> -->
-                                        {!! Form::open(array('url' => 'app/person','files'=>'true')) !!}
-                                        @csrf
-
-
-    <div class="mb-3">
-        <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
-        {!! Form::text('name',null,['required','id'=>'name','class'=>'form-control','placeholder'=>'Nama']) !!}
-    </div>
-
-    <div class="mb-3">
-        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-        {!! Form::text('email',null,['required','id'=>'email','class'=>'form-control','placeholder'=>'Email']) !!}
-    </div>
-
-    <div class="mb-3">
-        <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
-        {!! Form::text('phone',null,['required','id'=>'phone','class'=>'form-control','placeholder'=>'Phone']) !!}
-    </div>
-
-    <div class="mb-3">
-        <label for="address" class="form-label">Alamat <span class="text-danger">*</span></label>
-        {!! Form::text('address',null,['required','id'=>'address','class'=>'form-control','placeholder'=>'Address']) !!}
-    </div>
-
-    <div class="mb-3">
-        <label for="devisi" class="form-label">Devisi <span class="text-danger">*</span></label>
-        {!! Form::text('devisi',null,['required','id'=>'devisi','class'=>'form-control','placeholder'=>'Devisi']) !!}
-    </div>
-
-
-    <div class="mb-3">
-        <label for="jabatan" class="form-label">Jabatan <span class="text-danger">*</span></label>
-        {!! Form::text('jabatan',null,['required','id'=>'jabatan','class'=>'form-control','placeholder'=>'Jabatan']) !!}
-    </div>
-
-    <div class="mb-3">
-        <label for="no" class="form-label">No <span class="text-danger">*</span></label>
-        {!! Form::text('no',null,['required','id'=>'no','class'=>'form-control','placeholder'=>'No']) !!}
-    </div>
-
-    <div class="mb-3">
-        <label for="image" class="form-label">Image <span class="text-danger">*</span></label>
-        {!! Form::file('image',null,['required','id'=>'image','class'=>'form-control','placeholder'=>'Image']) !!}
-    </div>
-
-
-
-    <div class="mb-3">
-        <label for="product-category" class="form-label">Status <span class="text-danger">*</span></label>
-
-        {!! Form::select('status', [''=>'Status  ...','1'=>'Aktif','0'=>'draft'], null,['class'=>'form-control select2','id'=>'status','required']) !!}
-
-    </div>
-
-
-
-</div>
-</div> <!-- end card -->
-</div> <!-- end col -->
-
-
-</div>
-<!-- end row -->
-<!--end wrapper-->
 
 <div class="row">
-<div class="card">
-<div class="card-body">
-<div class="col-3">
-<div class="button-list pe-xl-4 d-grid mb-3">
-<button  type="submit" class="btn btn-lg btn-primary waves-effect waves-light">Simpan</button>
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1)) }}">{{ ucfirst(Request::segment(1)) }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}">{{ ucfirst(Request::segment(2)) }}</a></li>
+                    <li class="breadcrumb-item active">{{ ucfirst(Request::segment(3)) }}</li>
+                </ol>
+            </div>
+            <h4 class="page-title">{{ ucfirst(Request::segment(3)) }} {{ ucfirst(Request::segment(2)) }}</h4>
+        </div>
+    </div>
+</div>
+<!-- .row end -->
 
+{!! Form::open(array('url' => route('dasbor.program.store'),'files'=>'true')) !!}
+@csrf
 
-</div>
-</div> <!-- end col -->
-</div>
-</div>
-</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">BIOGRAPHY</h5>
+
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name <span class="text-danger">*</span></label>
+                    <input type="text" name="first_name" id="first_name" value="{{ old('first_name') ?? '' }}" placeholder="First Name" class="form-control">
+                    @if ($errors->has('first_name'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('first_name') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input group end -->
+
+                <div class="mb-3">
+                    <label for="middle_name" class="form-label">Middle Name</label>
+                    <input type="text" name="middle_name" id="middle_name" value="{{ old('middle_name') ?? '' }}" placeholder="Middle Name" class="form-control">
+                    @if ($errors->has('middle_name'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('middle_name') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input group end -->
+
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" name="last_name" id="last_name" value="{{ old('last_name') ?? '' }}" placeholder="Last Name" class="form-control">
+                    @if ($errors->has('last_name'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('last_name') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input group end -->
+                
+                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">CONTACT INFORMATION</h5>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" name="phone" id="phone" value="{{ old('phone') ?? '' }}" placeholder="Phone" class="form-control">
+                    @if ($errors->has('phone'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('phone') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input group end -->
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" name="email" id="email" value="{{ old('email') ?? '' }}" placeholder="Email Address" class="form-control">
+                    @if ($errors->has('email'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input group end -->
+
+                <div class="mb-3">
+                    <label for="short_description" class="form-label">Short Description</label>
+                    <textarea name="short_description" id="short_description" cols="30" rows="3" class="form-control">{{ old('short_description') ?? '' }}</textarea>
+                    @if ($errors->has('short_description'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('short_description') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input group end -->
+
+                <div class="form-group">
+                    <label for="full_description" class="form-label">Full Description</label>
+                    <textarea name="full_description" id="ckeditor" class="ckeditor form-control" rows="30" placeholder="Full Description">{{ old('konten') }}</textarea>
+                    @if ($errors->has('full_description'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('full_description') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input item end-->
+
+                <div class="mb-3">
+                    <select class="custom-select" name="status">
+                        <option value="Draft" selected>Draft</option>
+                        <option value="Publish">Publish</option>
+                      </select>
+                </div>
+                <!-- input group end -->
+
+            </div>
+        </div> <!-- .card end -->
+    </div> <!-- .col end -->
+</div> <!-- .row end -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-3">
+                    <div class="button-list pe-xl-4 d-grid mb-3">
+                        <button  type="submit" class="btn btn-lg btn-primary waves-effect waves-light">
+                            <i class="fa-solid fa-save me-1"></i> Simpan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .card end -->
+    </div> <!-- end col -->
+</div> <!-- .row row -->
 {!! Form::close() !!}
 
-  @stop
+@stop
 
 @push('script-header')
- <!-- Plugins css-->
- <link href="{{ asset('assets/admin/assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
-        <!-- <link href="{{ asset('assets/admin/assets/libs/dropzone/min/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
-
-        <link href="{{ asset('assets/admin/assets/libs/dropify/css/dropify.min.css')}}" rel="stylesheet" type="text/css" /> -->
-        <link href="{{ asset('assets/admin/assets/libs/quill/quill.core.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('assets/admin/assets/libs/quill/quill.snow.css')}}" rel="stylesheet" type="text/css" />
+<!-- Plugins css-->
+<link href="{{ asset('assets/admin/assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/admin/assets/libs/quill/quill.core.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/admin/assets/libs/quill/quill.snow.css')}}" rel="stylesheet" type="text/css" />
 @endpush
 
 
-  @push('script-footer')
-   <!-- Select2 js-->
-   <script src="{{ asset('assets/admin/assets/js/vendor.min.js')}}"></script>
-   <script src="{{ asset('assets/admin/assets/libs/select2/js/select2.min.js')}}"></script>
-        <!-- Quill js -->
-        <script src="{{ asset('assets/admin/assets/libs/quill/quill.min.js')}}"></script>
-   <!-- Init js -->
+@push('script-footer')
+<!-- Select2 js-->
+<script src="{{ asset('assets/admin/assets/js/vendor.min.js')}}"></script>
+<script src="{{ asset('assets/admin/assets/libs/select2/js/select2.min.js')}}"></script>
+<!-- Quill js -->
+<script src="{{ asset('assets/admin/assets/libs/quill/quill.min.js')}}"></script>
+<!-- Init js -->
 
-     <script src="{{ asset('assets/admin/assets/js/pages/add-product.init.js')}}"></script>
-        <!-- Dropzone file uploads-->
-        <!-- <script src="{{ asset('assets/admin/assets/libs/dropzone/min/dropzone.min.js')}}"></script>
-        <script src="{{ asset('assets/admin/assets/libs/dropify/js/dropify.min.js')}}"></script>
-    -->
+<script src="{{ asset('assets/admin/assets/js/pages/add-product.init.js')}}"></script>
 
-        <!-- Init js-->
-        <script src="{{ asset('assets/admin/assets/js/pages/form-fileuploads.init.js')}}"></script>
+<!-- Init js-->
+<script src="{{ asset('assets/admin/assets/js/pages/form-fileuploads.init.js')}}"></script>
 
 
-  <script src="{{ asset('assets/admin/ckeditor/ckeditor.js')}}"></script>
+<script src="{{ asset('assets/admin/ckeditor/ckeditor.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.ckeditor').ckeditor();
     });
 
+    CKEDITOR.config.height='600px';
+</script>
 
-  @endpush
+@endpush

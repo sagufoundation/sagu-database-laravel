@@ -32,7 +32,11 @@ class SiswaSeeder extends Seeder
 
                 // contct info
                 'phone' => '082112341234',
-                'email' => 'a.yandong.supvokasi2020@sagufoundation.org',
+                'email_google' => 'anastasia@gmail.com',
+                'email_outlook' => 'anastasia@outlook.com',
+                'email_sagu' => 'a.yandong.supvokasi2020@sagufoundation.org',
+                'email_campus_1' => 'anastasia@campus1.com',
+                'email_campus_2' => 'anastasia@campus2.com',
                 
                 // other
                 'status' => 'Publish',
@@ -58,7 +62,11 @@ class SiswaSeeder extends Seeder
 
                 // contct info
                 'phone' => '082112341235',
-                'email' => 'a.omabak.supvokasi2020@sagufoundation.org',
+                'email_google' => 'apela@gmail.com',
+                'email_outlook' => 'apela@outlook.com',
+                'email_sagu' => 'a.omabak.supvokasi2020@sagufoundation.org',
+                'email_campus_1' => 'apela@campus1.com',
+                'email_campus_2' => 'apela@campus2.com',
                 
                 // other
                 'status' => 'Publish',

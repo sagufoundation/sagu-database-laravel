@@ -1,43 +1,30 @@
 @extends('dasbor.layout.app')
 @section('content')
 
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box">
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{ url('dasbor') }}">Dasbor</a></li>
-                        <li class="breadcrumb-item active">Program</li>
-                    </ol>
-                </div>
-                <h4 class="page-title">Program</h4>
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1)) }}">{{ ucfirst(Request::segment(1)) }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}">{{ ucfirst(Request::segment(2)) }}</a></li>
+                    <li class="breadcrumb-item active">{{ ucfirst(Request::segment(3)) }}</li>
+                </ol>
             </div>
+            <h4 class="page-title">{{ ucfirst(Request::segment(3)) }} {{ ucfirst(Request::segment(2)) }}</h4>
         </div>
     </div>
-    <!-- .row end -->
+</div>
+<!-- .row end -->
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> Ada Form Yang Belum diisi.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    <!-- .alert end -->
-
-@endif
-
-<!-- <form action="{{ url('app/halaman') }}" method="POST" enctype="multipart/form-data"> -->
 {!! Form::open(array('url' => route('dasbor.program.store'),'files'=>'true')) !!}
+@csrf
 
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">FORM</h5>
-                @csrf
 
                 <div class="mb-3">
                     <label for="program_title" class="form-label">Program Title <span class="text-danger">*</span></label>
@@ -83,8 +70,7 @@
             </div>
         </div> <!-- .card end -->
     </div> <!-- .col end -->
-</div>
-<!-- .row row -->
+</div> <!-- .row end -->
 
 <div class="row">
     <div class="col-12">
@@ -96,11 +82,11 @@
                             <i class="fa-solid fa-save me-1"></i> Simpan
                         </button>
                     </div>
-                </div> <!-- end col -->
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+        </div> <!-- .card end -->
+    </div> <!-- end col -->
+</div> <!-- .row row -->
 {!! Form::close() !!}
 
 @stop
@@ -108,9 +94,6 @@
 @push('script-header')
 <!-- Plugins css-->
 <link href="{{ asset('assets/admin/assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
-<!-- <link href="{{ asset('assets/admin/assets/libs/dropzone/min/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
-
-<link href="{{ asset('assets/admin/assets/libs/dropify/css/dropify.min.css')}}" rel="stylesheet" type="text/css" /> -->
 <link href="{{ asset('assets/admin/assets/libs/quill/quill.core.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/admin/assets/libs/quill/quill.snow.css')}}" rel="stylesheet" type="text/css" />
 @endpush
@@ -125,10 +108,6 @@
 <!-- Init js -->
 
 <script src="{{ asset('assets/admin/assets/js/pages/add-product.init.js')}}"></script>
-<!-- Dropzone file uploads-->
-<!-- <script src="{{ asset('assets/admin/assets/libs/dropzone/min/dropzone.min.js')}}"></script>
-<script src="{{ asset('assets/admin/assets/libs/dropify/js/dropify.min.js')}}"></script>
--->
 
 <!-- Init js-->
 <script src="{{ asset('assets/admin/assets/js/pages/form-fileuploads.init.js')}}"></script>

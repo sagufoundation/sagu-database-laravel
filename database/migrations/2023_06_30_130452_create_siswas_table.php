@@ -30,7 +30,11 @@ return new class extends Migration
 
             // contact info
             $table->string('phone')->unique();
-            $table->string('email')->unique();
+            $table->string('email_google')->unique(); // ...@gmail.com
+            $table->string('email_outlook')->unique(); // ...@outlook.com
+            $table->string('email_sagu')->unique(); // ...@sagufoundation.org
+            $table->string('email_campus_1')->unique(); // ...@campusname.com
+            $table->string('email_campus_2')->unique(); // ...@campusname.com
 
             // other
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();

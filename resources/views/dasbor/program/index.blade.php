@@ -1,20 +1,20 @@
 @extends('dasbor.layout.app')
 @section('content')
 
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box">
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dasbor') }}">Dasbor</a></li>
-                        <li class="breadcrumb-item active">Program</li>
-                    </ol>
-                </div>
-                <h4 class="page-title">Program</h4>
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1)) }}">{{ ucfirst(Request::segment(1)) }}</a></li>
+                    <li class="breadcrumb-item active">{{ ucfirst(Request::segment(2)) }}</li>
+                </ol>
             </div>
+            <h4 class="page-title">{{ ucfirst(Request::segment(2)) }}</h4>
         </div>
     </div>
-    <!-- .row end -->
+</div>
+<!-- .row end -->
 
     <div class="row">
         <div class="col-12">
@@ -22,14 +22,14 @@
                 <div class="card-body">
                     
                     <!-- Left sidebar -->
-                    @include('dasbor.program.menu')
+                    @include('dasbor.layout.includes.left-sidebar')
                     <!-- End Left sidebar -->
 
                     <div class="inbox-rightbar">
                         @if (request()->segment(3) == 'draft')
-                        <form action="{{ url('dasbor/program/draft') }}" method="get">
+                        <form action="{{ url(Request::segment(1).'/'.Request::segment(2).'/draft') }}" method="get">
                         @else
-                        <form action="{{ url('dasbor/program') }}" method="get">
+                        <form action="{{ url(Request::segment(1).'/'.Request::segment(2)) }}" method="get">
                         @endif
                             <div class="input-group mb-3">
                                 <input type="search" name="s" class="form-control" placeholder="Search">
@@ -52,15 +52,7 @@
                                         <td>{{ $data->short_description ?? '' }}</td>
 
                                         <td>
-                                            <form action="{{ url('dasbor/program',$data->id) }}" method="POST">
-
-                                                <a class="btn btn-primary" href="{{ url('dasbor/program/'.$data->id.'/edit') }}">Edit</a>
-
-                                                @csrf
-                                                @method('DELETE')
-
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                            @include('dasbor.layout.includes.index-action')
                                         </td>
                                     </tr>
                                     @endforeach

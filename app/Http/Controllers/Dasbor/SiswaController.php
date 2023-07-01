@@ -20,8 +20,9 @@ class SiswaController extends Controller
             ['first_name', '!=', Null],
             [function ($query) {
                 if (($s = request()->s)) {
-                    $query->orWhere('title', 'LIKE', '%' . $s . '%')
-                        // ->orWhere('subtitle', 'LIKE', '%' . $s . '%')
+                    $query->orWhere('first_name', 'LIKE', '%' . $s . '%')
+                        ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $s . '%')
                         ->get();
                 }
             }]
@@ -39,8 +40,9 @@ class SiswaController extends Controller
             ['first_name', '!=', Null],
             [function ($query) {
                 if (($s = request()->s)) {
-                    $query->orWhere('title', 'LIKE', '%' . $s . '%')
-                        // ->orWhere('subtitle', 'LIKE', '%' . $s . '%')
+                    $query->orWhere('first_name', 'LIKE', '%' . $s . '%')
+                        ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $s . '%')
                         ->get();
                 }
             }]
@@ -60,7 +62,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dasbor.siswa.create');
     }
 
     /**
@@ -80,9 +82,10 @@ class SiswaController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
+    public function show($id)
     {
-        //
+        $data = Siswa::where('id', $id)->first();
+        return view('dasbor.siswa.edit', compact('data'));
     }
 
     /**
@@ -91,9 +94,10 @@ class SiswaController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Siswa $siswa)
+    public function edit($id)
     {
-        //
+        $data = Siswa::where('id', $id)->first();
+        return view('dasbor.siswa.edit', compact('data'));
     }
 
     /**
@@ -103,19 +107,70 @@ class SiswaController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Siswa $siswa)
+    public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'first_name' => 'required',
+        ],
+        [
+            'first_name.required' => 'Bagian ini wajib dilengkapi',
+        ]);
+
+        $data = Siswa::find($id);
+
+        $data->first_name = $request->first_name;
+        $data->middle_name = $request->middle_name;
+        $data->last_name = $request->last_name;
+        
+        // other
+        $data->status = $request->status;
+
+        $data->update();
+
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+
+        return redirect()->route('dasbor.siswa');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Siswa  $siswa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Siswa $siswa)
+    public function destroy($id)
     {
-        //
+        $data = Siswa::find($id);
+        $data->delete();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->route('dasbor.siswa');
     }
+
+    public function trash()
+    {
+        $datas = Siswa::onlyTrashed()->paginate(5);
+        $jumlahtrash = Siswa::onlyTrashed()->count();
+        $jumlahdraft = Siswa::where('status', 'Draft')->count();
+        $datapublish = Siswa::where('status', 'Publish')->count();
+
+        return view('dasbor.siswa.trash', compact('datas','jumlahtrash','jumlahdraft','datapublish')) ->with('i', (request()->input('page', 1) - 1) * 5);
+
+    }
+
+    public function restore($id){
+        $data = Siswa::onlyTrashed()->where('id',$id);
+        $data->restore();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->back();
+    }
+
+    public function delete($id)
+    {
+        $data = Siswa::onlyTrashed()->where('id',$id);
+        $data->forceDelete();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->back();
+    }
+
 }

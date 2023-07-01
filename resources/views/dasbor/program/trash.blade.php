@@ -1,28 +1,29 @@
 @extends('dasbor.layout.app')
 @section('content')
 
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box">
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dasbor') }}">Dasbor</a></li>
-                        <li class="breadcrumb-item active">Program</li>
-                    </ol>
-                </div>
-                <h4 class="page-title">Program</h4>
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1)) }}">{{ ucfirst(Request::segment(1)) }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}">{{ ucfirst(Request::segment(2)) }}</a></li>
+                    <li class="breadcrumb-item active">{{ ucfirst(Request::segment(3)) }}</li>
+                </ol>
             </div>
+            <h4 class="page-title">{{ ucfirst(Request::segment(3)) }} {{ ucfirst(Request::segment(2)) }}</h4>
         </div>
     </div>
-    <!-- end page title -->
+</div>
+<!-- .row end -->
 
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
+                    
                     <!-- Left sidebar -->
-                    @include('dasbor.program.menu')
+                    @include('dasbor.layout.includes.left-sidebar')
                     <!-- End Left sidebar -->
 
                     <div class="inbox-rightbar">
@@ -64,17 +65,7 @@
                                         <td>{{ $data->short_description ?? '' }}</td>
         
                                         <td>
-                                        <form action="{{ url('dasbor/program/restore',$data->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-success"> <i class="fa-solid fa-trash-arrow-up"></i> Restore</button>
-                                    </form>
-                                            <form action="{{ url('dasbor/program/delete',$data->id) }}" method="POST">
-        
-                                                @csrf
-                                                @method('DELETE')
-        
-                                                <button type="submit" class="btn btn-danger ms-1 show_confirm" data-toggle="tooltip" title='Delete'> <i class="fa-solid fa-trash"></i> Delete</button>
-                                            </form>
+                                            @include('dasbor.layout.includes.trash-action')
                                         </td>
                                     </tr>
                                     @endforeach
@@ -96,9 +87,7 @@
                         </div>
                         {!! $datas->links() !!}
 
-                    </div>
-
-                    
+                    </div>                    
 
                 </div> <!-- end card-->
             </div> <!-- end col -->
@@ -140,4 +129,4 @@
 
 </script>
 
-  @endpush
+@endpush
