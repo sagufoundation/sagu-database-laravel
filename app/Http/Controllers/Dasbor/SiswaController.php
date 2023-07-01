@@ -21,8 +21,8 @@ class SiswaController extends Controller
             [function ($query) {
                 if (($s = request()->s)) {
                     $query->orWhere('first_name', 'LIKE', '%' . $s . '%')
-                        ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
-                        ->orWhere('last_name', 'LIKE', '%' . $s . '%')
+                        // ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
+                        // ->orWhere('last_name', 'LIKE', '%' . $s . '%')
                         ->get();
                 }
             }]
@@ -73,7 +73,41 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'first_name' => 'required',
+        ],
+        [
+            'first_name.required' => 'Bagian ini wajib dilengkapi',
+        ]);
+
+        $data = new Siswa();
+
+        // biography
+        $data->first_name = $request->first_name;
+        $data->middle_name = $request->middle_name;
+        $data->last_name = $request->last_name;
+
+        // birth        
+        $data->place_of_birth = $request->place_of_birth;
+        $data->date_of_birth = $request->date_of_birth;
+
+        // pictures
+
+        // contact info
+
+        // emails
+
+        // education
+        
+        // other
+        $data->status = $request->status;
+
+        $data->save();
+
+        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
+
+        return redirect()->route('dasbor.siswa');
     }
 
     /**

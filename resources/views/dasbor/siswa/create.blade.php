@@ -17,7 +17,7 @@
 </div>
 <!-- .row end -->
 
-{!! Form::open(array('url' => route('dasbor.program.store'),'files'=>'true')) !!}
+{!! Form::open(array('url' => route('dasbor.siswa.store'),'files'=>'true')) !!}
 @csrf
 
 <div class="row">
@@ -74,45 +74,64 @@
                 <!-- input group end -->
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" name="email" id="email" value="{{ old('email') ?? '' }}" placeholder="Email Address" class="form-control">
-                    @if ($errors->has('email'))
+                    <label for="email_google" class="form-label">Email (by Google)</label>
+                    <input type="email" name="email_google" id="email_google" value="{{ old('email_google') ?? '' }}" placeholder="your.name@gmail.com" class="form-control">
+                    @if ($errors->has('email_google'))
                         <span class="text-danger" role="alert">
-                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email') }}</small>
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email_google') }}</small>
                         </span>
                     @endif
                 </div>
                 <!-- input group end -->
 
                 <div class="mb-3">
-                    <label for="short_description" class="form-label">Short Description</label>
-                    <textarea name="short_description" id="short_description" cols="30" rows="3" class="form-control">{{ old('short_description') ?? '' }}</textarea>
-                    @if ($errors->has('short_description'))
+                    <label for="email_outlook" class="form-label">Email (by Microsoft Outlook)</label>
+                    <input type="email" name="email_outlook" id="email_outlook" value="{{ old('email_outlook') ?? '' }}" placeholder="your.name@outlook.com" class="form-control">
+                    @if ($errors->has('email_outlook'))
                         <span class="text-danger" role="alert">
-                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('short_description') }}</small>
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email_outlook') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input group end -->
+
+                <div class="mb-3">
+                    <label for="email_sagu" class="form-label">Email (by SAGU Foundation)</label>
+                    <input type="email" name="email_sagu" id="email_sagu" value="{{ old('email_sagu') ?? '' }}" placeholder="your.name@sagufoundation.org" class="form-control">
+                    @if ($errors->has('email_sagu'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email_sagu') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input group end -->
+                
+                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">ADDRESS</h5>
+
+                <div class="mb-3">
+                    <label for="full_address" class="form-label">Full Address</label>
+                    <textarea name="full_address" id="full_address" cols="30" rows="3" class="form-control">{{ old('full_address') ?? '' }}</textarea>
+                    @if ($errors->has('full_address'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('full_address') }}</small>
                         </span>
                     @endif
                 </div>
                 <!-- input group end -->
 
                 <div class="form-group">
-                    <label for="full_description" class="form-label">Full Description</label>
-                    <textarea name="full_description" id="ckeditor" class="ckeditor form-control" rows="30" placeholder="Full Description">{{ old('konten') }}</textarea>
-                    @if ($errors->has('full_description'))
+                    <label for="education_history" class="form-label">Education History</label>
+                    <textarea name="education_history" id="ckeditor" class="ckeditor form-control" rows="30">{{ old('education_history') ?? '' }}</textarea>
+                    @if ($errors->has('education_history'))
                         <span class="text-danger" role="alert">
-                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('full_description') }}</small>
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('education_history') }}</small>
                         </span>
                     @endif
                 </div>
                 <!-- input item end-->
 
-                <div class="mb-3">
-                    <select class="custom-select" name="status">
-                        <option value="Draft" selected>Draft</option>
-                        <option value="Publish">Publish</option>
-                      </select>
-                </div>
-                <!-- input group end -->
+                @include('dasbor.layout.includes.form-input.status')
+                <!-- input item end-->
 
             </div>
         </div> <!-- .card end -->

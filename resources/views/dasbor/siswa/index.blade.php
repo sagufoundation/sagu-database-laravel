@@ -50,7 +50,7 @@
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $data->first_name ?? '' }}</td>
-                                        <td>{{ $data->email ?? '' }}</td>
+                                        <td>{{ $data->email_google ?? '' }}</td>
                                         <td>{{ $data->status ?? '' }}</td>
 
                                         <td>

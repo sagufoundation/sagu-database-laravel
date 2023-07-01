@@ -55,13 +55,13 @@
                         <div id="sidebar-menu">
                             <ul id="side-menu">
                                 <li class="menu-title mt-2">Menu Utama</li>
-                                <li>
+                                <li class="@if(Request::segment(2) == 'dasbor') menuitem-active @endif">
                                     <a href="{{ url('dasbor') }}">
                                         <i data-feather="airplay"></i>
                                         <span> Dasbor </span>
                                     </a>
                                 </li>
-                                <li>
+                                <li class="@if(Request::segment(2) == 'program') menuitem-active @endif">
                                     <a href="{{ url('dasbor/program') }}">
                                         <i class="mdi mdi-text-box-multiple-outline"></i>
                                         <span class="badge badge-success badge-pill float-right">
@@ -70,7 +70,7 @@
                                         <span> Program </span>
                                     </a>
                                 </li>
-                                <li>
+                                <li class="@if(Request::segment(2) == 'siswa') menuitem-active @endif">
                                     <a href="{{ url('dasbor/siswa') }}">
                                         <i class="mdi mdi-account-group"></i>
                                         <span class="badge badge-success badge-pill float-right">
@@ -79,28 +79,53 @@
                                         <span> Siswa</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#siswa" data-toggle="collapse">
+                                <li class="@if(Request::segment(2) == 'laporan') menuitem-active @endif">
+                                    <a href="#laporan" data-toggle="collapse">
                                         <i class="mdi mdi-newspaper"></i>
                                         <span> Laporan </span>
                                         <span class="menu-arrow"></span>
                                     </a>
-                                    <div class="collapse" id="siswa">
+                                    <div class="collapse" id="laporan">
                                         <ul class="nav-second-level">
                                             <li>
 
-                                                <a href="{{ url('dasbor/siswa') }}">
-                                                    Siswa
+                                                <a href="{{ url('dasbor/rekap/provinsi') }}">
+                                                    Rekap Provinsi
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ url('dasbor/siswa/kategori') }}">
-                                                    Kelompok
+                                                <a href="{{ url('dasbor/rekap/kabupaten') }}">
+                                                    Rekap Kabupaten
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
+
+                                
+                                <li class="@if(Request::segment(2) == 'university') menuitem-active @endif">
+                                    <a href="#university" data-toggle="collapse">
+                                        <i class="mdi mdi-newspaper"></i>
+                                        <span> University </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="university">
+                                        <ul class="nav-second-level">
+                                            <li>
+
+                                                <a href="{{ url('dasbor/university') }}">
+                                                    University
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('dasbor/university/faculty') }}">
+                                                    Faculty
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
                                 <li class="menu-title mt-2">Area Admin</li>
                                 <li>
                                     <a href="#pengaturan" data-toggle="collapse">
