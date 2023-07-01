@@ -14,6 +14,8 @@ use App\Http\Controllers\UserController;
 // OTHER CLASSES
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\App;
 
 
 /*
@@ -139,3 +141,7 @@ Route::group(['prefix' => '/dasbor', 'middleware' => ['web', 'auth']], function 
 require_once 'dasbor.php';
 require_once 'profil.php';
 
+
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}

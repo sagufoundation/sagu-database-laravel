@@ -35,12 +35,10 @@ use Illuminate\Support\Facades\Route;
                 ->name('dasbor.program.draft');
 
             // create
-            Route::get('program/create','create')
-                ->name('dasbor.program.create');
+            Route::get('program/create','create')->name('dasbor.program.create');
 
             // store
-            Route::post('program','store')
-                ->name('dasbor.program.store');
+            Route::post('program','store')->name('dasbor.program.store');
 
             // show
             Route::get('program/{slug}/detail','show')

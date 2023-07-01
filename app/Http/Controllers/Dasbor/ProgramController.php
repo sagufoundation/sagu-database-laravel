@@ -60,7 +60,7 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        //
+        return view('dasbor.program.create');
     }
 
     /**
@@ -71,7 +71,31 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'program_title' => 'required',
+        ],
+        [
+            'program_title.required' => 'Bagian ini wajib dilengkapi',
+        ]);
+
+        $data = new Program();
+
+        $data->program_title = $request->program_title;
+        $data->short_description = $request->short_description;
+        $data->full_description = $request->full_description;
+        
+        $data->start_date = $request->start_date;
+        $data->end_date = $request->end_date;
+        
+        // other
+        $data->status = $request->status;
+
+        $data->save();
+
+        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
+
+        return redirect()->route('dasbor.program');
     }
 
     /**
@@ -108,14 +132,49 @@ class ProgramController extends Controller
         //
     }
 
+    
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Program  $program
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Program $program)
+    public function destroy($id)
     {
-        //
+        $data = Program::find($id);
+        $data->delete();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->route('dasbor.program');
     }
+
+
+    public function trash()
+    {
+        $datas = Program::onlyTrashed()->paginate(5);
+        $jumlahtrash = Program::onlyTrashed()->count();
+        $jumlahdraft = Program::where('status', 'Draft')->count();
+        $datapublish = Program::where('status', 'Publish')->count();
+
+        return view('dasbor.program.trash',compact('datas','jumlahtrash','jumlahdraft','datapublish')) ->with('i', (request()->input('page', 1) - 1) * 5);
+
+    }
+
+    public function restore($id){
+        $data = Program::onlyTrashed()->where('id',$id);
+        $data->restore();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->back();
+    }
+
+    public function delete($id)
+    {
+        $data = Program::onlyTrashed()->where('id',$id);
+        $data->forceDelete();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->back();
+    }
+
+
+
 }
