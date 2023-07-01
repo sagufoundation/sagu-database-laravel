@@ -94,6 +94,7 @@ class SiswaController extends Controller
 
         // pictures
 
+
         // contact info
 
         // emails
@@ -106,8 +107,7 @@ class SiswaController extends Controller
         $data->save();
 
         alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
-
-        return redirect()->route('dasbor.siswa');
+        return redirect('dasbor/siswa/show/' . Siswa::find($data->id)->id);
     }
 
     /**
@@ -119,7 +119,7 @@ class SiswaController extends Controller
     public function show($id)
     {
         $data = Siswa::where('id', $id)->first();
-        return view('dasbor.siswa.edit', compact('data'));
+        return view('dasbor.siswa.show', compact('data'));
     }
 
     /**
@@ -163,8 +163,7 @@ class SiswaController extends Controller
         $data->update();
 
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
-
-        return redirect()->route('dasbor.siswa');
+        return redirect('dasbor/siswa/show/' . Siswa::find($data->id)->id);
     }
 
     /**
@@ -178,7 +177,7 @@ class SiswaController extends Controller
         $data = Siswa::find($id);
         $data->delete();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
-        return redirect()->route('dasbor.siswa');
+        return redirect()->route('dasbor.siswa.trash');
     }
 
     public function trash()

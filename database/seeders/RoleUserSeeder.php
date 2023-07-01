@@ -65,6 +65,7 @@ class RoleUserSeeder extends Seeder
         $adminJF = User::create([
             'name' => 'Janzen Faidiban',
             'slug' => 'janzen-faidiban',
+            'job_title' => 'Information Technology Coordinator',
             'picture' => 'Janzen-3-200x200.jpg',
             'email' => 'janzen.faidiban@sagufoundation.org',
             'password' => bcrypt('janzen.faidiban@sagufoundation.org'),
@@ -75,6 +76,7 @@ class RoleUserSeeder extends Seeder
         $adminFW = User::create([
             'name' => 'Febe Worabay',
             'slug' => 'febe-worabay',
+            'job_title' => 'Administration Officer',
             'picture' => 'Febe-200x200.jpg',
             'email' => 'febe-woaraby@sagufoundation.org',
             'password' => bcrypt('febe-woaraby@sagufoundation.org'),
@@ -85,6 +87,7 @@ class RoleUserSeeder extends Seeder
         $adminTR = User::create([
             'name' => 'Tisha Rumbewas',
             'slug' => 'tisha-rumbewas',
+            'job_title' => 'Director',
             'picture' => 'Tisha-200x200.jpg',
             'email' => 'tisha-rumbewas@sagufoundation.org',
             'password' => bcrypt('tisha-rumbewas@sagufoundation.org'),
@@ -95,6 +98,7 @@ class RoleUserSeeder extends Seeder
         $adminEJ = User::create([
             'name' => 'Elisabeth Jakarimilena',
             'slug' => 'elisabeth-jakarimilena',
+            'job_title' => 'Finance Officer',
             'picture' => 'Ellysabeth-200x200.jpg',
             'email' => 'elisabeth.jakarimilena@sagufoundation.org',
             'password' => bcrypt('elisabeth.jakarimilena@sagufoundation.org'),
@@ -106,6 +110,7 @@ class RoleUserSeeder extends Seeder
         $guestBPSDM = User::create([
             'name' => 'BPSDM',
             'slug' => 'bpsdm',
+            'job_title' => 'Pemerintah Provinsi Papua',
             'picture' => 'bpsdm-papua.jpg',
             'email' => 'admin.bpsdm@papua.go.id',
             'password' => bcrypt('admin.bpsdm@papua.go.id'),

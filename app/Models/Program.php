@@ -10,4 +10,8 @@ class Program extends Model
 {
     use HasFactory, SoftDeletes;
     public $guarded = [];
+
+    public function siswa(){
+        return $this->hasMany(Siswa::class);
+    }
 }

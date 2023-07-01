@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('siswas', function (Blueprint $table) {
+
             $table->id();
+            $table->foreignId('program_id')->nullable();
             
             // biography
             $table->string('first_name')->nullable();
@@ -48,6 +50,7 @@ return new class extends Migration
 
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 

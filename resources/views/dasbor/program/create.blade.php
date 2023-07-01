@@ -1,21 +1,7 @@
 @extends('dasbor.layout.app')
 @section('content')
 
-<div class="row">
-    <div class="col-12">
-        <div class="page-title-box">
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1)) }}">{{ ucfirst(Request::segment(1)) }}</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}">{{ ucfirst(Request::segment(2)) }}</a></li>
-                    <li class="breadcrumb-item active">{{ ucfirst(Request::segment(3)) }}</li>
-                </ol>
-            </div>
-            <h4 class="page-title">{{ ucfirst(Request::segment(3)) }} {{ ucfirst(Request::segment(2)) }}</h4>
-        </div>
-    </div>
-</div>
-<!-- .row end -->
+                        @include('dasbor.layout.includes.breadcrumb3')  
 
 {!! Form::open(array('url' => route('dasbor.program.store'),'files'=>'true')) !!}
 @csrf
@@ -72,23 +58,9 @@
     </div> <!-- .col end -->
 </div> <!-- .row end -->
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="col-3">
-                    <div class="button-list pe-xl-4 d-grid mb-3">
-                        <button  type="submit" class="btn btn-lg btn-primary waves-effect waves-light">
-                            <i class="fa-solid fa-save me-1"></i> Simpan
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- .card end -->
-    </div> <!-- end col -->
-</div> <!-- .row row -->
-{!! Form::close() !!}
+@include('dasbor.layout.includes.form-input.submit-button')
 
+{!! Form::close() !!}
 @stop
 
 @push('script-header')
@@ -98,28 +70,46 @@
 <link href="{{ asset('assets/admin/assets/libs/quill/quill.snow.css')}}" rel="stylesheet" type="text/css" />
 @endpush
 
-
 @push('script-footer')
 <!-- Select2 js-->
-<script src="{{ asset('assets/admin/assets/js/vendor.min.js')}}"></script>
 <script src="{{ asset('assets/admin/assets/libs/select2/js/select2.min.js')}}"></script>
 <!-- Quill js -->
 <script src="{{ asset('assets/admin/assets/libs/quill/quill.min.js')}}"></script>
 <!-- Init js -->
-
 <script src="{{ asset('assets/admin/assets/js/pages/add-product.init.js')}}"></script>
-
 <!-- Init js-->
 <script src="{{ asset('assets/admin/assets/js/pages/form-fileuploads.init.js')}}"></script>
 
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    var options = {
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
 
-<script src="{{ asset('assets/admin/ckeditor/ckeditor.js')}}"></script>
+</script>
+<script type="text/javascript">
+    CKEDITOR.replace('ckeditor', options);
+    CKEDITOR.config.height='600px';
+</script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('.ckeditor').ckeditor();
     });
+    $(document).ready(function (e) {
+               $('#gambar').change(function(){
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                  $('#preview-gambar').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+               });
+
+            });
 
     CKEDITOR.config.height='600px';
 </script>
-
 @endpush

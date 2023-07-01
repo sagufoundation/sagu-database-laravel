@@ -93,9 +93,9 @@ class ProgramController extends Controller
 
         $data->save();
 
-        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
-
-        return redirect()->route('dasbor.program');
+        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);        
+        return redirect('dasbor/program/edit/' . Program::find($data->id)->id);
+        
     }
 
     /**
@@ -153,9 +153,8 @@ class ProgramController extends Controller
 
         $data->update();
 
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
-
-        return redirect()->route('dasbor.program');
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);       
+        return redirect('dasbor/program/edit/' . Program::find($data->id)->id);
     }
 
     

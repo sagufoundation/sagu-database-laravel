@@ -43,11 +43,11 @@ use Illuminate\Support\Facades\Route;
                 ->name('dasbor.siswa.store');
 
             // show
-            Route::get('siswa/{slug}/detail','show')
+            Route::get('siswa/show/{id}','show')
                 ->name('dasbor.siswa.show');
 
             // edit
-            Route::get('siswa/{slug}/edit','edit')
+            Route::get('siswa/edit/{id}','edit')
                 ->name('dasbor.siswa.edit');
 
             // update
