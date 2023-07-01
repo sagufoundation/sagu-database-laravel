@@ -27,7 +27,7 @@ class SiswaSeeder extends Seeder
                 'date_of_birth' => 'date of birth',
                 
                 // pictures
-                'profile_picture' => 'anastasia-yandong.jpg',
+                'picture' => 'anastasia-yandong.jpg',
                 
 
                 // contct info
@@ -63,7 +63,7 @@ class SiswaSeeder extends Seeder
                 'date_of_birth' => 'date of birth',
                 
                 // pictures
-                'profile_picture' => 'apela-omabak.jpg',
+                'picture' => 'apela-omabak.jpg',
                 'ktp' => 'apela-omabak-ktp.jpg',
 
                 // contct info

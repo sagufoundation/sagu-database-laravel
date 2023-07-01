@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('date_of_birth')->nullable();
             
             // pictures
-            $table->string('profile_picture')->nullable();
+            $table->string('picture')->nullable();
             $table->string('ktp')->nullable();
 
             // contact info

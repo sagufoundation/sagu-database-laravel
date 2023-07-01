@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Dasbor;
 
+// models
+use App\Models\User;
+
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use App\Models\Roles;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
@@ -19,7 +21,7 @@ class UserController extends Controller
     // INDEX
     public function index(Request $request)
     {
-        $data = User::where([
+        $datas = User::where([
             ['name', '!=', Null],
             [function ($query) use ($request) {
                 if (($s = $request->s)) {
@@ -30,21 +32,17 @@ class UserController extends Controller
             }]
         ])->where('status',1)->latest()->paginate(5);
 
-
         $jumlahtrash = User::onlyTrashed()->count();
         $jumlahdraft = User::where('status', 0)->count();
         $datapublish = User::where('status', 1)->count();
-        return view('panel.admin.pages.users.index',compact('data','jumlahtrash','jumlahdraft','datapublish'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
-
-
+        return view('dasbor.pengguna.index',compact('datas','jumlahtrash','jumlahdraft','datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
 
     }
 
     // DRAFT
     public function draft(Request $request)
     {
-        $data = User::where([
+        $datas = User::where([
             ['name', '!=', Null],
             [function ($query) use ($request) {
                 if (($s = $request->s)) {
@@ -58,7 +56,7 @@ class UserController extends Controller
         $jumlahtrash = User::onlyTrashed()->count();
         $jumlahdraft = User::where('status', 0)->count();
         $datapublish = User::where('status', 1)->count();
-        return view('panel.admin.pages.users.index',compact('data','jumlahtrash','jumlahdraft','datapublish'))
+        return view('panel.admin.pages.users.index',compact('datas','jumlahtrash','jumlahdraft','datapublish'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

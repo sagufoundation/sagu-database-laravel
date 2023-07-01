@@ -37,21 +37,24 @@
                             </div>
                         </form>
 
-                        <div class="mt-3">
+                        <div class="mt-3 table-responsive">
                             <table class="table table-bordered">
                                     <tr>
                                         <th width="1%">No</th>
-                                        <th>Prgoram Title</th>
-                                        <th>Short Description</th>
+                                        <th>Picture</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
                                         <th width="280px">Action</th>
                                     </tr>
                                     @foreach ($datas as $data)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $data->program_title ?? '' }}</td>
-                                        <td>{{ $data->short_description ?? '' }}</td>
-
-                                       @include('dasbor.layout.includes.index-action')
+                                        @include('dasbor.layout.includes.index-picture')                                        
+                                        <td>{{ $data->name ?? '' }}</td>
+                                        <td>{{ $data->email ?? '' }}</td>
+                                        <td>{{ $data->status ?? '' }}</td>
+                                        @include('dasbor.layout.includes.index-action')
                                     </tr>
                                     @endforeach
                             </table>
