@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Siswa;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class SiswaSeeder extends Seeder
@@ -23,6 +24,8 @@ class SiswaSeeder extends Seeder
                 'first_name' => 'Anastasia',
                 'middle_name' => 'Febriani',
                 'last_name' => 'Yandong',
+
+                'slug' => Str::slug('anastasia-febriani-yandong'),
 
                 // birth
                 'place_of_birth' => 'place of birth',
@@ -45,6 +48,9 @@ class SiswaSeeder extends Seeder
                 
                 // education
                 'education_history' => 'Please write student history here . . .',
+
+                // documents
+                'doc_google_sheets' => '<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQRTLzz2wreUVgwQth7b_rUChtKO2piJl-zJgGlXwO-0JFmDl5MhJ1ISpFSAiSVSkh0Li6MO6fY31jX/pubhtml?widget=true&amp;headers=false"></iframe>',
                 
                 // other
                 'status' => 'Publish',
@@ -61,6 +67,8 @@ class SiswaSeeder extends Seeder
                 'first_name' => 'Apela',
                 'middle_name' => '',
                 'last_name' => 'Omabak',
+
+                'slug' => Str::slug('apela-omabak'),
 
                 // birth
                 'place_of_birth' => 'place of birth',
@@ -82,6 +90,9 @@ class SiswaSeeder extends Seeder
                 
                 // education
                 'education_history' => 'Please write student history here . . .',
+
+                // documents
+                'doc_google_sheets' => '<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQRTLzz2wreUVgwQth7b_rUChtKO2piJl-zJgGlXwO-0JFmDl5MhJ1ISpFSAiSVSkh0Li6MO6fY31jX/pubhtml?widget=true&amp;headers=false"></iframe>',
                 
                 // other
                 'status' => 'Publish',

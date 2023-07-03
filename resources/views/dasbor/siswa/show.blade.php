@@ -62,12 +62,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                    <a href="#profile" data-toggle="tab" aria-expanded="false" class="nav-link">
                         <i class="fa-solid fa-user mr-1"></i> Profile
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#documents" data-toggle="tab" aria-expanded="false" class="nav-link">
+                    <a href="#documents" data-toggle="tab" aria-expanded="true" class="nav-link active">
                         <i class="fa-solid fa-folder mr-1"></i> Documents
                     </a>
                 </li>
@@ -144,7 +144,7 @@
                 </div> <!-- end tab-pane -->
                 <!-- end about me section content -->
 
-                <div class="tab-pane show active" id="profile">
+                <div class="tab-pane" id="profile">
                     
                     <h5 class="mb-4 text-uppercase"><i class="fa-solid fa-file mr-1"></i> Biography</h5>
 
@@ -163,81 +163,67 @@
                 </div>
                 <!-- end timeline content-->
 
-                <div class="tab-pane" id="documents">
+                <div class="tab-pane show active" id="documents">
                     
-                    <h5 class="mb-4 text-uppercase"><i class="fa-solid fa-folder"></i> Documents</h5>
+                    <h5 class="mb-4 text-uppercase"><i class="fa-solid fa-folder"></i> New Document</h5>
+                    
+                    <div class="">
+                        <p>Dokumen utama yang sering digunakan atau sedang dalam tahap penggunaan.</p>
 
-                    <div class="card">
-                        <div class="card-body">
+                        @include('dasbor.siswa.documents.create-modal')
 
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Updated on</th>
-                                            <th>Option</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Akta Kelahiran</td>
-                                            <td>Surat Akta Kelahiran</td>
-                                            <td>28/10/2020</td>
-                                            @include('dasbor.siswa.includes.document-options')
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>KTP</td>
-                                            <td>Kartu Tanda Penduduk</td>
-                                            <td>28/10/2020</td>
-                                            @include('dasbor.siswa.includes.document-options')
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Passport</td>
-                                            <td>Paspor warga negara Indonesia</td>
-                                            <td>28/10/2020</td>
-                                            <td width="200px">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a href="{{ url('') }}" class="btn btn-light border">
-                                                            <i class="fa-solid fa-upload"></i> Upload
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Rekening Mandiri</td>
-                                            <td>Foto buku tabungan Bank Mandiri</td>
-                                            <td>28/10/2020</td>
-                                            @include('dasbor.siswa.includes.document-options')
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Ijazah SMK</td>
-                                            <td>Ijazah Sekolah Menengah Kejuruan</td>
-                                            <td>28/10/2020</td>
-                                            <td width="200px">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a href="{{ url('') }}" class="btn btn-light border">
-                                                            <i class="fa-solid fa-upload"></i> Upload
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#standard-modal">
+                            <i class="fa-solid fa-file"></i> Tambah
+                        </button>
+                    </div>
 
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Created at</th>
+                                    <th>Updated at</th>
+                                    <th>Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($documents as $document)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $document->title ?? '' }}</td>
+                                    <td>{{ $document->description ?? '' }}</td>
+                                    <td style="font-size: 80%">{{ $document->created_at ?? '' }}</td>
+                                    <td style="font-size: 80%">{{ $document->updated_at ?? '' }}</td>
+                                    @include('dasbor.siswa.includes.document-options')
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h5 class="my-4 text-uppercase"><i class="fa-solid fa-folder"></i> All Documents</h5>
+                    <p>Semua dokumen milik siswa yang sudah terkumpul. Daftar dokumen dijelaskan pada judul, keterangan dan tipe file pada Google Sheets. Tersedia juga link untuk menampilkan secara detail atau mendownloadnya.</p>
+
+                    <div id="doc_google_sheets">
+                        {!! $data->doc_google_sheets ?? '' !!}
+                    </div>
+
+                    <div class="py-4">
+                        <h5>Keterangan</h5>
+                        <ul>
+                            <li>
+                                Dokumen tersimpan di google drive.
+                            </li>
+                            <li>
+                                Hak akses dokumen hanya diberikan kepada pengguna sistem.
+                            </li>
+                            <li>
+                                Pengguna luar selain admin SAGU Foundation tidak dapat mengubah atau menambahkan file di dalam folder google drive.
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <!-- end settings content-->
@@ -301,6 +287,12 @@
             });
 
     CKEDITOR.config.height='600px';
+</script>
+
+<script>
+    document.getElementById("doc_google_sheets").firstElementChild.setAttribute("width", "100%");
+    document.getElementById("doc_google_sheets").firstElementChild.setAttribute("height", "500px");
+    // document.getElementById("doc_google_sheets").setAttribute("class", "democlass");
 </script>
 
 @endpush

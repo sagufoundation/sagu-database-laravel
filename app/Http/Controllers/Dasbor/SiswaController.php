@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dasbor;
 use App\Http\Controllers\Controller;
 
 use App\Models\Siswa;
+use App\Models\Documents;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -119,7 +120,8 @@ class SiswaController extends Controller
     public function show($id)
     {
         $data = Siswa::where('id', $id)->first();
-        return view('dasbor.siswa.show', compact('data'));
+        $documents = Documents::where('siswa_id', $id)->get();
+        return view('dasbor.siswa.show', compact('data', 'documents'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

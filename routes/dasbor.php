@@ -15,6 +15,7 @@ Route::prefix('dasbor')->middleware('auth')->group(function () {
     require_once 'dasbor/pengaturan.php';
     require_once 'dasbor/pengguna.php';
     require_once 'dasbor/siswa.php';
+    require_once 'dasbor/documents.php';
     require_once 'dasbor/program.php';
 
 });

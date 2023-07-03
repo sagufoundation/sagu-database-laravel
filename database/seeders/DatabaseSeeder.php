@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
 
             SiswaSeeder::class,
             ProgramSeeder::class,
+            DocumentsSeeder::class,
         ]);
     }
 }

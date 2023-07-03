@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
+
+            $table->string('slug')->nullable(); // slug dibuat dari nama lengkap
             
             // birth
             $table->string('place_of_birth')->nullable();
@@ -44,6 +46,10 @@ return new class extends Migration
             
             // education 
             $table->tinyText('education_history')->nullable();
+            
+            // documents
+            $table->longText('doc_google_sheets')->nullable(); // google sheets
+
 
             // other
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
