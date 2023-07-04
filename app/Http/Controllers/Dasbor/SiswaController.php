@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Dasbor;
 
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Str;
 use App\Models\Siswa;
 use App\Models\Documents;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -22,21 +25,21 @@ class SiswaController extends Controller
             [function ($query) {
                 if (($s = request()->s)) {
                     $query->orWhere('first_name', 'LIKE', '%' . $s . '%')
-                        // ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
-                        // ->orWhere('last_name', 'LIKE', '%' . $s . '%')
+                        ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $s . '%')
                         ->get();
                 }
             }]
-        ])->where('status', 'Publish')->latest()->paginate(5);
+        ])->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(5);
         $jumlahtrash = Siswa::onlyTrashed()->count();
         $jumlahdraft = Siswa::where('status', 'Draft')->count();
         $datapublish = Siswa::where('status', 'Publish')->count();
 
-        return view('dasbor.siswa.index',compact('datas','jumlahtrash','jumlahdraft','datapublish')) ->with('i', (request()->input('page', 1) - 1) * 5);
-
+        return view('dasbor.siswa.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function draft() {
+    public function draft()
+    {
         $datas = Siswa::where([
             ['first_name', '!=', Null],
             [function ($query) {
@@ -47,13 +50,12 @@ class SiswaController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status', 'Draft')->latest()->paginate(5);
+        ])->where('status', 'Draft')->orderBy('first_name', 'asc')->paginate(5);
         $jumlahtrash = Siswa::onlyTrashed()->count();
         $jumlahdraft = Siswa::where('status', 'Draft')->count();
         $datapublish = Siswa::where('status', 'Publish')->count();
 
-        return view('dasbor.siswa.index',compact('datas','jumlahtrash','jumlahdraft','datapublish')) ->with('i', (request()->input('page', 1) - 1) * 5);
-
+        return view('dasbor.siswa.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -75,12 +77,14 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'first_name' => 'required',
-        ],
-        [
-            'first_name.required' => 'Bagian ini wajib dilengkapi',
-        ]);
+        $request->validate(
+            [
+                'first_name' => 'required',
+            ],
+            [
+                'first_name.required' => 'Bagian ini wajib dilengkapi',
+            ]
+        );
 
         $data = new Siswa();
 
@@ -89,11 +93,33 @@ class SiswaController extends Controller
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
 
+        // create slug
+        $data->slug = Str::slug($data->first_name . '' . $data->middle_name . '' . $data->last_name);
+
         // birth        
         $data->place_of_birth = $request->place_of_birth;
         $data->date_of_birth = $request->date_of_birth;
 
-        // pictures
+        // picture creation
+        if (isset($request->picture)) {
+
+            // create file name
+            $fileName = $request->picture->getClientOriginalName();
+
+            // crate file path
+            $path = public_path('gambar/siswa/' . $data->picture);
+
+            // delete file if exist
+            if (file_exists($path)) {
+                File::delete($path);
+            }
+
+            // adding file name into database variable
+            $data->picture = $fileName;
+
+            // move file into folder path with the file name
+            $request->picture->move(public_path('gambar/siswa'), $fileName);
+        }
 
 
         // contact info
@@ -101,7 +127,7 @@ class SiswaController extends Controller
         // emails
 
         // education
-        
+
         // other
         $data->status = $request->status;
 
@@ -120,7 +146,7 @@ class SiswaController extends Controller
     public function show($id)
     {
         $data = Siswa::where('id', $id)->first();
-        $documents = Documents::where('siswa_id', $id)->get();
+        $documents = Documents::where('siswa_id', $id)->orderBy('title', 'asc')->get();
         return view('dasbor.siswa.show', compact('data', 'documents'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -145,29 +171,63 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // create validation
+        $request->validate(
+            [
+                'first_name' => 'required',
+            ],
+            [
+                'first_name.required' => 'Bagian ini wajib dilengkapi',
+            ]
+        );
 
-        $request->validate([
-            'first_name' => 'required',
-        ],
-        [
-            'first_name.required' => 'Bagian ini wajib dilengkapi',
-        ]);
-
+        // select data by id
         $data = Siswa::find($id);
 
+        // create new variable
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
 
+        // create slug by names
+        $data->slug = Str::slug($data->first_name . '' . $data->middle_name . '' . $data->last_name);
+
         // documents
         $data->doc_google_sheets = $request->doc_google_sheets;
-        
+
         // other
         $data->status = $request->status;
 
+
+        // picture creation
+        if (isset($request->picture)) {
+
+            // create file name
+            $fileName = $request->picture->getClientOriginalName();
+
+            // crate file path
+            $path = public_path('gambar/siswa/' . $data->picture);
+
+            // delete file if exist
+            if (file_exists($path)) {
+                File::delete($path);
+            }
+
+            // adding file name into database variable
+            $data->picture = $fileName;
+
+            // move file into folder path with the file name
+            $request->picture->move(public_path('gambar/siswa'), $fileName);
+        }
+
+
+        // update process
         $data->update();
 
+        // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+
+        // redirect page
         return redirect('dasbor/siswa/show/' . Siswa::find($data->id)->id);
     }
 
@@ -192,12 +252,12 @@ class SiswaController extends Controller
         $jumlahdraft = Siswa::where('status', 'Draft')->count();
         $datapublish = Siswa::where('status', 'Publish')->count();
 
-        return view('dasbor.siswa.trash', compact('datas','jumlahtrash','jumlahdraft','datapublish')) ->with('i', (request()->input('page', 1) - 1) * 5);
-
+        return view('dasbor.siswa.trash', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function restore($id){
-        $data = Siswa::onlyTrashed()->where('id',$id);
+    public function restore($id)
+    {
+        $data = Siswa::onlyTrashed()->where('id', $id);
         $data->restore();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
         return redirect()->back();
@@ -205,10 +265,27 @@ class SiswaController extends Controller
 
     public function delete($id)
     {
-        $data = Siswa::onlyTrashed()->where('id',$id);
+
+        $data = Siswa::onlyTrashed()->findOrFail($id);
+        $path = public_path('gambar/siswa/' . $data->picture);
+
+        if (file_exists($path)) {
+            File::delete($path);
+        }
+
+
+        // $data = Siswa::onlyTrashed()->where('id', $id);
+
+        // // create file path
+        // $path = public_path('gambar/siswa');
+
+        // // delete file if exist
+        // if (!empty($data->picture) && file_exists($path . '/' . $data->picture)) :
+        //     unlink($path . '/' . $data->picture);
+        // endif;
+
         $data->forceDelete();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
         return redirect()->back();
     }
-
 }

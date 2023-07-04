@@ -26,7 +26,7 @@
                                                             <th>Status</th>
                                                             <th width="280px">Action</th>
                                                         </tr>
-                                                        @foreach ($datas as $data)
+                                                        @forelse($datas as $data) 
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             @include('dasbor.layout.includes.index-picture') 
@@ -35,7 +35,13 @@
                                                             <td>{{ $data->status ?? '' }}</td>
                                                             @include('dasbor.layout.includes.index-action')
                                                         </tr>
-                                                        @endforeach
+                                                        @empty 
+                                                        <tr>
+                                                            <td colspan="6">
+                                                                Data tidak ada
+                                                            </td>
+                                                        </tr>
+                                                        @endforelse
                                                 </table>
                                             </div>
                                             <!-- end .mt-4 -->

@@ -176,20 +176,23 @@
 
                         <div class="mb-3">
                             <div class="mb-2">
+                                <p>
+                                    {{ $data->picture ?? 'no picture' }}
+                                </p>
                                 @if(!empty($data->picture))
                                 <img src="{{ asset('gambar/' . Request::segment(2) . '/' . $data->picture) }}" alt="Profile picture" class="img img-thumbnail img-fluid w-100 rounded p-2" id="preview-gambar">
                                 @else 
                                 <img src="{{ asset('gambar/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found" class="img img-thumbnail w-100 rounded p-2" id="preview-gambar">
                                 @endif
                             </div>
-                            <label for="gambar" class="form-label d-block">Gambar</label>
+                            <label for="picture" class="form-label d-block">Gambar</label>
                             <div class="custom-file w-100">
-                                <input type="file" name="gambar" class="custom-file-input" id="gambar" value="">
+                                <input type="file" name="picture" class="custom-file-input" id="picture" value="">
                                 <small class="text-muted mt-2 d-block">Pilih gambar baru dari komputer Anda</small>
                                 <label class="custom-file-label" for="customFile">Pilih gambar</label>
-                                @if ($errors->has('gambar'))
+                                @if ($errors->has('picture'))
                                     <span class="text-danger" role="alert">
-                                        <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('gambar') }}</small>
+                                        <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('picture') }}</small>
                                     </span>
                                 @endif
                             </div>

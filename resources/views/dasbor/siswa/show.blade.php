@@ -13,9 +13,9 @@
         <div class="card-box text-center">
 
             @if(!empty($data->picture))
-            <img src="{{ asset('gambar/' . Request::segment(2) . '/' . $data->picture) }}" alt="Profile picture" class="rounded">
+            <img src="{{ asset('gambar/' . Request::segment(2) . '/' . $data->picture) }}" alt="Profile picture" class="rounded-0 w-100">
             @else 
-            <img src="{{ asset('gambar/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found" class="rounded">
+            <img src="{{ asset('gambar/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found" class="rounded-0 w-100">
             @endif
 
             <h4 class="mb-0 mt-3">{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</h4>
