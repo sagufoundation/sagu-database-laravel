@@ -25,6 +25,9 @@ return new class extends Migration
 
             $table->string('slug')->nullable(); // slug dibuat dari nama lengkap
             
+            // profile
+            $table->longText('profile')->nullable();
+
             // birth
             $table->string('place_of_birth')->nullable();
             $table->string('date_of_birth')->nullable();

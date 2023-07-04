@@ -27,6 +27,11 @@ class SiswaSeeder extends Seeder
 
                 'slug' => Str::slug('anastasia-febriani-yandong'),
 
+                // profile
+                'profile' => "<p>Anastasia Febriani Yandong is a determined individual with a strong passion for pursuing higher education in vocational school. Her unwavering commitment to gaining practical skills and knowledge is evident in her relentless pursuit of excellence. Anastasia's drive and enthusiasm make her an inspiring role model for others who share her desire to succeed in vocational education.</p>
+                <p>Her unwavering commitment to gaining practical skills and knowledge is evident in her relentless pursuit of excellence. </p>
+                <p>Anastasia Febriani Yandong is a determined individual with a strong passion for pursuing higher education in vocational school. Her unwavering commitment to gaining practical skills and knowledge is evident in her relentless pursuit of excellence. Anastasia's drive and enthusiasm make her an inspiring role model for others who share her desire to succeed in vocational education.</p>",
+
                 // birth
                 'place_of_birth' => 'place of birth',
                 'date_of_birth' => 'date of birth',
@@ -70,6 +75,9 @@ class SiswaSeeder extends Seeder
 
                 'slug' => Str::slug('apela-omabak'),
 
+                // profile
+                'profile' => 'write student details',
+
                 // birth
                 'place_of_birth' => 'place of birth',
                 'date_of_birth' => 'date of birth',
@@ -110,6 +118,9 @@ class SiswaSeeder extends Seeder
                     'last_name' => 'Kaifiar',
     
                     'slug' => Str::slug('michael-kafiar'),
+
+                    // profile
+                    'profile' => 'write student details',
     
                     // birth
                     'place_of_birth' => 'place of birth',

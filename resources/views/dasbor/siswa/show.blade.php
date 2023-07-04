@@ -75,11 +75,18 @@
             <div class="tab-content">
                 <div class="tab-pane" id="education">
                     
-                    <h5 class="mb-4 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Formal</h5>
+                    <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Formal</h5>
+
+                    <div>
+                        @include('dasbor.siswa.education.create-education-modal')
+                        <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#education-modal">
+                            <i class="fa-solid fa-plus-square"></i> Add
+                        </button>
+                    </div> 
 
                     <ul class="list-unstyled timeline-sm">
                         <li class="timeline-sm-item">
-                            <span class="timeline-sm-date">2015 - 18</span>
+                            <span class="timeline-sm-date">2015</span>
                             <h5 class="mt-0 mb-1">Lead designer / Developer</h5>
                             <p>websitename.com</p>
                             <p class="text-muted mt-2">Everyone realizes why a new common language
@@ -108,7 +115,7 @@
                         </li>
                     </ul>
                     
-                    <h5 class="mb-4 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Non Formal</h5>
+                    <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Non Formal</h5>
 
                     <ul class="list-unstyled timeline-sm">
                         <li class="timeline-sm-item">
@@ -146,18 +153,15 @@
 
                 <div class="tab-pane" id="profile">
                     
-                    <h5 class="mb-4 text-uppercase"><i class="fa-solid fa-file mr-1"></i> Biography</h5>
+                    <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-file mr-1"></i> Biography</h5>
+                    <p>Rincian penjelasan terkait siswa.</p>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h3>Lorem ipsum dolor sit amet.</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, expedita accusantium. Fugiat, facilis illum quisquam ad perferendis temporibus alias amet?</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quisquam eaque debitis ex iste quasi assumenda ut eos, facere consequatur ipsum beatae, veritatis ratione inventore sequi enim mollitia et sed? Aliquam fugiat sint eos expedita porro cumque repellat quisquam natus!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia animi velit ipsum voluptatibus cumque? Ipsum totam aut rerum mollitia minima illum deleniti unde vero, quas ab dolorem commodi illo cumque ducimus ipsam optio molestiae. Sunt, officiis maxime! Minima vel excepturi iste nihil quia nesciunt impedit eveniet quam? Recusandae, dolores hic.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="float-right btn btn-primary border"><i class="fa-solid fa-pencil-square" class="btn"></i> Edit</a>
-                        </div>
+                    <div class="py-2">
+                        <a href="#" class="btn btn-sm btn-primary mb-2"><i class="fa-solid fa-pencil-square" class="btn"></i> Edit</a>
+                    </div>
+
+                    <div>
+                        {!! $data->profile ?? '' !!}
                     </div>
 
                 </div>
@@ -166,18 +170,14 @@
                 <div class="tab-pane show active" id="documents">
                     
                     <h5 class="mb-2 text-uppercase"><i class="fa-solid fa-folder"></i> PINNED Document</h5>
+                    <p>Dokumen yang sering digunakan atau sedang dalam tahap penggunaan.</p>
                     
-                    <div class="">
-                        <p>Dokumen yang sering digunakan atau sedang dalam tahap penggunaan.</p>
-
+                    <div>
                         @include('dasbor.siswa.documents.create-modal')
-
                         <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#standard-modal">
                             <i class="fa-solid fa-plus-square"></i> Add
                         </button>
-                    </div>
-
-                    
+                    </div>                    
 
                     <div class="table-responsive">
                         <table class="table table-hover">
