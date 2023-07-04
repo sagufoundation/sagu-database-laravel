@@ -165,17 +165,19 @@
 
                 <div class="tab-pane show active" id="documents">
                     
-                    <h5 class="mb-4 text-uppercase"><i class="fa-solid fa-folder"></i> New Document</h5>
+                    <h5 class="mb-2 text-uppercase"><i class="fa-solid fa-folder"></i> PINNED Document</h5>
                     
                     <div class="">
-                        <p>Dokumen utama yang sering digunakan atau sedang dalam tahap penggunaan.</p>
+                        <p>Dokumen yang sering digunakan atau sedang dalam tahap penggunaan.</p>
 
                         @include('dasbor.siswa.documents.create-modal')
 
                         <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#standard-modal">
-                            <i class="fa-solid fa-file"></i> Tambah
+                            <i class="fa-solid fa-plus-square"></i> Add
                         </button>
                     </div>
+
+                    
 
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -190,7 +192,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($documents as $document)
+                                @forelse ($documents as $document)
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $document->title ?? '' }}</td>
@@ -214,31 +216,54 @@
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
+
+                                @empty
+
+                                <tr>
+                                    <td colspan="6">
+                                        Belum ada dokumen yang disematkan
+                                    </td>
+                                </tr>
+
+                                @endforelse
+                                
                             </tbody>
                         </table>
                     </div>
 
-                    <h5 class="my-4 text-uppercase"><i class="fa-solid fa-folder"></i> All Documents</h5>
-                    <p>Semua dokumen milik siswa yang sudah terkumpul. Daftar dokumen dijelaskan pada judul, keterangan dan tipe file pada Google Sheets. Tersedia juga link untuk menampilkan secara detail atau mendownloadnya.</p>
+                    <div>
+                        <h5 class="my-4 text-uppercase"><i class="fa-solid fa-folder"></i> All Documents (Google Sheets)</h5>
 
-                    <div id="doc_google_sheets">
+                        <p>Semua dokumen milik siswa yang sudah terkumpul. Daftar dokumen dijelaskan pada judul, keterangan dan tipe file pada Google Sheets. Tersedia juga link untuk menampilkan secara detail atau mendownloadnya.</p>                                            
+                    
+                        @empty($data->doc_google_sheets)
+
+                        <div class="alert alert-warning">
+                            <b>Peringatan!</b> Link google sheets belum ada. Silahkan <a href="{{ url('dasbor/siswa/edit', $data->id) }}" class="font-weight-bold"><i class="fa-solid fa-pencil-square"></i> Edit</a> untuk melengkapinya.
+                        </div>
+
+                        @else
+                        
+                        <div id="doc_google_sheets">
                         {!! $data->doc_google_sheets ?? '' !!}
-                    </div>
+                        </div>
 
-                    <div class="py-4">
-                        <h5>Keterangan</h5>
-                        <ul>
-                            <li>
+                        @endempty
+
+                        <ul class="list-group my-2 rounded-0">
+                            <li class="list-group-item bg-primary text-white fw-bold font-weight-bold">
+                                Keterangan
+                            </li>
+                            <li class="list-group-item">
                                 Dokumen tersimpan di google drive.
                             </li>
-                            <li>
+                            <li class="list-group-item">
                                 Hak akses dokumen hanya diberikan kepada pengguna sistem.
                             </li>
-                            <li>
+                            <li class="list-group-item">
                                 Pengguna luar selain admin SAGU Foundation tidak dapat mengubah atau menambahkan file di dalam folder google drive.
                             </li>
-                        </ul>
+                        </ul> 
                     </div>
                 </div>
                 <!-- end settings content-->

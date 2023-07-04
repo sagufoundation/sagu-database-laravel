@@ -158,6 +158,9 @@ class SiswaController extends Controller
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
+
+        // documents
+        $data->doc_google_sheets = $request->doc_google_sheets;
         
         // other
         $data->status = $request->status;
@@ -176,7 +179,6 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        dd('delete siswa');
         $data = Siswa::find($id);
         $data->delete();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);

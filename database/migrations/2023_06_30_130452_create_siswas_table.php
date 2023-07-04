@@ -50,7 +50,6 @@ return new class extends Migration
             // documents
             $table->longText('doc_google_sheets')->nullable(); // google sheets
 
-
             // other
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
 

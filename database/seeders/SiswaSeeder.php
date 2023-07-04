@@ -99,9 +99,48 @@ class SiswaSeeder extends Seeder
 
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
-
-
             ]);
+
+            Siswa::create(
+                [
+                    'program_id' => 1,
+                    
+                    'first_name' => 'Michael',
+                    'middle_name' => '',
+                    'last_name' => 'Kaifiar',
+    
+                    'slug' => Str::slug('michael-kafiar'),
+    
+                    // birth
+                    'place_of_birth' => 'place of birth',
+                    'date_of_birth' => 'date of birth',
+                    
+                    // pictures
+                    'picture' => '',
+                    'ktp' => 'michal-katfiar-ktp.jpg',
+    
+                    // contct info
+                    'phone' => '',
+                    'full_address' => 'Student full address . . .',
+    
+                    'email_google' => 'michal@gmail.com',
+                    'email_outlook' => 'michal@outlook.com',
+                    'email_sagu' => 'm.kafiar.supvokasi2020@sagufoundation.org',
+                    'email_campus_1' => 'michal@campus1.com',
+                    'email_campus_2' => 'michal@campus2.com',
+                    
+                    // education
+                    'education_history' => 'Please write student history here . . .',
+    
+                    // documents
+                    'doc_google_sheets' => '',
+                    
+                    // other
+                    'status' => 'Publish',
+    
+                    'created_at'        => Carbon::now(),
+                    'updated_at'        => Carbon::now()
+                ]);
 
     }
 }
