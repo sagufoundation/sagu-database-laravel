@@ -1,4 +1,4 @@
-{!! Form::open(array('url' => route('dasbor.documents.store'),'files'=>'true')) !!}
+{!! Form::open(array('url' => route('dasbor.siswa.documents.store'),'files'=>'true')) !!}
 @csrf
 
 <!-- Standard modal content -->
@@ -54,7 +54,7 @@
                     <i class="fa-solid fa-times"></i> Cancle
                 </button>
                 <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-upload"></i> Upload
+                    <i class="fa-solid fa-plus-square"></i> Add
                 </button>
             </div>
         </div><!-- /.modal-content -->

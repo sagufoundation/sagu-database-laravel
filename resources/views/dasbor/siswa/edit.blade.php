@@ -6,8 +6,6 @@
 {!! Form::model($data, array( 'url'=>'dasbor/siswa/'. $data->id, 'method'=>'put','files'=>'true'))!!}
 @csrf
 
-
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card">

@@ -197,13 +197,28 @@
                                     <td>{{ $document->description ?? '' }}</td>
                                     <td style="font-size: 80%">{{ $document->created_at ?? '' }}</td>
                                     <td style="font-size: 80%">{{ $document->updated_at ?? '' }}</td>
-                                    @include('dasbor.siswa.includes.document-options')
+                                    <td width="200px">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <a href="{{ $document->url ?? '' }}" target="_blank" class="btn btn-success border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-file"></i></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <form action="{{ url(Request::segment(1).'/'.Request::segment(2).'/documents/destroy', $document->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'> 
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <h5 class="my-4 text-uppercase"><i class="fa-solid fa-folder"></i> All Documents</h5>
                     <p>Semua dokumen milik siswa yang sudah terkumpul. Daftar dokumen dijelaskan pada judul, keterangan dan tipe file pada Google Sheets. Tersedia juga link untuk menampilkan secara detail atau mendownloadnya.</p>
 
@@ -266,6 +281,38 @@
     };
 
 </script>
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+
+    $('.show_confirm').click(function(event) {
+         var form =  $(this).closest("form");
+         event.preventDefault();
+         swal.fire({
+           title: 'Anda Yakin?',
+           text: "data akan terhapus permanen!",
+           icon: 'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           confirmButtonText: 'Ya, Bersihkan!'
+         })
+         .then((result) => {
+           if (result.isConfirmed) {
+               form.submit();
+               Swal.fire(
+               'Deleted!',
+               'Your data has been deleted.',
+               'success'
+               )
+           }
+       });
+     });
+
+</script>
+
+
 <script type="text/javascript">
     CKEDITOR.replace('ckeditor', options);
     CKEDITOR.config.height='600px';

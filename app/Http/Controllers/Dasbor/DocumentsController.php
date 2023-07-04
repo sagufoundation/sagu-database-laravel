@@ -26,7 +26,7 @@ class DocumentsController extends Controller
      */
     public function create()
     {
-        return view('dasbor.siswa.documents.create');
+        // 
     }
 
     /**
@@ -47,7 +47,6 @@ class DocumentsController extends Controller
 
         $data = new Documents();
 
-        // biography
         $data->siswa_id = $request->siswa_id;
 
         $data->title = $request->title;
@@ -77,7 +76,7 @@ class DocumentsController extends Controller
      * @param  \App\Models\Documents  $documents
      * @return \Illuminate\Http\Response
      */
-    public function edit(Documents $documents)
+    public function edit($id)
     {
         //
     }
@@ -89,19 +88,36 @@ class DocumentsController extends Controller
      * @param  \App\Models\Documents  $documents
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Documents $documents)
+    public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'title' => 'required',
+        ],
+        [
+            'title.required' => 'Bagian ini wajib dilengkapi',
+        ]);
+
+        $data = new Documents();
+
+        $data->siswa_id = $request->siswa_id;
+
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->url = $request->url;
+
+        $data->update();
+
+        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
+        return redirect('dasbor/siswa/show/' . $data->siswa_id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Documents  $documents
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Documents $documents)
+
+    public function destroy($id)
     {
-        //
+        Documents::where('id', $id)->delete();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->back();
     }
+
 }

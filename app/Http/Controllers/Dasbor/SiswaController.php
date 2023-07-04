@@ -176,6 +176,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
+        dd('delete siswa');
         $data = Siswa::find($id);
         $data->delete();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);

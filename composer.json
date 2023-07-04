@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "algolia/algoliasearch-client-php": "^3.3",
         "coderflexx/laravisit": "^1.4",
+        "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.19",
