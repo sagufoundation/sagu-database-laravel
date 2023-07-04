@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dasbor;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Education;
 use Illuminate\Http\Request;

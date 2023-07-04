@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->longText('google_docs_url')->nullable();
 
-            $table->enum('type', ['Formal', 'Non Formal'])->default('Formal')->nullable();
+            $table->enum('category', ['Formal', 'Non Formal'])->default('Formal')->nullable();
 
             $table->timestamps();
         });

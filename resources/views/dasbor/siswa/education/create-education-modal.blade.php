@@ -23,6 +23,21 @@
                 </div>
                 <!-- input group end -->
 
+                <div class="form-group">
+                    <label for="category" class="form-label d-block">Type</label>
+                    <select name="category" class="form-control" id="exampleFormControlSelect1">
+                        <option value="" hidden>Pilih</option>
+                        <option value="Formal">Formal</option>
+                        <option value="Informal">Informal</option>
+                    </select>
+                    @if ($errors->has('category'))
+                        <span class="text-danger" role="alert">
+                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('category') }}</small>
+                        </span>
+                    @endif
+                </div>
+                <!-- input item end-->
+
                 <div class="mb-3">
                     <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
                     <input type="text" name="title" id="title" value="{{ old('title') ?? '' }}" placeholder="Title" class="form-control">
