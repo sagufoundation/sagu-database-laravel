@@ -176,9 +176,6 @@
 
                         <div class="mb-3">
                             <div class="mb-2">
-                                <p>
-                                    {{ $data->picture ?? 'no picture' }}
-                                </p>
                                 @if(!empty($data->picture))
                                 <img src="{{ asset('gambar/' . Request::segment(2) . '/' . $data->picture) }}" alt="Profile picture" class="img img-thumbnail img-fluid w-100 rounded p-2" id="preview-gambar">
                                 @else 
