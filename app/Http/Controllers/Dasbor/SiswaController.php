@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Siswa;
 use App\Models\Documents;
+use App\Models\Education;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -147,7 +148,8 @@ class SiswaController extends Controller
     {
         $data = Siswa::where('id', $id)->first();
         $documents = Documents::where('siswa_id', $id)->orderBy('title', 'asc')->get();
-        return view('dasbor.siswa.show', compact('data', 'documents'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $educations = Education::where('siswa_id', $id)->orderBy('year', 'asc')->get();
+        return view('dasbor.siswa.show', compact('data', 'documents', 'educations'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -159,7 +161,9 @@ class SiswaController extends Controller
     public function edit($id)
     {
         $data = Siswa::where('id', $id)->first();
-        return view('dasbor.siswa.edit', compact('data'));
+        $documents = Documents::where('siswa_id', $id)->orderBy('title', 'asc')->get();
+        $educations = Education::where('siswa_id', $id)->orderBy('year', 'asc')->get();
+        return view('dasbor.siswa.edit', compact('data', 'documents', 'educations'));
     }
 
     /**
@@ -230,6 +234,159 @@ class SiswaController extends Controller
         // redirect page
         return redirect('dasbor/siswa/show/' . Siswa::find($data->id)->id);
     }
+
+    /**
+     * update > biography.
+     *
+     */
+    public function update_picture(Request $request, $id) {
+        
+        // select data by id
+        $data = Siswa::find($id);
+        
+        // picture creation
+        if (isset($request->picture)) {
+
+            // create file name
+            $fileName = $request->picture->getClientOriginalName();
+
+            // crate file path
+            $path = public_path('gambar/siswa/' . $data->picture);
+
+            // delete file if exist
+            if (file_exists($path)) {
+                File::delete($path);
+            }
+
+            // adding file name into database variable
+            $data->picture = $fileName;
+
+            // move file into folder path with the file name
+            $request->picture->move(public_path('gambar/siswa'), $fileName);
+        }
+
+        // update process
+        $data->update();
+
+        // create alert
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+    /**
+     * update > biography.
+     *
+     */
+    public function update_biography(Request $request, $id) {
+        
+        // select data by id
+        $data = Siswa::find($id);
+
+        // create new variable
+        $data->first_name = $request->first_name;
+        $data->middle_name = $request->middle_name;
+        $data->last_name = $request->last_name;
+
+        // update process
+        $data->update();
+
+        // create alert
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+    /**
+     * update > contact
+     *
+     */
+    public function update_contact(Request $request, $id) {
+        
+        // dd($request->email_google);
+
+        // select data by id
+        $data = Siswa::find($id);
+
+        // create new variable
+        $data->phone = $request->phone;
+        $data->email_google = $request->email_google;
+        $data->email_outlook = $request->email_outlook;
+
+        // update process
+        $data->update();
+
+        // create alert
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+    /**
+     * update > address
+     *
+     */
+    public function update_address(Request $request, $id) {
+        
+        // select data by id
+        $data = Siswa::find($id);
+
+        // create new variable
+        $data->first_name = $request->first_name;
+
+        // update process
+        $data->update();
+
+        // create alert
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+    /**
+     * update > documents
+     *
+     */
+    public function update_documents(Request $request, $id) {
+        
+        // select data by id
+        $data = Siswa::find($id);
+
+        // create new variable
+        $data->doc_google_sheets = $request->doc_google_sheets;
+
+        // update process
+        $data->update();
+
+        // create alert
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+    /**
+     * update > educations
+     *
+     */
+    public function update_educations(Request $request, $id) {
+        
+        // select data by id
+        $data = Siswa::find($id);
+
+        // create new variable
+        $data->first_name = $request->first_name;
+
+        // update process
+        $data->update();
+
+        // create alert
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.

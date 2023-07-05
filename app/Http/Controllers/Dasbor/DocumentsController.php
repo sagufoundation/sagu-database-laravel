@@ -37,7 +37,6 @@ class DocumentsController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'title' => 'required',
         ],
@@ -111,7 +110,6 @@ class DocumentsController extends Controller
         alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
         return redirect('dasbor/siswa/show/' . $data->siswa_id);
     }
-
 
     public function destroy($id)
     {

@@ -37,7 +37,26 @@ class EducationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+        ],
+        [
+            'title.required' => 'Bagian ini wajib dilengkapi',
+        ]);
+
+        $data = new Education();
+
+        $data->siswa_id = $request->siswa_id;
+
+        $data->title = $request->title;
+        $data->year = $request->year;
+        $data->description = $request->description;
+        $data->url = $request->url;
+
+        $data->save();
+
+        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
+        return redirect()->back();
     }
 
     /**
@@ -80,8 +99,11 @@ class EducationController extends Controller
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Education $education)
-    {
-        //
-    }
+
+     public function destroy($id)
+     {
+         Education::where('id', $id)->delete();
+         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+         return redirect()->back();
+     }
 }

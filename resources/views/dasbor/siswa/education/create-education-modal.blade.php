@@ -14,7 +14,7 @@
 
                 <div class="mb-3">
                     <label for="year" class="form-label">Year of completion <span class="text-danger">*</span></label>
-                    <input type="month" name="year" id="year" value="{{ old('year') ?? '' }}" placeholder="Year of completion" class="form-control">
+                    <input type="text" name="year" id="year" value="{{ old('year') ?? '' }}" placeholder="Year of completion" class="form-control">
                     @if ($errors->has('year'))
                         <span class="text-danger" role="alert">
                             <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('year') }}</small>
@@ -24,9 +24,9 @@
                 <!-- input group end -->
 
                 <div class="form-group">
-                    <label for="category" class="form-label d-block">Type</label>
+                    <label for="category" class="form-label d-block">Category</label>
                     <select name="category" class="form-control" id="exampleFormControlSelect1">
-                        <option value="" hidden>Pilih</option>
+                        <option hidden>Pilih</option>
                         <option value="Formal">Formal</option>
                         <option value="Informal">Informal</option>
                     </select>

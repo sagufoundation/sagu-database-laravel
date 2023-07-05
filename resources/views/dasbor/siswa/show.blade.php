@@ -85,34 +85,27 @@
                     </div> 
 
                     <ul class="list-unstyled timeline-sm">
+
+                        @forelse ($educations as $education)
+
                         <li class="timeline-sm-item">
-                            <span class="timeline-sm-date">2015</span>
-                            <h5 class="mt-0 mb-1">Lead designer / Developer</h5>
-                            <p>websitename.com</p>
-                            <p class="text-muted mt-2">Everyone realizes why a new common language
-                                would be desirable: one could refuse to pay expensive translators.
-                                To achieve this, it would be necessary to have uniform grammar,
-                                pronunciation and more common words.</p>
+                            <span class="timeline-sm-date">{{ $education->year ?? '' }}</span>
+                            <h5 class="mt-0 mb-1">{{ $education->title ?? '' }}</h5>
+                            <p class="text-muted mt-2">{{ $education->description ?? '' }}</p>
+                            
+                            <form action="{{ url(Request::segment(1).'/'.Request::segment(2).'/education/destroy', $education->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete'> 
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
 
                         </li>
-                        <li class="timeline-sm-item">
-                            <span class="timeline-sm-date">2012 - 15</span>
-                            <h5 class="mt-0 mb-1">Senior Graphic Designer</h5>
-                            <p>Software Inc.</p>
-                            <p class="text-muted mt-2">If several languages coalesce, the grammar
-                                of the resulting language is more simple and regular than that of
-                                the individual languages. The new common language will be more
-                                simple and regular than the existing European languages.</p>
-                        </li>
-                        <li class="timeline-sm-item">
-                            <span class="timeline-sm-date">2010 - 12</span>
-                            <h5 class="mt-0 mb-1">Graphic Designer</h5>
-                            <p>Coderthemes LLP</p>
-                            <p class="text-muted mt-2 mb-0">The European languages are members of
-                                the same family. Their separate existence is a myth. For science
-                                music sport etc, Europe uses the same vocabulary. The languages
-                                only differ in their grammar their pronunciation.</p>
-                        </li>
+
+                        @empty
+                            Data belum ada
+                        @endforelse
                     </ul>
                     
                     <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Non Formal</h5>

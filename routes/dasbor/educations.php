@@ -1,7 +1,7 @@
 <?php
 
 // DASBOR CONTROLLERS
-use App\Http\Controllers\Dasbor\EducationsController;
+use App\Http\Controllers\Dasbor\EducationController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
     */
     Route::group(['middleware' => ['role:administrator']], function () { 
     
-        Route::controller(EducationsController::class)->group(function(){
+        Route::controller(EducationController::class)->group(function(){
 
             // index
             Route::get('educations','index')
@@ -39,7 +39,7 @@ use Illuminate\Support\Facades\Route;
                 ->name('dasbor.siswa.educations.create');
 
             // store
-            Route::post('educations','store')
+            Route::post('siswa/educations/store','store')
                 ->name('dasbor.siswa.educations.store');
 
             // show

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('siswa_id')->nullable();
 
-            $table->string('year')->nullable();
             $table->string('title')->nullable();
+            $table->string('year')->nullable();
             $table->text('description')->nullable();
-            $table->longText('google_docs_url')->nullable();
+            $table->longText('url')->nullable();
 
             $table->enum('category', ['Formal', 'Non Formal'])->default('Formal')->nullable();
 
