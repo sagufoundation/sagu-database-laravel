@@ -4,7 +4,7 @@
                             <div class="col-md-12">                                
                                 <div class="mb-3">
                                     <label for="profile" class="form-label">Profile Descriptions</label>
-                                    <textarea name="profile" id="full_address" cols="30" rows="5" class="form-control">{!! old('profile') ?? $data->profile !!}</textarea>
+                                    <textarea name="profile" id="ckeditor" cols="30" rows="5" class="form-control">{!! old('profile') ?? $data->profile !!}</textarea>
                                     @if ($errors->has('profile'))
                                         <span class="text-danger" role="alert">
                                             <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('profile') }}</small>
