@@ -109,13 +109,13 @@ class SiswaSeeder extends Seeder
                 'updated_at'        => Carbon::now()
             ]);
 
-            Siswa::create(
+        Siswa::create(
                 [
                     'program_id' => 1,
                     
-                    'first_name' => 'Michael',
+                    'first_name' => 'Michel',
                     'middle_name' => '',
-                    'last_name' => 'Kaifiar',
+                    'last_name' => 'Kafiar',
     
                     'slug' => Str::slug('michael-kafiar'),
 
