@@ -148,8 +148,9 @@ class SiswaController extends Controller
     {
         $data = Siswa::where('id', $id)->first();
         $documents = Documents::where('siswa_id', $id)->orderBy('title', 'asc')->get();
-        $educations = Education::where('siswa_id', $id)->orderBy('year', 'asc')->get();
-        return view('dasbor.siswa.show', compact('data', 'documents', 'educations'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $formal_educations = Education::where('siswa_id', $id)->where('category', 'Formal')->orderBy('year', 'desc')->get();
+        $non_formal_educations = Education::where('siswa_id', $id)->where('category', 'Non Formal')->orderBy('year', 'desc')->get();
+        return view('dasbor.siswa.show', compact('data', 'documents', 'formal_educations', 'non_formal_educations'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -236,11 +237,34 @@ class SiswaController extends Controller
     }
 
     /**
+     * update > profile.
+     *
+     */
+    public function update_profile(Request $request, $id) {
+        
+        // select data by id
+        $data = Siswa::find($id);
+
+        // create new variable
+        $data->profile = $request->profile;
+        $data->status = $request->status;
+
+        // update process
+        $data->update();
+
+        // create alert
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+    /**
      * update > biography.
      *
      */
     public function update_picture(Request $request, $id) {
-        
+        // dd('update picture');
+
         // select data by id
         $data = Siswa::find($id);
         
@@ -287,6 +311,8 @@ class SiswaController extends Controller
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
+        $data->place_of_birth = $request->place_of_birth;
+        $data->date_of_birth = $request->date_of_birth;
 
         // update process
         $data->update();
@@ -303,7 +329,7 @@ class SiswaController extends Controller
      */
     public function update_contact(Request $request, $id) {
         
-        // dd($request->email_google);
+        // dd('contact info');
 
         // select data by id
         $data = Siswa::find($id);
@@ -312,6 +338,8 @@ class SiswaController extends Controller
         $data->phone = $request->phone;
         $data->email_google = $request->email_google;
         $data->email_outlook = $request->email_outlook;
+        $data->email_sagu = $request->email_sagu;
+        $data->email_campus_1 = $request->email_campus_1;
 
         // update process
         $data->update();
@@ -348,6 +376,8 @@ class SiswaController extends Controller
      *
      */
     public function update_documents(Request $request, $id) {
+
+        // dd('doc_google_sheets');
         
         // select data by id
         $data = Siswa::find($id);
@@ -374,7 +404,7 @@ class SiswaController extends Controller
         $data = Siswa::find($id);
 
         // create new variable
-        $data->first_name = $request->first_name;
+        $data->doc_google_sheets = $request->doc_google_sheets;
 
         // update process
         $data->update();

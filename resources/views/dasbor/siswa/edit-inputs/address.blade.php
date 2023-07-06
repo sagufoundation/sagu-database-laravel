@@ -34,6 +34,12 @@
                                         </span>
                                     @endif
                                 </div>
-                                <!-- input group end -->
+                                <!-- input group end -->   
+
                             </div>
                         </div>  
+
+                        <button  type="submit" class="btn btn-sm btn-lg btn-primary waves-effect waves-light">
+                            <i class="fa-solid fa-save mr-1"></i> Simpan
+                        </button>
+                        <!-- submit button end --> 

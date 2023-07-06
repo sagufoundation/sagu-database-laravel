@@ -19,9 +19,14 @@
             @endif
 
             <h4 class="mb-0 mt-3">{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</h4>
-            <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_sagu }}</p>
 
-            <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/' . $data->id )}}" class="btn btn-success btn-xs waves-effect mb-2 waves-light">
+            @if(!empty($data->email_sagu))
+            <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_sagu }}</p>
+            @elseif(!empty($data->email_google))
+            <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_google }}</p>
+            @endif
+
+            <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/biography',  $data->id )}}" class="btn btn-success btn-xs waves-effect mb-2 waves-light">
                 <i class="fa-solid fa-pencil-square"></i> Edit
             </a>
 
@@ -34,19 +39,60 @@
             </form>
 
             <div class="text-left mt-3">
-                <h4 class="font-13 text-uppercase">About :</h4>
-                <p class="text-muted font-13 mb-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolorem nam animi recusandae sequi veniam ipsum fugiat aliquam rem consequuntur!
-
-                    <a href="#">Read more</a>
+                <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> 
+                    <span class="d-block">{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</span>
                 </p>
-                <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2">{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</span></p>
 
-                <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2"> {{ $data->phone }}</span></p>
+                @if(!empty($data->phone))
+                <p class="text-muted mb-2 font-13"><strong>Mobile :</strong>
+                    <span class="d-block"> {{ $data->phone }}</span>
+                </p>
+                @endif
 
-                <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2 "> {{ $data->email_sagu }}</span></p>
+                @if(!empty($data->email_google))
+                <p class="text-muted mb-2 font-13"><strong>Email Google :</strong> 
+                    <span class="d-block"> 
+                        <a href="mailto:{{ $data->email_google }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_google }}</a>
+                    </span>
+                </p>
+                @endif
 
-                <p class="text-muted mb-1 font-13"><strong>Province :</strong> <span class="ml-2"> {{ $data->province }}</span></p>
+                @if(!empty($data->email_sagu))
+                <p class="text-muted mb-2 font-13"><strong>Email SAGU Foundation :</strong> 
+                    <span class="d-block"> 
+                        <a href="mailto:{{ $data->email_sagu }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_sagu }}</a>
+                    </span>
+                </p>
+                @endif
+
+                @if(!empty($data->email_outlook))
+                <p class="text-muted mb-2 font-13"><strong>Email Microsoft Outlook :</strong> 
+                    <span class="d-block">
+                        <a href="mailto:{{ $data->email_outlook }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_outlook }}</a>
+                    </span>
+                </p>
+                @endif
+
+                @if(!empty($data->email_campus))
+                <p class="text-muted mb-2 font-13"><strong>Email Campus :</strong> 
+                    <span class="d-block"> 
+                        <a href="mailto:{{ $data->email_campus }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_campus }}</a>
+                    </span>
+                </p>
+                @endif
+
+                @if(!empty($data->province))
+                <p class="text-muted mb-1 font-13"><strong>Province :</strong> 
+                    <span class="d-block"> {{ $data->province }}</span>
+                </p>
+                @endif
+
+                @if(!empty($data->region))
+                <p class="text-muted mb-1 font-13"><strong>Region :</strong> 
+                    <span class="d-block"> {{ $data->region }}</span>
+                </p>
+                @endif
+
             </div>
 
         </div> <!-- end card-box -->
@@ -77,68 +123,40 @@
                     
                     <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Formal</h5>
 
-                    <div>
-                        @include('dasbor.siswa.education.create-education-modal')
-                        <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#education-modal">
-                            <i class="fa-solid fa-plus-square"></i> Add
-                        </button>
-                    </div> 
-
                     <ul class="list-unstyled timeline-sm">
 
-                        @forelse ($educations as $education)
+                        @forelse ($formal_educations as $formal)
 
                         <li class="timeline-sm-item">
-                            <span class="timeline-sm-date">{{ $education->year ?? '' }}</span>
-                            <h5 class="mt-0 mb-1">{{ $education->title ?? '' }}</h5>
-                            <p class="text-muted mt-2">{{ $education->description ?? '' }}</p>
-                            
-                            <form action="{{ url(Request::segment(1).'/'.Request::segment(2).'/education/destroy', $education->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete'> 
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
+                            <span class="timeline-sm-date">{{ $formal->year ?? '' }}</span>
+                            <h5 class="mt-0 mb-1">{{ $formal->title ?? '' }}</h5>
+                            <p class="text-muted mt-2">{{ $formal->description ?? '' }}</p>
 
                         </li>
 
                         @empty
-                            Data belum ada
+                            Belum ada data
                         @endforelse
+
                     </ul>
                     
                     <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Non Formal</h5>
 
                     <ul class="list-unstyled timeline-sm">
+
+                        @forelse ($non_formal_educations as $non_formal)
+
                         <li class="timeline-sm-item">
-                            <span class="timeline-sm-date">2015 - 18</span>
-                            <h5 class="mt-0 mb-1">Lead designer / Developer</h5>
-                            <p>websitename.com</p>
-                            <p class="text-muted mt-2">Everyone realizes why a new common language
-                                would be desirable: one could refuse to pay expensive translators.
-                                To achieve this, it would be necessary to have uniform grammar,
-                                pronunciation and more common words.</p>
+                            <span class="timeline-sm-date">{{ $non_formal->year ?? '' }}</span>
+                            <h5 class="mt-0 mb-1">{{ $non_formal->title ?? '' }}</h5>
+                            <p class="text-muted mt-2">{{ $non_formal->description ?? '' }}</p>
 
                         </li>
-                        <li class="timeline-sm-item">
-                            <span class="timeline-sm-date">2012 - 15</span>
-                            <h5 class="mt-0 mb-1">Senior Graphic Designer</h5>
-                            <p>Software Inc.</p>
-                            <p class="text-muted mt-2">If several languages coalesce, the grammar
-                                of the resulting language is more simple and regular than that of
-                                the individual languages. The new common language will be more
-                                simple and regular than the existing European languages.</p>
-                        </li>
-                        <li class="timeline-sm-item">
-                            <span class="timeline-sm-date">2010 - 12</span>
-                            <h5 class="mt-0 mb-1">Graphic Designer</h5>
-                            <p>Coderthemes LLP</p>
-                            <p class="text-muted mt-2 mb-0">The European languages are members of
-                                the same family. Their separate existence is a myth. For science
-                                music sport etc, Europe uses the same vocabulary. The languages
-                                only differ in their grammar their pronunciation.</p>
-                        </li>
+
+                        @empty
+                            Belum ada data
+                        @endforelse
+
                     </ul>
 
                 </div> <!-- end tab-pane -->
@@ -148,10 +166,6 @@
                     
                     <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-file mr-1"></i> Biography</h5>
                     <p>Rincian penjelasan terkait siswa.</p>
-
-                    <div class="py-2">
-                        <a href="#" class="btn btn-sm btn-primary mb-2"><i class="fa-solid fa-pencil-square" class="btn"></i> Edit</a>
-                    </div>
 
                     <div>
                         {!! $data->profile ?? '' !!}
@@ -231,8 +245,8 @@
                     
                         @empty($data->doc_google_sheets)
 
-                        <div class="alert alert-warning">
-                            <b>Peringatan!</b> Link google sheets belum ada. Silahkan <a href="{{ url('dasbor/siswa/edit', $data->id) }}" class="font-weight-bold"><i class="fa-solid fa-pencil-square"></i> Edit</a> untuk melengkapinya.
+                        <div class="alert alert-info">
+                            <b><i class="fa-solid fa-info-circle"></i> Info!</b> Link google sheets belum ada. Silahkan <a href="{{ url('dasbor/siswa/edit/documents', $data->id) }}" class="font-weight-bold"><i class="fa-solid fa-pencil-square"></i> Edit</a> untuk lengkapi.
                         </div>
 
                         @else

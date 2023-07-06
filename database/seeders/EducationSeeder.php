@@ -16,6 +16,7 @@ class EducationSeeder extends Seeder
      */
     public function run()
     {
+        // FORMAL EDUCATIONS
         Education::create(
             [
                 'year' => '2015', // year of completion
@@ -60,6 +61,75 @@ class EducationSeeder extends Seeder
 
                 // other
                 'category' => 'Formal',
+
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+
+            ]
+        );
+
+        // NON FORMAL EDUCATIONS
+        Education::create(
+            [
+                'year' => '2015', // year of completion
+                'siswa_id' => 1,
+                'title' => 'Judul Program Pendidikan Non Formal',
+                'description' => 'Contoh keterangan singkat tentang pendidikan non formal yang telah diambil oleh siswa',
+                'url' => 'https://drive.google.com/',
+
+                // other
+                'category' => 'Non Formal',
+
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+
+            ]
+        );
+
+        Education::create(
+            [
+                'year' => '2016', // year of completion
+                'siswa_id' => 1,
+                'title' => 'Judul Program Pendidikan Non Formal',
+                'description' => 'Contoh keterangan singkat tentang pendidikan non formal yang telah diambil oleh siswa',
+                'url' => 'https://drive.google.com/',
+
+                // other
+                'category' => 'Non Formal',
+
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+
+            ]
+        );
+        
+        Education::create(
+            [
+                'year' => '2020', // year of completion
+                'siswa_id' => 2,
+                'title' => 'Judul Program Pendidikan Non Formal',
+                'description' => 'Contoh keterangan singkat tentang pendidikan non formal yang telah diambil oleh siswa',
+                'url' => 'https://drive.google.com/',
+
+                // other
+                'category' => 'Non Formal',
+
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+
+            ]
+        );
+        
+        Education::create(
+            [
+                'year' => '2021', // year of completion
+                'siswa_id' => 2,
+                'title' => 'Judul Program Pendidikan Non Formal Kedua',
+                'description' => 'Contoh keterangan singkat tentang pendidikan non formal yang telah diambil oleh siswa',
+                'url' => 'https://drive.google.com/',
+
+                // other
+                'category' => 'Non Formal',
 
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()

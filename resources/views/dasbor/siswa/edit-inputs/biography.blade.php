@@ -2,6 +2,7 @@
                                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">BIOGRAPHY</h5>
 
                                             <div class="row">
+
                                                 <div class="col-md-4">
                                                     <div class="mb-3">
                                                         <label for="first_name" class="form-label">First Name <span class="text-danger">*</span></label>
@@ -14,6 +15,7 @@
                                                     </div>
                                                     <!-- input group end -->
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <div class="mb-3">
                                                         <label for="middle_name" class="form-label">Middle Name</label>
@@ -26,6 +28,7 @@
                                                     </div>
                                                     <!-- input group end -->
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <div class="mb-3">
                                                         <label for="last_name" class="form-label">Last Name</label>
@@ -36,6 +39,38 @@
                                                             </span>
                                                         @endif
                                                     </div>
-                                                    <!-- input group end -->                                
+                                                    <!-- input group end -->  
                                                 </div>
-                                            </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="mb-3">
+                                                        <label for="place_of_birth" class="form-label">Place of birth</label>
+                                                        <input type="text" name="place_of_birth" id="place_of_birth" value="{{ old('place_of_birth') ?? $data->place_of_birth }}" placeholder="Place of birth" class="form-control">
+                                                        @if ($errors->has('place_of_birth'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('place_of_birth') }}</small>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <!-- input group end -->  
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="mb-3">
+                                                        <label for="date_of_birth" class="form-label">Date of birth</label>
+                                                        <input type="date" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth') ?? $data->date_of_birth }}" placeholder="Date of bith" class="form-control">
+                                                        @if ($errors->has('date_of_birth'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('date_of_birth') }}</small>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <!-- input group end -->  
+                                                </div>
+
+                                            </div>   
+
+                                            <button  type="submit" class="btn btn-sm btn-lg btn-primary waves-effect waves-light">
+                                                <i class="fa-solid fa-save mr-1"></i> Simpan
+                                            </button>
+                                            <!-- submit button end --> 

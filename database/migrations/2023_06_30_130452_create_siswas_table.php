@@ -41,11 +41,11 @@ return new class extends Migration
             $table->tinyText('full_address')->nullable();
             
             // emails
-            $table->string('email_google')->unique()->nullable(); // ...@gmail.com
-            $table->string('email_outlook')->unique()->nullable(); // ...@outlook.com
-            $table->string('email_sagu')->unique()->nullable(); // ...@sagufoundation.org
-            $table->string('email_campus_1')->unique()->nullable(); // ...@campusname.com
-            $table->string('email_campus_2')->unique()->nullable(); // ...@campusname.com
+            $table->string('email_google')->nullable(); // ...@gmail.com
+            $table->string('email_outlook')->nullable(); // ...@outlook.com
+            $table->string('email_sagu')->nullable(); // ...@sagufoundation.org
+            $table->string('email_campus_1')->nullable(); // ...@campusname.com
+            $table->string('email_campus_2')->nullable(); // ...@campusname.com
             
             // education 
             $table->tinyText('education_history')->nullable();

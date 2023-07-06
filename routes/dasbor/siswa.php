@@ -51,7 +51,20 @@ use Illuminate\Support\Facades\Route;
             Route::get('siswa/edit/{id}','edit')
                 ->name('dasbor.siswa.edit');
 
-            // edit > bopgraphy
+            // // edit
+            // Route::get('siswa/edit/{id}', function() {
+            //     return redirect('siswa/edit/biography/{id}');
+            // });
+
+            // edit > profile
+            Route::get('siswa/edit/profile/{id}','edit')
+            ->name('dasbor.siswa.edit.profile');
+
+            // edit > picture
+            Route::get('siswa/edit/picture/{id}','edit')
+            ->name('dasbor.siswa.edit.picture');
+
+            // edit > biography
             Route::get('siswa/edit/biography/{id}','edit')
             ->name('dasbor.siswa.edit.biography');
 
@@ -80,28 +93,32 @@ use Illuminate\Support\Facades\Route;
             // Route::put('siswa/{id}','update')
             //     ->name('dasbor.siswa.update');
 
+            // update > profile
+            Route::put('siswa/update/profile/{id}','update_profile')
+            ->name('dasbor.siswa.update.profile');
+
             // update > picture
-            Route::put('siswa/picture/{id}','update_picture')
+            Route::put('siswa/update/picture/{id}','update_picture')
                 ->name('dasbor.siswa.update.picture');
 
             // update > biography
-            Route::put('siswa/biography/{id}','update_biography')
+            Route::put('siswa/update/biography/{id}','update_biography')
                 ->name('dasbor.siswa.update.biography');
 
             // update > contact
-            Route::put('siswa/contact/{id}','update_contact')
+            Route::put('siswa/update/contact/{id}','update_contact')
                 ->name('dasbor.siswa.update.contact');
 
             // update > address
-            Route::put('siswa/address/{id}','update_address')
+            Route::put('siswa/update/address/{id}','update_address')
                 ->name('dasbor.siswa.update.address');
 
             // update > documents
-            Route::put('siswa/documents/{id}','update_documents')
+            Route::put('siswa/update/documents/{id}','update_documents')
                 ->name('dasbor.siswa.update.documents');
 
             // update > educations
-            Route::put('siswa/educations/{id}','update_educations')
+            Route::put('siswa/update/educations/{id}','update_educations')
                 ->name('dasbor.siswa.update.educations');
 
 

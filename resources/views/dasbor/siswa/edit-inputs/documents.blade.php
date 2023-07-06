@@ -11,6 +11,19 @@
                                         </span>
                                     @endif
                                 </div>
-                                <!-- input group end -->
+                                <!-- input group end -->                                  
+                        
+                                <div id="doc_google_sheets">
+
+                                    {!! $data->doc_google_sheets ?? '<div class="alert alert-info">
+                                        <b><i class="fa-solid fa-info-circle"></i> Info!</b> Link google sheets belum ada. Silahkan lengkapi melalui form diatas.
+                                    </div>' !!}
+
+                                </div>
+
+                                <button  type="submit" class="btn btn-sm btn-lg btn-primary waves-effect waves-light mt-2">
+                                    <i class="fa-solid fa-save mr-1"></i> Simpan
+                                </button>
+                                <!-- submit button end --> 
+
                             </div>
-                        </div>

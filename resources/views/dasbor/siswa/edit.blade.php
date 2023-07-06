@@ -3,10 +3,6 @@
 
                         @include('dasbor.layout.includes.breadcrumb3')
 
-
-
-                        
-
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -18,10 +14,16 @@
 
                                         <div class="inbox-rightbar">
 
-                                        {!! Form::model($data, array( 'url'=>'dasbor/siswa/'. Request::segment(4) . '/' .$data->id, 'method'=>'put','files'=>'true'))!!}
+                                        {!! Form::model($data, array( 'url'=>'dasbor/siswa/update/'. Request::segment(4) . '/' .$data->id, 'method'=>'put','files'=>'true'))!!}
                                         @csrf
                                         
-                                        @if(Request::segment(4) == 'biography')
+                                        @if(Request::segment(4) == 'profile')
+                                            @include('dasbor.siswa.edit-inputs.profile')
+                                        
+                                        @elseif(Request::segment(4) == 'picture')
+                                            @include('dasbor.siswa.edit-inputs.picture')
+                                        
+                                        @elseif(Request::segment(4) == 'biography')
                                             @include('dasbor.siswa.edit-inputs.biography')
 
                                         @elseif (Request::segment(4) == 'contact')
@@ -36,13 +38,9 @@
                                         @elseif (Request::segment(4) == 'educations')
                                             @include('dasbor.siswa.edit-inputs.educations')
 
-                                        @else
-                                                                                      
-                                        @endif                                        
-
-                                        <button  type="submit" class="btn btn-sm btn-lg btn-primary waves-effect waves-light">
-                                            <i class="fa-solid fa-save mr-1"></i> Simpan
-                                        </button>
+                                        @elseif(Request::segment(4) == '')
+                                                                                                                                  
+                                        @endif    
                                         
                                         {!! Form::close() !!}
                                             
@@ -58,8 +56,6 @@
                             </div>
                         </div>
                         <!-- .row end -->   
-    
-
 
 @stop
 
@@ -88,9 +84,7 @@
       filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
       filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
     };
-
 </script>
-
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
@@ -142,6 +136,12 @@
             });
 
     CKEDITOR.config.height='600px';
+</script>
+
+<script>
+    document.getElementById("doc_google_sheets").firstElementChild.setAttribute("width", "100%");
+    document.getElementById("doc_google_sheets").firstElementChild.setAttribute("height", "500px");
+    // document.getElementById("doc_google_sheets").setAttribute("class", "democlass");
 </script>
 
 @endpush
