@@ -89,8 +89,8 @@ class RoleUserSeeder extends Seeder
             'slug' => 'tisha-rumbewas',
             'job_title' => 'Director',
             'picture' => 'Tisha-200x200.jpg',
-            'email' => 'tisha-rumbewas@sagufoundation.org',
-            'password' => bcrypt('tisha-rumbewas@sagufoundation.org'),
+            'email' => 'tisha.rumbewas@sagufoundation.org',
+            'password' => bcrypt('tisha.rumbewas@sagufoundation.org'),
             'status' => 'Publish',
         ]);
         $adminTR->assignRole($adminRole);
