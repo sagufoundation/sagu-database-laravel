@@ -26,7 +26,7 @@
             <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_google }}</p>
             @endif
 
-            <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/biography',  $data->id )}}" class="btn btn-success btn-xs waves-effect mb-2 waves-light">
+            <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/profile',  $data->id )}}" class="btn btn-success btn-xs waves-effect mb-2 waves-light">
                 <i class="fa-solid fa-pencil-square"></i> Edit
             </a>
 

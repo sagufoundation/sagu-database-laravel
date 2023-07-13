@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Education;
+use App\Models\Province;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
             ProgramSeeder::class,
             DocumentsSeeder::class,
             EducationSeeder::class,
+            ProvincesSeeder::class,
         ]);
     }
 }

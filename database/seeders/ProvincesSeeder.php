@@ -30,5 +30,13 @@ class ProvincesSeeder extends Seeder
                 'description' => 'Province of Papua Pegunungan',
             ]
         );
+
+        Province::create(
+            [
+                'id' => 3,
+                'name' => 'Papua Tengah',
+                'description' => 'Province of Papua Tengah',
+            ]
+        );
     }
 }

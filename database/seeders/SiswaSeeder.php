@@ -20,6 +20,7 @@ class SiswaSeeder extends Seeder
         Siswa::create(
             [
                 'program_id' => 1,
+                'province_id' => 1,
 
                 'first_name' => 'Anastasia',
                 'middle_name' => 'Febriani',
@@ -68,6 +69,7 @@ class SiswaSeeder extends Seeder
         Siswa::create(
             [
                 'program_id' => 1,
+                'province_id' => 1,
                 
                 'first_name' => 'Apela',
                 'middle_name' => '',
@@ -112,6 +114,7 @@ class SiswaSeeder extends Seeder
         Siswa::create(
                 [
                     'program_id' => 1,
+                    'province_id' => 1,
                     
                     'first_name' => 'Michel',
                     'middle_name' => '',

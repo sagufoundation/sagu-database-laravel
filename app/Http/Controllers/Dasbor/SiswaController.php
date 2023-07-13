@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Models\Siswa;
 use App\Models\Documents;
 use App\Models\Education;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -162,9 +163,10 @@ class SiswaController extends Controller
     public function edit($id)
     {
         $data = Siswa::where('id', $id)->first();
-        $documents = Documents::where('siswa_id', $id)->orderBy('title', 'asc')->get();
-        $educations = Education::where('siswa_id', $id)->orderBy('year', 'asc')->get();
-        return view('dasbor.siswa.edit', compact('data', 'documents', 'educations'));
+        $documents = Documents::where('siswa_id', $data->id)->orderBy('title', 'asc')->get();
+        $educations = Education::where('siswa_id', $data->id)->orderBy('year', 'asc')->get();
+        $provinces = Province::orderBy('name', 'asc')->get();
+        return view('dasbor.siswa.edit', compact('data', 'documents', 'educations', 'provinces'));
     }
 
     /**
@@ -224,7 +226,6 @@ class SiswaController extends Controller
             // move file into folder path with the file name
             $request->picture->move(public_path('gambar/siswa'), $fileName);
         }
-
 
         // update process
         $data->update();
@@ -355,12 +356,13 @@ class SiswaController extends Controller
      *
      */
     public function update_address(Request $request, $id) {
-        
+
         // select data by id
         $data = Siswa::find($id);
 
         // create new variable
-        $data->first_name = $request->first_name;
+        $data->province_id = $request->province_id;
+        $data->full_address = $request->full_address;
 
         // update process
         $data->update();

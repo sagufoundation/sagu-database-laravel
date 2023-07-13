@@ -17,13 +17,14 @@ return new class extends Migration
 
             $table->id();
             $table->foreignId('program_id')->nullable();
+            $table->foreignId('province_id')->nullable();
             
             // biography
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
 
-            $table->string('slug')->nullable(); // slug dibuat dari nama lengkap
+            $table->string('slug')->unique()->nullable(); // slug dibuat dari nama lengkap
             
             // profile
             $table->longText('profile')->nullable();
@@ -38,6 +39,9 @@ return new class extends Migration
 
             // contact info
             $table->string('phone')->unique()->nullable();
+
+            // address
+            $table->tinyText('province')->nullable();
             $table->tinyText('full_address')->nullable();
             
             // emails

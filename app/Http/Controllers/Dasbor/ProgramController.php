@@ -107,7 +107,7 @@ class ProgramController extends Controller
     public function show($id)
     {
         $data = Program::where('id', $id)->first();
-        return view('dasbor.program.edit', compact('data'));
+        return view('dasbor.program.show', compact('data'));
     }
 
     /**

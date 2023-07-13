@@ -27,12 +27,10 @@ use Illuminate\Support\Facades\Route;
         Route::controller(ProgramController::class)->group(function(){
 
             // index
-            Route::get('program','index')
-                ->name('dasbor.program');
+            Route::get('program','index')->name('dasbor.program');
 
             // draft
-            Route::get('program/draft','draft')
-                ->name('dasbor.program.draft');
+            Route::get('program/draft','draft')->name('dasbor.program.draft');
 
             // create
             Route::get('program/create','create')->name('dasbor.program.create');
@@ -41,32 +39,25 @@ use Illuminate\Support\Facades\Route;
             Route::post('program','store')->name('dasbor.program.store');
 
             // show
-            Route::get('program/detail/{id}','show')
-                ->name('dasbor.program.show');
+            Route::get('program/show/{id}','show')->name('dasbor.program.show');
 
             // edit
-            Route::get('program/edit/{id}','edit')
-                ->name('dasbor.program.edit');
+            Route::get('program/edit/{id}','edit')->name('dasbor.program.edit');
 
             // update
-            Route::put('program/{id}','update')
-                ->name('dasbor.program.update');
+            Route::put('program/{id}','update')->name('dasbor.program.update');
 
             // destroy
-            Route::delete('program/{id}','destroy')
-                ->name('dasbor.program.destroy');
+            Route::delete('program/{id}','destroy')->name('dasbor.program.destroy');
 
             // trash
-            Route::get('program/trash','trash')
-                ->name('dasbor.program.trash');
+            Route::get('program/trash','trash')->name('dasbor.program.trash');
 
             // restore
-            Route::post('program/restore/{id}','restore')
-                ->name('dasbor.program.restore');
+            Route::post('program/restore/{id}','restore')->name('dasbor.program.restore');
 
             // delete
-            Route::delete('program/delete/{id}','delete')
-                ->name('dasbor.program.delete');
+            Route::delete('program/delete/{id}','delete')->name('dasbor.program.delete');
 
         });
     });
