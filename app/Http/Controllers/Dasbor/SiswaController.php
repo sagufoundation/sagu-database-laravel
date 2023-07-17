@@ -163,13 +163,26 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
+
+        // dd('explode');
+
+        
+        
+        
         $data = Siswa::where('id', $id)->first();
+
+        // $programs = explode(',', $data->programs);
+
+        // foreach($programs as $info) :
+        //     echo '<div>'.$info.'</div>';
+        // endforeach;
+
         $documents = Documents::where('siswa_id', $data->id)->orderBy('title', 'asc')->get();
         $educations = Education::where('siswa_id', $data->id)->orderBy('year', 'asc')->get();
         $provinces = Province::orderBy('name', 'asc')->get();
         $programs = Program::orderBy('id', 'desc')->get();
         
-        $data_programs = json_decode($data->programs);
+        $data_programs = explode(',', $data->programs);
 
         return view('dasbor.siswa.edit', compact('data', 'documents', 'educations', 'provinces', 'programs', 'data_programs'));
     }
@@ -415,7 +428,9 @@ class SiswaController extends Controller
 
         // create new variable
         // $data->programs = $request->programs;
-        $data->programs = json_encode($request->programs); // ['1', '3', '5', '6']
+        // $data->programs = json_encode($request->programs); // ['1', '3', '5', '6']
+        // $data->programs = implode(',', $request->programs); // ['1', '3', '5', '6']
+        $data->programs = collect($request->programs)->implode(','); // ['1', '3', '5', '6']
         // $data->programs = $request->programs; // ['1', '3', '5', '6']
 
         // update process
