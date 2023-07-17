@@ -71,7 +71,7 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-
+        // membuat validasi
         $request->validate([
             'program_title' => 'required',
         ],
@@ -81,6 +81,7 @@ class ProgramController extends Controller
 
         $data = new Program();
 
+        // buat variabel baru
         $data->program_title = $request->program_title;
         $data->short_description = $request->short_description;
         $data->full_description = $request->full_description;
@@ -88,12 +89,15 @@ class ProgramController extends Controller
         $data->start_date = $request->start_date;
         $data->end_date = $request->end_date;
         
-        // other
         $data->status = $request->status;
 
-        $data->save();
+        // proses simpan
+        $data->save(); 
 
-        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);        
+        // menampilkan notifikasi alert
+        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);   
+        
+        // mengalihkan halaman
         return redirect('dasbor/program/edit/' . Program::find($data->id)->id);
         
     }
