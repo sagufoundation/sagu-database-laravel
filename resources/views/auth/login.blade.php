@@ -15,6 +15,10 @@
     <meta property="og:description" content="{{ $pengaturan->deskripsi_situs }}">
     <meta property="og:site_name" content="{{ $pengaturan->judul_situs }}">
     <meta name="twitter:image:alt" content="Cover {{ $pengaturan->judul_situs ?? 'SAGU Foundation' }}">
+
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" href="{{ asset('gambar/pengaturan/' . $pengaturan->favicon) }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('gambar/pengaturan/' . $pengaturan->favicon) }}">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 

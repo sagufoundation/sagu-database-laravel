@@ -35,6 +35,9 @@
                                         @elseif (Request::segment(4) == 'documents')
                                             @include('dasbor.siswa.edit-inputs.documents')
 
+                                            @elseif (Request::segment(4) == 'programs')
+                                                @include('dasbor.siswa.edit-inputs.programs')
+
                                         @elseif (Request::segment(4) == 'educations')
                                             @include('dasbor.siswa.edit-inputs.educations')
 

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('program_id')->nullable();
             $table->foreignId('province_id')->nullable();
+
+            $table->string('programs')->nullable();
             
             // biography
             $table->string('first_name')->nullable();

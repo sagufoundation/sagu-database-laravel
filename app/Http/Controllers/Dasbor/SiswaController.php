@@ -9,6 +9,7 @@ use App\Models\Siswa;
 use App\Models\Documents;
 use App\Models\Education;
 use App\Models\Province;
+use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -166,7 +167,11 @@ class SiswaController extends Controller
         $documents = Documents::where('siswa_id', $data->id)->orderBy('title', 'asc')->get();
         $educations = Education::where('siswa_id', $data->id)->orderBy('year', 'asc')->get();
         $provinces = Province::orderBy('name', 'asc')->get();
-        return view('dasbor.siswa.edit', compact('data', 'documents', 'educations', 'provinces'));
+        $programs = Program::orderBy('id', 'desc')->get();
+        
+        $data_programs = json_decode($data->programs);
+
+        return view('dasbor.siswa.edit', compact('data', 'documents', 'educations', 'provinces', 'programs', 'data_programs'));
     }
 
     /**
@@ -386,6 +391,32 @@ class SiswaController extends Controller
 
         // create new variable
         $data->doc_google_sheets = $request->doc_google_sheets;
+
+        // update process
+        $data->update();
+
+        // create alert
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+    /**
+     * update > programs
+     *
+     */
+    public function update_programs(Request $request, $id) {
+        
+
+        // dd(json_encode($request->programs)); // explode(",",$fruit)
+
+        // select data by id
+        $data = Siswa::find($id);
+
+        // create new variable
+        // $data->programs = $request->programs;
+        $data->programs = json_encode($request->programs); // ['1', '3', '5', '6']
+        // $data->programs = $request->programs; // ['1', '3', '5', '6']
 
         // update process
         $data->update();

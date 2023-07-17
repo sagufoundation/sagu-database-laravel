@@ -80,6 +80,10 @@ use Illuminate\Support\Facades\Route;
             Route::get('siswa/edit/documents/{id}','edit')
             ->name('dasbor.siswa.edit.documents');
 
+            // edit > programs
+            Route::get('siswa/edit/programs/{id}','edit')
+            ->name('dasbor.siswa.edit.programs');
+
             // edit > educations
             Route::get('siswa/edit/educations/{id}','edit')
             ->name('dasbor.siswa.edit.educations');
@@ -116,6 +120,10 @@ use Illuminate\Support\Facades\Route;
             // update > documents
             Route::put('siswa/update/documents/{id}','update_documents')
                 ->name('dasbor.siswa.update.documents');
+
+                // update > programs
+                Route::put('siswa/update/programs/{id}','update_programs')
+                    ->name('dasbor.siswa.update.programs');
 
             // update > educations
             Route::put('siswa/update/educations/{id}','update_educations')
