@@ -19,12 +19,8 @@
 
     @if (Auth::user()->hasRole('administrator'))
         @include('dasbor.row.administrator')
-    @elseif (Auth::user()->hasRole('editor'))
-        @include('dasbor.row.editor')
-    @elseif (Auth::user()->hasRole('author'))
-        @include('dasbor.row.author')
-    @elseif (Auth::user()->hasRole('supervisor'))
-        @include('dasbor.row.supervisor')
+    @else
+        <h1>Welcome! {{ Auth::user()->name }}</h1>
     @endif
 
   @stop

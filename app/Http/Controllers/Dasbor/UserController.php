@@ -30,7 +30,7 @@ class UserController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status',1)->latest()->paginate(5);
+        ])->where('status',1)->latest()->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
         $jumlahdraft = User::where('status', 0)->count();
@@ -51,7 +51,7 @@ class UserController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status',0)->latest()->paginate(5);
+        ])->where('status',0)->latest()->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
         $jumlahdraft = User::where('status', 0)->count();

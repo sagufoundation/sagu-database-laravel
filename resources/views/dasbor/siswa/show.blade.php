@@ -26,6 +26,8 @@
             <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_google }}</p>
             @endif
 
+            @if (Auth::user()->hasRole('administrator'))
+
             <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/profile',  $data->id )}}" class="btn btn-success btn-xs waves-effect mb-2 waves-light">
                 <i class="fa-solid fa-pencil-square"></i> Edit
             </a>
@@ -37,6 +39,8 @@
                     <i class="fa-solid fa-trash"></i> Trash
                 </button>
             </form>
+
+            @endif
 
             <div class="text-left mt-3">
                 <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> 
@@ -150,7 +154,6 @@
                             <span class="timeline-sm-date">{{ $non_formal->year ?? '' }}</span>
                             <h5 class="mt-0 mb-1">{{ $non_formal->title ?? '' }}</h5>
                             <p class="text-muted mt-2">{{ $non_formal->description ?? '' }}</p>
-
                         </li>
 
                         @empty
@@ -195,7 +198,7 @@
                                     <th>Description</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
-                                    <th>Option</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -206,6 +209,7 @@
                                     <td>{{ $document->description ?? '' }}</td>
                                     <td style="font-size: 80%">{{ $document->created_at ?? '' }}</td>
                                     <td style="font-size: 80%">{{ $document->updated_at ?? '' }}</td>
+                                    @if (Auth::user()->hasRole('administrator'))
                                     <td width="200px">
                                         <div class="row">
                                             <div class="col-md-4">
@@ -222,6 +226,7 @@
                                             </div>
                                         </div>
                                     </td>
+                                    @endif
                                 </tr>
 
                                 @empty
@@ -246,7 +251,7 @@
                         @empty($data->doc_google_sheets)
 
                         <div class="alert alert-info">
-                            <b><i class="fa-solid fa-info-circle"></i> Info!</b> Link google sheets belum ada. Silahkan <a href="{{ url('dasbor/siswa/edit/documents', $data->id) }}" class="font-weight-bold"><i class="fa-solid fa-pencil-square"></i> Edit</a> untuk lengkapi.
+                            <b><i class="fa-solid fa-info-circle"></i> Info!</b> Link google sheets belum ada. @if (Auth::user()->hasRole('administrator')) Silahkan <a href="{{ url('dasbor/siswa/edit/documents', $data->id) }}" class="font-weight-bold"><i class="fa-solid fa-pencil-square"></i> Edit</a> untuk lengkapi. @endif
                         </div>
 
                         @else

@@ -21,17 +21,19 @@ class RoleUserSeeder extends Seeder
         // ASIGN ROLES
         $adminRole = Role::create(
             [
-            'guard_name' => 'web',
-            'name' => 'administrator',
-            'display_name' => 'Administrator',
-        ]);
+                'guard_name' => 'web',
+                'name' => 'administrator',
+                'display_name' => 'Administrator',
+            ]
+        );
 
         $guestRole = Role::create(
             [
-            'guard_name' => 'web',
-            'name' => 'guest',
-            'display_name' => 'Guest',
-        ]);
+                'guard_name' => 'web',
+                'name' => 'guest',
+                'display_name' => 'Guest',
+            ]
+        );
 
         $editorRole = Role::create(
             [
@@ -106,12 +108,24 @@ class RoleUserSeeder extends Seeder
         ]);
         $adminEJ->assignRole($adminRole);
 
+        // GUEST SAGU
+        $guestSAGU = User::create([
+            'name' => 'Guest SAGU',
+            'slug' => 'guest-sagu',
+            'job_title' => 'Guest SAGU Foundation',
+            'picture' => 'profile-sagu-foundation.jpg',
+            'email' => 'guest@sagufoundation.org',
+            'password' => bcrypt('guest@sagufoundation.org'),
+            'status' => 'Publish',
+        ]);
+        $guestSAGU->assignRole($guestRole);
+
         // GUEST
         $guestBPSDM = User::create([
             'name' => 'BPSDM',
             'slug' => 'bpsdm',
             'job_title' => 'Pemerintah Provinsi Papua',
-            'picture' => 'bpsdm-papua.jpg',
+            'picture' => 'profile-provinsi-papua.jpg',
             'email' => 'admin.bpsdm@papua.go.id',
             'password' => bcrypt('admin.bpsdm@papua.go.id'),
             'status' => 'Publish',
@@ -122,41 +136,6 @@ class RoleUserSeeder extends Seeder
 
 
 
-
-
-
-        // // EDITOR
-        // $editorDLHK = User::create([
-        //     'name'              => 'Editor',
-        //     'slug'              => 'editor'.time().Str::random(12),
-        //     'picture'           => '04.jpg',
-        //     'email'             => 'editor@sagufoundation.org',
-        //     'password'          => bcrypt('editor@sagufoundation.org'),
-        //     'status'           => 'Publish',
-        // ]);
-        // $editorDLHK->assignRole($editorRole);
-
-        // // AUTHOR
-        // $authorDLHK = User::create([
-        //     'name'              => 'Author',
-        //     'slug'              => 'author'.time().Str::random(12),
-        //     'picture'           => '02.jpg',
-        //     'email'             => 'author@sagufoundation.org',
-        //     'password'          => bcrypt('author@sagufoundation.org'),
-        //     'status'           => 'Publish',
-        // ]);
-        // $authorDLHK->assignRole($authorRole);
-
-        // // SUPERVISOR
-        // $supervisorDLHK = User::create([
-        //     'name'              => 'Supervisor DLHK',
-        //     'slug'              => 'supervisor-dlhk'.time().Str::random(12),
-        //     'picture'           => '03.jpg',
-        //     'email'             => 'supervisor@sagufoundation.org',
-        //     'password'          => bcrypt('supervisor@sagufoundation.org'),
-        //     'status'           => 'Publish',
-        // ]);
-        // $supervisorDLHK->assignRole($supervisorRole);
 
     }
 }

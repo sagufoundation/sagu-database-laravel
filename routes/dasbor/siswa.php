@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
     | delete
     |--------------------------------------------------------------------------
     */
-    Route::group(['middleware' => ['role:administrator']], function () { 
+    Route::group(['middleware' => ['auth']], function () { 
     
         Route::controller(SiswaController::class)->group(function(){
 

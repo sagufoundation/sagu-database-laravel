@@ -52,6 +52,7 @@
 
                     <!--- Sidemenu -->
                     @if (Auth::user()->hasRole('administrator'))
+                        
                         <div id="sidebar-menu">
                             <ul id="side-menu">
                                 <li class="menu-title mt-2">Menu Utama</li>
@@ -79,52 +80,6 @@
                                         <span> Siswa</span>
                                     </a>
                                 </li>
-                                <li class="@if(Request::segment(2) == 'laporan') menuitem-active @endif">
-                                    <a href="#laporan" data-toggle="collapse">
-                                        <i class="mdi mdi-newspaper"></i>
-                                        <span> Laporan </span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="collapse" id="laporan">
-                                        <ul class="nav-second-level">
-                                            <li>
-
-                                                <a href="{{ url('dasbor/rekap/provinsi') }}">
-                                                    Rekap Provinsi
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url('dasbor/rekap/kabupaten') }}">
-                                                    Rekap Kabupaten
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                
-                                <li class="@if(Request::segment(2) == 'university') menuitem-active @endif">
-                                    <a href="#university" data-toggle="collapse">
-                                        <i class="mdi mdi-newspaper"></i>
-                                        <span> University </span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="collapse" id="university">
-                                        <ul class="nav-second-level">
-                                            <li>
-
-                                                <a href="{{ url('dasbor/university') }}">
-                                                    University
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url('dasbor/university/faculty') }}">
-                                                    Faculty
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
 
                                 <li class="menu-title mt-2">Area Admin</li>
                                 <li>
@@ -136,23 +91,18 @@
                                     <div class="collapse" id="pengaturan">
                                         <ul class="nav-second-level">
                                             <li>
-
                                                 <a href="{{ url('dasbor/pengguna') }}">
                                                     Pengguna
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="{{ url('dasbor/hak-akses') }}">
-                                                    Hak Akses
-                                                </a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
 
-                    @elseif (Auth::user()->hasRole('editor'))
+                    @elseif (Auth::user()->hasRole('guest'))
+                        
                         <div id="sidebar-menu">
 
                             <ul id="side-menu">
@@ -165,130 +115,15 @@
                                         <span> Dasbor </span>
                                     </a>
                                 </li>
-
-                                <li>
-                                    <a href="#berita" data-toggle="collapse">
-                                        <i class="mdi mdi-newspaper"></i>
-                                        <span> Berita </span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="collapse" id="berita">
-                                        <ul class="nav-second-level">
-                                            <li>
-
-                                                <a href="{{ url('dasbor/berita') }}">
-                                                    <span class="badge badge-success badge-pill float-right">
-                                                        {{ $dasbor_jml_link_terkait ?? '' }}
-                                                    </span>
-                                                    Berita
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url('dasbor/berita/kategori') }}">
-                                                    <span class="badge badge-success badge-pill float-right">
-                                                        {{ $dasbor_jml_kategori ?? '' }}
-                                                    </span>
-                                                    Kategori
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    @elseif (Auth::user()->hasRole('author'))
-                        <div id="sidebar-menu">
-
-                            <ul id="side-menu">
-
-                                <li class="menu-title mt-2">Menu Utama</li>
-
-                                <li>
-                                    <a href="{{ url('dasbor') }}">
-                                        <i data-feather="airplay"></i>
-                                        <span> Dasbor </span>
+                                <li class="@if(Request::segment(2) == 'siswa') menuitem-active @endif">
+                                    <a href="{{ url('dasbor/siswa') }}">
+                                        <i class="mdi mdi-account-group"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ $dasbor_jml_siswa ?? '0' }}
+                                        </span>
+                                        <span> Siswa</span>
                                     </a>
                                 </li>
-
-                                <li>
-                                    <a href="#berita" data-toggle="collapse">
-                                        <i class="mdi mdi-newspaper"></i>
-                                        <span> Berita </span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="collapse" id="berita">
-                                        <ul class="nav-second-level">
-                                            <li>
-
-                                                <a href="{{ url('dasbor/berita') }}">
-                                                    <span class="badge badge-success badge-pill float-right">
-                                                        {{ $dasbor_jml_link_terkait ?? '' }}
-                                                    </span>
-                                                    Berita
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url('dasbor/berita/kategori') }}">
-                                                    <span class="badge badge-success badge-pill float-right">
-                                                        {{ $dasbor_jml_kategori ?? '' }}
-                                                    </span>
-                                                    Kategori
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    @elseif (Auth::user()->hasRole('supervisor'))
-                        <div id="sidebar-menu">
-
-                            <ul id="side-menu">
-
-                                <li class="menu-title mt-2">Menu Utama</li>
-
-                                <li>
-                                    <a href="{{ url('dasbor') }}">
-                                        <i data-feather="airplay"></i>
-                                        <span> Dasbor </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#berita" data-toggle="collapse">
-                                        <i class="mdi mdi-newspaper"></i>
-                                        <span> Berita </span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="collapse" id="berita">
-                                        <ul class="nav-second-level">
-                                            <li>
-
-                                                <a href="{{ url('dasbor/berita') }}">
-                                                    <span class="badge badge-success badge-pill float-right">
-                                                        {{ $dasbor_jml_link_terkait ?? '' }}
-                                                    </span>
-                                                    Berita
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url('dasbor/berita/kategori') }}">
-                                                    <span class="badge badge-success badge-pill float-right">
-                                                        {{ $dasbor_jml_kategori ?? '' }}
-                                                    </span>
-                                                    Kategori
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
 
                             </ul>
 

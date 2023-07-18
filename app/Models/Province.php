@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Province extends Model
 {
     use HasFactory;
+    public $guarded = [];
+
+    public function siswa(){
+        return $this->hasMany(Siswa::class);
+    }
 }

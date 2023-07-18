@@ -15,7 +15,7 @@ class Siswa extends Model
         return $this->belongsTo(Program::class,'program_id', 'id');
     }
 
-    public function province(){
+    public function provinces(){
         return $this->belongsTo(Province::class,'province_id', 'id');
     }
 }

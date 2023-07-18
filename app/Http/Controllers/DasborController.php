@@ -15,14 +15,11 @@ class DasborController extends Controller
         if(Auth::user()->hasRole('administrator')){
             return view('dasbor.index');
 
-        } elseif(Auth::user()->hasRole('author')){
+        } elseif(Auth::user()->hasRole('guest')){
             return view('dasbor.index');
 
-        } elseif(Auth::user()->hasRole('editor')){
-            return view('dasbor.index');
-        }
-        elseif(Auth::user()->hasRole('supervisor')){
-            return view('dasbor.index');
+        } else {
+            echo "oops!";
         }
     }
 }

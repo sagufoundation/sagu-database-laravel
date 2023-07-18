@@ -23,6 +23,7 @@
                                                             <th>Picture</th>
                                                             <th>Name</th>
                                                             <th>Email</th>
+                                                            <th>Role</th>
                                                             <th>Status</th>
                                                             <th width="280px">Action</th>
                                                         </tr>
@@ -37,6 +38,7 @@
                                                                 </small>
                                                             </td>
                                                             <td>{{ $data->email ?? '' }}</td>
+                                                            <td>{{ implode('', $data->roles()->pluck('display_name')->toArray()) }}</td>
                                                             <td>{{ $data->status ?? '' }}</td>
                                                             @include('dasbor.layout.includes.index-action')
                                                         </tr>
