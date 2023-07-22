@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             PengaturanSeeder::class,
             RoleUserSeeder::class,
 
-            SiswaSeeder::class,
+            // SiswaSeeder::class,
             ProgramSeeder::class,
             DocumentsSeeder::class,
             EducationSeeder::class,
