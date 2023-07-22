@@ -24,6 +24,43 @@
                 <!-- input group end -->
 
                 <div class="mb-3">
+                    <label for="program_start" class="form-label">Program Duration <span class="text-danger">*</span></label>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input 
+                                type="date" 
+                                name="program_start" 
+                                id="program_start" 
+                                value="{{ old('program_start') ?? '' }}" 
+                                placeholder="Program Start" 
+                                class="form-control">  
+                                @if ($errors->has('program_title'))
+                                    <span class="text-danger" role="alert">
+                                        <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('program_start') }}</small>
+                                    </span>
+                                @endif 
+                        </div>
+                        <div class="col-md-6">
+                            <input 
+                                type="date" 
+                                name="program_end" 
+                                id="program_end" 
+                                value="{{ old('program_end') ?? '' }}" 
+                                placeholder="Program End" 
+                                class="form-control">  
+                                @if ($errors->has('program_title'))
+                                    <span class="text-danger" role="alert">
+                                        <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('program_end') }}</small>
+                                    </span>
+                                @endif 
+                        </div>
+                    </div>
+                                     
+                </div>
+                <!-- input group end -->
+
+                <div class="mb-3">
                     <label for="short_description" class="form-label">Short Description</label>
                     <textarea name="short_description" id="short_description" cols="30" rows="3" class="form-control">{{ old('short_description') ?? '' }}</textarea>
                     @if ($errors->has('short_description'))

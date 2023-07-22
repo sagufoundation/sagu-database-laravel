@@ -23,8 +23,8 @@ class ProgramSeeder extends Seeder
                 'short_description' => 'Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2020',
                 'full_description' => 'Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2020 merupakan beasiswa yang diselenggarakan oleh BPSDM Provinsi Papua.',
 
-                'start_date' => '2020',
-                'end_date' => '-',
+                'program_start' => '2020',
+                'program_end' => '-',
 
                 // other
                 'status' => 'Publish',
@@ -42,8 +42,8 @@ class ProgramSeeder extends Seeder
                 'short_description' => 'Beasiswa Siswa Unggul Papua Tahun 2021',
                 'full_description' => 'Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2021 merupakan beasiswa yang diselenggarakan oleh BPSDM Provinsi Papua.',
 
-                'start_date' => '2021',
-                'end_date' => '-',
+                'program_start' => '2021',
+                'program_end' => '-',
 
                 // other
                 'status' => 'Publish',
@@ -61,8 +61,8 @@ class ProgramSeeder extends Seeder
                 'short_description' => 'Program Beasiswa Mahasiswa Yahukimo di Jayapura, Tahun 2020',
                 'full_description' => 'Program beasiswa Pemerintah Daerah Kabupaten Yahukimo bagi Mahasiswa yang sedang studi di Jayapura.',
 
-                'start_date' => '2020',
-                'end_date' => '-',
+                'program_start' => '2020',
+                'program_end' => '-',
 
                 // other
                 'status' => 'Publish',

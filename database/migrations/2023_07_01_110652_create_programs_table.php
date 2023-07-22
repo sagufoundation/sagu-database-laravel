@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('short_description')->nullable();
             $table->string('full_description')->nullable();
             
-            $table->string('start_date')->nullable();
-            $table->string('end_date')->nullable();
+            $table->string('program_start')->nullable();
+            $table->string('program_end')->nullable();
 
             // other
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
