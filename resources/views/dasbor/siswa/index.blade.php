@@ -38,8 +38,8 @@
                                                                 <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
                                                             </td>
                                                             <td>{{ $data->phone ?? '' }}</td>
-                                                            <td>{{ $data->provinces->name ?? 'oops' }}</td>
-                                                            <td>{{ $data->program->program_title ?? 'oops' }}</td>
+                                                            <td>{{ $data->provinces->name ?? '' }}</td>
+                                                            <td>{{ $data->program->program_title ?? '' }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
@@ -117,8 +117,8 @@
                                                                 <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
                                                             </td>
                                                             <td>{{ $data->phone ?? '' }}</td>
-                                                            <td>{{ $data->provinces->name ?? 'oops' }}</td>
-                                                            <td>{{ $data->program->program_title ?? 'oops' }}</td>
+                                                            <td>{{ $data->provinces->name ?? '' }}</td>
+                                                            <td>{{ $data->program->program_title ?? '' }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
