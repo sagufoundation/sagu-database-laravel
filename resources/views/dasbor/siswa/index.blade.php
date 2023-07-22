@@ -24,7 +24,6 @@
                                                             <th width="1%">No</th>
                                                             <th>Picture</th>
                                                             <th>Full Name</th>
-                                                            <th>Email (by SAGU Foundation)</th>
                                                             <th>Phone</th>
                                                             <th>Province</th>
                                                             <th>Program</th>
@@ -34,8 +33,10 @@
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             @include('dasbor.layout.includes.index-picture') 
-                                                            <td>{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</td>
-                                                            <td>{{ $data->email_sagu ?? '' }}</td>
+                                                            <td>
+                                                                {{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}
+                                                                <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
+                                                            </td>
                                                             <td>{{ $data->phone ?? '' }}</td>
                                                             <td>{{ $data->provinces->name ?? 'oops' }}</td>
                                                             <td>{{ $data->program->program_title ?? 'oops' }}</td>
@@ -102,7 +103,6 @@
                                                             <th width="1%">No</th>
                                                             <th>Picture</th>
                                                             <th>Full Name</th>
-                                                            <th>Email (by SAGU Foundation)</th>
                                                             <th>Phone</th>
                                                             <th>Province</th>
                                                             <th>Program</th>
@@ -112,8 +112,10 @@
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             @include('dasbor.layout.includes.index-picture') 
-                                                            <td>{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</td>
-                                                            <td>{{ $data->email_sagu ?? '' }}</td>
+                                                            <td>
+                                                                {{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}
+                                                                <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
+                                                            </td>
                                                             <td>{{ $data->phone ?? '' }}</td>
                                                             <td>{{ $data->provinces->name ?? 'oops' }}</td>
                                                             <td>{{ $data->program->program_title ?? 'oops' }}</td>
