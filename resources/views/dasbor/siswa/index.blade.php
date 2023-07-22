@@ -25,8 +25,10 @@
                                                             <th>Picture</th>
                                                             <th>Full Name</th>
                                                             <th>Email (by SAGU Foundation)</th>
-                                                            <th>Status</th>
-                                                            <th width="280px">Action</th>
+                                                            <th>Phone</th>
+                                                            <th>Province</th>
+                                                            <th>Program</th>
+                                                            <th width="280px"></th>
                                                         </tr>
                                                         @forelse($datas as $data) 
                                                         <tr>
@@ -34,7 +36,9 @@
                                                             @include('dasbor.layout.includes.index-picture') 
                                                             <td>{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</td>
                                                             <td>{{ $data->email_sagu ?? '' }}</td>
-                                                            <td>{{ $data->status ?? '' }}</td>
+                                                            <td>{{ $data->phone ?? '' }}</td>
+                                                            <td>{{ $data->provinces->name ?? 'oops' }}</td>
+                                                            <td>{{ $data->program->program_title ?? 'oops' }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
@@ -99,9 +103,9 @@
                                                             <th>Picture</th>
                                                             <th>Full Name</th>
                                                             <th>Email (by SAGU Foundation)</th>
-                                                            <th>Program</th>
+                                                            <th>Phone</th>
                                                             <th>Province</th>
-                                                            <th>Status</th>
+                                                            <th>Program</th>
                                                             <th width="280px"></th>
                                                         </tr>
                                                         @forelse($datas as $data) 
@@ -110,9 +114,9 @@
                                                             @include('dasbor.layout.includes.index-picture') 
                                                             <td>{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</td>
                                                             <td>{{ $data->email_sagu ?? '' }}</td>
-                                                            <td>{{ $data->program->program_title ?? 'oops' }}</td>
+                                                            <td>{{ $data->phone ?? '' }}</td>
                                                             <td>{{ $data->provinces->name ?? 'oops' }}</td>
-                                                            <td>{{ $data->status ?? '' }}</td>
+                                                            <td>{{ $data->program->program_title ?? 'oops' }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
