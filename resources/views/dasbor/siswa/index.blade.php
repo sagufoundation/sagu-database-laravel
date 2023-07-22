@@ -24,7 +24,7 @@
                                                             <th width="1%">No</th>
                                                             <th>Picture</th>
                                                             <th>Full Name</th>
-                                                            <th>Email</th>
+                                                            <th>Email (by SAGU Foundation)</th>
                                                             <th>Status</th>
                                                             <th width="280px">Action</th>
                                                         </tr>
@@ -33,7 +33,7 @@
                                                             <td>{{ ++$i }}</td>
                                                             @include('dasbor.layout.includes.index-picture') 
                                                             <td>{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</td>
-                                                            <td>{{ $data->email_google ?? '' }}</td>
+                                                            <td>{{ $data->email_sagu ?? '' }}</td>
                                                             <td>{{ $data->status ?? '' }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
@@ -98,7 +98,7 @@
                                                             <th width="1%">No</th>
                                                             <th>Picture</th>
                                                             <th>Full Name</th>
-                                                            <th>Email</th>
+                                                            <th>Email (by SAGU Foundation)</th>
                                                             <th>Program</th>
                                                             <th>Province</th>
                                                             <th>Status</th>
@@ -109,7 +109,7 @@
                                                             <td>{{ ++$i }}</td>
                                                             @include('dasbor.layout.includes.index-picture') 
                                                             <td>{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</td>
-                                                            <td>{{ $data->email_google ?? '' }}</td>
+                                                            <td>{{ $data->email_sagu ?? '' }}</td>
                                                             <td>{{ $data->program->program_title ?? 'oops' }}</td>
                                                             <td>{{ $data->provinces->name ?? 'oops' }}</td>
                                                             <td>{{ $data->status ?? '' }}</td>

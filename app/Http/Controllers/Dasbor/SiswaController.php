@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Dasbor;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 use App\Models\Siswa;
 use App\Models\Documents;
 use App\Models\Education;
 use App\Models\Province;
 use App\Models\Program;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
@@ -500,24 +500,12 @@ class SiswaController extends Controller
 
     public function delete($id)
     {
-
         $data = Siswa::onlyTrashed()->findOrFail($id);
         $path = public_path('gambar/siswa/' . $data->picture);
 
         if (file_exists($path)) {
             File::delete($path);
         }
-
-
-        // $data = Siswa::onlyTrashed()->where('id', $id);
-
-        // // create file path
-        // $path = public_path('gambar/siswa');
-
-        // // delete file if exist
-        // if (!empty($data->picture) && file_exists($path . '/' . $data->picture)) :
-        //     unlink($path . '/' . $data->picture);
-        // endif;
 
         $data->forceDelete();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
