@@ -138,7 +138,7 @@
 
             });
 
-    CKEDITOR.config.height='600px';
+    CKEDITOR.config.height='400px';
 </script>
 
 <script>
