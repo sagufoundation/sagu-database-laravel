@@ -33,7 +33,7 @@ class SiswaController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(5);
+        ])->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(10);
         $jumlahtrash = Siswa::onlyTrashed()->count();
         $jumlahdraft = Siswa::where('status', 'Draft')->count();
         $datapublish = Siswa::where('status', 'Publish')->count();
@@ -53,7 +53,7 @@ class SiswaController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status', 'Draft')->orderBy('first_name', 'asc')->paginate(5);
+        ])->where('status', 'Draft')->orderBy('first_name', 'asc')->paginate(10);
         $jumlahtrash = Siswa::onlyTrashed()->count();
         $jumlahdraft = Siswa::where('status', 'Draft')->count();
         $datapublish = Siswa::where('status', 'Publish')->count();
@@ -482,7 +482,7 @@ class SiswaController extends Controller
 
     public function trash()
     {
-        $datas = Siswa::onlyTrashed()->paginate(5);
+        $datas = Siswa::onlyTrashed()->paginate(10);
         $jumlahtrash = Siswa::onlyTrashed()->count();
         $jumlahdraft = Siswa::where('status', 'Draft')->count();
         $datapublish = Siswa::where('status', 'Publish')->count();
