@@ -81,7 +81,7 @@ class AppServiceProvider extends ServiceProvider
 
         view()->share([
 
-            'pengaturan' => Pengaturan::first(),
+            // 'pengaturan' => Pengaturan::first(),
 
             // 'totalVisitor' => VisitorCounter::get()->count(),
             // 'visitorHariIni' => VisitorCounter::whereDate('created_at', $today)->count(),
@@ -97,13 +97,13 @@ class AppServiceProvider extends ServiceProvider
             |
             */
             
-            'dasbor_jml_siswa' => Siswa::where('status','Publish')->count(),
-            'dasbor_jml_siswa_semua' => Siswa::count(),
-            'dasbor_jml_siswa_draft' => Siswa::where('status','Draft')->count(),
+            // 'dasbor_jml_siswa' => Siswa::where('status','Publish')->count(),
+            // 'dasbor_jml_siswa_semua' => Siswa::count(),
+            // 'dasbor_jml_siswa_draft' => Siswa::where('status','Draft')->count(),
 
-            'dasbor_jml_program' => Program::where('status','Publish')->count(),
-            'dasbor_jml_program_semua' => Program::count(),
-            'dasbor_jml_program_draft' => Program::where('status','Draft')->count(),
+            // 'dasbor_jml_program' => Program::where('status','Publish')->count(),
+            // 'dasbor_jml_program_semua' => Program::count(),
+            // 'dasbor_jml_program_draft' => Program::where('status','Draft')->count(),
 
             
 
