@@ -9,7 +9,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        
+
                                         <!-- Left sidebar -->
                                         @include('dasbor.layout.includes.left-sidebar')
                                         <!-- End Left sidebar -->
@@ -29,17 +29,25 @@
                                                             <th>Program</th>
                                                             <th width="280px"></th>
                                                         </tr>
-                                                        @forelse($datas as $data) 
+                                                        @forelse($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
-                                                            @include('dasbor.layout.includes.index-picture') 
+                                                            @include('dasbor.layout.includes.index-picture')
                                                             <td>
                                                                 {{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}
                                                                 <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
                                                             </td>
                                                             <td>{{ $data->phone ?? '' }}</td>
                                                             <td>{{ $data->provinces->name ?? '' }}</td>
-                                                            <td>{{ $data->program->program_title ?? '' }}</td>
+                                                            <td>
+
+                                                                @foreach ($data->program()->get() as $program)
+                                                                    <ul>
+                                                                        <li> {{ $program->program_title ?? '' }}</li>
+                                                                    </ul>
+                                                                @endforeach
+
+                                                            </td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
@@ -64,9 +72,9 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                        @empty 
+                                                        @empty
                                                         <tr>
-                                                            <td colspan="6">
+                                                            <td colspan="8">
                                                                 Data tidak ada
                                                             </td>
                                                         </tr>
@@ -86,15 +94,15 @@
 
                             </div>
                         </div>
-                        <!-- .row end -->  
-                        
+                        <!-- .row end -->
+
                         @else
 
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        
+
                                         @include('dasbor.layout.includes.form-input.search')
 
                                             <div class="mt-3 table-responsive">
@@ -108,10 +116,10 @@
                                                             <th>Program</th>
                                                             <th width="280px"></th>
                                                         </tr>
-                                                        @forelse($datas as $data) 
+                                                        @forelse($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
-                                                            @include('dasbor.layout.includes.index-picture') 
+                                                            @include('dasbor.layout.includes.index-picture')
                                                             <td>
                                                                 {{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}
                                                                 <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
@@ -129,7 +137,7 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                        @empty 
+                                                        @empty
                                                         <tr>
                                                             <td colspan="6">
                                                                 Data tidak ada
@@ -149,7 +157,7 @@
 
                             </div>
                         </div>
-                        <!-- .row end -->  
+                        <!-- .row end -->
 
                         @endif
 

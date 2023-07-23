@@ -50,10 +50,10 @@
                                         </span>
                                     @endif
                                 </div>
-                                <!-- input group end -->                                
+                                <!-- input group end -->
                             </div>
                         </div>
-                        
+
                         <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">CONTACT INFORMATION</h5>
 
                         <div class="row">
@@ -103,9 +103,9 @@
                                         </span>
                                     @endif
                                 </div>
-                                <!-- input group end --> 
+                                <!-- input group end -->
                             </div>
-                        </div>                  
+                        </div>
 
                         <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">ADDRESS</h5>
 
@@ -123,7 +123,7 @@
                                     </select>
                                 </div>
                                 <!-- input group end -->
-                                
+
                                 <div class="mb-3">
                                     <label for="regency" class="form-label">Regency</label>
                                     <select class="custom-select" name="regency">
@@ -133,7 +133,7 @@
                                 </div>
                                 <!-- input group end -->
                             </div>
-                            <div class="col-md-8">                               
+                            <div class="col-md-8">
                                 <div class="mb-3">
                                     <label for="full_address" class="form-label">Full Address</label>
                                     <textarea name="full_address" id="full_address" cols="30" rows="5" class="form-control">{{ old('full_address') ?? '' }}</textarea>
@@ -146,7 +146,7 @@
                                 <!-- input group end -->
                             </div>
                         </div>
-                        
+
 
                     </div>
                     <div class="col-md-4">

@@ -17,9 +17,10 @@ class SiswaSeeder extends Seeder
      */
     public function run()
     {
-        Siswa::create(
+       $programID = [1, 2];
+       $siswa_baru = Siswa::create(
             [
-                'program_id' => 1,
+                // 'program_id' => 1,
                 'province_id' => 1,
 
                 'first_name' => 'Anastasia',
@@ -36,10 +37,10 @@ class SiswaSeeder extends Seeder
                 // birth
                 'place_of_birth' => 'place of birth',
                 'date_of_birth' => 'date of birth',
-                
+
                 // pictures
                 'picture' => 'anastasia-yandong.jpg',
-                
+
 
                 // contct info
                 'phone' => '082112341234',
@@ -51,26 +52,27 @@ class SiswaSeeder extends Seeder
                 'email_sagu' => 'a.yandong.supvokasi2020@sagufoundation.org',
                 'email_campus_1' => 'anastasia@campus1.com',
                 'email_campus_2' => 'anastasia@campus2.com',
-                
+
                 // education
                 'education_history' => 'Please write student history here . . .',
 
                 // documents
                 'doc_google_sheets' => '<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQRTLzz2wreUVgwQth7b_rUChtKO2piJl-zJgGlXwO-0JFmDl5MhJ1ISpFSAiSVSkh0Li6MO6fY31jX/pubhtml?widget=true&amp;headers=false"></iframe>',
-                
+
                 // other
                 'status' => 'Publish',
 
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
 
-            ]);
+        ]);
+        $siswa_baru->program()->attach($programID);
 
         Siswa::create(
             [
-                'program_id' => 1,
+                // 'program_id' => 1,
                 'province_id' => 1,
-                
+
                 'first_name' => 'Apela',
                 'middle_name' => '',
                 'last_name' => 'Omabak',
@@ -83,7 +85,7 @@ class SiswaSeeder extends Seeder
                 // birth
                 'place_of_birth' => 'place of birth',
                 'date_of_birth' => 'date of birth',
-                
+
                 // pictures
                 'picture' => 'apela-omabak.jpg',
                 'ktp' => 'apela-omabak-ktp.jpg',
@@ -97,13 +99,13 @@ class SiswaSeeder extends Seeder
                 'email_sagu' => 'a.omabak.supvokasi2020@sagufoundation.org',
                 'email_campus_1' => 'apela@campus1.com',
                 'email_campus_2' => 'apela@campus2.com',
-                
+
                 // education
                 'education_history' => 'Please write student history here . . .',
 
                 // documents
                 'doc_google_sheets' => '<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQRTLzz2wreUVgwQth7b_rUChtKO2piJl-zJgGlXwO-0JFmDl5MhJ1ISpFSAiSVSkh0Li6MO6fY31jX/pubhtml?widget=true&amp;headers=false"></iframe>',
-                
+
                 // other
                 'status' => 'Publish',
 
@@ -113,45 +115,45 @@ class SiswaSeeder extends Seeder
 
         Siswa::create(
                 [
-                    'program_id' => 1,
+                    // 'program_id' => 1,
                     'province_id' => 1,
-                    
+
                     'first_name' => 'Michel',
                     'middle_name' => '',
                     'last_name' => 'Kafiar',
-    
+
                     'slug' => Str::slug('michael-kafiar'),
 
                     // profile
                     'profile' => 'write student details',
-    
+
                     // birth
                     'place_of_birth' => 'place of birth',
                     'date_of_birth' => 'date of birth',
-                    
+
                     // pictures
                     'picture' => '',
                     'ktp' => 'michal-katfiar-ktp.jpg',
-    
+
                     // contct info
                     'phone' => '',
                     'full_address' => 'Student full address . . .',
-    
+
                     'email_google' => 'michal@gmail.com',
                     'email_outlook' => 'michal@outlook.com',
                     'email_sagu' => 'm.kafiar.supvokasi2020@sagufoundation.org',
                     'email_campus_1' => 'michal@campus1.com',
                     'email_campus_2' => 'michal@campus2.com',
-                    
+
                     // education
                     'education_history' => 'Please write student history here . . .',
-    
+
                     // documents
                     'doc_google_sheets' => '',
-                    
+
                     // other
                     'status' => 'Publish',
-    
+
                     'created_at'        => Carbon::now(),
                     'updated_at'        => Carbon::now()
                 ]);

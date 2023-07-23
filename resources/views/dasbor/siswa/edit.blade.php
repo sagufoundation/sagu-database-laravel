@@ -7,7 +7,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        
+
                                         <!-- Left sidebar -->
                                         @include('dasbor.layout.includes.left-sidebar-edit-siswa')
                                         <!-- End Left sidebar -->
@@ -16,13 +16,13 @@
 
                                         {!! Form::model($data, array( 'url'=>'dasbor/siswa/update/'. Request::segment(4) . '/' .$data->id, 'method'=>'put','files'=>'true'))!!}
                                         @csrf
-                                        
+
                                         @if(Request::segment(4) == 'profile')
                                             @include('dasbor.siswa.edit-inputs.profile')
-                                        
+
                                         @elseif(Request::segment(4) == 'picture')
                                             @include('dasbor.siswa.edit-inputs.picture')
-                                        
+
                                         @elseif(Request::segment(4) == 'biography')
                                             @include('dasbor.siswa.edit-inputs.biography')
 
@@ -42,11 +42,11 @@
                                             @include('dasbor.siswa.edit-inputs.educations')
 
                                         @elseif(Request::segment(4) == '')
-                                                                                                                                  
-                                        @endif    
-                                        
+
+                                        @endif
+
                                         {!! Form::close() !!}
-                                            
+
                                         </div>
                                         <!-- end inbox-rightbar-->
 
@@ -58,7 +58,7 @@
 
                             </div>
                         </div>
-                        <!-- .row end -->   
+                        <!-- .row end -->
 
 @stop
 

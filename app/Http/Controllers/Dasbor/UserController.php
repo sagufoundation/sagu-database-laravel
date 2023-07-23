@@ -30,11 +30,11 @@ class UserController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status',1)->latest()->paginate(10);
+        ])->where('status','Publish')->latest()->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::where('status', 0)->count();
-        $datapublish = User::where('status', 1)->count();
+        $jumlahdraft = User::where('status', 'Draft')->count();
+        $datapublish = User::where('status', 'Publish')->count();
         return view('dasbor.pengguna.index',compact('datas','jumlahtrash','jumlahdraft','datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
 
     }
@@ -51,11 +51,11 @@ class UserController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status',0)->latest()->paginate(10);
+        ])->where('status','Draft')->latest()->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::where('status', 0)->count();
-        $datapublish = User::where('status', 1)->count();
+        $jumlahdraft = User::where('status', 'Draft')->count();
+        $datapublish = User::where('status', 'Publish')->count();
         return view('panel.admin.pages.users.index',compact('datas','jumlahtrash','jumlahdraft','datapublish'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

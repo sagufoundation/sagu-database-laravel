@@ -99,7 +99,7 @@ class SiswaController extends Controller
         // create slug
         $data->slug = Str::slug($data->first_name . '' . $data->middle_name . '' . $data->last_name);
 
-        // birth        
+        // birth
         $data->place_of_birth = $request->place_of_birth;
         $data->date_of_birth = $request->date_of_birth;
 
@@ -166,9 +166,9 @@ class SiswaController extends Controller
 
         // dd('explode');
 
-        
-        
-        
+
+
+
         $data = Siswa::where('id', $id)->first();
 
         // $programs = explode(',', $data->programs);
@@ -181,7 +181,7 @@ class SiswaController extends Controller
         $educations = Education::where('siswa_id', $data->id)->orderBy('year', 'asc')->get();
         $provinces = Province::orderBy('name', 'asc')->get();
         $programs = Program::orderBy('id', 'desc')->get();
-        
+
         $data_programs = explode(',', $data->programs);
 
         return view('dasbor.siswa.edit', compact('data', 'documents', 'educations', 'provinces', 'programs', 'data_programs'));
@@ -260,7 +260,7 @@ class SiswaController extends Controller
      *
      */
     public function update_profile(Request $request, $id) {
-        
+
         // select data by id
         $data = Siswa::find($id);
 
@@ -286,7 +286,7 @@ class SiswaController extends Controller
 
         // select data by id
         $data = Siswa::find($id);
-        
+
         // picture creation
         if (isset($request->picture)) {
 
@@ -322,7 +322,7 @@ class SiswaController extends Controller
      *
      */
     public function update_biography(Request $request, $id) {
-        
+
         // select data by id
         $data = Siswa::find($id);
 
@@ -347,7 +347,7 @@ class SiswaController extends Controller
      *
      */
     public function update_contact(Request $request, $id) {
-        
+
         // dd('contact info');
 
         // select data by id
@@ -398,7 +398,7 @@ class SiswaController extends Controller
     public function update_documents(Request $request, $id) {
 
         // dd('doc_google_sheets');
-        
+
         // select data by id
         $data = Siswa::find($id);
 
@@ -419,7 +419,7 @@ class SiswaController extends Controller
      *
      */
     public function update_programs(Request $request, $id) {
-        
+
 
         // dd(json_encode($request->programs)); // explode(",",$fruit)
 
@@ -447,7 +447,7 @@ class SiswaController extends Controller
      *
      */
     public function update_educations(Request $request, $id) {
-        
+
         // select data by id
         $data = Siswa::find($id);
 

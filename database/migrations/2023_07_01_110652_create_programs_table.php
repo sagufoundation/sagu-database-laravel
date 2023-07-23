@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('program_title')->nullable();
             $table->string('short_description')->nullable();
             $table->string('full_description')->nullable();
-            
+
             $table->string('program_start')->nullable();
             $table->string('program_end')->nullable();
 
