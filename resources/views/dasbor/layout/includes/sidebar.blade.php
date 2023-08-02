@@ -55,49 +55,143 @@
                         
                         <div id="sidebar-menu">
                             <ul id="side-menu">
-                                <li class="menu-title mt-2">Menu Utama</li>
                                 <li class="@if(Request::segment(2) == 'dasbor') menuitem-active @endif">
                                     <a href="{{ url('dasbor') }}">
                                         <i data-feather="airplay"></i>
-                                        <span> Dasbor </span>
+                                        <span> Dashboard </span>
                                     </a>
                                 </li>
-                                <li class="@if(Request::segment(2) == 'program') menuitem-active @endif">
-                                    <a href="{{ url('dasbor/program') }}">
-                                        <i class="mdi mdi-text-box-multiple-outline"></i>
-                                        <span class="badge badge-success badge-pill float-right">
-                                            {{ $dasbor_jml_program ?? '0' }}
-                                        </span>
-                                        <span> Program </span>
-                                    </a>
-                                </li>
-                                <li class="@if(Request::segment(2) == 'siswa') menuitem-active @endif">
-                                    <a href="{{ url('dasbor/siswa') }}">
+                                <!-- menu item end -->
+
+                                <li class="menu-title mt-2">Student Database</li>
+
+                                <li class="@if(Request::segment(2) == 'students') menuitem-active @endif">
+                                    <a href="{{ url(Request::segment(2).'/students') }}">
                                         <i class="mdi mdi-account-group"></i>
                                         <span class="badge badge-success badge-pill float-right">
-                                            {{ $dasbor_jml_siswa ?? '0' }}
+                                            {{ '0' }}
                                         </span>
-                                        <span> Siswa</span>
+                                        <span> Students</span>
                                     </a>
                                 </li>
+                                <!-- menu item end -->
 
-                                <li class="menu-title mt-2">Area Admin</li>
-                                <li>
-                                    <a href="#pengaturan" data-toggle="collapse">
-                                        <i class="mdi mdi-newspaper"></i>
-                                        <span> Pengaturan </span>
-                                        <span class="menu-arrow"></span>
+                                <li class="@if(Request::segment(2) == 'regencies') menuitem-active @endif">
+                                    <a href="{{ url(Request::segment(2).'/regencies') }}">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ '0' }}
+                                        </span>
+                                        <span> Regencies</span>
                                     </a>
-                                    <div class="collapse" id="pengaturan">
-                                        <ul class="nav-second-level">
-                                            <li>
-                                                <a href="{{ url('dasbor/pengguna') }}">
-                                                    Pengguna
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
+                                <!-- menu item end -->
+
+                                <li class="@if(Request::segment(2) == 'provinces') menuitem-active @endif">
+                                    <a href="{{ url(Request::segment(1).'/provinces') }}">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ '0' }}
+                                        </span>
+                                        <span> Provinces</span>
+                                    </a>
+                                </li>
+                                <!-- menu item end -->
+
+                                <li class="@if(Request::segment(2) == 'universities') menuitem-active @endif">
+                                    <a href="{{ url(Request::segment(1).'/universities') }}">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ '0' }}
+                                        </span>
+                                        <span> Universities</span>
+                                    </a>
+                                </li>
+                                <!-- menu item end -->
+
+                                <li class="@if(Request::segment(2) == 'programs') menuitem-active @endif">
+                                    <a href="{{ url(Request::segment(1).'/programs') }}">
+                                        <i class="fa-solid fa-bars-progress"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ '0' }}
+                                        </span>
+                                        <span> Programs</span>
+                                    </a>
+                                </li>
+                                <!-- menu item end -->
+
+                                <li class="menu-title mt-2">Library</li>
+
+                                    <li class="@if(Request::segment(2) == 'books') menuitem-active @endif">
+                                        <a href="{{ url(Request::segment(1).'/books') }}">
+                                            <i class="fa-solid fa-book"></i>
+                                            <span class="badge badge-success badge-pill float-right">
+                                                {{ '0' }}
+                                            </span>
+                                            <span> Books </span>
+                                        </a>
+                                    </li>
+                                    <!-- menu item end -->
+
+                                    <li class="@if(Request::segment(2) == 'categories') menuitem-active @endif">
+                                        <a href="{{ url(Request::segment(1).'/categories') }}">
+                                            <i class="fa-solid fa-tags"></i>
+                                            <span class="badge badge-success badge-pill float-right">
+                                                {{ '0' }}
+                                            </span>
+                                            <span> Categories </span>
+                                        </a>
+                                    </li>
+                                    <!-- menu item end -->
+
+                                    <li class="@if(Request::segment(2) == 'authors') menuitem-active @endif">
+                                        <a href="{{ url(Request::segment(1).'/authors') }}">
+                                            <i class="fa-solid fa-at"></i>
+                                            <span class="badge badge-success badge-pill float-right">
+                                                {{ '0' }}
+                                            </span>
+                                            <span> Authors </span>
+                                        </a>
+                                    </li>
+                                    <!-- menu item end -->
+
+                                    <li class="@if(Request::segment(2) == 'loan-logs') menuitem-active @endif">
+                                        <a href="{{ url(Request::segment(1).'/loan-logs') }}">
+                                            <i class="fa-solid fa-book-bookmark"></i>
+                                            <span class="badge badge-success badge-pill float-right">
+                                                {{ '0' }}
+                                            </span>
+                                            <span> Loan Logs </span>
+                                        </a>
+                                    </li>
+                                    <!-- menu item end -->
+
+                                </li>
+                                
+                                <li class="menu-title mt-2">Users</li>
+
+                                <li class="@if(Request::segment(2) == 'users') menuitem-active @endif">
+                                    <a href="{{ url(Request::segment(1).'/users') }}">
+                                        <i class="fa-solid fa-users"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ '0' }}
+                                        </span>
+                                        <span> All Users </span>
+                                    </a>
+                                </li>
+                                <!-- menu item end -->
+
+                                <li class="@if(Request::segment(2) == 'roles') menuitem-active @endif">
+                                    <a href="{{ url(Request::segment(1).'/roles') }}">
+                                        <i class="fa-solid fa-tags"></i>
+                                        <span class="badge badge-success badge-pill float-right">
+                                            {{ '0' }}
+                                        </span>
+                                        <span> Roles </span>
+                                    </a>
+                                </li>
+                                <!-- menu item end -->
+
                             </ul>
                         </div>
 

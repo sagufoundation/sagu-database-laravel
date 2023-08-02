@@ -11,7 +11,7 @@
                     <div class="col-6">
                         <div class="text-right">
                             <h3 class="mt-1 h1"><span data-plugin="counterup">{{ $dasbor_jml_siswa ?? '' }}</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Total Siswa</p>
+                            <p class="text-muted mb-1 text-truncate">Total Students</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -165,7 +165,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title mb-0"> SISWA <i class="mdi mdi-newspaper "></i> </h4>
+                <h4 class="header-title mb-0"> Students <i class="mdi mdi-newspaper "></i> </h4>
                 <div id="cardCollpase5" class="collapse pt-3 show" dir="ltr">
                     <div id="chartSiswa"></div>
                         <!-- JUMLAH siswa -->
