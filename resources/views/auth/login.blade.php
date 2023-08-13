@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $pengaturan->judul_situs ?? 'SAGU Foundation' }}</title>
+    <title>{{ $settings->site_title ?? 'SAGU Foundation' }}</title>
     
-    <meta property="og:title" content="{{ $pengaturan->judul_situs }}">
+    <meta property="og:title" content="{{ $settings->site_title ?? '' }}">
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ $pengaturan->logo_meta }}">
-    <meta property="og:url" content="{{ $pengaturan->alamat_web }}">
+    <meta property="og:image" content="{{ $settings->logo_meta ?? '' }}">
+    <meta property="og:url" content="{{ $settings->site_address ?? '' }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:image" content="{{ $pengaturan->logo_meta }}">
-    <meta property="og:description" content="{{ $pengaturan->deskripsi_situs }}">
-    <meta property="og:site_name" content="{{ $pengaturan->judul_situs }}">
-    <meta name="twitter:image:alt" content="Cover {{ $pengaturan->judul_situs ?? 'SAGU Foundation' }}">
+    <meta property="twitter:image" content="{{ $settings->logo_meta ?? '' }}">
+    <meta property="og:description" content="{{ $settings->meta_description ?? '' }}">
+    <meta property="og:site_name" content="{{ $settings->site_title ?? '' }}">
+    <meta name="twitter:image:alt" content="Cover {{ $settings->site_title ?? 'SAGU Foundation' }}">
 
     <!-- FAVICON -->
-    <link rel="apple-touch-icon" href="{{ asset('gambar/pengaturan/' . $pengaturan->favicon) }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('gambar/pengaturan/' . $pengaturan->favicon) }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/settings/' . $settings->favicon) }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/settings/' . $settings->favicon) }}">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 </head>
-<body class="bg-light" style="background-image: url('{{ asset('gambar/latar-belakang/1.jpg') }}'); background-size:cover;">
+<body class="bg-light" style="background-image: url('{{ asset('images/latar-belakang/1.jpg') }}'); background-size:cover;">
 
 
     <section class="py-5">
@@ -32,7 +32,7 @@
                 <div class="col-md-6 mx-auto">
 
                     <div class="card shadow p-5">
-                        <img src="{{ asset('gambar/logo_meta.jpg') }}" alt="Logo" class="card-img-top">
+                        <img src="{{ asset('images/logo_meta.jpg') }}" alt="Logo" class="card-img-top">
                         <div class="card-body">
                             <p class="text-muted">Gunakan alamat email dan kata sandi Anda untuk mengakses halaman dasbor.</p>
                             <!-- FORM START -->
@@ -98,7 +98,7 @@
             <!-- .row end -->
             <div class="row my-5">
                 <div class="col-md-5 mx-auto">
-                    <p class="text-muted">{!! $pengaturan->copyright ?? '' !!}</p>
+                    <p class="text-muted">{!! $settings->copyright ?? '' !!}</p>
                 </div>
             </div>
             <!-- .row end -->

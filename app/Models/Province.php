@@ -10,7 +10,7 @@ class Province extends Model
     use HasFactory;
     public $guarded = [];
 
-    public function siswa(){
-        return $this->hasMany(Siswa::class);
+    public function student(){
+        return $this->hasMany(Student::class);
     }
 }

@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Program extends Model
+class Students extends Model
 {
     use HasFactory, SoftDeletes;
     public $guarded = [];
 
-    // public function siswa(){
-    //     return $this->hasMany(Siswa::class);
-    // }
-
-    public function students()
+    public function program()
     {
-        return $this->belongsToMany(Students::class, 'student_program');
+        return $this->belongsToMany(Program::class, 'student_program');
+    }
+
+    public function provinces(){
+        return $this->belongsTo(Province::class,'province_id', 'id');
     }
 }

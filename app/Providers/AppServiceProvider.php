@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 // MODELS
-use App\Models\Pengaturan;
+use App\Models\Settings;
 use App\Models\User;
-use App\Models\Siswa;
+use App\Models\students;
 use App\Models\Program;
 
 use App\Models\Banner;
@@ -47,65 +47,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // if (App::environment('production')) {
-        //     URL::forceScheme('https');
-        // } elseif(App::environment('local')){
-        //     URL::forceScheme('http');
-        // }
 
-        if(config('app.env') === 'production') {
-            URL::forceScheme('https');
-        }
+        if(config('app.env') === 'production') { URL::forceScheme('https'); }
 
-        /*
-        | PAGINATORS
-        |
-        */
+        // Pagination Configs
         Paginator::useBootstrap();
 
-        /*
-        | VISITOR QUERIES
-        |
-        // */
-        // $Pengaturan = Pengaturan::first();
-
-        /*
-        | DATE CONFIGURATIONS
-        |
-        */
-        $today      = Carbon::today()->toDateString();
-        $bulanIni   = Carbon::now()->format('m');
-        $tahunIni   = Carbon::now()->format('Y');
-        $startDate  = Carbon::now()->startOfWeek();
-        $endDate    = Carbon::now()->endOfWeek();
+        // Date Configs
+        $today = Carbon::today()->toDateString();
+        $bulanIni = Carbon::now()->format('m');
+        $tahunIni = Carbon::now()->format('Y');
+        $startDate = Carbon::now()->startOfWeek();
+        $endDate = Carbon::now()->endOfWeek();
 
         view()->share([
 
-            'pengaturan' => Pengaturan::first(),
-
-            // 'totalVisitor' => VisitorCounter::get()->count(),
-            // 'visitorHariIni' => VisitorCounter::whereDate('created_at', $today)->count(),
-            // 'visitorMingguIni' => VisitorCounter::whereBetween('created_at', [$startDate, $endDate])->get()->count(),
-            // 'visitorBulanIni' => VisitorCounter::whereMonth('created_at', $bulanIni)->whereYear('created_at', $tahunIni)->count(),
-            // 'visitorTahunIni' => VisitorCounter::whereMonth('created_at', $bulanIni)->whereYear('created_at', $tahunIni)->count(),
-
-
-            /*
-            | DASBOR
-            |
-            | Jumlah data untuk ditampilkan di bagian dasbor
-            |
-            */
+            // Settings
+            'settings' => Settings::first(),
             
-            'dasbor_jml_siswa' => Siswa::where('status','Publish')->count(),
-            'dasbor_jml_siswa_semua' => Siswa::count(),
-            'dasbor_jml_siswa_draft' => Siswa::where('status','Draft')->count(),
-
-            'dasbor_jml_program' => Program::where('status','Publish')->count(),
-            'dasbor_jml_program_semua' => Program::count(),
-            'dasbor_jml_program_draft' => Program::where('status','Draft')->count(),
-
-            
+            // Totals
+            'dashboard_total_students' => Students::where('status','Publish')->count(),
+            'dashboard_total_program' => Program::where('status','Publish')->count(),            
 
         ]);
 

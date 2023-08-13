@@ -2,11 +2,11 @@
 
 // VISITOR CONTROLLERS
 
-use App\Http\Controllers\Dasbor\PesanController;
+use App\Http\Controllers\dashboard\PesanController;
 use App\Http\Controllers\Visitor\BerandaController;
 
-// DASBOR CONTROLLERS
-use App\Http\Controllers\DasborController;
+// dashboard CONTROLLERS
+use App\Http\Controllers\DashboardController;
 
 // OTHER CONTROLLERS
 use App\Http\Controllers\UserController;
@@ -97,47 +97,12 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-Route::group(['prefix' => '/dasbor', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => '/dashboard', 'middleware' => ['web', 'auth']], function () {
 
-        Route::get('/', [DasborController::class, 'index'])->name('dasbor');
-
-        // ADMIN
-        Route::group(['middleware' => ['role:administrator']], function () {
-
-            // Route::get('pengguna', [UserController::class, 'index'])->name('pengguna.index');
-            // Route::get('pengguna/tambah', [UserController::class, 'create'])->name('pengguna.create');
-            // Route::get('pengguna/draft', [UserController::class, 'draft'])->name('pengguna.draft');
-            // Route::get('pengguna/trash', [UserController::class, 'trash'])->name('pengguna.trash');
-
-            // Route::get('pengguna/{id}/detail', [UserController::class, 'show'])->name('pengguna.show');
-            // Route::get('pengguna/{id}/edit', [UserController::class, 'edit'])->name('pengguna.edit');
-
-            // Route::post('pengguna/store', [UserController::class, 'store'])->name('pengguna.store');
-            // Route::post('pengguna/pulihkan/{id}', [UserController::class, 'restore'])->name('pengguna.restore');
-
-            // Route::delete('pengguna/hapus-permanen/{id}', [UserController::class, 'destroy'])->name('pengguna.destroy');
-            // Route::delete('pengguna/hapus/{id}', [UserController::class, 'delete'])->name('pengguna.delete');
-
-            // Route::put('pengguna/update/{id}', [UserController::class, 'update'])->name('pengguna.update');
-
-            // Route::controller(UserController::class)->group(function(){
-
-            //     Route::get('/pengguna','index')->name('pengguna.index');
-            //     Route::get('pengguna','create')->name('dasbor.pengguna.create');
-            //     Route::post('pengguna','store')->name('dasbor.pengguna.store');
-            //     Route::get('pengguna/{id}/detail','show')->name('dasbor.pengguna.show');
-            //     Route::delete('pengguna/{id}','destroy')->name('dasbor.pengguna.destroy');
-            //     Route::get('pengguna/trash','trash')->name('dasbor.pengguna.trash');
-            //     Route::post('pengguna/restore/{id}','restore')->name('dasbor.pengguna.restore');
-            //     Route::delete('pengguna/delete/{id}','delete')->name('dasbor.pengguna.delete');
-
-            // });
-
-
-        });
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     });
 
-require_once 'dasbor.php';
+require_once 'dashboard.php';
 require_once 'profil.php';
 

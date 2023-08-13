@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             
             $table->id();
-            $table->foreignId('siswa_id')->nullable();
+            $table->foreignId('student_id')->nullable();
             
             $table->string('title')->nullable();
             $table->string('description')->nullable();

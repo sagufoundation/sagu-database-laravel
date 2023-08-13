@@ -20,7 +20,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'siswa_id' => 1,
+                'student_id' => 1,
                 'title' => 'KTP',
                 'description' => 'Kartu Tanda Penduduk',
                 'url' => 'https://sagufoundation.org/',
@@ -33,7 +33,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'siswa_id' => 2,
+                'student_id' => 2,
                 'title' => 'KTP',
                 'description' => 'Kartu Tanda Penduduk',
                 'url' => 'https://sagufoundation.org/',
@@ -47,7 +47,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'siswa_id' => 1,
+                'student_id' => 1,
                 'title' => 'Akta Kelahiran',
                 'description' => 'Surat Akta Kelahiran',
                 'url' => 'https://sagufoundation.org/',
@@ -61,7 +61,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'siswa_id' => 2,
+                'student_id' => 2,
                 'title' => 'Akta Kelahiran',
                 'description' => 'Surat Akta Kelahiran',
                 'url' => 'https://sagufoundation.org/',
@@ -75,7 +75,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'siswa_id' => 1,
+                'student_id' => 1,
                 'title' => 'Ijazah SMK',
                 'description' => 'Ijazah Sekolah Menengah Kejuruan',
                 'url' => 'https://sagufoundation.org/',
@@ -89,7 +89,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'siswa_id' => 2,
+                'student_id' => 2,
                 'title' => 'Ijazah SMK',
                 'description' => 'Ijazah Sekolah Menengah Kejuruan',
                 'url' => 'https://sagufoundation.org/',
