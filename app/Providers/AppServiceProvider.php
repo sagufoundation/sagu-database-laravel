@@ -5,7 +5,7 @@ namespace App\Providers;
 // MODELS
 use App\Models\Settings;
 use App\Models\User;
-use App\Models\students;
+use App\Models\Students;
 use App\Models\Program;
 
 use App\Models\Banner;
