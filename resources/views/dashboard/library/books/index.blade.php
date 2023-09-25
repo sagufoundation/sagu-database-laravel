@@ -22,20 +22,23 @@
                                                 <table class="table table-bordered">
                                                         <tr>
                                                             <th width="1%">No</th>
-                                                            <th>Picture</th>
+                                                            <th>Cover</th>
                                                             <th>Title</th>
+                                                            <th>Author</th>
                                                             <th width="280px"></th>
                                                         </tr>
                                                         @forelse($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
-                                                            <td>{{ 'cover' }}</td>
-                                                            {{-- @include('dashboard.layout.includes.index-picture') --}}
-                                                            <td>{{ $data->title ?? '' }}</td>
+                                                            <td>
+                                                                <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
+                                                            </td>
+                                                            <td>{{ $data->title ?? '' }} | {{ $data->cover }}</td>
+                                                            <td>{{ $data->author ?? '' }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
-                                                                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" class="btn btn-success w-100">
+                                                                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" target="_blank" class="btn btn-success w-100">
                                                                             <i class="fa-solid fa-id-badge d-block"></i> Show
                                                                         </a>
                                                                     </div>
@@ -59,7 +62,7 @@
                                                         @empty
                                                         <tr>
                                                             <td colspan="8">
-                                                                Data tidak ada
+                                                                No data
                                                             </td>
                                                         </tr>
                                                         @endforelse

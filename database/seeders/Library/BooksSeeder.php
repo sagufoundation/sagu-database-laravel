@@ -20,29 +20,57 @@ class BooksSeeder extends Seeder
         Books::create(
             [
 
-                'cover' => '0.jpg',
-                'title' => 'Book Title One',
+                'cover' => 'images/books/the-merry-adventures-of-robin-hood.png',
+                'title' => 'The Merry Adventures of Robin Hood',
+                'author' => 'Howard Pyle',
                 'status' => 'Publish',
 
             ]
         );
+
         Books::create(
             [
 
-                'cover' => '0.jpg',
-                'title' => 'Book Title Two',
+                'cover' => 'images/books/killer-bees.png',
+                'title' => 'Killer Bess',
+                'author' => 'Jane Rollason',
                 'status' => 'Publish',
 
             ]
         );
+
         Books::create(
             [
 
-                'cover' => '0.jpg',
-                'title' => 'Book Title Three',
+                'cover' => 'images/books/rintisan-strategi-belajar-dari-kegagalan.png',
+                'title' => 'Rintisan Strategi Belajar Dari Kegagalan',
+                'author' => 'Hustler',
+                'status' => 'Publish',
+
+            ]
+        );
+
+        Books::create(
+            [
+
+                'cover' => 'images/books/sains-dalam-olahraga-4.png',
+                'title' => 'Sains Dalam Olahraga 4',
+                'author' => 'Hustler',
                 'status' => 'Draft',
 
             ]
         );
+
+        Books::create(
+            [
+
+                'cover' => 'images/books/the-mind-map.png',
+                'title' => 'The Main Map',
+                'author' => 'Hustler',
+                'status' => 'Publish',
+
+            ]
+        );
+
     }
 }

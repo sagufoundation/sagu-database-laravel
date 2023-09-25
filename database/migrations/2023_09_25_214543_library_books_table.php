@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->string('cover')->nullable();
             $table->string('title')->nullable();
+            $table->string('author')->nullable();
 
             // other
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
