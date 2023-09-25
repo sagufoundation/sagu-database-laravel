@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dasbor;
+namespace App\Http\Controllers\Dashboard;
 
 // models
 use App\Models\User;

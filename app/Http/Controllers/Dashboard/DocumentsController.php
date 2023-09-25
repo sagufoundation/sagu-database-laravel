@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dasbor;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 
@@ -27,6 +27,7 @@ class DocumentsController extends Controller
     public function create()
     {
         // 
+        echo "Create Document...";
     }
 
     /**
@@ -37,6 +38,9 @@ class DocumentsController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request);
+
         $request->validate([
             'title' => 'required',
         ],
@@ -46,7 +50,7 @@ class DocumentsController extends Controller
 
         $data = new Documents();
 
-        $data->siswa_id = $request->siswa_id;
+        $data->student_id = $request->student_id;
 
         $data->title = $request->title;
         $data->description = $request->description;
@@ -55,7 +59,10 @@ class DocumentsController extends Controller
         $data->save();
 
         alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
-        return redirect('dasbor/siswa/show/' . $data->siswa_id);
+
+        // return redirect('dashboard/students/show/' . $data->student_id);
+        return redirect('dashboard/students/show/' . $data->student_id);
+
     }
 
     /**
@@ -99,7 +106,7 @@ class DocumentsController extends Controller
 
         $data = new Documents();
 
-        $data->siswa_id = $request->siswa_id;
+        $data->student_id = $request->student_id;
 
         $data->title = $request->title;
         $data->description = $request->description;
@@ -108,7 +115,7 @@ class DocumentsController extends Controller
         $data->update();
 
         alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
-        return redirect('dasbor/siswa/show/' . $data->siswa_id);
+        return redirect('dashboard/students/show/' . $data->student_id);
     }
 
     public function destroy($id)

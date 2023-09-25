@@ -183,7 +183,7 @@
                     <p>Dokumen yang sering digunakan atau sedang dalam tahap penggunaan.</p>
                     
                     <div>
-                        @include('dashboard.students.documents.create-modal')
+                        @include('dashboard.database.students.documents.create-modal')
                         <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#standard-modal">
                             <i class="fa-solid fa-plus-square"></i> Add
                         </button>

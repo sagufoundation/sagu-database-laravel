@@ -1,4 +1,4 @@
-{!! Form::open(array('url' => route('dasbor.siswa.documents.store'),'files'=>'true')) !!}
+{!! Form::open(array('url' => route('dashboard.students.documents.store'),'files'=>'true')) !!}
 @csrf
 
 <!-- Standard modal content -->

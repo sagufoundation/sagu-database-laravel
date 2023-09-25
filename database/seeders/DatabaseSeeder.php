@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             StudentsSeeder::class,
             DocumentsSeeder::class,
             EducationSeeder::class,
+            
+            // LIBRARY
+            Library\BooksSeeder::class,
         ]);
     }
 }

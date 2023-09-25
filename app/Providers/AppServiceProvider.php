@@ -67,6 +67,9 @@ class AppServiceProvider extends ServiceProvider
             
             // Totals
             'dashboard_total_students' => Students::where('status','Publish')->count(),
+            'dashboard_total_students_draft' => Students::where('status','Draft')->count(),
+            'dashboard_total_students_semua' => Students::count(),
+            
             'dashboard_total_program' => Program::where('status','Publish')->count(),            
 
         ]);

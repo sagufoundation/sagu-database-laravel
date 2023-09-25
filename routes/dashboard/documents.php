@@ -1,7 +1,7 @@
 <?php
 
-// DASBOR CONTROLLERS
-use App\Http\Controllers\Dasbor\DocumentsController;
+// dashboard CONTROLLERS
+use App\Http\Controllers\dashboard\DocumentsController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -28,34 +28,34 @@ use Illuminate\Support\Facades\Route;
 
             // index
             Route::get('documents','index')
-                ->name('dasbor.documents');
+                ->name('dashboard.documents');
 
             // draft
-            Route::get('siswa/documents/draft','draft')
-                ->name('dasbor.siswa.documents.draft');
+            Route::get('students/documents/draft','draft')
+                ->name('dashboard.students.documents.draft');
 
             // create
-            Route::get('siswa/documents/create','create')
-                ->name('dasbor.siswa.documents.create');
+            Route::get('students/documents/create','create')
+                ->name('dashboard.students.documents.create');
 
             // store
-            Route::post('documents','store')
-                ->name('dasbor.siswa.documents.store');
+            Route::post('students/documents','store')
+                ->name('dashboard.students.documents.store');
 
             // show
-            Route::get('siswa/documents/show/{id}','show')
-                ->name('dasbor.siswa.documents.show');
+            Route::get('students/documents/show/{id}','show')
+                ->name('dashboard.students.documents.show');
 
             // edit
-            Route::get('siswa/documents/edit/{id}','edit')
-                ->name('dasbor.siswa.documents.edit');
+            Route::get('students/documents/edit/{id}','edit')
+                ->name('dashboard.students.documents.edit');
 
             // update
-            Route::put('siswa/documents/{id}','update')
-                ->name('dasbor.siswa.documents.update');
+            Route::put('students/documents/{id}','update')
+                ->name('dashboard.students.documents.update');
 
             // destroy
-            Route::delete('siswa/documents/destroy/{id}','destroy');
+            Route::delete('students/documents/destroy/{id}','destroy');
 
         });
     });
