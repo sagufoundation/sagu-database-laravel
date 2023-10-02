@@ -196,15 +196,7 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-
-        // dd('explode');
-        $data = Students::where('id', $id)->first();
-
-        // $programs = explode(',', $data->programs);
-
-        // foreach($programs as $info) :
-        //     echo '<div>'.$info.'</div>';
-        // endforeach;
+        $data = User::where('id', $id)->first();
 
         $documents = Documents::where('user_id', $id)->orderBy('title', 'asc')->get();
         $educations = Education::where('user_id', $id)->orderBy('year', 'asc')->get();
@@ -213,7 +205,7 @@ class StudentsController extends Controller
 
         $data_programs = explode(',', $data->programs);
 
-        return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs'));
+        return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs','data_programs'));
     }
 
     /**
@@ -291,13 +283,13 @@ class StudentsController extends Controller
     public function update_profile(Request $request, $id) {
 
         // select data by id
-        $data = Students::find($id);
-
+        $data = User::find($id);
+        $data->status = $request->status;
         // create new variable
-        $data->profile = $request->profile;
-        // update process
         $data->update();
-
+        $student = $data->student ?? new Students();
+        $student->profile = $request->profile;
+        $data->students()->save($student);
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
@@ -351,17 +343,21 @@ class StudentsController extends Controller
     public function update_biography(Request $request, $id) {
 
         // select data by id
-        $data = Students::find($id);
+        $data = User::find($id);
 
         // create new variable
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
-        $data->place_of_birth = $request->place_of_birth;
-        $data->date_of_birth = $request->date_of_birth;
-        $data->phone = $request->phone;
+        // $data->phone = $request->phone;
         // update process
         $data->update();
+
+        $student = $data->student ?? new Students();
+
+        $student->place_of_birth = $request->place_of_birth;
+        $student->date_of_birth = $request->date_of_birth;
+        $data->students()->save($student);
 
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
@@ -378,15 +374,18 @@ class StudentsController extends Controller
         // dd('contact info');
 
         // select data by id
-        $data = Students::find($id);
+        $data = User::find($id);
+        $data->phone = $request->phone;
+        $data->update();
         // create new variable
-        $data->email_google = $request->email_google;
-        $data->email_outlook = $request->email_outlook;
-        $data->email_sagu = $request->email_sagu;
-        $data->email_campus_1 = $request->email_campus_1;
+        $student = $data->student ?? new Students();
+        $student->email_google = $request->email_google;
+        $student->email_outlook = $request->email_outlook;
+        $student->email_sagu = $request->email_sagu;
+        $student->email_campus_1 = $request->email_campus_1;
 
         // update process
-        $data->update();
+        $data->students()->save($student);
 
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
@@ -401,14 +400,15 @@ class StudentsController extends Controller
     public function update_address(Request $request, $id) {
 
         // select data by id
-        $data = Students::find($id);
-
-        // create new variable
-        $data->province_id = $request->province_id;
-        $data->full_address = $request->full_address;
-
+        $data = User::find($id);
         // update process
         $data->update();
+        // create new variable
+        $student = $data->student ?? new Students();
+        $student->province_id = $request->province_id;
+        $student->full_address = $request->full_address;
+        $data->students()->save($student);
+
 
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
@@ -425,13 +425,15 @@ class StudentsController extends Controller
         // dd('doc_google_sheets');
 
         // select data by id
-        $data = Students::find($id);
-
-        // create new variable
-        $data->doc_google_sheets = $request->doc_google_sheets;
-
-        // update process
+        $data = User::find($id);
+         // update process
         $data->update();
+        // create new variable
+        $student = $data->student ?? new Students();
+        $student->doc_google_sheets = $request->doc_google_sheets;
+         // update process
+        $data->students()->save($student);
+
 
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);

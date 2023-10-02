@@ -52,7 +52,7 @@
 
                     <!--- Sidemenu -->
                     @if (Auth::user()->hasRole('administrator'))
-                        
+
                         <div id="sidebar-menu">
                             <ul id="side-menu">
                                 <li class="@if(Request::segment(1) == 'dashboard') menuitem-active @endif">
@@ -65,7 +65,7 @@
 
                                 <li class="menu-title mt-2">Student Database</li>
 
-                                <li class="@if(Request::segment(1) == 'students') menuitem-active @endif">
+                                <li class="@if(Request::segment(2) == 'students') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/students') }}">
                                         <i class="mdi mdi-account-group"></i>
                                         <span class="badge badge-success badge-pill float-right">
@@ -167,7 +167,7 @@
                                     <!-- menu item end -->
 
                                 </li>
-                                
+
                                 <li class="menu-title mt-2">Users</li>
 
                                 <li class="@if(Request::segment(1) == 'users') menuitem-active @endif">
@@ -196,7 +196,7 @@
                         </div>
 
                     @elseif (Auth::user()->hasRole('guest'))
-                        
+
                         <div id="sidebar-menu">
 
                             <ul id="side-menu">

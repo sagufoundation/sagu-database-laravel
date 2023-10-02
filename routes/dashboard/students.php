@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Route;
     | students
     |--------------------------------------------------------------------------
     */
-    Route::group(['middleware' => ['auth']], function () { 
-    
+    Route::group(['middleware' => ['auth']], function () {
+
         Route::controller(StudentsController::class)->group(function(){
 
             // index
@@ -116,11 +116,6 @@ use Illuminate\Support\Facades\Route;
             // update > educations
             Route::put('students/update/educations/{id}','update_educations')
                 ->name('dashboard.students.update.educations');
-
-
-
-
-
 
 
 
