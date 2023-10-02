@@ -20,14 +20,14 @@
                                             </div>
 
                                             <div class="list-group">
-                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/edit/profile', $data->id) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'profile') active @endif">
-                                                    <i class="fa-solid fa-id-card mr-1"></i> Profile 
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/edit/biography', $data->id) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'biography') active @endif">
+                                                    <i class="fa-solid fa-user mr-1"></i> Biography 
                                                 </a>
                                                 <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/edit/picture', $data->id) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'picture') active @endif">
                                                     <i class="fa-solid fa-image mr-1"></i> Picture 
                                                 </a>
-                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/edit/biography', $data->id) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'biography') active @endif">
-                                                    <i class="fa-solid fa-user mr-1"></i> Biography 
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/edit/profile', $data->id) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'profile') active @endif">
+                                                    <i class="fa-solid fa-id-card mr-1"></i> Profile 
                                                 </a>
                                                 <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/edit/contact', $data->id) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'contact') active @endif">
                                                     <i class="fa-solid fa-id-badge mr-1"></i> Contact 

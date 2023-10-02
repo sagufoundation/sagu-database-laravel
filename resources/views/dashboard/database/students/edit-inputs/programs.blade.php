@@ -11,12 +11,12 @@
                                         type="checkbox"
                                         name="programs[]"
                                         value="{{ $program->id }}"
-                                        id="defaultCheck1"
+                                        id="{{ $program->id }}"
                                         @foreach ($data_programs as $item)
                                             @if ($item ==  $data ) checked @endif
                                         @endforeach
                                     >
-                                    <label class="form-check-label" for="defaultCheck1">
+                                    <label class="form-check-label" for="{{ $program->id }}">
 
                                       {{ $program->program_title }} | {{ $program->id }}
                                     </label>
@@ -34,21 +34,6 @@
                                 </div> --}}
 
                                 @endforeach
-
-                            </div>
-
-                        </div>
-
-                        <div class="row mt-5 pt-5 border-top">
-                            <div class="col-md-6">
-
-                                <div class="border p-2">
-                                @foreach ($data->program()->get() as $program)
-
-                                    <div> {{ $program->program_title }}</div>
-
-                                @endforeach
-                                </div>
 
                             </div>
 

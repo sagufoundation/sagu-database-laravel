@@ -8,13 +8,13 @@
         <div class="form-group">
             <div class="mb-2">
                 @if($data->picture)
-                <img src="{{ asset('images/siswa/'. $data->picture) }}" alt="Gambar" id="preview-gambar" class="img-thumbnail w-100">
+                <img src="{{ asset('images/students/'. $data->picture) }}" alt="Picture" id="preview-picture" class="img-thumbnail w-100">
                 @else 
-                <img src="{{ asset('images/siswa/00.jpg') }}" alt="Gambar" id="preview-gambar" class="img-thumbnail w-100">
+                <img src="{{ asset('images/students/00.jpg') }}" alt="Picture" id="preview-picture" class="img-thumbnail w-100">
                 @endif
                 
             </div>
-            <label for="picture" class="form-label d-block">Gambar <span class="text-danger">*</span></label>
+            <label for="picture" class="form-label d-block">Picture <span class="text-danger">*</span></label>
             @if ($errors->has('picture'))
             <span class="text-danger" role="alert">
                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('picture') }}</small>

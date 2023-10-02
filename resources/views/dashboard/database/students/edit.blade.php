@@ -18,28 +18,28 @@
                                         @csrf
 
                                         @if(Request::segment(4) == 'profile')
-                                            @include('dashboard.students.edit-inputs.profile')
+                                            @include('dashboard.database.students.edit-inputs.profile')
 
                                         @elseif(Request::segment(4) == 'picture')
-                                            @include('dashboard.students.edit-inputs.picture')
+                                            @include('dashboard.database.students.edit-inputs.picture')
 
                                         @elseif(Request::segment(4) == 'biography')
-                                            @include('dashboard.students.edit-inputs.biography')
+                                            @include('dashboard.database.students.edit-inputs.biography')
 
                                         @elseif (Request::segment(4) == 'contact')
-                                            @include('dashboard.students.edit-inputs.contact')
+                                            @include('dashboard.database.students.edit-inputs.contact')
 
                                         @elseif (Request::segment(4) == 'address')
-                                            @include('dashboard.students.edit-inputs.address')
+                                            @include('dashboard.database.students.edit-inputs.address')
 
                                         @elseif (Request::segment(4) == 'documents')
-                                            @include('dashboard.students.edit-inputs.documents')
+                                            @include('dashboard.database.students.edit-inputs.documents')
 
                                             @elseif (Request::segment(4) == 'programs')
-                                                @include('dashboard.students.edit-inputs.programs')
+                                                @include('dashboard.database.students.edit-inputs.programs')
 
                                         @elseif (Request::segment(4) == 'educations')
-                                            @include('dashboard.students.edit-inputs.educations')
+                                            @include('dashboard.database.students.edit-inputs.educations')
 
                                         @elseif(Request::segment(4) == '')
 
@@ -128,15 +128,15 @@
         $('.ckeditor').ckeditor();
     });
     $(document).ready(function (e) {
-               $('#gambar').change(function(){
+        $('#picture').change(function(){
                 let reader = new FileReader();
                 reader.onload = (e) => {
-                  $('#preview-gambar').attr('src', e.target.result);
+                  $('#preview-picture').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(this.files[0]);
-               });
+        });
 
-            });
+    });
 
     CKEDITOR.config.height='150px';
 </script>
