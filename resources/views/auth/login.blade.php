@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $settings->site_title ?? 'SAGU Foundation' }}</title>
-    
-    <meta property="og:title" content="{{ $settings->site_title ?? '' }}">
+    <title>{{ $pengaturan->site_title ?? 'SAGU Foundation' }}</title>
+
+    <meta property="og:title" content="{{ $pengaturan->site_title ?? '' }}">
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ $settings->logo_meta ?? '' }}">
-    <meta property="og:url" content="{{ $settings->site_address ?? '' }}">
+    <meta property="og:image" content="{{ $pengaturan->logo_meta ?? '' }}">
+    <meta property="og:url" content="{{ $pengaturan->site_address ?? '' }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:image" content="{{ $settings->logo_meta ?? '' }}">
-    <meta property="og:description" content="{{ $settings->meta_description ?? '' }}">
-    <meta property="og:site_name" content="{{ $settings->site_title ?? '' }}">
-    <meta name="twitter:image:alt" content="Cover {{ $settings->site_title ?? 'SAGU Foundation' }}">
+    <meta property="twitter:image" content="{{ $pengaturan->logo_meta ?? '' }}">
+    <meta property="og:description" content="{{ $pengaturan->meta_description ?? '' }}">
+    <meta property="og:site_name" content="{{ $pengaturan->site_title ?? '' }}">
+    <meta name="twitter:image:alt" content="Cover {{ $pengaturan->site_title ?? 'SAGU Foundation' }}">
 
     <!-- FAVICON -->
-    <link rel="apple-touch-icon" href="{{ asset('images/settings/' . $settings->favicon) }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/settings/' . $settings->favicon) }}">
-    
+    <link rel="apple-touch-icon" href="{{ asset('images/settings/' . $pengaturan->favicon) }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/settings/' . $pengaturan->favicon) }}">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 </head>
@@ -98,12 +98,12 @@
             <!-- .row end -->
             <div class="row my-5">
                 <div class="col-md-5 mx-auto">
-                    <p class="text-muted">{!! $settings->copyright ?? '' !!}</p>
+                    <p class="text-muted">{!! $pengaturan->copyright ?? '' !!}</p>
                 </div>
             </div>
             <!-- .row end -->
         </div>
     </section>
-    
+
 </body>
 </html>

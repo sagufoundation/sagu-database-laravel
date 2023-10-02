@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Pengaturan;
+use App\Models\Settings;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,14 +15,14 @@ class PengaturanControlller extends Controller
     public function index()
     {
 
-        $data = Pengaturan::whereId(1)->first();
+        $data = Settings::whereId(1)->first();
         return view('dasbor.admin.pages.pengaturan.index', compact('data'));
     }
 
     // SHOW
     public function show($slug)
     {
-        $data = Pengaturan::whereId(1)->first();
+        $data = Settings::whereId(1)->first();
         return view('dasbor.admin.pages.pengaturan.show', compact('data'));
     }
 
@@ -30,7 +30,7 @@ class PengaturanControlller extends Controller
     public function edit()
     {
 
-        $data = Pengaturan::whereId(1)->first();
+        $data = Settings::whereId(1)->first();
         return view('dasbor.admin.pages.pengaturan.edit', compact('data'));
     }
 
@@ -56,7 +56,7 @@ class PengaturanControlller extends Controller
         } else {
             try {
                 $random                             = Str::random(15);
-                $pengaturan                         = Pengaturan::find($id);
+                $pengaturan                         = Settings::find($id);
 
                 if(isset($request->inputGroup) && $request->inputGroup == 'informasi-situs'){
 
@@ -75,7 +75,7 @@ class PengaturanControlller extends Controller
 
                 } elseif (isset($request->inputGroup) && $request->inputGroup == 'logo'){
 
-                    // logo 
+                    // logo
 
                     if(!empty($request->logo)) {
 
@@ -103,8 +103,8 @@ class PengaturanControlller extends Controller
                         $pengaturan->logo_loader = $logo_loader_name;
                         $request->logo_loader->move(public_path('gambar/pengaturan/'), $logo_loader_name);
 
-                    }   
-                    
+                    }
+
                     if(!empty($request->favicon)) {
 
                         $pengaturan->favicon = $request->favicon;
@@ -117,7 +117,7 @@ class PengaturanControlller extends Controller
                         $pengaturan->favicon = $favicon_name;
                         $request->favicon->move(public_path('gambar/pengaturan/'), $favicon_name);
 
-                    }   
+                    }
 
                 }  elseif (isset($request->inputGroup) && $request->inputGroup == 'media-sosial'){
 
@@ -131,7 +131,7 @@ class PengaturanControlller extends Controller
 
                } elseif (isset($request->inputGroup) && $request->inputGroup == 'logo-dasbor'){
 
-                    // logo dasbor 
+                    // logo dasbor
 
                     if(!empty($request->logo_dasbor_lg_dark)) {
 
@@ -189,7 +189,7 @@ class PengaturanControlller extends Controller
 
                     }
 
-           } 
+           }
 
                 $pengaturan->update();
 

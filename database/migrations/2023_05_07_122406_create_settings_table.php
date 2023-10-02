@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            
+
             $table->id();
 
             // Site Information
@@ -52,7 +52,7 @@ return new class extends Migration
 
             // Dates
             $table->timestamps();
-            
+
         });
     }
 

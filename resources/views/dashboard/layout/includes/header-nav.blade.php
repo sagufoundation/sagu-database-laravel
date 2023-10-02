@@ -55,19 +55,19 @@
                     <div class="logo-box">
                         <a href="{{ url('/dashboard') }}" class="logo logo-dark text-center">
                             <span class="logo-sm">
-                                <img src="{{ asset('images/settings/' . $settings->logo_dashboard_sm_dark) }}" alt="images logo sm dark" height="38">
+                                <img src="{{ asset('images/settings/' . $pengaturan->logo_dashboard_sm_dark) }}" alt="images logo sm dark" height="38">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('images/settings/' . $settings->logo_dashboard_lg_dark) }}" alt="images logo lg dark" height="38">
+                                <img src="{{ asset('images/settings/' . $pengaturan->logo_dashboard_lg_dark) }}" alt="images logo lg dark" height="38">
                             </span>
                         </a>
 
                         <a href="{{ url('/dashboard') }}" class="logo logo-light text-center">
                             <span class="logo-sm">
-                                <img src="{{ asset('images/settings/' . $settings->logo_dashboard_sm_light) }}" alt="images logo sm light" height="38">
+                                <img src="{{ asset('images/settings/' . $pengaturan->logo_dashboard_sm_light) }}" alt="images logo sm light" height="38">
                             </span>
                             <span class="logo-lg">
-                                    <img src="{{ asset('images/settings/' . $settings->logo_dashboard_lg_light) }}" alt="images logo lg light" height="38">
+                                    <img src="{{ asset('images/settings/' . $pengaturan->logo_dashboard_lg_light) }}" alt="images logo lg light" height="38">
                             </span>
                         </a>
                     </div>
