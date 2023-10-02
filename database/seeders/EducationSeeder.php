@@ -20,7 +20,7 @@ class EducationSeeder extends Seeder
         Education::create(
             [
                 'year' => '2015', // year of completion
-                'student_id' => 1,
+                'user_id' => 7,
                 'title' => 'SMP Negeri 1',
                 'description' => 'Sekolah di SMP slama 3 tahun dengan mengambil jurusan tersedia pada sekolah. Sekolah hingga lulus di sekolah yang sama.',
                 'url' => 'https://drive.google.com/',
@@ -37,7 +37,7 @@ class EducationSeeder extends Seeder
         Education::create(
             [
                 'year' => '2016', // year of completion
-                'student_id' => 1,
+                'user_id' => 7,
                 'title' => 'SMK Negeri 1',
                 'description' => 'Sekolah di SMK slama 3 tahun dengan mengambil jurusan tersedia pada sekolah. Sekolah hingga lulus di sekolah yang sama.',
                 'url' => 'https://drive.google.com/',
@@ -50,11 +50,11 @@ class EducationSeeder extends Seeder
 
             ]
         );
-        
+
         Education::create(
             [
                 'year' => '2020', // year of completion
-                'student_id' => 2,
+                'user_id' => 7,
                 'title' => 'SMK Katholik Tunas Bangsa Timika',
                 'description' => 'Sekolah Menengah Kejuruan Program 3 Tahun, Program Keahlian : Manajemen Perkantoran, Kompetensi Keahlian : Otomatiasasi dan Tata kelola Perkantoran.',
                 'url' => 'https://drive.google.com/',
@@ -72,7 +72,7 @@ class EducationSeeder extends Seeder
         Education::create(
             [
                 'year' => '2015', // year of completion
-                'student_id' => 1,
+                'user_id' => 7,
                 'title' => 'Judul Program Pendidikan Non Formal',
                 'description' => 'Contoh keterangan singkat tentang pendidikan non formal yang telah diambil oleh siswa',
                 'url' => 'https://drive.google.com/',
@@ -89,7 +89,7 @@ class EducationSeeder extends Seeder
         Education::create(
             [
                 'year' => '2016', // year of completion
-                'student_id' => 1,
+                'user_id' => 7,
                 'title' => 'Judul Program Pendidikan Non Formal',
                 'description' => 'Contoh keterangan singkat tentang pendidikan non formal yang telah diambil oleh siswa',
                 'url' => 'https://drive.google.com/',
@@ -102,11 +102,11 @@ class EducationSeeder extends Seeder
 
             ]
         );
-        
+
         Education::create(
             [
                 'year' => '2020', // year of completion
-                'student_id' => 2,
+                'user_id' => 7,
                 'title' => 'Judul Program Pendidikan Non Formal',
                 'description' => 'Contoh keterangan singkat tentang pendidikan non formal yang telah diambil oleh siswa',
                 'url' => 'https://drive.google.com/',
@@ -119,11 +119,11 @@ class EducationSeeder extends Seeder
 
             ]
         );
-        
+
         Education::create(
             [
                 'year' => '2021', // year of completion
-                'student_id' => 2,
+                'user_id' => 7,
                 'title' => 'Judul Program Pendidikan Non Formal Kedua',
                 'description' => 'Contoh keterangan singkat tentang pendidikan non formal yang telah diambil oleh siswa',
                 'url' => 'https://drive.google.com/',

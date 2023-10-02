@@ -22,6 +22,7 @@ class RoleSeeder extends Seeder
             'editor',
             'author',
             'supervisor',
+            'users'
         ];
         foreach ($rolesName as $role) {
             Role::create([

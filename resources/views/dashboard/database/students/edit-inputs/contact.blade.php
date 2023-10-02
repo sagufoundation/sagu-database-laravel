@@ -17,10 +17,10 @@
                             </div>
 
                             <div class="col-md-4">
-                                
+
                                 <div class="mb-3">
                                     <label for="email_google" class="form-label">Google Mail</label>
-                                    <input type="text" name="email_google" id="email_google" value="{{ old('email_google') ?? $data->email_google }}" placeholder="@gmail.com" class="form-control">
+                                    <input type="text" name="email_google" id="email_google" value="{{ old('email_google') ?? $data->student->email_google??'' }}" placeholder="@gmail.com" class="form-control">
                                     @if ($errors->has('email_google'))
                                         <span class="text-danger" role="alert">
                                             <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email_google') }}</small>
@@ -32,10 +32,10 @@
                             </div>
 
                             <div class="col-md-4">
-                                
+
                                 <div class="mb-3">
                                     <label for="email_outlook" class="form-label">Microsot Mail (Outlook)</label>
-                                    <input type="text" name="email_outlook" id="email_outlook" value="{{ old('email_outlook') ?? $data->email_outlook }}" placeholder="@outlook.com" class="form-control">
+                                    <input type="text" name="email_outlook" id="email_outlook" value="{{ old('email_outlook') ?? $data->student->email_outlook??'' }}" placeholder="@outlook.com" class="form-control">
                                     @if ($errors->has('email_outlook'))
                                         <span class="text-danger" role="alert">
                                             <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email_outlook') }}</small>
@@ -47,10 +47,10 @@
                             </div>
 
                             <div class="col-md-4">
-                                
+
                                 <div class="mb-3">
                                     <label for="email_sagu" class="form-label">SAGU Mail (@sagufoundation.org)</label>
-                                    <input type="text" name="email_sagu" id="email_sagu" value="{{ old('email_sagu') ?? $data->email_sagu }}" placeholder="@sagufoundation.org" class="form-control">
+                                    <input type="text" name="email_sagu" id="email_sagu" value="{{ old('email_sagu') ?? $data->student->email_sagu??'' }}" placeholder="@sagufoundation.org" class="form-control">
                                     @if ($errors->has('email_sagu'))
                                         <span class="text-danger" role="alert">
                                             <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email_sagu') }}</small>
@@ -62,10 +62,10 @@
                             </div>
 
                             <div class="col-md-4">
-                                
+
                                 <div class="mb-3">
                                     <label for="email_campus_1" class="form-label">Campus Mail (@campusname.com)</label>
-                                    <input type="text" name="email_campus_1" id="email_campus_1" value="{{ old('email_campus_1') ?? $data->email_campus_1 }}" placeholder="@campusname.com" class="form-control">
+                                    <input type="text" name="email_campus_1" id="email_campus_1" value="{{ old('email_campus_1') ?? $data->student->email_campus_1??'' }}" placeholder="@campusname.com" class="form-control">
                                     @if ($errors->has('email_campus_1'))
                                         <span class="text-danger" role="alert">
                                             <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email_campus_1') }}</small>
@@ -76,9 +76,9 @@
 
                             </div>
 
-                        </div>  
+                        </div>
 
                         <button  type="submit" class="btn btn-sm btn-lg btn-primary waves-effect waves-light">
                             <i class="fa-solid fa-save mr-1"></i> Save
                         </button>
-                        <!-- submit button end --> 
+                        <!-- submit button end -->

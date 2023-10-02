@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
+use App\Models\Program;
+use App\Models\Province;
 use App\Models\Students;
 use App\Models\Documents;
 use App\Models\Education;
-use App\Models\Province;
-use App\Models\Program;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class StudentsController extends Controller
@@ -23,7 +25,7 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        $datas = Students::where([
+        $datas = User::where([
             ['first_name', '!=', Null],
             [function ($query) {
                 if (($s = request()->s)) {
@@ -33,17 +35,27 @@ class StudentsController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(10);
-        $jumlahtrash = Students::onlyTrashed()->count();
-        $jumlahdraft = Students::where('status', 'Draft')->count();
-        $datapublish = Students::where('status', 'Publish')->count();
+        ])->whereHas('roles',function($q){
+            $q->where('name','users');
+        })->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(10);
 
-        return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $jumlahtrash = User::onlyTrashed()->count();
+
+        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count();
+
+        return view('dashboard.database.students.index',
+               compact(
+                'datas',
+                'jumlahtrash',
+                'jumlahdraft',
+                'datapublish'
+            ))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function draft()
     {
-        $datas = Students::where([
+        $datas = User::where([
             ['first_name', '!=', Null],
             [function ($query) {
                 if (($s = request()->s)) {
@@ -53,10 +65,13 @@ class StudentsController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status', 'Draft')->orderBy('first_name', 'asc')->paginate(10);
-        $jumlahtrash = Students::onlyTrashed()->count();
-        $jumlahdraft = Students::where('status', 'Draft')->count();
-        $datapublish = Students::where('status', 'Publish')->count();
+        ])->whereHas('roles',function($q){
+            $q->where('name','users');
+        })->where('status', 'Draft')->orderBy('first_name', 'asc')->paginate(10);
+
+        $jumlahtrash = User::onlyTrashed()->count();
+        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count();
 
         return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -68,7 +83,8 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.database.students.create');
+        $provinces = Province::all();
+        return view('dashboard.database.students.create',compact('provinces'));
     }
 
     /**
@@ -83,25 +99,38 @@ class StudentsController extends Controller
         $request->validate(
             [
                 'first_name' => 'required',
+                'phone' => 'required|unique:users,phone|max:13',
+                'email' => 'required|unique:users,email|string',
+                'password'  => 'required|confirmed|min:8',
+                'status' => 'required',
+
+                'province_id' => 'required',
+                'place_of_birth' => 'required',
+                'date_of_birth' => 'required',
             ],
             [
-                'first_name.required' => 'This is required',
+                'first_name.required'   => 'This is required',
+                'phone.required'        => 'This is required',
+                'email.required'        => 'This is required',
+                'password.required'     => 'This is required',
+                'status.required'       => 'This is required',
+
+                'province_id.required'      => 'This is required',
+                'place_of_birth.required'   => 'This is required',
+                'date_of_birth.required'    => 'This is required',
             ]
         );
 
-        $data = new Students();
-
-        // biography
+        $data = new User();
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
-
-        // create slug
+        $data->phone = $request->phone;
+        $data->email = $request->email;
+        $data->password = Hash::make($request->password);
         $data->slug = Str::slug($data->first_name . '' . $data->middle_name . '' . $data->last_name);
+        $data->status = $request->status;
 
-        // birth
-        $data->place_of_birth = $request->place_of_birth;
-        $data->date_of_birth = $request->date_of_birth;
 
         // picture creation
         if (isset($request->picture)) {
@@ -123,21 +152,25 @@ class StudentsController extends Controller
             // move file into folder path with the file name
             $request->picture->move(public_path('images/students'), $fileName);
         }
-
-
-        // contact info
-
-        // emails
-
-        // education
-
-        // other
-        $data->status = $request->status;
-
         $data->save();
+        $data->assignRole('6');
+
+        // Student data
+        $student = $data->student ?? new Students();
+        $student->user_id = $data->id;
+        $student->province_id = $request->province_id;
+        $student->profile = $request->profile;
+        $student->full_address = $request->full_address;
+        $student->place_of_birth = $request->place_of_birth;
+        $student->date_of_birth = $request->date_of_birth;
+
+        $student->email_google = $request->email_google;
+        $student->email_outlook = $request->email_outlook;
+        $student->email_sagu = $request->email_sagu;
+        $data->students()->save($student);
 
         alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
-        return redirect('dashboard/students/show/' . Students::find($data->id)->id);
+        return redirect('dashboard/students/show/' . User::find($data->id)->id);
     }
 
     /**
@@ -148,10 +181,10 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        $data = Students::where('id', $id)->first();
-        $documents = Documents::where('student_id', $id)->orderBy('title', 'asc')->get();
-        $formal_educations = Education::where('student_id', $id)->where('category', 'Formal')->orderBy('year', 'desc')->get();
-        $non_formal_educations = Education::where('student_id', $id)->where('category', 'Non Formal')->orderBy('year', 'desc')->get();
+        $data = User::where('id', $id)->first();
+        $documents = Documents::where('user_id', $id)->orderBy('title', 'asc')->get();
+        $formal_educations = Education::where('user_id', $id)->where('category', 'Formal')->orderBy('year', 'desc')->get();
+        $non_formal_educations = Education::where('user_id', $id)->where('category', 'Non Formal')->orderBy('year', 'desc')->get();
         return view('dashboard.database.students.show', compact('data', 'documents', 'formal_educations', 'non_formal_educations'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -163,28 +196,16 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
+        $data = User::where('id', $id)->first();
 
-        // dd('explode');
-
-
-
-
-        $data = Students::where('id', $id)->first();
-
-        // $programs = explode(',', $data->programs);
-
-        // foreach($programs as $info) :
-        //     echo '<div>'.$info.'</div>';
-        // endforeach;
-
-        $documents = Documents::where('student_id', $data->id)->orderBy('title', 'asc')->get();
-        $educations = Education::where('student_id', $data->id)->orderBy('year', 'asc')->get();
+        $documents = Documents::where('user_id', $id)->orderBy('title', 'asc')->get();
+        $educations = Education::where('user_id', $id)->orderBy('year', 'asc')->get();
         $provinces = Province::orderBy('name', 'asc')->get();
         $programs = Program::orderBy('id', 'desc')->get();
 
         $data_programs = explode(',', $data->programs);
 
-        return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs', 'data_programs'));
+        return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs','data_programs'));
     }
 
     /**
@@ -262,15 +283,13 @@ class StudentsController extends Controller
     public function update_profile(Request $request, $id) {
 
         // select data by id
-        $data = Students::find($id);
-
-        // create new variable
-        $data->profile = $request->profile;
+        $data = User::find($id);
         $data->status = $request->status;
-
-        // update process
+        // create new variable
         $data->update();
-
+        $student = $data->student ?? new Students();
+        $student->profile = $request->profile;
+        $data->students()->save($student);
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
@@ -285,7 +304,7 @@ class StudentsController extends Controller
         // dd('update picture');
 
         // select data by id
-        $data = Students::find($id);
+        $data = User::find($id);
 
         // picture creation
         if (isset($request->picture)) {
@@ -324,17 +343,21 @@ class StudentsController extends Controller
     public function update_biography(Request $request, $id) {
 
         // select data by id
-        $data = Students::find($id);
+        $data = User::find($id);
 
         // create new variable
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
-        $data->place_of_birth = $request->place_of_birth;
-        $data->date_of_birth = $request->date_of_birth;
-
+        // $data->phone = $request->phone;
         // update process
         $data->update();
+
+        $student = $data->student ?? new Students();
+
+        $student->place_of_birth = $request->place_of_birth;
+        $student->date_of_birth = $request->date_of_birth;
+        $data->students()->save($student);
 
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
@@ -351,17 +374,18 @@ class StudentsController extends Controller
         // dd('contact info');
 
         // select data by id
-        $data = Students::find($id);
-
-        // create new variable
+        $data = User::find($id);
         $data->phone = $request->phone;
-        $data->email_google = $request->email_google;
-        $data->email_outlook = $request->email_outlook;
-        $data->email_sagu = $request->email_sagu;
-        $data->email_campus_1 = $request->email_campus_1;
+        $data->update();
+        // create new variable
+        $student = $data->student ?? new Students();
+        $student->email_google = $request->email_google;
+        $student->email_outlook = $request->email_outlook;
+        $student->email_sagu = $request->email_sagu;
+        $student->email_campus_1 = $request->email_campus_1;
 
         // update process
-        $data->update();
+        $data->students()->save($student);
 
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
@@ -376,14 +400,15 @@ class StudentsController extends Controller
     public function update_address(Request $request, $id) {
 
         // select data by id
-        $data = Students::find($id);
-
-        // create new variable
-        $data->province_id = $request->province_id;
-        $data->full_address = $request->full_address;
-
+        $data = User::find($id);
         // update process
         $data->update();
+        // create new variable
+        $student = $data->student ?? new Students();
+        $student->province_id = $request->province_id;
+        $student->full_address = $request->full_address;
+        $data->students()->save($student);
+
 
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
@@ -400,13 +425,15 @@ class StudentsController extends Controller
         // dd('doc_google_sheets');
 
         // select data by id
-        $data = Students::find($id);
-
-        // create new variable
-        $data->doc_google_sheets = $request->doc_google_sheets;
-
-        // update process
+        $data = User::find($id);
+         // update process
         $data->update();
+        // create new variable
+        $student = $data->student ?? new Students();
+        $student->doc_google_sheets = $request->doc_google_sheets;
+         // update process
+        $data->students()->save($student);
+
 
         // create alert
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
@@ -463,9 +490,6 @@ class StudentsController extends Controller
 
     }
 
-
-
-
     /**
      * Remove the specified resource from storage.
      *
@@ -474,7 +498,7 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        $data = Students::find($id);
+        $data = User::find($id);
         $data->delete();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
         return redirect()->route('dashboard.database.students.trash');
@@ -482,17 +506,17 @@ class StudentsController extends Controller
 
     public function trash()
     {
-        $datas = Students::onlyTrashed()->paginate(10);
-        $jumlahtrash = Students::onlyTrashed()->count();
-        $jumlahdraft = Students::where('status', 'Draft')->count();
-        $datapublish = Students::where('status', 'Publish')->count();
+        $datas = User::onlyTrashed()->paginate(10);
+        $jumlahtrash = User::onlyTrashed()->count();
+        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count();
 
         return view('dashboard.database.Students.trash', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function restore($id)
     {
-        $data = Students::onlyTrashed()->where('id', $id);
+        $data = User::onlyTrashed()->where('id', $id);
         $data->restore();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
         return redirect()->back();
@@ -500,7 +524,7 @@ class StudentsController extends Controller
 
     public function delete($id)
     {
-        $data = Students::onlyTrashed()->findOrFail($id);
+        $data = User::onlyTrashed()->findOrFail($id);
         $path = public_path('images/students/' . $data->picture);
 
         if (file_exists($path)) {

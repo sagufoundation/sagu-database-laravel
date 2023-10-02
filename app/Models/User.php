@@ -22,11 +22,16 @@ class User extends Authenticatable
 
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'job_title',
         'email',
+        'phone',
         'password',
         'picture',
-        'slug'
+        'slug',
+        'status'
     ];
 
     /**
@@ -49,4 +54,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function students(){
+        return $this->hasMany(Students::class,'user_id');
+    }
+    public function student(){
+        return $this->hasOne(Students::class,'user_id');
+    }
 }

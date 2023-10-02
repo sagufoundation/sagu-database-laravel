@@ -18,7 +18,9 @@ class UsersSeeder extends Seeder
     {
         $users = collect([
             [
-                'name' => 'Janzen Faidiban',
+                'first_name' => 'Janzen',
+                'middle_name' => '',
+                'last_name' => 'Faidiban',
                 'slug' => 'janzen-faidiban',
                 'job_title' => 'Information Technology Coordinator',
                 'picture' => 'Janzen-3-200x200.jpg',
@@ -27,9 +29,12 @@ class UsersSeeder extends Seeder
                 'status' => 'Publish',
                 'role' => 'administrator',
 
+
             ],
             [
-                'name' => 'Febe Worabay',
+                'first_name' => 'Febe',
+                'middle_name' => '',
+                'last_name' => 'Worabay',
                 'slug' => 'febe-worabay',
                 'job_title' => 'Administration Officer',
                 'picture' => 'Febe-200x200.jpg',
@@ -37,9 +42,13 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('febe-woaraby@sagufoundation.org'),
                 'status' => 'Publish',
                 'role' => 'administrator',
+
             ],
+
             [
-                'name' => 'Tisha Rumbewas',
+                'first_name' => 'Tisha',
+                'middle_name' => '',
+                'last_name' => 'Rumbewas',
                 'slug' => 'tisha-rumbewas',
                 'job_title' => 'Director',
                 'picture' => 'Tisha-200x200.jpg',
@@ -47,9 +56,12 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('tisha.rumbewas@sagufoundation.org'),
                 'status' => 'Publish',
                 'role' => 'administrator',
+
             ],
             [
-                'name' => 'Elisabeth Jakarimilena',
+                'first_name' => 'Elisabeth',
+                'middle_name' => '',
+                'last_name' => 'Jakarimilena',
                 'slug' => 'elisabeth-jakarimilena',
                 'job_title' => 'Finance Officer',
                 'picture' => 'Ellysabeth-200x200.jpg',
@@ -58,9 +70,12 @@ class UsersSeeder extends Seeder
                 'status' => 'Publish',
                 'role' => 'administrator',
 
+
             ],
             [
-                'name' => 'Guest SAGU',
+                'first_name' => 'Guest',
+                'middle_name' => '',
+                'last_name' => 'SAGU',
                 'slug' => 'guest-sagu',
                 'job_title' => 'Guest SAGU Foundation',
                 'picture' => 'profile-sagu-foundation.jpg',
@@ -68,9 +83,12 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('guest@sagufoundation.org'),
                 'status' => 'Publish',
                 'role' => 'guest',
+
             ],
             [
-                'name' => 'BPSDM',
+                'first_name' => 'BPSDM',
+                'middle_name' => '',
+                'last_name' => '',
                 'slug' => 'bpsdm',
                 'job_title' => 'Pemerintah Provinsi Papua',
                 'picture' => 'profile-provinsi-papua.jpg',
@@ -78,6 +96,19 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('admin.bpsdm@papua.go.id'),
                 'status' => 'Publish',
                 'role' => 'guest',
+
+            ],
+            [
+                'first_name' => 'Anastasia',
+                'middle_name' => 'Febriani',
+                'last_name' => 'Yandong',
+                'slug' => 'anastasia-febriani-yandong',
+                'picture' => 'anastasia-yandong.jpg',
+                'email' => 'anastasia@gmail.com',
+                'password' => bcrypt('anastasia@gmail.com'),
+                'status' => 'Publish',
+                'role' => 'users',
+                'phone' => '082112341234'
             ]
         ]);
 

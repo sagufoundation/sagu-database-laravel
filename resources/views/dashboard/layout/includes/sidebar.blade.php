@@ -11,12 +11,12 @@
                         @if (!Auth::user()->picture)
                         <img src="{{ asset('images/users/00.jpg') }}" alt="user-img" class="rounded-circle avatar-md">
                         @else
-                        <img src="{{ asset('images/users/' . Auth::user()->picture) }}" alt="user-img" title="{{ Auth::user()->name }}" class="rounded-circle avatar-md">
+                        <img src="{{ asset('images/users/' . Auth::user()->picture) }}" alt="user-img" title="{{ Auth::user()->first_name }}" class="rounded-circle avatar-md">
                         @endif
 
                         <div class="dropdown">
                             <a href="{{ url('dashboard/users/akun-saya') }}" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
-                                data-toggle="dropdown">{{ Auth::user()->name }}</a>
+                                data-toggle="dropdown">{{ Auth::user()->first_name }}</a>
                             <div class="dropdown-menu user-pro-dropdown">
 
                                 <!-- item-->
@@ -52,7 +52,7 @@
 
                     <!--- Sidemenu -->
                     @if (Auth::user()->hasRole('administrator'))
-                        
+
                         <div id="sidebar-menu">
                             <ul id="side-menu">
                                 <li class="@if(Request::segment(1) == 'dashboard') menuitem-active @endif">
@@ -65,7 +65,7 @@
 
                                 <li class="menu-title mt-2">Student Database</li>
 
-                                <li class="@if(Request::segment(1) == 'students') menuitem-active @endif">
+                                <li class="@if(Request::segment(2) == 'students') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/students') }}">
                                         <i class="mdi mdi-account-group"></i>
                                         <span class="badge badge-success badge-pill float-right">
@@ -167,7 +167,7 @@
                                     <!-- menu item end -->
 
                                 </li>
-                                
+
                                 <li class="menu-title mt-2">Users</li>
 
                                 <li class="@if(Request::segment(1) == 'users') menuitem-active @endif">
@@ -196,7 +196,7 @@
                         </div>
 
                     @elseif (Auth::user()->hasRole('guest'))
-                        
+
                         <div id="sidebar-menu">
 
                             <ul id="side-menu">
@@ -206,7 +206,7 @@
                                 <li>
                                     <a href="{{ url('dashboard') }}">
                                         <i data-feather="airplay"></i>
-                                        <span> dashboard </span>
+                                        <span>Dashboard </span>
                                     </a>
                                 </li>
                                 <li class="@if(Request::segment(1) == 'siswa') menuitem-active @endif">
@@ -222,7 +222,22 @@
                             </ul>
 
                         </div>
+                    @elseif (Auth::user()->hasRole('users'))
+                    <div id="sidebar-menu">
 
+                        <ul id="side-menu">
+
+                            <li class="menu-title mt-2">Menu Utama</li>
+
+                            <li>
+                                <a href="{{ url('dashboard') }}">
+                                    <i data-feather="airplay"></i>
+                                    <span> Dashboard </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
                     @endif
                     <!-- End Sidebar -->
 

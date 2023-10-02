@@ -1,7 +1,6 @@
 @extends('dashboard.layout.app')
 @section('content')
-
-                        @include('dashboard.layout.includes.breadcrumb3')
+@include('dashboard.layout.includes.breadcrumb3')
 
                         <div class="row">
                             <div class="col-12">

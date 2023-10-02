@@ -16,17 +16,8 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
 
             $table->id();
-            // $table->foreignId('program_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->foreignId('province_id')->nullable();
-
-            // $table->string('programs')->nullable();
-
-            // biography
-            $table->string('first_name')->nullable();
-            $table->string('middle_name')->nullable();
-            $table->string('last_name')->nullable();
-
-            $table->string('slug')->unique()->nullable(); // slug dibuat dari nama lengkap
 
             // profile
             $table->longText('profile')->nullable();
@@ -36,11 +27,7 @@ return new class extends Migration
             $table->string('date_of_birth')->nullable();
 
             // pictures
-            $table->string('picture')->nullable();
             $table->string('ktp')->nullable();
-
-            // contact info
-            $table->string('phone')->unique()->nullable();
 
             // address
             $table->tinyText('province')->nullable();
@@ -59,10 +46,8 @@ return new class extends Migration
             // documents
             $table->longText('doc_google_sheets')->nullable(); // google sheets
 
-            // other
-            $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
-
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->softDeletes();
 
         });

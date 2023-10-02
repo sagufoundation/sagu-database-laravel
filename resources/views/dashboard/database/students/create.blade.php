@@ -52,8 +52,72 @@
                                                         </div>
                                                         <!-- input group end -->
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <div class="mb-3">
+                                                            <label for="place_of_birth" class="form-label">Place Of Birth  Name</label>
+                                                            <input type="text" name="place_of_birth" id="place_of_birth" value="{{ old('place_of_birth') ?? '' }}" placeholder="Place Of Birth" class="form-control">
+                                                            @if ($errors->has('place_of_birth'))
+                                                                <span class="text-danger" role="alert">
+                                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('place_of_birth') }}</small>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                        <!-- input group end -->
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="mb-3">
+                                                            <label for="date_of_birth" class="form-label">Date Of Birth  Name</label>
+                                                            <input type="date" name="date_of_birth" id="date_of_birth" value="{{ old('place_of_birth') ?? '' }}"  class="form-control">
+                                                            @if ($errors->has('date_of_birth'))
+                                                                <span class="text-danger" role="alert">
+                                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('date_of_birth') }}</small>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                        <!-- input group end -->
+                                                    </div>
                                                 </div>
 
+                                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">CREATE ACCOUNT </h5>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="mb-3">
+                                                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                                            <input type="email" name="email" id="email" value="{{ old('email') ?? '' }}" placeholder="Email" class="form-control">
+                                                            @if ($errors->has('email'))
+                                                                <span class="text-danger" role="alert">
+                                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('email') }}</small>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                        <!-- input group end -->
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="mb-3">
+                                                            <label for="password" class="form-label"> Password <span class="text-danger">*</span></label>
+                                                            <input type="password" name="password" id="password"  placeholder="*******" class="form-control">
+                                                            @if ($errors->has('password'))
+                                                                <span class="text-danger" role="alert">
+                                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('password') }}</small>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                        <!-- input group end -->
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="mb-3">
+                                                            <label for="password_confirmation" class="form-label">Confirmation Password <span class="text-danger">*</span></label>
+                                                            <input type="password" name="password_confirmation" id="password_confirmation"  placeholder="******" class="form-control">
+                                                            @if ($errors->has('password_confirmation'))
+                                                                <span class="text-danger" role="alert">
+                                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('password_confirmation') }}</small>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                        <!-- input group end -->
+                                                    </div>
+
+                                                </div>
                                                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">CONTACT INFORMATION</h5>
 
                                                 <div class="row">
@@ -112,25 +176,29 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="mb-3">
-                                                            <label for="province" class="form-label">Province</label>
-                                                            <select class="custom-select" name="province">
-                                                                <option value="Papua" selected>Papua</option>
-                                                                <option value="Papua Pegunungan">Papua Pegunungan</option>
-                                                                <option value="Papua Selatan">Papua Selatan</option>
-                                                                <option value="Papua Tengah">Papua Tengah</option>
-                                                                <option value="Papua Barat">Papua Barat</option>
-                                                                <option value="Papua Barat Daya">Papua Barat Daya</option>
+                                                            <label for="province_id" class="form-label">Province <span class="text-danger">*</span></label>
+                                                            <select class="custom-select" name="province_id">
+                                                                <option value="" hidden>Select</option>
+                                                                @foreach ($provinces as  $province)
+                                                                <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                                @endforeach
+
                                                             </select>
+                                                            @if ($errors->has('province_id'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('province_id') }}</small>
+                                                            </span>
+                                                        @endif
                                                         </div>
                                                         <!-- input group end -->
 
-                                                        <div class="mb-3">
+                                                        {{-- <div class="mb-3">
                                                             <label for="regency" class="form-label">Regency</label>
                                                             <select class="custom-select" name="regency">
                                                                 <option value="Draft" selected>Draft</option>
                                                                 <option value="Publish">Publish</option>
                                                             </select>
-                                                        </div>
+                                                        </div> --}}
                                                         <!-- input group end -->
                                                     </div>
                                                     <div class="col-md-8">
