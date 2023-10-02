@@ -18,7 +18,10 @@ class DashboardController extends Controller
         } elseif(Auth::user()->hasRole('guest')){
             return view('dashboard.index');
 
-        } else {
+        } elseif(Auth::user()->hasRole('users')){
+            return view('dashboard.index');
+        }
+        else {
             echo "oops!";
         }
     }
