@@ -38,10 +38,10 @@
                                                                 <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
                                                             </td>
                                                             <td>{{ $data->phone ?? '' }}</td>
-                                                            <td>{{ $data->provinces->name ?? '' }}</td>
+                                                            <td>{{ $data->student->provinces->name ?? '' }}</td>
                                                             <td>
 
-                                                                @foreach ($data->program()->get() as $program)
+                                                                @foreach ($data->student->program as $program)
                                                                     <ul>
                                                                         <li> {{ $program->program_title ?? '' }}</li>
                                                                     </ul>

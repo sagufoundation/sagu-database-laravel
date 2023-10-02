@@ -19,4 +19,10 @@ class Students extends Model
     public function provinces(){
         return $this->belongsTo(Province::class,'province_id', 'id');
     }
+
+    public function users(){
+        return $this->belongsTo(User::class,'id');
+    }
+
+
 }

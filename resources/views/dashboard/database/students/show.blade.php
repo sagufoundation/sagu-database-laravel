@@ -1,8 +1,7 @@
 @extends('dashboard.layout.app')
 @section('content')
+@include('dashboard.layout.includes.breadcrumb3')
 
-                        @include('dashboard.layout.includes.breadcrumb3')
-    
 {!! Form::model($data, array( 'url'=>'dashboard/students/'. $data->id, 'method'=>'put','files'=>'true'))!!}
 @csrf
 
@@ -12,18 +11,18 @@
     <div class="col-lg-4 col-xl-4">
         <div class="card-box text-center">
 
-            @if(!empty($data->picture))
-            <img src="{{ asset('images/' . Request::segment(2) . '/' . $data->picture) }}" alt="Profile picture" class="rounded-0 w-100">
-            @else 
+            @if(!$data->picture)
             <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found" class="rounded-0 w-100">
+            @else
+            <img src="{{ asset('images/' . Request::segment(2) . '/' . $data->picture) }}" alt="Profile picture" class="rounded-0 w-100">
             @endif
 
             <h4 class="mb-0 mt-3">{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</h4>
 
-            @if(!empty($data->email_sagu))
-            <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_sagu }}</p>
-            @elseif(!empty($data->email_google))
-            <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_google }}</p>
+            @if(!$data->email_sagu)
+            <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->student->email_sagu ?? '' }}</p>
+            @elseif(!$data->email_google)
+            <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->student->email_google ?? '' }}</p>
             @endif
 
             @if (Auth::user()->hasRole('administrator'))
@@ -43,7 +42,7 @@
             @endif
 
             <div class="text-left mt-3">
-                <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> 
+                <p class="text-muted mb-2 font-13"><strong>Full Name :</strong>
                     <span class="d-block">{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</span>
                 </p>
 
@@ -53,46 +52,46 @@
                 </p>
                 @endif
 
-                @if(!empty($data->email_google))
-                <p class="text-muted mb-2 font-13"><strong>Email Google :</strong> 
-                    <span class="d-block"> 
-                        <a href="mailto:{{ $data->email_google }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_google }}</a>
-                    </span>
-                </p>
-                @endif
-
-                @if(!empty($data->email_sagu))
-                <p class="text-muted mb-2 font-13"><strong>Email SAGU Foundation :</strong> 
-                    <span class="d-block"> 
-                        <a href="mailto:{{ $data->email_sagu }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_sagu }}</a>
-                    </span>
-                </p>
-                @endif
-
-                @if(!empty($data->email_outlook))
-                <p class="text-muted mb-2 font-13"><strong>Email Microsoft Outlook :</strong> 
+                @if(!empty($data->student->email_google ?? ''))
+                <p class="text-muted mb-2 font-13"><strong>Email Google :</strong>
                     <span class="d-block">
-                        <a href="mailto:{{ $data->email_outlook }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_outlook }}</a>
+                        <a href="mailto:{{ $data->student->email_google ?? '' }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->student->email_google ??'' }}</a>
                     </span>
                 </p>
                 @endif
 
-                @if(!empty($data->email_campus))
-                <p class="text-muted mb-2 font-13"><strong>Email Campus :</strong> 
-                    <span class="d-block"> 
-                        <a href="mailto:{{ $data->email_campus }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->email_campus }}</a>
+                @if(!empty($data->student->email_sagu??''))
+                <p class="text-muted mb-2 font-13"><strong>Email SAGU Foundation :</strong>
+                    <span class="d-block">
+                        <a href="mailto:{{ $data->student->email_sagu??'' }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->student->email_sagu ?? '' }}</a>
+                    </span>
+                </p>
+                @endif
+
+                @if(!empty($data->student->email_outlook??''))
+                <p class="text-muted mb-2 font-13"><strong>Email Microsoft Outlook :</strong>
+                    <span class="d-block">
+                        <a href="mailto:{{ $data->student->email_outlook??'' }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->student->email_outlook ?? '' }}</a>
+                    </span>
+                </p>
+                @endif
+
+                @if(!empty($data->student->email_campus??''))
+                <p class="text-muted mb-2 font-13"><strong>Email Campus :</strong>
+                    <span class="d-block">
+                        <a href="mailto:{{ $data->student->email_campus??'' }}"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->student->email_campus ?? '' }}</a>
                     </span>
                 </p>
                 @endif
 
                 @if(!empty($data->province))
-                <p class="text-muted mb-1 font-13"><strong>Province :</strong> 
-                    <span class="d-block"> {{ $data->province }}</span>
+                <p class="text-muted mb-1 font-13"><strong>Province :</strong>
+                    <span class="d-block"> {{ $data->provinces->name ?? '' }}</span>
                 </p>
                 @endif
 
                 @if(!empty($data->region))
-                <p class="text-muted mb-1 font-13"><strong>Region :</strong> 
+                <p class="text-muted mb-1 font-13"><strong>Region :</strong>
                     <span class="d-block"> {{ $data->region }}</span>
                 </p>
                 @endif
@@ -124,7 +123,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane" id="education">
-                    
+
                     <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Formal</h5>
 
                     <ul class="list-unstyled timeline-sm">
@@ -143,7 +142,7 @@
                         @endforelse
 
                     </ul>
-                    
+
                     <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-graduation-cap mr-1"></i> Non Formal</h5>
 
                     <ul class="list-unstyled timeline-sm">
@@ -166,28 +165,28 @@
                 <!-- end about me section content -->
 
                 <div class="tab-pane" id="profile">
-                    
+
                     <h5 class="mb-3 text-uppercase"><i class="fa-solid fa-file mr-1"></i> Biography</h5>
                     <p>Rincian penjelasan terkait students.</p>
 
                     <div>
-                        {!! $data->profile ?? '' !!}
+                        {!! $data->student->profile ?? '' !!}
                     </div>
 
                 </div>
                 <!-- end timeline content-->
 
                 <div class="tab-pane show active" id="documents">
-                    
+
                     <h5 class="mb-2 text-uppercase"><i class="fa-solid fa-folder"></i> PINNED Document</h5>
                     <p>Dokumen yang sering digunakan atau sedang dalam tahap penggunaan.</p>
-                    
+
                     <div>
                         @include('dashboard.database.students.documents.create-modal')
                         <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#standard-modal">
                             <i class="fa-solid fa-plus-square"></i> Add
                         </button>
-                    </div>                    
+                    </div>
 
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -219,7 +218,7 @@
                                                 <form action="{{ url(Request::segment(1).'/'.Request::segment(2).'/documents/destroy', $document->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'> 
+                                                    <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -238,7 +237,7 @@
                                 </tr>
 
                                 @endforelse
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -246,18 +245,18 @@
                     <div>
                         <h5 class="my-4 text-uppercase"><i class="fa-solid fa-folder"></i> All Documents (Google Sheets)</h5>
 
-                        <p>Semua dokumen milik students yang sudah terkumpul. Daftar dokumen dijelaskan pada judul, keterangan dan tipe file pada Google Sheets. Tersedia juga link untuk menampilkan secara detail atau mendownloadnya.</p>                                            
-                    
-                        @empty($data->doc_google_sheets)
+                        <p>Semua dokumen milik students yang sudah terkumpul. Daftar dokumen dijelaskan pada judul, keterangan dan tipe file pada Google Sheets. Tersedia juga link untuk menampilkan secara detail atau mendownloadnya.</p>
+
+                        @empty($data->student->doc_google_sheets ?? '')
 
                         <div class="alert alert-info">
                             <b><i class="fa-solid fa-info-circle"></i> Info!</b> Link google sheets belum ada. @if (Auth::user()->hasRole('administrator')) Silahkan <a href="{{ url('dashboard/students/edit/documents', $data->id) }}" class="font-weight-bold"><i class="fa-solid fa-pencil-square"></i> Edit</a> untuk lengkapi. @endif
                         </div>
 
                         @else
-                        
+
                         <div id="doc_google_sheets">
-                        {!! $data->doc_google_sheets ?? '' !!}
+                        {!! $data->student->doc_google_sheets ?? '' !!}
                         </div>
 
                         @endempty
@@ -275,7 +274,7 @@
                             <li class="list-group-item">
                                 Pengguna luar selain admin SAGU Foundation tidak dapat mengubah atau menambahkan file di dalam folder google drive.
                             </li>
-                        </ul> 
+                        </ul>
                     </div>
                 </div>
                 <!-- end settings content-->

@@ -20,7 +20,19 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'student_id' => 1,
+                'user_id' => 7,
+                'title' => 'KTP',
+                'description' => 'Kartu Tanda Penduduk',
+                'url' => 'https://sagufoundation.org/',
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+
+            ]
+        );
+        Documents::create(
+            [
+
+                'user_id' => 7,
                 'title' => 'KTP',
                 'description' => 'Kartu Tanda Penduduk',
                 'url' => 'https://sagufoundation.org/',
@@ -30,24 +42,11 @@ class DocumentsSeeder extends Seeder
 
             ]
         );
-        Documents::create(
-            [
-
-                'student_id' => 2,
-                'title' => 'KTP',
-                'description' => 'Kartu Tanda Penduduk',
-                'url' => 'https://sagufoundation.org/',
-
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-
-            ]
-        );
 
         Documents::create(
             [
 
-                'student_id' => 1,
+                'user_id' => 7,
                 'title' => 'Akta Kelahiran',
                 'description' => 'Surat Akta Kelahiran',
                 'url' => 'https://sagufoundation.org/',
@@ -61,7 +60,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'student_id' => 2,
+                'user_id' => 7,
                 'title' => 'Akta Kelahiran',
                 'description' => 'Surat Akta Kelahiran',
                 'url' => 'https://sagufoundation.org/',
@@ -75,7 +74,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'student_id' => 1,
+                'user_id' => 7,
                 'title' => 'Ijazah SMK',
                 'description' => 'Ijazah Sekolah Menengah Kejuruan',
                 'url' => 'https://sagufoundation.org/',
@@ -89,7 +88,7 @@ class DocumentsSeeder extends Seeder
         Documents::create(
             [
 
-                'student_id' => 2,
+                'user_id' => 7,
                 'title' => 'Ijazah SMK',
                 'description' => 'Ijazah Sekolah Menengah Kejuruan',
                 'url' => 'https://sagufoundation.org/',

@@ -15,16 +15,15 @@ return new class extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->nullable();
+            $table->unsignedBigInteger('user_id');
 
             $table->string('title')->nullable();
             $table->string('year')->nullable();
             $table->text('description')->nullable();
             $table->longText('url')->nullable();
-
             $table->enum('category', ['Formal', 'Non Formal'])->default('Formal')->nullable();
-
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
