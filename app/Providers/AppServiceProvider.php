@@ -60,19 +60,19 @@ class AppServiceProvider extends ServiceProvider
         $startDate = Carbon::now()->startOfWeek();
         $endDate = Carbon::now()->endOfWeek();
 
-        view()->share([
+        // view()->share([
 
-            // Settings
-            'settings' => Settings::first(),
-            
-            // Totals
-            'dashboard_total_students' => Students::where('status','Publish')->count(),
-            'dashboard_total_students_draft' => Students::where('status','Draft')->count(),
-            'dashboard_total_students_semua' => Students::count(),
-            
-            'dashboard_total_program' => Program::where('status','Publish')->count(),            
+        //     // Settings
+        //     'settings' => Settings::first(),
 
-        ]);
+        //     // Totals
+        //     'dashboard_total_students' => Students::where('status','Publish')->count(),
+        //     'dashboard_total_students_draft' => Students::where('status','Draft')->count(),
+        //     'dashboard_total_students_semua' => Students::count(),
+
+        //     'dashboard_total_program' => Program::where('status','Publish')->count(),
+
+        // ]);
 
     }
 
