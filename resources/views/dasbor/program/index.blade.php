@@ -7,7 +7,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        
+
                                         <!-- Left sidebar -->
                                         @include('dasbor.layout.includes.left-sidebar')
                                         <!-- End Left sidebar -->
@@ -22,13 +22,21 @@
                                                             <th width="1%">No</th>
                                                             <th>Prgoram Title</th>
                                                             <th>Short Description</th>
-                                                            <th width="280px">Action</th>
+                                                            <th>Students</th>
+                                                            <th class="text-center" width="280px">Action</th>
                                                         </tr>
                                                         @foreach ($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $data->program_title ?? '' }}</td>
                                                             <td>{{ $data->short_description ?? '' }}</td>
+                                                            <td>
+                                                                <ul style="list-style-type:square;">
+                                                                    @foreach ($data->students as $student )
+                                                                        <li>{{ $student->first_name }}</li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </td>
                                                             @include('dasbor.layout.includes.index-action')
                                                         </tr>
                                                         @endforeach
@@ -49,6 +57,6 @@
 
                             </div>
                         </div>
-                        <!-- .row end -->       
+                        <!-- .row end -->
 
 @stop

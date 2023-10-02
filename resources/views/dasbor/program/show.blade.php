@@ -2,7 +2,7 @@
 @section('content')
 
                         @include('dasbor.layout.includes.breadcrumb3')
-    
+
 {!! Form::model($data, array( 'url'=>'dasbor/program/'. $data->id, 'method'=>'put','files'=>'true'))!!}
 @csrf
 
@@ -31,7 +31,7 @@
                 <div class="mb-3">
                     <label for="full_description" class="form-label">Full Description</label>
                     <div class="border-bottom border-1 pb-1">
-                        {{ $data->full_description ?? '' }}
+                        {!! $data->full_description !!}
                     </div>
                 </div>
                 <!-- item end -->
@@ -45,17 +45,17 @@
                 <!-- item end -->
 
                 <div class="mb-3">
-                    <label for="created_at" class="form-label">Created at</label>
+                    <label for="created_at" class="form-label">Program Start at</label>
                     <div class="border-bottom border-1 pb-1">
-                        {{ $data->created_at ?? '' }}
+                        {{ $data->program_start ?? '' }}
                     </div>
                 </div>
                 <!-- item end -->
 
                 <div class="mb-3">
-                    <label for="updated_at" class="form-label">Updated at</label>
+                    <label for="updated_at" class="form-label">Program End</label>
                     <div class="border-bottom border-1 pb-1">
-                        {{ $data->updated_at ?? '' }}
+                        {{ $data->program_end ?? '' }}
                     </div>
                 </div>
                 <!-- item end -->
