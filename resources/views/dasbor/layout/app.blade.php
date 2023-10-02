@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8" />
 
-    <title> {{ $pengaturan->judul_situs }} </title>
+    <title> {{ $pengaturan->site_title }} </title>
 
     <!-- HTML METAS -->
     <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ $pengaturan->judul_situs }}" />
-    <meta property="og:description" content="{{ $pengaturan->deskripsi_situs }}" />
-    <meta property="og:site_name" content="{{ $pengaturan->judul_situs }}" />
+    <meta property="og:title" content="{{ $pengaturan->site_title }}" />
+    <meta property="og:description" content="{{ $pengaturan->meta_description }}" />
+    <meta property="og:site_name" content="{{ $pengaturan->site_title }}" />
     <meta property="og:image" content="{{ asset('gambar/pengaturan' . $pengaturan->logo) }}" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 

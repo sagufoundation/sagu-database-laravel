@@ -74,9 +74,15 @@ class ProgramController extends Controller
         // membuat validasi
         $request->validate([
             'program_title' => 'required',
+            'short_description' => 'required',
+            'program_start' => 'required',
+            'program_end' => 'required',
         ],
         [
-            'program_title.required' => 'Bagian ini wajib dilengkapi',
+            'program_title.required' => 'Data ini wajib dilengkapi',
+            'short_description.required' => 'Data ini wajib dilengkapi',
+            'program_start.required' => 'Data ini wajib dilengkapi',
+            'program_end.required' => 'Data ini wajib dilengkapi',
         ]);
 
         $data = new Program();
@@ -85,21 +91,21 @@ class ProgramController extends Controller
         $data->program_title = $request->program_title;
         $data->short_description = $request->short_description;
         $data->full_description = $request->full_description;
-        
-        $data->start_date = $request->start_date;
-        $data->end_date = $request->end_date;
-        
+
+        $data->program_start = $request->program_start;
+        $data->program_end = $request->program_end;
+
         $data->status = $request->status;
 
         // proses simpan
-        $data->save(); 
+        $data->save();
 
         // menampilkan notifikasi alert
-        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);   
-        
+        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
+
         // mengalihkan halaman
-        return redirect('dasbor/program/edit/' . Program::find($data->id)->id);
-        
+        return redirect('dashboard/programs/show/' . Program::find($data->id)->id);
+
     }
 
     /**
@@ -138,9 +144,15 @@ class ProgramController extends Controller
 
         $request->validate([
             'program_title' => 'required',
+            'short_description' => 'required',
+            'program_start' => 'required',
+            'program_end' => 'required',
         ],
         [
-            'program_title.required' => 'Bagian ini wajib dilengkapi',
+            'program_title.required' => 'Data ini wajib dilengkapi',
+            'short_description.required' => 'Data ini wajib dilengkapi',
+            'program_start.required' => 'Data ini wajib dilengkapi',
+            'program_end.required' => 'Data ini wajib dilengkapi',
         ]);
 
         $data = Program::find($id);
@@ -148,20 +160,20 @@ class ProgramController extends Controller
         $data->program_title = $request->program_title;
         $data->short_description = $request->short_description;
         $data->full_description = $request->full_description;
-        
-        $data->start_date = $request->start_date;
-        $data->end_date = $request->end_date;
-        
+
+        $data->program_start = $request->program_start;
+        $data->program_end = $request->program_end;
+
         // other
         $data->status = $request->status;
 
         $data->update();
 
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);       
-        return redirect('dasbor/program/edit/' . Program::find($data->id)->id);
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect('/dashboard/programs/show/' .Program::find($data->id)->id);
     }
 
-    
+
 
     /**
      * Remove the specified resource from storage.

@@ -1,8 +1,7 @@
 @extends('dasbor.layout.app')
 @section('content')
+@include('dasbor.layout.includes.breadcrumb3')
 
-                        @include('dasbor.layout.includes.breadcrumb3')
-    
 {!! Form::model($data, array( 'url'=>'dasbor/program/'. $data->id, 'method'=>'put','files'=>'true'))!!}
 @csrf
 
@@ -10,7 +9,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">FORM</h5>
+                {{-- <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">FORM</h5> --}}
 
                 <div class="mb-3">
                     <label for="program_title" class="form-label">Program Title</label>
@@ -31,7 +30,7 @@
                 <div class="mb-3">
                     <label for="full_description" class="form-label">Full Description</label>
                     <div class="border-bottom border-1 pb-1">
-                        {{ $data->full_description ?? '' }}
+                        {!! $data->full_description !!}
                     </div>
                 </div>
                 <!-- item end -->
@@ -45,17 +44,40 @@
                 <!-- item end -->
 
                 <div class="mb-3">
-                    <label for="created_at" class="form-label">Created at</label>
+                    <label for="created_at" class="form-label">Program Start at</label>
                     <div class="border-bottom border-1 pb-1">
-                        {{ $data->created_at ?? '' }}
+                        {{ $data->program_start ?? '' }}
                     </div>
                 </div>
                 <!-- item end -->
 
                 <div class="mb-3">
-                    <label for="updated_at" class="form-label">Updated at</label>
+                    <label for="updated_at" class="form-label">Program End</label>
                     <div class="border-bottom border-1 pb-1">
-                        {{ $data->updated_at ?? '' }}
+                        {{ $data->program_end ?? '' }}
+                    </div>
+                </div>
+                <!-- item end -->
+
+                <div class="mb-3">
+                    <label for="updated_at" class="form-label"> Students </label>
+                    <div class="border-bottom border-1 pb-1">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="1%">No</th>
+                                <th>Full Name </th>
+                                <th>Phone Number</th>
+                                <th>Province</th>
+                            </tr>
+                            @foreach ($data->students as $student )
+                            <tr>
+                                <td>#</td>
+                                <td> {{ $student->first_name }} {{ $student->middle_name }} {{ $student->last_name }}</td>
+                                <td> {{ $student->phone }}</td>
+                                <td> {{ $student->provinces->name ?? '' }}</td>
+                            </tr>
+                            @endforeach
+                        </table>
                     </div>
                 </div>
                 <!-- item end -->

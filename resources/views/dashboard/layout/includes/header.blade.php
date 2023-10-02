@@ -1,5 +1,5 @@
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('images/settings/'.$settings->favicon)}}">
+    <link rel="shortcut icon" href="{{ asset('images/settings/'.$pengaturan->favicon)}}">
     @stack('script-header')
 
     <!-- Bootstrap css -->
