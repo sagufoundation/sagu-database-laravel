@@ -17,29 +17,22 @@
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <tr>
-                                <th width="1%">No</th>
-                                                            <th>Cover</th>
-                                                            <th>Title</th>
-                                                            <th>Author</th>
-                                                            <th>Categories</th>
-                                                            <th width="280px"></th>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th width="280px">Action</th>
                             </tr>
                             @if(!$datas->isEmpty())
 
                             @foreach ($datas as $data)
                             <tr>
-                                <td>
-                                    <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
-                                </td>
-                                <td>{{ $data->title ?? '' }} </td>
-                                <td>{{ $data->author->name ?? '' }}</td>
-                                <td>{{ $data->category->name ?? '' }}</td>
+                                <td>{{ ++$i }}</td>
+                                <td>{{ $data->name ?? '' }}</td>
                                 @include('dashboard.layout.includes.trash-action')
                             </tr>
                             @endforeach
                             @else
                             <tr>
-                                <td colspan="6">
+                                <td colspan="3">
                                     Empty!
                                 </td>
                             </tr>

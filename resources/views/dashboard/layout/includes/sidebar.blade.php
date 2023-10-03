@@ -133,7 +133,7 @@
                                     </li>
                                     <!-- menu item end -->
 
-                                    <li class="@if(Request::segment(1) == 'categories') menuitem-active @endif">
+                                    <li class="@if(Request::segment(2) == 'categories') menuitem-active @endif">
                                         <a href="{{ url(Request::segment(1).'/categories') }}">
                                             <i class="fa-solid fa-tags"></i>
                                             <span class="badge badge-success badge-pill float-right">
@@ -144,7 +144,7 @@
                                     </li>
                                     <!-- menu item end -->
 
-                                    <li class="@if(Request::segment(1) == 'authors') menuitem-active @endif">
+                                    <li class="@if(Request::segment(2) == 'authors') menuitem-active @endif">
                                         <a href="{{ url(Request::segment(1).'/authors') }}">
                                             <i class="fa-solid fa-at"></i>
                                             <span class="badge badge-success badge-pill float-right">

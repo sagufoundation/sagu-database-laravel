@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('catagories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
