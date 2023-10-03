@@ -11,7 +11,7 @@
                         @if (!Auth::user()->picture)
                         <img src="{{ asset('images/users/00.jpg') }}" alt="user-img" class="rounded-circle avatar-md">
                         @else
-                        <img src="{{ asset('images/users/' . Auth::user()->picture) }}" alt="user-img" title="{{ Auth::user()->first_name }}" class="rounded-circle avatar-md">
+                        <img src="{{ asset(Auth::user()->picture) }}" alt="user-img" title="{{ Auth::user()->first_name }}" class="rounded-circle avatar-md">
                         @endif
 
                         <div class="dropdown">
@@ -156,7 +156,7 @@
                                     <!-- menu item end -->
 
                                     <li class="@if(Request::segment(1) == 'loan-logs') menuitem-active @endif">
-                                        <a href="{{ url(Request::segment(1).'/loan-logs') }}">
+                                        <a href="{{ url(Request::segment(1).'/books/loan-logs') }}">
                                             <i class="fa-solid fa-book-bookmark"></i>
                                             <span class="badge badge-success badge-pill float-right">
                                                 {{ '0' }}
@@ -209,6 +209,8 @@
                                         <span>Dashboard </span>
                                     </a>
                                 </li>
+                                <!-- menu item end -->
+
                                 <li class="@if(Request::segment(1) == 'siswa') menuitem-active @endif">
                                     <a href="{{ url('dashboard/siswa') }}">
                                         <i class="mdi mdi-account-group"></i>
@@ -218,6 +220,7 @@
                                         <span> Siswa</span>
                                     </a>
                                 </li>
+                                <!-- menu item end -->
 
                             </ul>
 
@@ -235,6 +238,32 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
+                            <!-- menu item end -->
+
+                            <li class="menu-title mt-2">Library</li>
+
+                            <li class="@if(Request::segment(1) == 'books') menuitem-active @endif">
+                                <a href="{{ url(Request::segment(1).'/books') }}">
+                                    <i class="fa-solid fa-book"></i>
+                                    <span class="badge badge-success badge-pill float-right">
+                                        {{ '0' }}
+                                    </span>
+                                    <span> Books </span>
+                                </a>
+                            </li>
+                            <!-- menu item end -->
+
+                            <li class="@if(Request::segment(2) == 'loan-logs') menuitem-active @endif">
+                                <a href="{{ url(Request::segment(1).'/books/loan-logs') }}">
+                                    <i class="fa-solid fa-book-bookmark"></i>
+                                    <span class="badge badge-success badge-pill float-right">
+                                        {{ '0' }}
+                                    </span>
+                                    <span> My Loan Logs </span>
+                                </a>
+                            </li>
+                            <!-- menu item end -->
+
                         </ul>
 
                     </div>

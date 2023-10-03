@@ -90,51 +90,31 @@
                                 <div class="card">
                                     <div class="card-body">
 
-                                        @include('dashboard.layout.includes.form-input.search')
+                                        <div>
+                                            @include('dashboard.layout.includes.form-input.search')
 
-                                            <div class="mt-3 table-responsive">
-                                                <table class="table table-bordered">
-                                                        <tr>
-                                                            <th width="1%">No</th>
-                                                            <th>Picture</th>
-                                                            <th>Full Name</th>
-                                                            <th>Phone</th>
-                                                            <th>Province</th>
-                                                            <th>Program</th>
-                                                            <th width="280px"></th>
-                                                        </tr>
-                                                        @forelse($datas as $data)
-                                                        <tr>
-                                                            <td>{{ ++$i }}</td>
-                                                            @include('dashboard.layout.includes.index-picture')
-                                                            <td>
-                                                                {{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}
-                                                                <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
-                                                            </td>
-                                                            <td>{{ $data->phone ?? '' }}</td>
-                                                            <td>{{ $data->provinces->name ?? '' }}</td>
-                                                            <td>{{ $data->program->program_title ?? '' }}</td>
-                                                            <td>
-                                                                <div class="d-flex gap-1">
-                                                                    <div class="d-block p-1">
-                                                                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" class="btn btn-success w-100">
-                                                                            <i class="fa-solid fa-id-badge d-block"></i> Show
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        @empty
-                                                        <tr>
-                                                            <td colspan="6">
-                                                                Data tidak ada
-                                                            </td>
-                                                        </tr>
-                                                        @endforelse
-                                                </table>
+                                            <div class="row">
+                                                @forelse($datas as $data)
+                                                <div class="col-lg-3">
+                                                    <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}">
+
+                                                        <div class="card border shadow">
+                                                            <img src="{{ asset($data->cover) }}" alt="cover" class="card-img-top">
+                                                            <div class="card-body">
+                                                                <h4>{{ $data->title ?? '' }}</h4>
+                                                            </div>
+                                                        </div>
+
+                                                    </a>
+                                                </div>
+                                                @empty
+                                                <div class="col-lg-3">
+                                                    No data
+                                                </div>
+                                                @endforelse
                                             </div>
-                                            <!-- end .mt-4 -->
                                             {!! $datas->links() !!}
+                                        </div>
 
                                         <div class="clearfix"></div>
                                         </div>

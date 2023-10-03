@@ -2,7 +2,7 @@
 
                                             <div class="mb-2">
                                                 @if(!empty($data->picture))
-                                                <img src="{{ asset('images/' . Request::segment(2) . '/' . $data->picture) }}" alt="Profile picture" class="img img-thumbnail img-fluid w-100 rounded p-2">
+                                                <img src="{{ asset($data->picture) }}" alt="Profile picture" class="img img-thumbnail img-fluid w-100 rounded p-2">
                                                 @else 
                                                 <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found" class="img img-thumbnail w-100 rounded p-2">
                                                 @endif

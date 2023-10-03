@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Controller;
 
 use App\Models\User;
 
@@ -11,7 +12,6 @@ use App\Models\Documents;
 use App\Models\Education;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -139,7 +139,7 @@ class StudentsController extends Controller
             $fileName = $request->picture->getClientOriginalName();
 
             // crate file path
-            $path = public_path('images/students/' . $data->picture);
+            $path = public_path('images/users/' . $data->picture);
 
             // delete file if exist
             if (file_exists($path)) {
@@ -150,7 +150,7 @@ class StudentsController extends Controller
             $data->picture = $fileName;
 
             // move file into folder path with the file name
-            $request->picture->move(public_path('images/students'), $fileName);
+            $request->picture->move(public_path('images/users'), $fileName);
         }
         $data->save();
         $data->assignRole('6');
@@ -252,7 +252,7 @@ class StudentsController extends Controller
             $fileName = $request->picture->getClientOriginalName();
 
             // crate file path
-            $path = public_path('images/students/' . $data->picture);
+            $path = public_path('images/users/' . $data->picture);
 
             // delete file if exist
             if (file_exists($path)) {
@@ -263,7 +263,7 @@ class StudentsController extends Controller
             $data->picture = $fileName;
 
             // move file into folder path with the file name
-            $request->picture->move(public_path('images/students'), $fileName);
+            $request->picture->move(public_path('images/users'), $fileName);
         }
 
         // update process
@@ -313,7 +313,7 @@ class StudentsController extends Controller
             $fileName = $request->picture->getClientOriginalName();
 
             // crate file path
-            $path = public_path('images/students/' . $data->picture);
+            $path = public_path('images/users/' . $data->picture);
 
             // delete file if exist
             if (file_exists($path)) {
@@ -321,10 +321,10 @@ class StudentsController extends Controller
             }
 
             // adding file name into database variable
-            $data->picture = $fileName;
+            $data->picture = 'images/users/' . $fileName;
 
             // move file into folder path with the file name
-            $request->picture->move(public_path('images/students'), $fileName);
+            $request->picture->move(public_path('images/users/'), $fileName);
         }
 
         // update process

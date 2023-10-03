@@ -17,8 +17,9 @@ class StudentsSeeder extends Seeder
      */
     public function run()
     {
-       $programID = [1, 2];
-       $students_baru = Students::create(
+        $programID = [1, 2];
+
+        $students_baru = Students::create(
             [
                 'user_id' => 7,
                 'province_id' => 1,
@@ -58,9 +59,8 @@ class StudentsSeeder extends Seeder
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
 
-        ]);
+            ]
+        );
         $students_baru->program()->attach($programID);
-
-
     }
 }

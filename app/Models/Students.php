@@ -20,9 +20,9 @@ class Students extends Model
         return $this->belongsTo(Province::class,'province_id', 'id');
     }
 
-    public function users(){
-        return $this->belongsTo(User::class,'id');
-    }
+    // public function loan_logs(){
+    //     return $this->belongsToMany(Loan_logs::class,'loan_student');
+    // }
 
 
 }

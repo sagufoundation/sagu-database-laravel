@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card-box">
-            <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
+            <img src="{{ asset($data->book->cover) }}" alt="Book Cover" class="w-100">
         </div>
     </div>
     <div class="col-md-8">
@@ -17,12 +17,12 @@
             
             <div class="mb-3">
                 <span class="font-weight-bold d-block">Title:</span>
-                <h1>{{ $data->title }}</h1>
+                <h1>{{ $data->book->title }}</h1>
             </div>
             
             <div class="mb-3">
                 <span class="font-weight-bold d-block">Author:</span>
-                {{ $data->author }}
+                {{ $data->book->author }}
             </div>
             
             <div class="mb-3">
@@ -32,14 +32,20 @@
 
             <div class="mb-3">
 
-                <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">
+                <form action="{{ url('dashboard/books/loan-logs/update', $data->id )}}" method="POST">
                     @csrf
+                    @method('PUT')
                     
-                    <input type="text" name="book_id" value="{{ $data->id }}">
-                    <input type="text" name="user_id" value="{{ Auth::user()->id }}">
+                    {{-- <input type="text" name="id" value="{{ $data->id }}"> --}}
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="return_date" class="font-weight-bold d-block">Return Date:</label>
+                            <input type="date" id="return_date" name="return_date" value="{{ $data->return_date }}" class="form-control">
+                        </div>
+                    </div>
 
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa-solid fa-paper-plane"></i> Borrow
+                    <button type="submit" class="btn btn-primary d-block mt-3">
+                        <i class="fa-solid fa-save"></i> Update
                     </button>
                 </form>
 

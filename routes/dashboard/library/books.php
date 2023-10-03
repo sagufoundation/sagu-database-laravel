@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
             // index
             Route::get('books','index')
-                ->name('dashboard.books');
+                ->name('dashboard.books');     
 
             // draft
             Route::get('books/draft','draft')
@@ -60,6 +60,8 @@ use Illuminate\Support\Facades\Route;
             // delete
             Route::delete('books/delete/{id}','delete')
                 ->name('dashboard.books.delete');
+
+            /*LOAD LOGS*/       
 
         });
 

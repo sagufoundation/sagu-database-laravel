@@ -16,7 +16,7 @@
                                 @if (!Auth::user()->picture)
                                 <img src="{{ asset('images/users/00.jpg') }}" alt="images" class="rounded-circle">
                                 @else
-                                <img src="{{ asset('images/users/' . Auth::user()->picture) }}" alt="images" title="{{ Auth::user()->name }}" class="rounded-circle">
+                                <img src="{{ asset(Auth::user()->picture) }}" alt="images" title="{{ Auth::user()->name }}" class="rounded-circle">
                                 @endif
                                 <span class="pro-user-name ml-1">
                                     {{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i>

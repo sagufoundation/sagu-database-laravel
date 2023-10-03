@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             
             // LIBRARY
             Library\BooksSeeder::class,
+            Library\LoanLogsSeeder::class,
         ]);
     }
 }

@@ -8,7 +8,7 @@
         <div class="form-group">
             <div class="mb-2">
                 @if($data->picture)
-                <img src="{{ asset('images/students/'. $data->picture) }}" alt="Picture" id="preview-picture" class="img-thumbnail w-100">
+                <img src="{{ asset($data->picture) }}" alt="Picture" id="preview-picture" class="img-thumbnail w-100">
                 @else 
                 <img src="{{ asset('images/students/00.jpg') }}" alt="Picture" id="preview-picture" class="img-thumbnail w-100">
                 @endif
