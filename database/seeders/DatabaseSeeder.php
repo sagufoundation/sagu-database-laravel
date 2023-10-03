@@ -21,8 +21,10 @@ class DatabaseSeeder extends Seeder
             StudentsSeeder::class,
             DocumentsSeeder::class,
             EducationSeeder::class,
-            
+
             // LIBRARY
+            Library\AuthorSeeder::class,
+            Library\CateegoriesSeeder::class,
             Library\BooksSeeder::class,
             Library\LoanLogsSeeder::class,
         ]);

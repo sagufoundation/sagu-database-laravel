@@ -22,21 +22,23 @@
                                                 <table class="table table-bordered">
                                                         <tr>
                                                             <th width="1%">No</th>
-                                                            <th>Cover</th>
-                                                            <th>Title</th>
-                                                            <th>Author</th>
-                                                            <th>Categories</th>
+                                                            <th>Name</th>
+                                                            <th>Books</th>
                                                             <th width="280px"></th>
                                                         </tr>
                                                         @forelse($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
+                                                            <td>{{ $data->name ?? '' }} </td>
                                                             <td>
-                                                                <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
+                                                                @foreach ($data->books as  $book)
+                                                                    <ul>
+                                                                        <li>
+                                                                            {{ $book->title ?? '' }}
+                                                                        </li>
+                                                                    </ul>
+                                                                @endforeach
                                                             </td>
-                                                            <td>{{ $data->title ?? '' }} </td>
-                                                            <td>{{ $data->author->name ?? '' }}</td>
-                                                            <td>{{ $data->category->name ?? '' }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
@@ -45,7 +47,7 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="d-block p-1">
-                                                                        <a class="btn btn-primary w-100" href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/profile',  $data->id) }}">
+                                                                        <a class="btn btn-primary w-100" href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit',  $data->id) }}">
                                                                             <i class="fa-solid fa-pen-to-square d-block"></i> Edit
                                                                         </a>
                                                                     </div>
@@ -97,7 +99,6 @@
 
                                             <div class="row">
                                                 @forelse($datas as $data)
-
                                                 <div class="col-lg-3">
                                                     <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}">
 

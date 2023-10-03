@@ -9,20 +9,20 @@ use Illuminate\Support\Facades\Route;
     | books
     |--------------------------------------------------------------------------
     */
-    Route::group(['middleware' => ['auth']], function () { 
-    
+    Route::group(['middleware' => ['auth']], function () {
+
         Route::controller(LoanLogsController::class)->group(function(){
 
 
             // USERS AREA
-            
+
             // loan-logs
             Route::get('books/loan-logs','loanLogs')
                 ->name('dashboard.books.loan-logs');
 
             // store
             Route::post('books/loan-logs/store','store')
-                ->name('dashboard.books.loan-logs.store');  
+                ->name('dashboard.books.loan-logs.store');
 
             // edit
             Route::get('books/loan-logs/edit/{id}','edit')

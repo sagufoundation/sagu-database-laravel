@@ -18,6 +18,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     */
     require_once 'dashboard/library/books.php';
     require_once 'dashboard/library/loan-logs.php';
+    require_once 'dashboard/library/categories.php';
+    require_once 'dashboard/library/author.php';
 
 
 

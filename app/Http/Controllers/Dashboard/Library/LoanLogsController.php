@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\Dashboard\Library;
 
-use App\Http\Controllers\Controller;
-
 use App\Models\User;
+
 use App\Models\Students;
-use App\Models\Library\Books;
-use App\Models\Library\Loan_logs;
 use Illuminate\Http\Request;
+use App\Models\Library\Books;
+use App\Models\Library\LoanBook;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LoanLogsController extends Controller
-{    
+{
 
 
     // USER AREA
-    
+
     public function loanLogs()
     {
-        $datas = Loan_logs::where('user_id', Auth::user()->id)->paginate();
-        $adminDatas = Loan_logs::get();
+        $datas = LoanBook::where('user_id', Auth::user()->id)->paginate();
+        $adminDatas = LoanBook::get();
 
         return view('dashboard.library.loan-logs.index', compact('datas', 'adminDatas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -28,7 +28,7 @@ class LoanLogsController extends Controller
     public function store(Request $request)
     {
 
-        $data = new Loan_logs();
+        $data = new LoanBook();
 
         // buat variabel baru
         $data->user_id = $request->user_id;
@@ -50,19 +50,19 @@ class LoanLogsController extends Controller
     // EDIT
     public function edit($id)
     {
-        $data = Loan_logs::where('id', $id)->first();
+        $data = LoanBook::where('id', $id)->first();
         return view('dashboard.library.loan-logs.edit', compact('data'));
     }
 
-    // UPDATE 
+    // UPDATE
     public function update(Request $request, $id)
     {
-        
+
 
         // select data by id
-        $data = Loan_logs::find($id);
+        $data = LoanBook::find($id);
         $data->return_date = $request->return_date;
-
+        $data->status = $request->status;
         // update process
         $data->update();
 
@@ -83,11 +83,10 @@ class LoanLogsController extends Controller
 
     }
 
-    
     // FORCE DELETE
     public function delete($id)
     {
-        $data = Loan_logs::first();
+        $data = LoanBook::first();
         $data->forceDelete();
         alert()->success('Deleted', 'Data has been deleted!')->autoclose(1100);
         return redirect()->back();

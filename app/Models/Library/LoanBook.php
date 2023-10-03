@@ -2,14 +2,16 @@
 
 namespace App\Models\Library;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\User;
 
-class Loan_logs extends Model
+class LoanBook extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory,SoftDeletes;
+
+    public $guarded = [];
 
     public function user()
     {
@@ -17,6 +19,6 @@ class Loan_logs extends Model
     }
 
     public function book(){
-        return $this->belongsTo(Books::class,'book_id');
+        return $this->belongsTo(Book::class,'book_id');
     }
 }
