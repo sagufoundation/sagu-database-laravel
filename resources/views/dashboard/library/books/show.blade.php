@@ -1,40 +1,120 @@
 @extends('dashboard.layout.app')
 @section('content')
 
-                        @include('dashboard.layout.includes.breadcrumb3')
-    
+@include('dashboard.layout.includes.breadcrumb3')
+
 
 
 
 <div class="row">
     <div class="col-md-4">
         <div class="card-box">
-            <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
+            <img src="{{ asset('images/books/'.$data->cover) }}" alt="Book Cover" class="w-100">
         </div>
     </div>
     <div class="col-md-8">
         <div class="card-box">
-            
+
             <div class="mb-3">
                 <span class="font-weight-bold d-block">Title:</span>
                 <h1>{{ $data->title }}</h1>
             </div>
-            
+
             <div class="mb-3">
-                <span class="font-weight-bold d-block">Author:</span>
-                {{ $data->author }}
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="font-weight-bold d-block">Author:</span>
+                        {{ $data->author->name ?? '' }}
+                    </div>
+                    <div class="col-md-4">
+                        <span class="font-weight-bold d-block">Categories:</span>
+                        {{ $data->category->name ?? '' }}
+                    </div>
+                </div>
             </div>
-            
+
+            <div class="mb-3">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="font-weight-bold d-block">Total:</span>
+                        {{ $data->total ?? '-' }}
+                    </div>
+                    <div class="col-md-4">
+                        <span class="font-weight-bold d-block">Number of books borrowed:</span>
+                        {{ $data->total ?? '-' }}
+                    </div>
+                    <div class="col-md-4">
+                        <span class="font-weight-bold d-block">Remaining Books:</span>
+                        {{ $data->total ?? '-' }}
+                    </div>
+                </div>
+            </div>
+
+
             <div class="mb-3">
                 <span class="font-weight-bold d-block">Summary:</span>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos totam unde corporis ea consequatur, quibusdam vero repellendus! Nobis, voluptatibus ab ipsam quasi ex ea adipisci soluta fugit commodi dolorum atque consectetur, nisi, eum sunt facilis.</p>
             </div>
 
             <div class="mb-3">
+                <span class="font-weight-bold d-block mb-3">Students who borrow this Book :</span>
+                <div class="table-responsive border ">
+                    <table class="table table-borderles">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Contact</th>
+                                <th>Deadline</th>
+                                <th>Status</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($data->loan as $loan)
+                            <tr>
+
+                                <td>
+                                    {{ $loan->user->first_name ?? '' }}
+                                    {{ $loan->user->last_name ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $loan->user->email ?? '' }}
+                                    <br>
+                                    {{ $loan->user->phone ?? '' }}
+                                </td>
+
+                                <td>{{ $loan->return_date ?? '' }}</td>
+                                <td>{{ $loan->status ?? '-' }}</td>
+
+                                <td class="d-flex">
+                                    <div class="mr-1">
+                                        <a href="#" target="_blank"
+                                            class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip"
+                                            title='Show'><i class="fa-solid fa-edit"></i></a>
+                                    </div>
+
+                                </td>
+                            </tr>
+
+                            @empty
+                            <tr>
+                                <td colspan="3">Data tidak ada</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            @if (Auth::user()->hasRole('users'))
+            <div class="mb-3">
 
                 <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">
                     @csrf
-                    
+
                     <input type="text" name="book_id" value="{{ $data->id }}">
                     <input type="text" name="user_id" value="{{ Auth::user()->id }}">
 
@@ -44,7 +124,7 @@
                 </form>
 
             </div>
-
+            @endif
         </div>
     </div>
 </div>

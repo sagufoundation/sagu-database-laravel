@@ -13,20 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('loan_logs', function (Blueprint $table) {
+        Schema::create('loan_books', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('book_id');
-            
             $table->string('return_date')->nullable();
-
-            $table->timestamps();
-            $table->softDeletes();
-
             $table->enum('status',['Active','Pending', 'Returned'])->default('Pending')->nullable();
-            
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onUpdate('cascade')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 
@@ -37,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loan_logs');
+        Schema::dropIfExists('loan_books');
     }
 };

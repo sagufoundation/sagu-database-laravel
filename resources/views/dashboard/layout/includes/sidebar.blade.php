@@ -122,7 +122,7 @@
 
                                 <li class="menu-title mt-2">Library</li>
 
-                                    <li class="@if(Request::segment(1) == 'books') menuitem-active @endif">
+                                    <li class="@if(Request::segment(2) == 'books') menuitem-active @endif">
                                         <a href="{{ url(Request::segment(1).'/books') }}">
                                             <i class="fa-solid fa-book"></i>
                                             <span class="badge badge-success badge-pill float-right">

@@ -25,6 +25,7 @@
                                                             <th>Cover</th>
                                                             <th>Title</th>
                                                             <th>Author</th>
+                                                            <th>Categories</th>
                                                             <th width="280px"></th>
                                                         </tr>
                                                         @forelse($datas as $data)
@@ -34,7 +35,8 @@
                                                                 <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
                                                             </td>
                                                             <td>{{ $data->title ?? '' }} | {{ $data->cover }}</td>
-                                                            <td>{{ $data->author ?? '' }}</td>
+                                                            <td>{{ $data->author->name ?? '' }}</td>
+                                                            <td>{{ $data->category->name ?? '' }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
