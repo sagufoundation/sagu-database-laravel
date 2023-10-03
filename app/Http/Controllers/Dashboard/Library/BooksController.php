@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Library\Author;
 use App\Models\Library\Catagories;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -185,8 +186,6 @@ class BooksController extends Controller
     public function show($id)
     {
         $data = Book::where('id', $id)->first();
-
-
         return view('dashboard.library.books.show', compact('data'));
     }
 
@@ -202,14 +201,45 @@ class BooksController extends Controller
 
 
     // DESTROY
-
+    public function destroy($id)
+    {
+        $data = Book::find($id);
+        $data->delete();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->route('dashboard.books.trash');
+    }
     // TRASH
     public function trash()
     {
-        return view('dashboard.library.books.trash');
+        $datas = Book::onlyTrashed()->paginate(10);
+        $jumlahtrash = Book::onlyTrashed()->count();
+        $jumlahdraft = Book::where('status', 'Draft')->count();
+        $datapublish = Book::where('status', 'Publish')->count();
+        return view('dashboard.library.books.trash',
+        compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // RESTORE
+    public function restore($id)
+    {
+        $data = Book::onlyTrashed()->where('id', $id);
+        $data->restore();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->back();
+    }
 
     // DELETE
+    public function delete($id)
+    {
+        $data = Book::onlyTrashed()->findOrFail($id);
+        $path = public_path('images/books/' . $data->cover);
+
+        if (file_exists($path)) {
+            File::delete($path);
+        }
+
+        $data->forceDelete();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->back();
+    }
 }

@@ -34,7 +34,7 @@
                                                             <td>
                                                                 <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
                                                             </td>
-                                                            <td>{{ $data->title ?? '' }} | {{ $data->cover }}</td>
+                                                            <td>{{ $data->title ?? '' }} </td>
                                                             <td>{{ $data->author->name ?? '' }}</td>
                                                             <td>{{ $data->category->name ?? '' }}</td>
                                                             <td>

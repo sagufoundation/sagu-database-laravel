@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Route;
     | books
     |--------------------------------------------------------------------------
     */
-    Route::group(['middleware' => ['auth']], function () { 
-    
+    Route::group(['middleware' => ['auth']], function () {
+
         Route::controller(BooksController::class)->group(function(){
 
             // index
             Route::get('books','index')
-                ->name('dashboard.books');     
+                ->name('dashboard.books');
 
             // draft
             Route::get('books/draft','draft')
@@ -42,8 +42,8 @@ use Illuminate\Support\Facades\Route;
             ->name('dashboard.books.edit.profile');
 
             // update > profile
-            Route::put('books/update/profile/{id}','update_profile')
-            ->name('dashboard.books.update.profile');
+            Route::put('books/update/{id}','update')
+            ->name('dashboard.books.update');
 
             // destroy
             Route::delete('books/{id}','destroy')
@@ -61,7 +61,7 @@ use Illuminate\Support\Facades\Route;
             Route::delete('books/delete/{id}','delete')
                 ->name('dashboard.books.delete');
 
-            /*LOAD LOGS*/       
+            /*LOAD LOGS*/
 
         });
 

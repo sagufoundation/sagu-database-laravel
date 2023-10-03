@@ -9,7 +9,11 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card-box">
-            <img src="{{ asset('images/books/'.$data->cover) }}" alt="Book Cover" class="w-100">
+            @if (!$data->cover)
+            <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Book Cover" class="w-100">
+                @else
+                <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
+            @endif
         </div>
     </div>
     <div class="col-md-8">

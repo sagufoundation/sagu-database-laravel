@@ -13,7 +13,7 @@
                                 </div>
                                 <!-- input group end -->
 
-                                @include('dasbor.layout.includes.form-input.status')
+                                @include('dashboard.layout.includes.form-input.status')
                                 <!-- input group end -->
 
                             </div>

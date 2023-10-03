@@ -3,9 +3,9 @@
 
 @include('dashboard.layout.includes.breadcrumb3')
 
-{!! Form::open(array('url' => route('dashboard.books.store'),'files'=>'true')) !!}
+{!! Form::open(array('url' => route('dashboard.books.update',$data->id),'files'=>'true')) !!}
 @csrf
-
+@method('put')
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -33,7 +33,10 @@
                                     <select name="author_id" id="author_id" class="form-control">
                                         <option value="" hidden>Select</option>
                                         @foreach ($authors as $author )
-                                            <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                            <option value="{{ $author->id }}"
+                                                @if($data->author_id == $author->id)selected="selected"@endif >
+                                            {{ $author->name }}
+                                        </option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('author_id'))
@@ -48,7 +51,9 @@
                                     <select name="catagory_id" id="catagory_id" class="form-control">
                                         <option value="" hidden>Select</option>
                                         @foreach ($categories as $category )
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" @if($data->catagory_id == $category->id)selected="selected"@endif>
+                                                {{ $category->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('catagory_id'))
@@ -79,8 +84,8 @@
                                     <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                                     <select name="status" id="" class="form-control">
                                         <option value="" hidden>Select</option>
-                                        <option value="Publish">Publish</option>
-                                        <option value="Draft">Draft</option>
+                                        <option value="Draft" @if($data->status == 'Draft') selected @endif>Draft</option>
+                                        <option value="Publish" @if($data->status == 'Publish') selected @endif>Publish</option>
                                     </select>
                                     @if ($errors->has('status'))
                                     <span class="text-danger" role="alert">
@@ -98,8 +103,11 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <div class="mb-2 col-lg-3 p-0">
-                                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}"
-                                    alt="Profile image not found" class="img img-thumbnail" id="preview-images">
+                                @if (!$data->cover)
+                                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile image not found" class="img img-thumbnail" id="preview-images">
+                                @else
+                                <img src="{{ asset($data->cover) }}" alt="Profile image not found" class="img img-thumbnail" id="preview-images">
+                                @endif
                             </div>
                             <label for="image" class="form-label d-block">Images</label>
                             <div class="custom-file w-100">
@@ -133,10 +141,10 @@
 @stop
 
 @push('script-footer')
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function (e) {
-               $('#images').change(function(){
+               $('#image').change(function(){
                 let reader = new FileReader();
                 reader.onload = (e) => {
                   $('#preview-images').attr('src', e.target.result);
