@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Library\Author;
 use App\Models\Library\Catagories;
 use App\Http\Controllers\Controller;
+use App\Models\Library\LoanBook;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -185,8 +186,13 @@ class BooksController extends Controller
     // SHOW
     public function show($id)
     {
+        $bookloan = LoanBook::where('book_id',$id)->where('status','Active')->count();
+        $total = Book::where('total')->count();
+
+        $remainingBooks = $bookloan - $total;
+
         $data = Book::where('id', $id)->first();
-        return view('dashboard.library.books.show', compact('data'));
+        return view('dashboard.library.books.show', compact('data','bookloan','remainingBooks'));
     }
 
     // EDIT

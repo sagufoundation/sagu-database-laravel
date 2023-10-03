@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-
+            @if (Auth::user()->hasRole('administrator'))
             <div class="mb-3">
 
                 <div class="row">
@@ -47,21 +47,22 @@
                     </div>
                     <div class="col-md-4">
                         <span class="font-weight-bold d-block">Number of books borrowed:</span>
-                        {{ $data->total ?? '-' }}
+                        {{ $bookloan }}
                     </div>
                     <div class="col-md-4">
                         <span class="font-weight-bold d-block">Remaining Books:</span>
-                        {{ $data->total ?? '-' }}
+                        {{ $remainingBooks }}
                     </div>
                 </div>
             </div>
-
+            @endif
 
             <div class="mb-3">
                 <span class="font-weight-bold d-block">Summary:</span>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos totam unde corporis ea consequatur, quibusdam vero repellendus! Nobis, voluptatibus ab ipsam quasi ex ea adipisci soluta fugit commodi dolorum atque consectetur, nisi, eum sunt facilis.</p>
             </div>
 
+            @if (Auth::user()->hasRole('administrator'))
             <div class="mb-3">
                 <span class="font-weight-bold d-block mb-3">Students who borrow this Book :</span>
                 <div class="table-responsive border ">
@@ -89,7 +90,7 @@
                                     {{ $loan->user->phone ?? '' }}
                                 </td>
 
-                                <td>{{ $loan->return_date ?? '' }}</td>
+                                <td>{{ $loan->return_date ?? '-' }}</td>
                                 <td>{{ $loan->status ?? '-' }}</td>
 
                                 <td class="d-flex">
@@ -111,7 +112,7 @@
                     </table>
                 </div>
             </div>
-
+            @endif
 
             @if (Auth::user()->hasRole('users'))
             <div class="mb-3">
@@ -119,8 +120,8 @@
                 <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">
                     @csrf
 
-                    <input type="text" name="book_id" value="{{ $data->id }}">
-                    <input type="text" name="user_id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="book_id" value="{{ $data->id }}">
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
                     <button type="submit" class="btn btn-primary">
                         <i class="fa-solid fa-paper-plane"></i> Borrow

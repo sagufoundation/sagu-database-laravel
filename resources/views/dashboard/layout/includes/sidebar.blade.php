@@ -155,7 +155,7 @@
                                     </li>
                                     <!-- menu item end -->
 
-                                    <li class="@if(Request::segment(1) == 'loan-logs') menuitem-active @endif">
+                                    <li class="@if(Request::segment(2) == 'loan-logs') menuitem-active @endif">
                                         <a href="{{ url(Request::segment(1).'/books/loan-logs') }}">
                                             <i class="fa-solid fa-book-bookmark"></i>
                                             <span class="badge badge-success badge-pill float-right">

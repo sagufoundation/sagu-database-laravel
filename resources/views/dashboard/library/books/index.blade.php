@@ -97,6 +97,7 @@
 
                                             <div class="row">
                                                 @forelse($datas as $data)
+
                                                 <div class="col-lg-3">
                                                     <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}">
 

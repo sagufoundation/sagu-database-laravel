@@ -62,7 +62,7 @@ class LoanLogsController extends Controller
         // select data by id
         $data = LoanBook::find($id);
         $data->return_date = $request->return_date;
-
+        $data->status = $request->status;
         // update process
         $data->update();
 
@@ -82,7 +82,6 @@ class LoanLogsController extends Controller
     {
 
     }
-
 
     // FORCE DELETE
     public function delete($id)
