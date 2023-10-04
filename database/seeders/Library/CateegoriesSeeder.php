@@ -15,8 +15,12 @@ class CateegoriesSeeder extends Seeder
      */
     public function run()
     {
-        Catagories::create([ 'name' => 'Fasion']);
-        Catagories::create([ 'name' => 'Healf']);
-        Catagories::create([ 'name' => 'Naturaly']);
+        Catagories::create([ 'name' => 'Fashion','slug' => 'fashion','description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."]);
+        
+        Catagories::create([ 'name' => 'Health','slug' => 'health','description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."]);
+
+        Catagories::create([ 'name' => 'Natural','slug' => 'natural','description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."]);
+
+        Catagories::create([ 'name' => 'Education','slug' => 'education','description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."]);
     }
 }

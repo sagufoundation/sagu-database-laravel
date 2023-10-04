@@ -23,27 +23,19 @@
                                                 <table class="table table-bordered">
                                                         <tr>
                                                             <th width="1%">No</th>
-                                                            <th>Name</th>
-                                                            <th>Books</th>
+                                                            <th>Category Name</th>
+                                                            <th class="w-50">Description</th>
                                                             <th width="280px"></th>
                                                         </tr>
                                                         @forelse($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $data->name ?? '' }} </td>
-                                                            <td>
-                                                                @foreach ($data->books as  $book)
-                                                                    <ul>
-                                                                        <li>
-                                                                            {{ $book->title ?? '' }}
-                                                                        </li>
-                                                                    </ul>
-                                                                @endforeach
-                                                            </td>
+                                                            <td>{{ $data->description ?? '' }} </td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
-                                                                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" target="_blank" class="btn btn-success w-100">
+                                                                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->slug) }}" class="btn btn-success w-100">
                                                                             <i class="fa-solid fa-id-badge d-block"></i> Show
                                                                         </a>
                                                                     </div>
@@ -102,7 +94,7 @@
                                             <div class="row">
                                                 @forelse($datas as $data)
                                                 <div class="col-lg-3">
-                                                    <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}">
+                                                    <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->slug) }}">
 
                                                         <div class="card border shadow">
                                                             <img src="{{ asset($data->cover) }}" alt="cover" class="card-img-top">

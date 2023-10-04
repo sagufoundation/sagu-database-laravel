@@ -131,10 +131,10 @@ class CategoriesController extends Controller
      }
 
      // SHOW
-    public function show($id)
+    public function show($slug)
     {
-        $data = Catagories::where('id', $id)->first();
-        return view('dashboard.library.categories.show', compact('data'));
+        $data = Catagories::where('slug', $slug)->first();
+        return view('dashboard.library.categories.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // EDIT

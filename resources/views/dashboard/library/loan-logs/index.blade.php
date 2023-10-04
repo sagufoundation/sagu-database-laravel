@@ -36,7 +36,7 @@
                                                         <td>{{ $data->book->title ?? '' }}</td>
                                                         <td>{{ $data->book->author->name ?? '' }}</td>
                                                         <td>{{ $data->book->category->name ?? '' }}</td>
-                                                        <td>{{ $data->user->first_name ?? '' }}</td>
+                                                        <td>{{ $data->user->first_name ?? '' }} {{ $data->user->last_name ?? '' }}</td>
                                                         <td>
                                                             @if($data->status == 'Active')
                                                             <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span> @else
@@ -58,13 +58,14 @@
                                                                     </a>
                                                                 </div>
                                                                 <div class="d-block p-1">
-                                                                    <form action="{{ url('dashboard/book/loan-logs/delete/' . $data->id) }}" method="POST">
+                                                                    <form action="{{ url('dashboard/books/loan-logs/delete/' . $data->id) }}" method="POST">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button type="submit" class="btn btn-danger w-100">
                                                                             <i class="fa-solid fa-trash d-block"></i> Trash
                                                                         </button>
                                                                     </form>
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -106,6 +107,7 @@
                                                         <th>Author</th>
                                                         <th>Duration</th>
                                                         <th>Status</th>
+                                                        <th></th>
                                                     </tr>
                                                     @forelse($datas as $data)
                                                     <tr>
@@ -122,6 +124,17 @@
                                                             <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span> @else
                                                             <span class="text-warning"><i class="fa fa-dot-circle"></i> Pending</span>
                                                             @endif
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-block p-1">
+                                                                <form action="{{ url('dashboard/books/loan-logs/delete/' . $data->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger w-100">
+                                                                        <i class="fa-solid fa-trash d-block"></i> Trash
+                                                                    </button>
+                                                                </form>
+                                                            </div>                                                            
                                                         </td>
                                                     </tr>
                                                     @empty

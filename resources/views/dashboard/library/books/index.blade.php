@@ -32,7 +32,7 @@
                                                         @forelse($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
-                                                            <td>
+                                                            <td width="150px">
                                                                 <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
                                                             </td>
                                                             <td>{{ $data->title ?? '' }} </td>
@@ -41,7 +41,7 @@
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">
-                                                                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" target="_blank" class="btn btn-success w-100">
+                                                                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" class="btn btn-success w-100">
                                                                             <i class="fa-solid fa-id-badge d-block"></i> Show
                                                                         </a>
                                                                     </div>
@@ -94,24 +94,32 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-
                                         <div>
                                             @include('dashboard.layout.includes.form-input.search')
-
                                             <div class="row">
                                                 @forelse($datas as $data)
-
                                                 <div class="col-lg-3">
-                                                    <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}">
-
+                                                    
                                                         <div class="card border shadow">
-                                                            <img src="{{ asset($data->cover) }}" alt="cover" class="card-img-top">
+                                                            <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}">
+                                                                <img src="{{ asset($data->cover) }}" alt="cover" class="card-img-top">
+                                                            </a>
                                                             <div class="card-body">
-                                                                <h4>{{ $data->title ?? '' }}</h4>
+                                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" class="link-primary">
+                                                                    <h4 class="h3 text-primary">{{ $data->title ?? '' }}</h4>
+                                                                </a>
+                                                                
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div>
+                                                                        By <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/categories', $data->category->slug) }}" class="text-secondary font-weight-bold"> {{ $data->author->name ?? '' }} </a>
+                                                                    </div>
+                                                                    <div>
+                                                                        Category: <a href="" class="text-secondary font-weight-bold"> {{ $data->category->name ?? '' }} </a>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-
-                                                    </a>
+                                                    
                                                 </div>
                                                 @empty
                                                 <div class="col-lg-3">
@@ -121,17 +129,12 @@
                                             </div>
                                             {!! $datas->links() !!}
                                         </div>
-
                                         <div class="clearfix"></div>
-                                        </div>
-
                                     </div> <!-- end card-->
                                 </div> <!-- end col -->
-
                             </div>
+                            <!-- col end -->
                         </div>
-                        <!-- .row end -->
-
+                        <!-- row end -->
                         @endif
-
 @stop

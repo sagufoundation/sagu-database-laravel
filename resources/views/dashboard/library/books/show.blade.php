@@ -131,6 +131,10 @@
             <!-- end item -->  
             @endif
 
+            <a href="{{ url()->previous() }}" class="btn btn-outline-primary mt-3">
+                <i class="fa-solid fa-reply"></i> Back
+            </a>
+
         </div>
     </div>
     <!-- end col-->    

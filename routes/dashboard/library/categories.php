@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
             ->name('dashboard.categories.store');
 
         // show / detail
-        Route::get('categories/show/{id}','show')
+        Route::get('categories/show/{slug}','show')
             ->name('dashboard.categories.show');
 
         // edit

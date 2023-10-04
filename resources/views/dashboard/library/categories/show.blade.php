@@ -8,20 +8,21 @@
         <div class="card-box">
 
             <div class="mb-3">
-                <span class="font-weight-bold d-block">Name:</span>
+                <span class="font-weight-bold d-block">Category Name:</span>
                 <h1>{{ $data->name }}</h1>
             </div>
-            <div class="mb-3">
-                <span class="font-weight-bold d-block">Status :</span>
-                <h4>{{ $data->status }}</h4>
+            <div class="mb-3 d-flex">
+                <span class="font-weight-bold d-block mr-1">Status :</span> {{ $data->status }}
             </div>
 
             <div class="mb-3">
-                <span class="font-weight-bold d-block mb-3">Books owned by the author :</span>
+                <span class="font-weight-bold d-block">Books in this category :</span>
                 <div class="table-responsive border ">
                     <table class="table table-borderles">
                         <thead>
                             <tr>
+                                <th>No</th>
+                                <th>Cover</th>
                                 <th>Name Book</th>
                                 <th>Categories </th>
                                 <th>Status</th>
@@ -32,6 +33,10 @@
                             @forelse ($data->books as $book)
                             <tr>
 
+                                <td>{{ ++$i }}</td>
+                                <td>
+                                    <img src="{{ asset($book->cover) }}" alt="cover" style="width:3rem;">
+                                </td>
                                 <td>
                                     {{ $book->title ?? '' }}
                                 </td>
@@ -42,16 +47,14 @@
 
                                 <td class="d-flex">
                                     <div class="mr-1">
-                                        <a href="#" target="_blank"
-                                            class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip"
-                                            title='Show'><i class="fa-solid fa-edit"></i></a>
+                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-edit"></i></a>
                                     </div>
                                 </td>
                             </tr>
 
                             @empty
                             <tr>
-                                <td colspan="3">Data tidak ada</td>
+                                <td colspan="3">No data</td>
                             </tr>
                             @endforelse
                         </tbody>
