@@ -17,13 +17,6 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
-    {
-         $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:role-create', ['only' => ['create','store']]);
-         $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
-    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +29,7 @@ class RoleController extends Controller
         // return view('admin.roles.index',compact('roles'))
         //     ->with('i', ($request->input('page', 1) - 1) * 5);
 
-        $data = Role::where([
+        $datas = Role::where([
             ['name', '!=', Null],
             [function ($query) use ($request) {
                 if (($s = $request->s)) {
@@ -45,12 +38,8 @@ class RoleController extends Controller
                         ->get();
                 }
             }]
-        ])->latest()->paginate(5);
-
-
-
-        return view('panel.admin.pages.role.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        ])->latest()->paginate(10);
+        return view('dashboard.roles.index',compact('datas'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
