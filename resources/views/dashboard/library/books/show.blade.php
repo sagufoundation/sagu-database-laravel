@@ -44,9 +44,13 @@
                     <input type="hidden" name="book_id" value="{{ $data->id }}">
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-lg btn-primary">
                         <i class="fa-solid fa-paper-plane"></i> Borrow
                     </button>
+
+                    <a href="{{ url()->previous() }}" class="btn btn-lg btn-outline-primary">
+                        <i class="fa-solid fa-reply"></i> Back
+                    </a>
                 </form>
 
             </div>
@@ -129,7 +133,6 @@
                 </div>
             </div>
             <!-- end item -->  
-            @endif
 
             <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/profile',  $data->id) }}" class="btn btn-lg btn-primary">
                 <i class="fa-solid fa-pen-to-square"></i> Edit
@@ -138,6 +141,7 @@
             <a href="{{ url()->previous() }}" class="btn btn-lg btn-outline-primary">
                 <i class="fa-solid fa-reply"></i> Back
             </a>
+            @endif
 
         </div>
     </div>
