@@ -3,78 +3,75 @@
 
                         @include('dashboard.layout.includes.breadcrumb3')
 
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card-box">
 
+                                    <div class="mb-3">
+                                        <span class="font-weight-bold d-block">Title:</span>
+                                        <h1>{{ $data->book->title }}</h1>
+                                    </div>
 
+                                    <div class="mb-3">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <span class="font-weight-bold d-block">Author:</span>
+                                                {{ $data->book->author->name ?? '' }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="font-weight-bold d-block">Categories :</span>
+                                                {{ $data->book->category->name ?? '' }}
+                                            </div>
+                                        </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="card-box">
+                                    </div>
 
-            <div class="mb-3">
-                <span class="font-weight-bold d-block">Title:</span>
-                <h1>{{ $data->book->title }}</h1>
-            </div>
+                                    <div class="mb-3">
+                                        <span class="font-weight-bold d-block">Summary:</span>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos totam unde corporis ea consequatur, quibusdam vero repellendus! Nobis, voluptatibus ab ipsam quasi ex ea adipisci soluta fugit commodi dolorum atque consectetur, nisi, eum sunt facilis.</p>
+                                    </div>
 
-            <div class="mb-3">
-                <div class="row">
-                    <div class="col-md-6">
-                        <span class="font-weight-bold d-block">Author:</span>
-                        {{ $data->book->author->name ?? '' }}
-                    </div>
-                    <div class="col-md-6">
-                        <span class="font-weight-bold d-block">Categories :</span>
-                        {{ $data->book->category->name ?? '' }}
-                    </div>
-                </div>
+                                    <div class="mb-3">
 
-            </div>
+                                        <form action="{{ url('dashboard/books/loan-logs/update', $data->id )}}" method="POST">
+                                            @csrf
+                                            @method('PUT')
 
-            <div class="mb-3">
-                <span class="font-weight-bold d-block">Summary:</span>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos totam unde corporis ea consequatur, quibusdam vero repellendus! Nobis, voluptatibus ab ipsam quasi ex ea adipisci soluta fugit commodi dolorum atque consectetur, nisi, eum sunt facilis.</p>
-            </div>
+                                            {{-- <input type="text" name="id" value="{{ $data->id }}"> --}}
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <label for="return_date" class="font-weight-bold d-block">Return Date:</label>
+                                                    <input type="date" id="return_date" name="return_date" value="{{ $data->return_date }}" class="form-control">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="status" class="font-weight-bold d-block">Status :</label>
+                                                    <select name="status" id="" class="form-control">
+                                                        <option value="" hidden>Select</option>
+                                                        <option value="Active" @if($data->status == 'Active') selected @endif>Active</option>
+                                                        <option value="Pending" @if($data->status == 'Pending') selected @endif>Pending</option>
+                                                        <option value="Returned" @if($data->status == 'Returned') selected @endif>Returned</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-            <div class="mb-3">
+                                            <button type="submit" class="btn btn-primary d-block mt-3">
+                                                <i class="fa-solid fa-save"></i> Update
+                                            </button>
+                                        </form>
 
-                <form action="{{ url('dashboard/books/loan-logs/update', $data->id )}}" method="POST">
-                    @csrf
-                    @method('PUT')
+                                    </div>
 
-                    {{-- <input type="text" name="id" value="{{ $data->id }}"> --}}
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label for="return_date" class="font-weight-bold d-block">Return Date:</label>
-                            <input type="date" id="return_date" name="return_date" value="{{ $data->return_date }}" class="form-control">
+                                </div>
+                            </div>
+                            <!-- end col-->
+                            <div class="col-md-4">
+                                <div class="card-box">
+                                    <img src="{{ asset($data->book->cover) }}" alt="Book Cover" class="w-100">
+                                </div>
+                            </div>
+                            <!-- end col-->
                         </div>
-                        <div class="col-lg-4">
-                            <label for="status" class="font-weight-bold d-block">Status :</label>
-                            <select name="status" id="" class="form-control">
-                                <option value="" hidden>Select</option>
-                                <option value="Active" @if($data->status == 'Active') selected @endif>Active</option>
-                                <option value="Pending" @if($data->status == 'Pending') selected @endif>Pending</option>
-                                <option value="Returned" @if($data->status == 'Returned') selected @endif>Returned</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary d-block mt-3">
-                        <i class="fa-solid fa-save"></i> Update
-                    </button>
-                </form>
-
-            </div>
-
-        </div>
-    </div>
-    <!-- end col-->
-    <div class="col-md-4">
-        <div class="card-box">
-            <img src="{{ asset($data->book->cover) }}" alt="Book Cover" class="w-100">
-        </div>
-    </div>
-    <!-- end col-->
-</div>
-<!-- end row-->
+                        <!-- end row-->
 
 @stop
 

@@ -18,11 +18,11 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th width="1%">No</th>
-                                                            <th>Cover</th>
-                                                            <th>Title</th>
-                                                            <th>Author</th>
-                                                            <th>Categories</th>
-                                                            <th width="280px"></th>
+                                <th>Cover</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Categories</th>
+                                <th width="280px"></th>
                             </tr>
                             @if(!$datas->isEmpty())
 

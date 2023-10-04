@@ -34,7 +34,7 @@
             </div>
             <!-- end item -->  
 
-            {{-- USER FEATURE --}}
+            {{-- ===================================== USERS START ===================================== --}}
             @if (Auth::user()->hasRole('users'))
             <div class="mb-3">
 
@@ -53,7 +53,7 @@
             <!-- end item -->  
             @endif
 
-            {{-- ADMINISTRATOR FEATURE --}}
+            {{-- ===================================== ADMINISTRATOR START ===================================== --}}
             @if (Auth::user()->hasRole('administrator'))
             <div class="mb-3">
 

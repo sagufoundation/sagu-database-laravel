@@ -3,6 +3,7 @@
 
                         @include('dashboard.layout.includes.breadcrumb2')
 
+                        {{-- ===================================== ADMINISTRATOR START ===================================== --}}
                         @if (Auth::user()->hasRole('administrator'))
 
                         <div class="row">
@@ -86,6 +87,8 @@
                         <!-- .row end -->
 
                         @else
+
+                        {{-- ===================================== USERS START ===================================== --}}
 
                         <div class="row">
                             <div class="col-12">

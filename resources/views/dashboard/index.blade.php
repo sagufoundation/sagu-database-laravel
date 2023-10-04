@@ -81,7 +81,6 @@
     </div> <!-- row end -->
     
     <script src="{{ asset('assets/js/grafik.js')}}"></script>
-    
 
     @else
         <h1>Welcome! {{ Auth::user()->name }}</h1>

@@ -3,9 +3,6 @@
 
 @include('dashboard.layout.includes.breadcrumb3')
 
-
-
-
 <div class="row">
     <div class="col-md-12">
         <div class="card-box">
@@ -49,7 +46,6 @@
                                             class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip"
                                             title='Show'><i class="fa-solid fa-edit"></i></a>
                                     </div>
-
                                 </td>
                             </tr>
 

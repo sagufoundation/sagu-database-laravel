@@ -13,7 +13,6 @@
 
                 <div class="row">
                     <div class="col-md-6">
-
                         <div class="mb-3">
                             <label for="name" class="form-label">Name Category <span class="text-danger">*</span></label>
                             <input type="text" name="name" id="name" value="{{ old('name') ?? '' }}"
@@ -27,6 +26,7 @@
                         </div>
                         <!-- input group end -->
                     </div>
+                    <!-- col end -->
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
@@ -43,7 +43,9 @@
                             </span>
                             @endif
                         </div>
+                        <!-- input group end -->
                     </div>
+                    <!-- col end -->
                 </div>
                 <!-- input item end-->
 

@@ -10,10 +10,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-
                 <div class="row">
                     <div class="col-md-6">
-
                         <div class="mb-3">
                             <label for="name" class="form-label">Name Author <span class="text-danger">*</span></label>
                             <input type="text" name="name" id="name" value="{{ old('name',$data->name) ?? '' }}"
@@ -27,6 +25,7 @@
                         </div>
                         <!-- input group end -->
                     </div>
+                    <!-- col end-->
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
@@ -44,12 +43,10 @@
                             @endif
                         </div>
                         <!-- input group end -->
-
-                        <!-- input group end -->
                     </div>
+                    <!-- col end-->
                 </div>
-                <!-- input item end-->
-
+                <!-- row end-->
             </div>
         </div> <!-- .card end -->
     </div> <!-- .col end -->
