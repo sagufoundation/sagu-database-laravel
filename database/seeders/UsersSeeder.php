@@ -107,7 +107,7 @@ class UsersSeeder extends Seeder
                 'email' => 'anastasia@gmail.com',
                 'password' => bcrypt('anastasia@gmail.com'),
                 'status' => 'Publish',
-                'role' => 'users',
+                'role' => 'student',
                 'phone' => '082112341234'
             ]
         ]);

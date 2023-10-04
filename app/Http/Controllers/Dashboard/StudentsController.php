@@ -36,13 +36,13 @@ class StudentsController extends Controller
                 }
             }]
         ])->whereHas('roles',function($q){
-            $q->where('name','users');
+            $q->where('name','student');
         })->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
 
-        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Draft')->count();
-        $datapublish = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count();
+        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
 
         return view('dashboard.database.students.index',
                compact(
@@ -66,12 +66,12 @@ class StudentsController extends Controller
                 }
             }]
         ])->whereHas('roles',function($q){
-            $q->where('name','users');
+            $q->where('name','student');
         })->where('status', 'Draft')->orderBy('first_name', 'asc')->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Draft')->count();
-        $datapublish = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count();
+        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
 
         return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -153,7 +153,7 @@ class StudentsController extends Controller
             $request->picture->move(public_path('images/users'), $fileName);
         }
         $data->save();
-        $data->assignRole('6');
+        $data->assignRole('4');
 
         // Student data
         $student = $data->student ?? new Students();
@@ -508,8 +508,8 @@ class StudentsController extends Controller
     {
         $datas = User::onlyTrashed()->paginate(10);
         $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Draft')->count();
-        $datapublish = User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count();
+        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
 
         return view('dashboard.database.Students.trash', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
