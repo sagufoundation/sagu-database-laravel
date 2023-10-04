@@ -66,7 +66,7 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="total" class="form-label">Total Book <span class="text-danger">*</span></label>
+                                    <label for="total" class="form-label">Total Book(s) <span class="text-danger">*</span></label>
                                     <input type="number" name="total" id="total" value="{{ old('total') ?? '' }}" class="form-control">
                                     @if ($errors->has('total'))
                                     <span class="text-danger" role="alert">
@@ -102,21 +102,20 @@
                                 <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}"
                                     alt="Profile image not found" class="img img-thumbnail" id="preview-images">
                             </div>
-                            <label for="image" class="form-label d-block">Images</label>
+                            <label for="cover" class="form-label d-block">Cover</label>
                             <div class="custom-file w-100">
-                                <input type="file" name="cover" class="custom-file-input" id="image" value="">
+                                <input type="file" name="cover" class="custom-file-input" id="cover" value="">
                                 <small class="text-muted mt-2 d-block">Choose a file from your computer</small>
                                 <label class="custom-file-label" for="customFile">Upload images</label>
-                                @if ($errors->has('image'))
-                                <span class="text-danger" role="alert">
-                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
-                                        $errors->first('image') }}</small>
-                                </span>
-                                @endif
+                                @if ($errors->has('cover'))
+                                    <span class="text-danger" role="alert">
+                                        <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i>
+                                            {{$errors->first('cover') }}
+                                        </small>
+                                    </span>
+                                    @endif
                             </div>
                         </div>
-                        <!-- input group end -->
-
                         <!-- input group end -->
                     </div>
                 </div>
@@ -147,7 +146,6 @@
             });
 
     });
-
 
 </script>
 @endpush

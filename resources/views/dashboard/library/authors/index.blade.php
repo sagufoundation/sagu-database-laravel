@@ -23,22 +23,12 @@
                                                         <tr>
                                                             <th width="1%">No</th>
                                                             <th>Name</th>
-                                                            <th>Books</th>
                                                             <th width="280px"></th>
                                                         </tr>
                                                         @forelse($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $data->name ?? '' }} </td>
-                                                            <td>
-                                                                @foreach ($data->books as  $book)
-                                                                    <ul>
-                                                                        <li>
-                                                                            {{ $book->title ?? '' }}
-                                                                        </li>
-                                                                    </ul>
-                                                                @endforeach
-                                                            </td>
                                                             <td>
                                                                 <div class="d-flex gap-1">
                                                                     <div class="d-block p-1">

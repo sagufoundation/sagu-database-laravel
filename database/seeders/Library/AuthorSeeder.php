@@ -15,8 +15,10 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
-        Author::create([ 'name' => 'Robin Hood']);
-        Author::create([ 'name' => 'Felix Hood']);
-        Author::create([ 'name' => 'Juan Hood']);
+        Author::create([ 'name' => 'Robin Hood','description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."]);
+
+        Author::create([ 'name' => 'Felix Hood','description' => "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."]);
+
+        Author::create([ 'name' => 'Juan Hood','description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."]);
     }
 }

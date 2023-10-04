@@ -7,6 +7,10 @@ use App\Models\Settings;
 use App\Models\User;
 use App\Models\Students;
 use App\Models\Program;
+use App\Models\Library\Book;
+use App\Models\Library\Catagories;
+use App\Models\Library\Author;
+use App\Models\Library\LoanBook;
 
 use App\Models\Banner;
 use App\Models\Faq;
@@ -71,6 +75,38 @@ class AppServiceProvider extends ServiceProvider
             'dashboard_total_students_semua' => User::count(),
 
             'dashboard_total_program' => Program::where('status','Publish')->count(),
+
+            // TOTALS
+
+            /*
+            | =========================
+            | STUDENT DATABASE
+            */
+
+            'database_total_publish_students' =>  User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count(),
+            'database_total_publish_programs' =>  Program::where('status','Publish')->count(),
+
+
+            /*
+            | =========================
+            | LIBRARY
+            */
+
+            // FOR ADMINISTRATOR
+            'database_total_publish_books' =>  Book::where('status','Publish')->orWhere('status', 'Draft')->count(),
+            'database_total_publish_catagories' =>  Catagories::where('status','Publish')->orWhere('status', 'Draft')->count(),
+            'database_total_publish_authors' =>  Author::where('status','Publish')->orWhere('status', 'Draft')->count(),
+            'database_total_publish_loan_books' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(),
+            
+            // FOR USER / STUDENTS
+            'database_total_publish_books_forStudents' =>  Book::where('status','Publish')->count(),
+            'database_total_publish_loan_books_forStudents' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(), //  perlu diperbaiki agar jumlah yg tampil hanya jumlah milik user yg login
+
+
+            /*
+            | =========================
+            | USERS
+            */
 
         ]);
 

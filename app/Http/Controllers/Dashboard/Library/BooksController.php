@@ -77,7 +77,7 @@ class BooksController extends Controller
                 'catagory_id' => 'required',
                 'author_id' => 'required',
                 'status' => 'required',
-                'cover' => 'image|mimes:png,jpeg,jpg|max:4096',
+                'cover' => 'required|image|mimes:png,jpeg,jpg|max:4096',
             ],
             [
                 'title.required' => 'This is a reaquired field',
@@ -85,6 +85,7 @@ class BooksController extends Controller
                 'catagory_id.required' => 'This is a reaquired field',
                 'status.required' => 'This is a reaquired field',
                 'author_id.required' => 'This is a reaquired field',
+                'cover.required' => 'This is a reaquired field',
                 'cover.mimes' => 'Type of this file must be PNG, JPG, JPEG',
                 'cover.max' => 'Files must be a maximum of 2 MB',
             ]
@@ -135,7 +136,7 @@ class BooksController extends Controller
                 'catagory_id' => 'required',
                 'author_id' => 'required',
                 'status' => 'required',
-                'cover' => 'image|mimes:png,jpeg,jpg|max:4096',
+                'cover' => 'required|image|mimes:png,jpeg,jpg|max:4096',
             ],
             [
                 'title.required' => 'This is a reaquired field',
@@ -143,6 +144,7 @@ class BooksController extends Controller
                 'catagory_id.required' => 'This is a reaquired field',
                 'status.required' => 'This is a reaquired field',
                 'author_id.required' => 'This is a reaquired field',
+                'cover.required' => 'This is a reaquired field',
                 'cover.mimes' => 'Type of this file must be PNG, JPG, JPEG',
                 'cover.max' => 'Files must be a maximum of 2 MB',
             ]
@@ -173,7 +175,7 @@ class BooksController extends Controller
 
                 $data->update();
 
-                Alert::toast('Created! This data has been updated successfully.', 'success');
+                Alert::toast('Updated! This data has been updated successfully.', 'success');
                 return redirect('dashboard/books/show/' . $data->id);
 
             } catch (\Throwable $th) {
