@@ -109,7 +109,7 @@
                                 </li>
                                 <!-- menu item end --> --}}
 
-                                <li class="@if(Request::segment(1) == 'programs') menuitem-active @endif">
+                                <li class="@if(Request::segment(2) == 'programs') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/programs') }}">
                                         <i class="fa-solid fa-bars-progress"></i> <span> Programs</span>
                                         @if($database_total_publish_programs != 0)
@@ -175,7 +175,7 @@
 
                                 <li class="menu-title mt-2">Users</li>
 
-                                <li class="@if(Request::segment(1) == 'users') menuitem-active @endif">
+                                <li class="@if(Request::segment(2) == 'users') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/users') }}">
                                         <i class="fa-solid fa-users"></i>
                                         <span class="badge badge-success badge-pill float-right">
@@ -186,7 +186,7 @@
                                 </li>
                                 <!-- menu item end -->
 
-                                <li class="@if(Request::segment(1) == 'roles') menuitem-active @endif">
+                                <li class="@if(Request::segment(2) == 'roles') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/roles') }}">
                                         <i class="fa-solid fa-tags"></i>
                                         <span class="badge badge-success badge-pill float-right">

@@ -11,7 +11,7 @@
                 <span class="font-weight-bold d-block">Title:</span>
                 <h1>{{ $data->title }}</h1>
             </div>
-            <!-- end item -->  
+            <!-- end item -->
 
             <div class="mb-3">
 
@@ -26,13 +26,13 @@
                     </div>
                 </div>
             </div>
-            <!-- end item -->  
+            <!-- end item -->
 
             <div class="mb-3">
                 <span class="font-weight-bold d-block">Summary:</span>
                 {{ $data->summary ?? '' }}
             </div>
-            <!-- end item -->  
+            <!-- end item -->
 
             {{-- ===================================== USERS START ===================================== --}}
             @if (Auth::user()->hasRole('users'))
@@ -54,7 +54,7 @@
                 </form>
 
             </div>
-            <!-- end item -->  
+            <!-- end item -->
             @endif
 
             {{-- ===================================== ADMINISTRATOR START ===================================== --}}
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <!-- end item -->  
+            <!-- end item -->
 
             <div class="mb-3">
                 <span class="font-weight-bold d-block bg-secondary text-light px-3 py-1">Students who borrow this Book :</span>
@@ -132,7 +132,7 @@
                     </table>
                 </div>
             </div>
-            <!-- end item -->  
+            <!-- end item -->
 
             <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/profile',  $data->id) }}" class="btn btn-lg btn-primary">
                 <i class="fa-solid fa-pen-to-square"></i> Edit
@@ -145,7 +145,7 @@
 
         </div>
     </div>
-    <!-- end col-->    
+    <!-- end col-->
     <div class="col-md-4">
         <div class="card-box">
             @if (!$data->cover)
