@@ -7,11 +7,6 @@
 
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="card-box">
-            <img src="{{ asset($data->book->cover) }}" alt="Book Cover" class="w-100">
-        </div>
-    </div>
     <div class="col-md-8">
         <div class="card-box">
 
@@ -71,6 +66,13 @@
 
         </div>
     </div>
+    <!-- end col-->
+    <div class="col-md-4">
+        <div class="card-box">
+            <img src="{{ asset($data->book->cover) }}" alt="Book Cover" class="w-100">
+        </div>
+    </div>
+    <!-- end col-->
 </div>
 <!-- end row-->
 

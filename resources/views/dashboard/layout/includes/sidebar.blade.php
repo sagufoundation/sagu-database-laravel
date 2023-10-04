@@ -76,7 +76,7 @@
                                 </li>
                                 <!-- menu item end -->
 
-                                <li class="@if(Request::segment(1) == 'regencies') menuitem-active @endif">
+                                {{-- <li class="@if(Request::segment(1) == 'regencies') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/regencies') }}">
                                         <i class="fa-solid fa-building-columns"></i>
                                         <span class="badge badge-success badge-pill float-right">
@@ -107,7 +107,7 @@
                                         <span> Universities</span>
                                     </a>
                                 </li>
-                                <!-- menu item end -->
+                                <!-- menu item end --> --}}
 
                                 <li class="@if(Request::segment(1) == 'programs') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/programs') }}">

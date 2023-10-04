@@ -3,19 +3,7 @@
 
 @include('dashboard.layout.includes.breadcrumb3')
 
-
-
-
 <div class="row">
-    <div class="col-md-4">
-        <div class="card-box">
-            @if (!$data->cover)
-            <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Book Cover" class="w-100">
-                @else
-                <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
-            @endif
-        </div>
-    </div>
     <div class="col-md-8">
         <div class="card-box">
 
@@ -23,6 +11,7 @@
                 <span class="font-weight-bold d-block">Title:</span>
                 <h1>{{ $data->title }}</h1>
             </div>
+            <!-- end item -->  
 
             <div class="mb-3">
 
@@ -32,11 +21,39 @@
                         {{ $data->author->name ?? '' }}
                     </div>
                     <div class="col-md-4">
-                        <span class="font-weight-bold d-block">Categories:</span>
+                        <span class="font-weight-bold d-block">Category:</span>
                         {{ $data->category->name ?? '' }}
                     </div>
                 </div>
             </div>
+            <!-- end item -->  
+
+            <div class="mb-3">
+                <span class="font-weight-bold d-block">Summary:</span>
+                {{ $data->summary ?? '' }}
+            </div>
+            <!-- end item -->  
+
+            {{-- USER FEATURE --}}
+            @if (Auth::user()->hasRole('users'))
+            <div class="mb-3">
+
+                <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="book_id" value="{{ $data->id }}">
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-paper-plane"></i> Borrow
+                    </button>
+                </form>
+
+            </div>
+            <!-- end item -->  
+            @endif
+
+            {{-- ADMINISTRATOR FEATURE --}}
             @if (Auth::user()->hasRole('administrator'))
             <div class="mb-3">
 
@@ -55,16 +72,10 @@
                     </div>
                 </div>
             </div>
-            @endif
+            <!-- end item -->  
 
             <div class="mb-3">
-                <span class="font-weight-bold d-block">Summary:</span>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos totam unde corporis ea consequatur, quibusdam vero repellendus! Nobis, voluptatibus ab ipsam quasi ex ea adipisci soluta fugit commodi dolorum atque consectetur, nisi, eum sunt facilis.</p>
-            </div>
-
-            @if (Auth::user()->hasRole('administrator'))
-            <div class="mb-3">
-                <span class="font-weight-bold d-block mb-3">Students who borrow this Book :</span>
+                <span class="font-weight-bold d-block bg-secondary text-light px-3 py-1">Students who borrow this Book :</span>
                 <div class="table-responsive border ">
                     <table class="table table-borderles">
                         <thead>
@@ -91,13 +102,18 @@
                                 </td>
 
                                 <td>{{ $loan->return_date ?? '-' }}</td>
-                                <td>{{ $loan->status ?? '-' }}</td>
+                                <td>
+                                    @if($loan->user->status == 'Active')
+                                    <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span> @else
+                                    <span class="text-warning"><i class="fa fa-dot-circle"></i> Pending</span>
+                                    @endif
+                                </td>
 
                                 <td class="d-flex">
                                     <div class="mr-1">
-                                        <a href="#" target="_blank"
-                                            class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip"
-                                            title='Show'><i class="fa-solid fa-edit"></i></a>
+                                        <a class="btn btn-primary w-100" href="{{ url('dashboard/books/loan-logs/edit',  $data->id) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </a>
                                     </div>
 
                                 </td>
@@ -112,28 +128,26 @@
                     </table>
                 </div>
             </div>
+            <!-- end item -->  
             @endif
 
-            @if (Auth::user()->hasRole('users'))
-            <div class="mb-3">
-
-                <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">
-                    @csrf
-
-                    <input type="hidden" name="book_id" value="{{ $data->id }}">
-                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa-solid fa-paper-plane"></i> Borrow
-                    </button>
-                </form>
-
-            </div>
+        </div>
+    </div>
+    <!-- end col-->    
+    <div class="col-md-4">
+        <div class="card-box">
+            @if (!$data->cover)
+            <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Book Cover" class="w-100">
+                @else
+                <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
             @endif
         </div>
     </div>
+    <!-- end col-->
 </div>
 <!-- end row-->
+
+
 
 @stop
 

@@ -12,7 +12,7 @@
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
 
                         <div class="mb-3">
                             <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
@@ -100,9 +100,10 @@
                         </div>
                         <!-- input group end -->
                     </div>
-                    <div class="col-md-6">
+
+                    <div class="col-md-4">
                         <div class="mb-3">
-                            <div class="mb-2 col-lg-3 p-0">
+                            <div class="mb-2 p-0">
                                 @if (!$data->cover)
                                 <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile image not found" class="img img-thumbnail" id="preview-images">
                                 @else

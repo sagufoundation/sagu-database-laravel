@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->string('total')->nullable();
+            $table->text('summary')->nullable();
+
             // other
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
             $table->timestamps();

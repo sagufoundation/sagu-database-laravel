@@ -35,7 +35,7 @@
                                                             @include('dashboard.layout.includes.index-picture')
                                                             <td>
                                                                 {{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}
-                                                                <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email_sagu ?? '' }}</small>
+                                                                <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email ?? '' }}</small>
                                                             </td>
                                                             <td>{{ $data->phone ?? '' }}</td>
                                                             <td>{{ $data->student->provinces->name ?? '' }}</td>
