@@ -47,7 +47,7 @@ use Illuminate\Support\Facades\Route;
                 ->name('dashboard.users.show');
 
             // edit
-            Route::get('users/{slug}/edit','edit')
+            Route::get('users/edit/{id}','edit')
                 ->name('dashboard.users.edit');
 
             // update

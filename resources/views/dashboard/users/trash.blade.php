@@ -19,6 +19,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Name</th>
+                                <th>Email</th>
                                 <th width="280px">Action</th>
                             </tr>
                             @if(!$datas->isEmpty())
@@ -26,7 +27,14 @@
                             @foreach ($datas as $data)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $data->name ?? '' }}</td>
+                                <td>
+                                    {{ $data->first_name ?? '' }}
+                                    {{ $data->middle_name ?? '' }}
+                                    {{ $data->last_name ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $data->email }}
+                                </td>
                                 @include('dashboard.layout.includes.trash-action')
                             </tr>
                             @endforeach

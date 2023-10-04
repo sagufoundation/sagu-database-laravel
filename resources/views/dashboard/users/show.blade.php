@@ -33,8 +33,17 @@
                 </div>
             </div>
             <div class="mb-3">
-                <span class="font-weight-bold d-block">Status :</span>
-                {{ $data->status }}
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="font-weight-bold d-block">Role :</span>
+                        {{ implode(",",$data->roles()->pluck('display_name')->toArray()) }}
+                    </div>
+                    <div class="col-md-4">
+                        <span class="font-weight-bold d-block">Status :</span>
+                        {{ $data->status }}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
