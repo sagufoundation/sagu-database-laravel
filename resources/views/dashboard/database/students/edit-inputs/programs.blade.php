@@ -1,7 +1,7 @@
 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">PROGRAMS</h5>
 
 <div>
-    @include('dashboard.database.students.modals.update-program-modal')
+    @include('dashboard.database.students.modals.update-program-modal',['programs',$programs])
     <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#education-modal">
         <i class="fa-solid fa-plus-square"></i> Add
     </button>
@@ -26,9 +26,14 @@
                         <td>{{ $program->short_description ?? '' }}</td>
                         <td class="d-flex">
                             <div class="mr-1">
-                                <a href="#" target="_blank"
-                                    class="btn btn-sm btn-outline-danger w-100 border" data-toggle="tooltip"
-                                    title='Delete'><i class="fa-solid fa-trash"></i></a>
+                                <form action="#" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger w-100">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+
                             </div>
                         </td>
                     </tr>

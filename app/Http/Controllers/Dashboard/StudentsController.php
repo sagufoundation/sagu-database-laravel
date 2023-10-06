@@ -133,7 +133,7 @@ class StudentsController extends Controller
             $fileName = $request->picture->getClientOriginalName();
 
             // crate file path
-            $path = public_path('images/users/' . $data->picture);
+            $path = public_path('images/students/' . $data->picture);
 
             // delete file if exist
             if (file_exists($path)) {
@@ -144,10 +144,10 @@ class StudentsController extends Controller
             $data->picture = $fileName;
 
             // move file into folder path with the file name
-            $request->picture->move(public_path('images/users'), $fileName);
+            $request->picture->move(public_path('images/students'), $fileName);
         }
         $data->save();
-        $data->assignRole('3');
+
 
         // Student data
         $student = $data->student ?? new Students();
@@ -162,6 +162,7 @@ class StudentsController extends Controller
         $student->email_outlook = $request->email_outlook;
         $student->email_sagu = $request->email_sagu;
         $data->students()->save($student);
+        $data->assignRole(3);
 
         alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
         return redirect('dashboard/students/show/' . User::find($data->id)->id);
@@ -237,7 +238,7 @@ class StudentsController extends Controller
             $fileName = $request->picture->getClientOriginalName();
 
             // crate file path
-            $path = public_path('images/users/' . $data->picture);
+            $path = public_path('images/students/' . $data->picture);
 
             // delete file if exist
             if (file_exists($path)) {
@@ -248,7 +249,7 @@ class StudentsController extends Controller
             $data->picture = $fileName;
 
             // move file into folder path with the file name
-            $request->picture->move(public_path('images/users'), $fileName);
+            $request->picture->move(public_path('images/students'), $fileName);
         }
 
         // update process
@@ -322,7 +323,7 @@ class StudentsController extends Controller
             $fileName = $request->picture->getClientOriginalName();
 
             // crate file path
-            $path = public_path('images/users/' . $data->picture);
+            $path = public_path('images/students/' . $data->picture);
 
             // delete file if exist
             if (file_exists($path)) {
@@ -330,10 +331,10 @@ class StudentsController extends Controller
             }
 
             // adding file name into database variable
-            $data->picture = 'images/users/' . $fileName;
+            $data->picture = 'images/students/' . $fileName;
 
             // move file into folder path with the file name
-            $request->picture->move(public_path('images/users/'), $fileName);
+            $request->picture->move(public_path('images/students/'), $fileName);
         }
 
         // update process
@@ -414,10 +415,8 @@ class StudentsController extends Controller
     public function update_programs(Request $request, $id) {
 
         // select data by id
-        $data = Students::find($id);
-        $data->programs = collect($request->programs)->implode(','); // ['1', '3', '5', '6']
-
-        // update process
+        $data = User::find($id);
+        $data->student->program()->attach([$request->program]);
         $data->update();
 
         // create alert & redirect
@@ -487,11 +486,21 @@ class StudentsController extends Controller
         if (file_exists($path)) {
             File::delete($path);
         }
-
+        $data->student->program()->detach();
         $data->forceDelete();
 
         // create alert & redirect
         alert()->success('Deleted', 'Data dleted permanently!!')->autoclose(1100);
+        return redirect()->back();
+    }
+
+    public function delete_program($id)
+    {
+        $data = User::findOrFail($id);
+        $data->student->program()->detach();
+        $data->delete();
+        // create alert & redirect
+        alert()->success('Deleted', 'Data Program has been delete!')->autoclose(1100);
         return redirect()->back();
     }
 }

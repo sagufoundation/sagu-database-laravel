@@ -225,7 +225,7 @@
                                                     </div>
                                                     <label for="picture" class="form-label d-block">Images</label>
                                                     <div class="custom-file w-100">
-                                                        <input type="file" name="picture" class="custom-file-input" id="picture" value="">
+                                                        <input type="file" name="picture" class="custom-file-input" id="images" value="" accept="image/*">
                                                         <small class="text-muted mt-2 d-block">Choose a file from your computer</small>
                                                         <label class="custom-file-label" for="customFile">Upload images</label>
                                                         @if ($errors->has('picture'))
@@ -282,15 +282,9 @@
     };
 
 </script>
-<script type="text/javascript">
-    CKEDITOR.replace('ckeditor', options);
-    CKEDITOR.config.height='600px';
-</script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
+
     $(document).ready(function (e) {
                $('#images').change(function(){
                 let reader = new FileReader();
