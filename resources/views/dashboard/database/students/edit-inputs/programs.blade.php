@@ -1,7 +1,7 @@
 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">PROGRAMS</h5>
 
 <div>
-    @include('dasbor.siswa.education.create-education-modal')
+    @include('dashboard.database.students.modals.update-program-modal')
     <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#education-modal">
         <i class="fa-solid fa-plus-square"></i> Add
     </button>
@@ -16,8 +16,6 @@
                     <tr>
                         <th>Name Program</th>
                         <th>Description</th>
-                        <th>Program Start</th>
-                        <th>Program End</th>
                         <th >#</th>
                     </tr>
                 </thead>
@@ -26,8 +24,6 @@
                     <tr>
                         <td>{{ $program->program_title ?? '' }}</td>
                         <td>{{ $program->short_description ?? '' }}</td>
-                        <td>{{ $program->program_start ?? '' }}</td>
-                        <td>{{ $program->program_end ?? '' }}</td>
                         <td class="d-flex">
                             <div class="mr-1">
                                 <a href="#" target="_blank"

@@ -72,7 +72,7 @@ class StudentsController extends Controller
         return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    // CREATE VIEW
+    // CREATE VIEW 
     public function create()
     {
         $provinces = Province::all();
@@ -89,33 +89,40 @@ class StudentsController extends Controller
                 'phone' => 'required|unique:users,phone|max:13',
                 'email' => 'required|unique:users,email|string',
                 'password'  => 'required|confirmed|min:8',
-                'status' => 'required',
+                'password_confirmation' => 'required_with:password|same:password|min:8'
 
-                'province_id' => 'required',
-                'place_of_birth' => 'required',
-                'date_of_birth' => 'required',
+                // 'province_id' => 'required',
+                // 'place_of_birth' => 'required',
+                // 'date_of_birth' => 'required',
+
+                // 'status' => 'required',
             ],
             [
                 'first_name.required'   => 'This is required',
                 'phone.required'        => 'This is required',
                 'email.required'        => 'This is required',
                 'password.required'     => 'This is required',
-                'status.required'       => 'This is required',
+                'password_confirmation.required'     => 'This is required',
 
-                'province_id.required'      => 'This is required',
-                'place_of_birth.required'   => 'This is required',
-                'date_of_birth.required'    => 'This is required',
+                // 'province_id.required'      => 'This is required',
+                // 'place_of_birth.required'   => 'This is required',
+                // 'date_of_birth.required'    => 'This is required',
+
+                // 'status.required'       => 'This is required',
             ]
         );
 
         $data = new User();
+
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
+        $data->slug = Str::slug($data->first_name . '' . $data->middle_name . '' . $data->last_name);
+
         $data->phone = $request->phone;
         $data->email = $request->email;
         $data->password = Hash::make($request->password);
-        $data->slug = Str::slug($data->first_name . '' . $data->middle_name . '' . $data->last_name);
+
         $data->status = $request->status;
 
 
@@ -167,7 +174,14 @@ class StudentsController extends Controller
         $documents = Documents::where('user_id', $id)->orderBy('title', 'asc')->get();
         $formal_educations = Education::where('user_id', $id)->where('category', 'Formal')->orderBy('year', 'desc')->get();
         $non_formal_educations = Education::where('user_id', $id)->where('category', 'Non Formal')->orderBy('year', 'desc')->get();
-        return view('dashboard.database.students.show', compact('data', 'documents', 'formal_educations', 'non_formal_educations'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
+        if($data) 
+        {
+            return view('dashboard.database.students.show', compact('data', 'documents', 'formal_educations', 'non_formal_educations'))->with('i', (request()->input('page', 1) - 1) * 5);
+        } else {
+            return redirect('dashboard/students');
+        }
+
     }
 
     // EDIT VIEW
@@ -252,11 +266,40 @@ class StudentsController extends Controller
 
         // select data by id
         $data = User::find($id);
+
+        // create new variable
+        $data->first_name = $request->first_name;
+        $data->middle_name = $request->middle_name;
+        $data->last_name = $request->last_name;
+        $data->status = $request->status;
+        // $data->phone = $request->phone;
+        // update process
+        $data->update();
+
+        $student = $data->student ?? new Students();
+
+        $student->place_of_birth = $request->place_of_birth;
+        $student->date_of_birth = $request->date_of_birth;
+        
+        $data->students()->save($student);
+
+        // create alert & redirect
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        return redirect()->back();
+
+    }
+
+    // UPDATE BIOGRAPHY 
+    public function update_biography(Request $request, $id) {
+
+        // select data by id
+        $data = User::find($id);
         $data->status = $request->status;
         // create new variable
         $data->update();
         $student = $data->student ?? new Students();
         $student->profile = $request->profile;
+
         $data->students()->save($student);
 
         // create alert & redirect
@@ -295,32 +338,6 @@ class StudentsController extends Controller
 
         // update process
         $data->update();
-
-        // create alert & redirect
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
-        return redirect()->back();
-
-    }
-
-    // UPDATE BIOGRAPHY
-    public function update_biography(Request $request, $id) {
-
-        // select data by id
-        $data = User::find($id);
-
-        // create new variable
-        $data->first_name = $request->first_name;
-        $data->middle_name = $request->middle_name;
-        $data->last_name = $request->last_name;
-        // $data->phone = $request->phone;
-        // update process
-        $data->update();
-
-        $student = $data->student ?? new Students();
-
-        $student->place_of_birth = $request->place_of_birth;
-        $student->date_of_birth = $request->date_of_birth;
-        $data->students()->save($student);
 
         // create alert & redirect
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
@@ -398,13 +415,7 @@ class StudentsController extends Controller
 
         // select data by id
         $data = Students::find($id);
-
-        // create new variable
-        // $data->programs = $request->programs;
-        // $data->programs = json_encode($request->programs); // ['1', '3', '5', '6']
-        // $data->programs = implode(',', $request->programs); // ['1', '3', '5', '6']
         $data->programs = collect($request->programs)->implode(','); // ['1', '3', '5', '6']
-        // $data->programs = $request->programs; // ['1', '3', '5', '6']
 
         // update process
         $data->update();
@@ -438,6 +449,8 @@ class StudentsController extends Controller
     {
         $data = User::find($id);
         $data->delete();
+
+        // create alert & redirect
         alert()->success('Trashed', 'Data has been moved to trash!')->autoclose(1100);
         return redirect()->back();
     }
@@ -446,6 +459,7 @@ class StudentsController extends Controller
     public function trash()
     {
         $datas = User::onlyTrashed()->paginate(10);
+
         $jumlahtrash = User::onlyTrashed()->count();
         $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
         $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();

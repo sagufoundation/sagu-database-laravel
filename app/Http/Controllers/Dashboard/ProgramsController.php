@@ -52,6 +52,7 @@ class ProgramsController extends Controller
         $datapublish = Program::where('status', 'Publish')->count();
 
         return view('dashboard.database.programs.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
     }
 
     // CREATE VIEW
@@ -100,7 +101,12 @@ class ProgramsController extends Controller
     public function show($id)
     {
         $data = Program::where('id', $id)->first();
-        return view('dashboard.database.programs.show', compact('data'));
+        if($data) 
+        {
+            return view('dashboard.database.programs.show', compact('data'));
+        } else {
+            return redirect('dashboard/programs');
+        }
     }
 
     // EDIT VIEW

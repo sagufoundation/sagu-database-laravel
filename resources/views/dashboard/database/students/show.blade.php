@@ -14,7 +14,7 @@
             @if(!$data->picture)
             <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found" class="rounded-0 w-100">
             @else
-            <img src="{{ asset('images/' . Request::segment(2) . '/' . $data->picture) }}" alt="Profile picture" class="rounded-0 w-100">
+            <img src="{{ asset($data->picture) }}" alt="Profile picture" class="rounded-0 w-100">
             @endif
 
             <h4 class="mb-0 mt-3">{{ $data->first_name .' '. $data->middle_name . ' '. $data->last_name ?? '' }}</h4>
@@ -260,21 +260,6 @@
                         </div>
 
                         @endempty
-
-                        <ul class="list-group my-2 rounded-0">
-                            <li class="list-group-item bg-primary text-white fw-bold font-weight-bold">
-                                Keterangan
-                            </li>
-                            <li class="list-group-item">
-                                Dokumen terSave di google drive.
-                            </li>
-                            <li class="list-group-item">
-                                Hak akses dokumen hanya diberikan kepada pengguna sistem.
-                            </li>
-                            <li class="list-group-item">
-                                Pengguna luar selain admin SAGU Foundation tidak dapat mengubah atau menambahkan file di dalam folder google drive.
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <!-- end settings content-->
@@ -321,31 +306,29 @@
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
-
     $('.show_confirm').click(function(event) {
-         var form =  $(this).closest("form");
-         event.preventDefault();
-         swal.fire({
-           title: 'Anda Yakin?',
-           text: "data akan terhapus permanen!",
-           icon: 'warning',
-           showCancelButton: true,
-           confirmButtonColor: '#3085d6',
-           cancelButtonColor: '#d33',
-           confirmButtonText: 'Ya, Bersihkan!'
-         })
-         .then((result) => {
-           if (result.isConfirmed) {
-               form.submit();
-               Swal.fire(
-               'Deleted!',
-               'Your data has been deleted.',
-               'success'
-               )
-           }
-       });
-     });
-
+          var form =  $(this).closest("form");
+          event.preventDefault();
+          swal.fire({
+            title: 'Are you sure?',
+            text: "This data will be deleted permantently!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Just delete!'
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire(
+                'Deleted!',
+                'Your data has been deleted.',
+                'success'
+                )
+            }
+        });
+      });
 </script>
 
 

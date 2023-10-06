@@ -6,122 +6,45 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Documents;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DocumentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // 
-        echo "Create Document...";
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // STORE
     public function store(Request $request)
     {
 
-        dd($request);
-
         $request->validate([
             'title' => 'required',
+            'url' => 'required',
         ],
         [
-            'title.required' => 'Bagian ini wajib dilengkapi',
+            'title.required' => 'This is a reaquired field',
+            'url.required' => 'This is a reaquired field',
         ]);
 
         $data = new Documents();
 
-        $data->student_id = $request->student_id;
-
+        $data->user_id = $request->user_id;
         $data->title = $request->title;
         $data->description = $request->description;
         $data->url = $request->url;
 
         $data->save();
 
-        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
+        // create alert & redirect
+        Alert::toast('Created! This data has been created successfully.', 'success');
+        return redirect('dashboard/students/show/' . $data->user_id);
 
-        // return redirect('dashboard/students/show/' . $data->student_id);
-        return redirect('dashboard/students/show/' . $data->student_id);
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Documents  $documents
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Documents $documents)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Documents  $documents
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Documents  $documents
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-        $request->validate([
-            'title' => 'required',
-        ],
-        [
-            'title.required' => 'Bagian ini wajib dilengkapi',
-        ]);
-
-        $data = new Documents();
-
-        $data->student_id = $request->student_id;
-
-        $data->title = $request->title;
-        $data->description = $request->description;
-        $data->url = $request->url;
-
-        $data->update();
-
-        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
-        return redirect('dashboard/students/show/' . $data->student_id);
     }
 
     public function destroy($id)
     {
         Documents::where('id', $id)->delete();
-        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+
+        // create alert & redirect
+        alert()->success('Deleted', 'Data dleted permanently!!')->autoclose(1100);
         return redirect()->back();
     }
 

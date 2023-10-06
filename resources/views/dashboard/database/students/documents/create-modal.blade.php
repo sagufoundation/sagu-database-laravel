@@ -10,7 +10,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-                <input type="hidden" name="siswa_id" value="{{ $data->id ?? '' }}">
+                <input type="hidden" name="user_id" value="{{ $data->id ?? '' }}">
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Title <span class="text-danger">*</span></label>

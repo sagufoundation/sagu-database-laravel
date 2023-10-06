@@ -16,7 +16,7 @@
                         
                         <div class="mb-3">
                             <label for="program_title" class="form-label">Program Title <span class="text-danger">*</span></label>
-                            <input type="text" name="program_title" id="program_title" value="{{ old('program_title') ?? '' }}" placeholder="Program Name" class="form-control">
+                            <input type="text" name="program_title" id="program_title" value="{{ old('program_title') ?? '' }}" placeholder="Program title" class="form-control">
                             @if ($errors->has('program_title'))
                             <span class="text-danger" role="alert">
                                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
@@ -27,7 +27,7 @@
                         <!-- input group end -->
 
                         <div class="mb-3">
-                            <label for="short_description" class="form-label">Short Description <span class="text-danger">*</span></label>
+                            <label for="short_description" class="form-label">Short Description</label>
                             <textarea name="short_description"  cols="30" rows="5" class="form-control" placeholder="Write a short description here">{{ old('short_description') ?? '' }}</textarea>
                                 @if ($errors->has('short_description'))
                                 <span class="text-danger" role="alert">
@@ -39,7 +39,7 @@
                         <!-- input group end -->
                         
                         <div class="mb-3">
-                            <label for="full_description" class="form-label">Full Description <span class="text-danger">*</span></label>
+                            <label for="full_description" class="form-label">Full Description</label>
                             <textarea name="full_description" id="ckeditor" cols="30" rows="5" class="form-control" placeholder="The full description">{{ old('full_description') ?? '' }}</textarea>
                                 @if ($errors->has('full_description'))
                                 <span class="text-danger" role="alert">
@@ -51,7 +51,7 @@
                         <!-- input group end -->
 
                         <div class="mb-3">
-                            <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+                            <label for="status" class="form-label">Status</label>
                             <select name="status" id="" class="form-control">
                                 <option value="" hidden>Select</option>
                                 <option value="Publish">Publish</option>
