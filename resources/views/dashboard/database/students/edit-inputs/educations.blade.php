@@ -1,7 +1,7 @@
 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">EDUCATION HISTORY</h5>
 
 <div>
-    @include('dasbor.siswa.education.create-education-modal')
+    @include('dashboard.database.students.modals.create-education-modal')
     <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#education-modal">
         <i class="fa-solid fa-plus-square"></i> Add
     </button>

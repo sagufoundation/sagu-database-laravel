@@ -35,7 +35,7 @@
                                             @include('dashboard.database.students.edit-inputs.documents')
 
                                             @elseif (Request::segment(4) == 'programs')
-                                                @include('dashboard.database.students.edit-inputs.programs')
+                                                @include('dashboard.database.students.edit-inputs.programs',['programs',$programs])
 
                                         @elseif (Request::segment(4) == 'educations')
                                             @include('dashboard.database.students.edit-inputs.educations')

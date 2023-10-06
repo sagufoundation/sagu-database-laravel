@@ -135,5 +135,9 @@ use Illuminate\Support\Facades\Route;
             Route::delete('students/delete/{id}','delete')
                 ->name('dashboard.students.delete');
 
+            // delete Programs
+            Route::delete('students/delete/programs/{id}','delete_program')
+            ->name('dashboard.students.delete.programs');
+
         });
     });
