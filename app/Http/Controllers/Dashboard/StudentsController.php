@@ -72,7 +72,7 @@ class StudentsController extends Controller
         return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    // CREATE VIEW 
+    // CREATE VIEW
     public function create()
     {
         $provinces = Province::all();
@@ -147,7 +147,7 @@ class StudentsController extends Controller
             $request->picture->move(public_path('images/users'), $fileName);
         }
         $data->save();
-        $data->assignRole('4');
+        $data->assignRole('3');
 
         // Student data
         $student = $data->student ?? new Students();
@@ -174,8 +174,8 @@ class StudentsController extends Controller
         $documents = Documents::where('user_id', $id)->orderBy('title', 'asc')->get();
         $formal_educations = Education::where('user_id', $id)->where('category', 'Formal')->orderBy('year', 'desc')->get();
         $non_formal_educations = Education::where('user_id', $id)->where('category', 'Non Formal')->orderBy('year', 'desc')->get();
-        
-        if($data) 
+
+        if($data)
         {
             return view('dashboard.database.students.show', compact('data', 'documents', 'formal_educations', 'non_formal_educations'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else {
@@ -280,7 +280,7 @@ class StudentsController extends Controller
 
         $student->place_of_birth = $request->place_of_birth;
         $student->date_of_birth = $request->date_of_birth;
-        
+
         $data->students()->save($student);
 
         // create alert & redirect
@@ -289,7 +289,7 @@ class StudentsController extends Controller
 
     }
 
-    // UPDATE BIOGRAPHY 
+    // UPDATE BIOGRAPHY
     public function update_biography(Request $request, $id) {
 
         // select data by id
