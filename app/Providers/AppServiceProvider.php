@@ -11,6 +11,7 @@ use App\Models\Library\Book;
 use App\Models\Library\Catagories;
 use App\Models\Library\Author;
 use App\Models\Library\LoanBook;
+use App\Models\Roles;
 
 use App\Models\Banner;
 use App\Models\Faq;
@@ -97,6 +98,9 @@ class AppServiceProvider extends ServiceProvider
             'database_total_publish_catagories' =>  Catagories::where('status','Publish')->orWhere('status', 'Draft')->count(),
             'database_total_publish_authors' =>  Author::where('status','Publish')->orWhere('status', 'Draft')->count(),
             'database_total_publish_loan_books' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(),
+            
+            'database_total_publish_users' =>  Author::where('status','Publish')->orWhere('status', 'Draft')->count(),
+            'database_total_roles' =>  Roles::count(),
             
             // FOR USER / STUDENTS
             'database_total_publish_books_forStudents' =>  Book::where('status','Publish')->count(),

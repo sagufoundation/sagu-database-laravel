@@ -76,6 +76,7 @@
                         <i class="fa-solid fa-paper-plane"></i> Borrow
                     </button>
                 </form>
+                <!-- end item -->
 
             </div>
             @endif
@@ -83,6 +84,8 @@
     </div>
 </div>
 <!-- end row-->
+
+@include('dashboard.layout.includes.form-input.edit-button')
 
 @stop
 

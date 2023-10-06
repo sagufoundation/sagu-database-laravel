@@ -9,7 +9,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     require_once 'dashboard/roles.php';
     require_once 'dashboard/documents.php';
     require_once 'dashboard/educations.php';
-    require_once 'dashboard/program.php';
+    require_once 'dashboard/programs.php';
 
     /*
     | =====================

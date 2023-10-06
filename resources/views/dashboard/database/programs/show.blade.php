@@ -4,87 +4,39 @@
 @include('dashboard.layout.includes.breadcrumb3')
 
 
-
-
 <div class="row">
     <div class="col-md-12">
         <div class="card-box">
 
             <div class="mb-3">
-                <span class="font-weight-bold d-block">Name:</span>
-                <h1>{{ $data->name }}</h1>
-            </div>
-            <div class="mb-3">
-                <span class="font-weight-bold d-block">Status :</span>
-                <h4>{{ $data->status }}</h4>
-            </div>
-
-            <div class="mb-3">
-                <span class="font-weight-bold d-block mb-3">Books owned by the author :</span>
-                <div class="table-responsive border ">
-                    <table class="table table-borderles">
-                        <thead>
-                            <tr>
-                                <th>Name Book</th>
-                                <th>Categories </th>
-                                <th>Status</th>
-                                <th>#</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($data->books as $book)
-                            <tr>
-
-                                <td>
-                                    {{ $book->title ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $book->category->name ?? '' }}
-                                </td>
-                                <td>{{ $book->status ?? '-' }}</td>
-
-                                <td class="d-flex">
-                                    <div class="mr-1">
-                                        <a href="#" target="_blank"
-                                            class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip"
-                                            title='Show'><i class="fa-solid fa-edit"></i></a>
-                                    </div>
-
-                                </td>
-                            </tr>
-
-                            @empty
-                            <tr>
-                                <td colspan="3">Data tidak ada</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-
-            @if (Auth::user()->hasRole('users'))
-            <div class="mb-3">
-
-                <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">
-                    @csrf
-
-                    <input type="text" name="book_id" value="{{ $data->id }}">
-                    <input type="text" name="user_id" value="{{ Auth::user()->id }}">
-
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa-solid fa-paper-plane"></i> Borrow
-                    </button>
-                </form>
-
+                <span class="font-weight-bold d-block">Program Title:</span>
+                <p>{{ $data->program_title }}</p>
             </div>
             <!-- end item -->
-            @endif
+
+            <div class="mb-3">
+                <span class="font-weight-bold d-block">Short Description :</span>
+                <p>{{ $data->short_description }}</p>
+            </div>
+            <!-- end item -->
+
+            <div class="mb-3">
+                <span class="font-weight-bold d-block">Full Description :</span>
+                <p>{!! $data->full_description !!}</p>
+            </div>
+            <!-- end item -->
+
+            <div class="mb-3">
+                <span class="font-weight-bold">Status :</span> {!! $data->status !!}
+            </div>
+            <!-- end item -->
+            
         </div>
     </div>
 </div>
 <!-- end row-->
+
+@include('dashboard.layout.includes.form-input.edit-button')
 
 @stop
 

@@ -18,7 +18,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
+                                <th>Program Title</th>
                                 <th width="280px">Action</th>
                             </tr>
                             @if(!$datas->isEmpty())
@@ -26,7 +26,7 @@
                             @foreach ($datas as $data)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $data->name ?? '' }}</td>
+                                <td>{{ $data->program_title ?? '' }}</td>
                                 @include('dashboard.layout.includes.trash-action')
                             </tr>
                             @endforeach

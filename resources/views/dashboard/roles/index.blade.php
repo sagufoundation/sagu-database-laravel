@@ -3,14 +3,14 @@
 
 @include('dashboard.layout.includes.breadcrumb2')
 
-
-
 <div class="row">
-    <div class="col-12">
+    <div class="col-6">
         <div class="card">
+            <div class="card-header">
+                <p>Roles are used to manage and control user access to various features, functions, and data on the website. We use roles to help ensure users only have the privileges necessary to perform their specific tasks and responsibilities, while also maintaining security and data integrity.</p>
+            </div>
             <div class="card-body">
-                @include('dashboard.layout.includes.form-input.search')
-                <div class="mt-3 table-responsive">
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <tr>
                             <th width="1%">No</th>

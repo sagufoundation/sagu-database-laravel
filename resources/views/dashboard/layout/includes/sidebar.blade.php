@@ -177,22 +177,25 @@
 
                                 <li class="@if(Request::segment(2) == 'users') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/users') }}">
-                                        <i class="fa-solid fa-users"></i>
+                                        <i class="fa-solid fa-users"></i> <span> All Users </span>                                        
+                                        @if($database_total_publish_users != 0)
                                         <span class="badge badge-success badge-pill float-right">
-                                            {{ '0' }}
+                                            {{ $database_total_publish_users ?? '0' }}
                                         </span>
-                                        <span> All Users </span>
+                                        @endif
+
                                     </a>
                                 </li>
                                 <!-- menu item end -->
 
                                 <li class="@if(Request::segment(2) == 'roles') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/roles') }}">
-                                        <i class="fa-solid fa-tags"></i>
+                                        <i class="fa-solid fa-tags"></i> <span> Roles </span>
+                                        @if($database_total_roles != 0)
                                         <span class="badge badge-success badge-pill float-right">
-                                            {{ '0' }}
+                                            {{ $database_total_roles ?? '0' }}
                                         </span>
-                                        <span> Roles </span>
+                                        @endif
                                     </a>
                                 </li>
                                 <!-- menu item end -->

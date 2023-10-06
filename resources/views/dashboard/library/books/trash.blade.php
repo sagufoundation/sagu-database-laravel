@@ -68,13 +68,13 @@
           var form =  $(this).closest("form");
           event.preventDefault();
           swal.fire({
-            title: 'Anda Yakin?',
-            text: "data akan terhapus permanen!",
+            title: 'Are you sure?',
+            text: "This data will be deleted permantently!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Bersihkan!'
+            confirmButtonText: 'Yes, Just delete!'
           })
           .then((result) => {
             if (result.isConfirmed) {
@@ -87,7 +87,6 @@
             }
         });
       });
-
 </script>
 
 @endpush

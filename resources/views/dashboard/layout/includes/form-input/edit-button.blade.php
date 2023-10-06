@@ -4,9 +4,16 @@
             <div class="card-body">
                 <div class="col-3">
                     <div class="button-list pe-xl-4 d-grid">
-                        <a href="{{ url(Request::segment('1').'/'.Request::segment('2').'/edit', $data->id) }}" class="btn btn-lg btn-primary waves-effect waves-light">
-                            <i class="fa-solid fa-save mr-1"></i> Ubah
+
+                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit',  $data->id) }}" class="btn btn-lg btn-primary">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit
                         </a>
+                        <!-- end item -->
+            
+                        <a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}" class="btn btn-lg btn-outline-primary">
+                            <i class="fa-solid fa-reply"></i> Back to {{ ucfirst(Request::segment(2)) }} 
+                        </a>
+                        <!-- end item -->
                     </div>
                 </div> <!-- end col -->
             </div>

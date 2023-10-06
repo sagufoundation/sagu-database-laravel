@@ -4,25 +4,20 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
-
 use App\Models\Program;
 use App\Models\Province;
 use App\Models\Students;
 use App\Models\Documents;
 use App\Models\Education;
+
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class StudentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // PUBLISH VIEW
     public function index()
     {
         $datas = User::where([
@@ -53,6 +48,7 @@ class StudentsController extends Controller
             ))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    // DRAFT VIEW
     public function draft()
     {
         $datas = User::where([
@@ -76,23 +72,14 @@ class StudentsController extends Controller
         return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // CREATE VIEW
     public function create()
     {
         $provinces = Province::all();
         return view('dashboard.database.students.create',compact('provinces'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // STORE
     public function store(Request $request)
     {
 
@@ -173,12 +160,7 @@ class StudentsController extends Controller
         return redirect('dashboard/students/show/' . User::find($data->id)->id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Students  $Students
-     * @return \Illuminate\Http\Response
-     */
+    // SHOW VIEW
     public function show($id)
     {
         $data = User::where('id', $id)->first();
@@ -188,12 +170,7 @@ class StudentsController extends Controller
         return view('dashboard.database.students.show', compact('data', 'documents', 'formal_educations', 'non_formal_educations'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Students  $students
-     * @return \Illuminate\Http\Response
-     */
+    // EDIT VIEW
     public function edit($id)
     {
         $data = User::where('id', $id)->first();
@@ -208,13 +185,7 @@ class StudentsController extends Controller
         return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs','data_programs'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Students  $Students
-     * @return \Illuminate\Http\Response
-     */
+    // UPDATE
     public function update(Request $request, $id)
     {
         // create validation
@@ -276,10 +247,7 @@ class StudentsController extends Controller
         return redirect('dashboard/students/show/' . Students::find($data->id)->id);
     }
 
-    /**
-     * update > profile.
-     *
-     */
+    // UPDATE PROFILE
     public function update_profile(Request $request, $id) {
 
         // select data by id
@@ -290,16 +258,14 @@ class StudentsController extends Controller
         $student = $data->student ?? new Students();
         $student->profile = $request->profile;
         $data->students()->save($student);
-        // create alert
+
+        // create alert & redirect
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
 
     }
 
-    /**
-     * update > biography.
-     *
-     */
+    // UPDATE PICTURE
     public function update_picture(Request $request, $id) {
         // dd('update picture');
 
@@ -330,16 +296,13 @@ class StudentsController extends Controller
         // update process
         $data->update();
 
-        // create alert
+        // create alert & redirect
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
 
     }
 
-    /**
-     * update > biography.
-     *
-     */
+    // UPDATE BIOGRAPHY
     public function update_biography(Request $request, $id) {
 
         // select data by id
@@ -359,16 +322,13 @@ class StudentsController extends Controller
         $student->date_of_birth = $request->date_of_birth;
         $data->students()->save($student);
 
-        // create alert
+        // create alert & redirect
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
 
     }
 
-    /**
-     * update > contact
-     *
-     */
+    // UPDATE CONTACT
     public function update_contact(Request $request, $id) {
 
         // dd('contact info');
@@ -387,16 +347,13 @@ class StudentsController extends Controller
         // update process
         $data->students()->save($student);
 
-        // create alert
+        // create alert & redirect
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
 
     }
 
-    /**
-     * update > address
-     *
-     */
+    // UPDATE ADDRESS
     public function update_address(Request $request, $id) {
 
         // select data by id
@@ -409,17 +366,13 @@ class StudentsController extends Controller
         $student->full_address = $request->full_address;
         $data->students()->save($student);
 
-
-        // create alert
+        // create alert & redirect
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
 
     }
 
-    /**
-     * update > documents
-     *
-     */
+    // UPDATE DOCUMENTS
     public function update_documents(Request $request, $id) {
 
         // dd('doc_google_sheets');
@@ -434,21 +387,14 @@ class StudentsController extends Controller
          // update process
         $data->students()->save($student);
 
-
-        // create alert
+        // create alert & redirect
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
 
     }
 
-    /**
-     * update > programs
-     *
-     */
+    // UPDATE PROGRAMS
     public function update_programs(Request $request, $id) {
-
-
-        // dd(json_encode($request->programs)); // explode(",",$fruit)
 
         // select data by id
         $data = Students::find($id);
@@ -463,16 +409,13 @@ class StudentsController extends Controller
         // update process
         $data->update();
 
-        // create alert
+        // create alert & redirect
         alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
         return redirect()->back();
 
     }
 
-    /**
-     * update > educations
-     *
-     */
+    // UPDATE EDUCATION
     public function update_educations(Request $request, $id) {
 
         // select data by id
@@ -484,26 +427,22 @@ class StudentsController extends Controller
         // update process
         $data->update();
 
-        // create alert
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        // create alert & redirect
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // DESTROY OR MOVE TO TRASH
     public function destroy($id)
     {
         $data = User::find($id);
         $data->delete();
-        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
-        return redirect()->route('dashboard.database.students.trash');
+        alert()->success('Trashed', 'Data has been moved to trash!')->autoclose(1100);
+        return redirect()->back();
     }
 
+    // TRASH VIEW
     public function trash()
     {
         $datas = User::onlyTrashed()->paginate(10);
@@ -514,14 +453,18 @@ class StudentsController extends Controller
         return view('dashboard.database.Students.trash', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    // RESTORE
     public function restore($id)
     {
         $data = User::onlyTrashed()->where('id', $id);
         $data->restore();
-        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+
+        // create alert & redirect
+        alert()->success('Restored', 'Data has been restored!!')->autoclose(1100);
         return redirect()->back();
     }
 
+    // DELETE PERMANENTLY
     public function delete($id)
     {
         $data = User::onlyTrashed()->findOrFail($id);
@@ -532,7 +475,9 @@ class StudentsController extends Controller
         }
 
         $data->forceDelete();
-        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+
+        // create alert & redirect
+        alert()->success('Deleted', 'Data dleted permanently!!')->autoclose(1100);
         return redirect()->back();
     }
 }

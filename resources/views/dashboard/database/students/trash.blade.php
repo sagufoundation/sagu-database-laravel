@@ -71,18 +71,17 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
-
-     $('.show_confirm').click(function(event) {
+    $('.show_confirm').click(function(event) {
           var form =  $(this).closest("form");
           event.preventDefault();
           swal.fire({
-            title: 'Anda Yakin?',
-            text: "data akan terhapus permanen!",
+            title: 'Are you sure?',
+            text: "This data will be deleted permantently!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Bersihkan!'
+            confirmButtonText: 'Yes, Just delete!'
           })
           .then((result) => {
             if (result.isConfirmed) {
@@ -95,7 +94,6 @@
             }
         });
       });
-
 </script>
 
 @endpush

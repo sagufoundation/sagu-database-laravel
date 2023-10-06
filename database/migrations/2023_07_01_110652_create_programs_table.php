@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('program_title')->nullable();
+            $table->string('slug')->nullable();
             $table->string('short_description')->nullable();
             $table->mediumText('full_description')->nullable();
             $table->string('program_start')->nullable();

@@ -43,6 +43,7 @@
                                     </span>
                                     @endif
                                 </div>
+                                <!-- end col -->
                                 <div class="col-md-6">
                                     <label for="catagory_id" class="form-label">Categories <span class="text-danger">*</span></label>
                                     <select name="catagory_id" id="catagory_id" class="form-control">
@@ -58,6 +59,7 @@
                                     </span>
                                     @endif
                                 </div>
+                                <!-- end col -->
                             </div>
 
                         </div>
@@ -75,6 +77,7 @@
                                     </span>
                                     @endif
                                 </div>
+                                <!-- end col -->
                                 <div class="col-md-6">
                                     <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                                     <select name="status" id="" class="form-control">
@@ -90,6 +93,7 @@
                                     </span>
                                     @endif
                                 </div>
+                                <!-- end col -->
                             </div>
 
                         </div>
@@ -118,6 +122,7 @@
                         </div>
                         <!-- input group end -->
                     </div>
+                    <!-- end col -->
                 </div>
                 <!-- input item end-->
 

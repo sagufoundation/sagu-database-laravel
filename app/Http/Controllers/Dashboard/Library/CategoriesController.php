@@ -68,11 +68,11 @@ class CategoriesController extends Controller
              $request->all(),
              [
                  'name' => 'required',
-                 'status' => 'required',
+                //  'status' => 'required',
              ],
              [
                  'name.required' => 'This is a reaquired field',
-                 'status.required' => 'This is a reaquired field',
+                //  'status.required' => 'This is a reaquired field',
              ]
          );
 
@@ -82,6 +82,7 @@ class CategoriesController extends Controller
              try {
                  $data = new Catagories();
                  $data->name = $request->name;
+                 $data->description = $request->status;
                  $data->status = $request->status;
                  $data->slug = Str::slug($data->name);
                  $data->save();
@@ -102,11 +103,11 @@ class CategoriesController extends Controller
              $request->all(),
              [
                  'name' => 'required',
-                 'status' => 'required',
+                //  'status' => 'required',
              ],
              [
                  'name.required' => 'This is a reaquired field',
-                 'status.required' => 'This is a reaquired field',
+                //  'status.required' => 'This is a reaquired field',
              ]
          );
 
@@ -116,6 +117,7 @@ class CategoriesController extends Controller
              try {
                  $data = Catagories::find($id);
                  $data->name = $request->name;
+                 $data->description = $request->status;
                  $data->status = $request->status;
                  $data->slug = Str::slug($data->name);
                  $data->update();
