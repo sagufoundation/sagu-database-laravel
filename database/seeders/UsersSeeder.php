@@ -28,8 +28,6 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('janzen.faidiban@sagufoundation.org'),
                 'status' => 'Publish',
                 'role' => 'administrator',
-
-
             ],
             [
                 'first_name' => 'Febe',
@@ -42,7 +40,6 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('febe-woaraby@sagufoundation.org'),
                 'status' => 'Publish',
                 'role' => 'administrator',
-
             ],
 
             [
@@ -56,7 +53,6 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('tisha.rumbewas@sagufoundation.org'),
                 'status' => 'Publish',
                 'role' => 'administrator',
-
             ],
             [
                 'first_name' => 'Elisabeth',
@@ -69,8 +65,18 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('elisabeth.jakarimilena@sagufoundation.org'),
                 'status' => 'Publish',
                 'role' => 'administrator',
-
-
+            ],
+            [
+                'first_name' => 'Samuel',
+                'middle_name' => '',
+                'last_name' => 'Bosawer',
+                'slug' => 'samuel-bosawer',
+                'job_title' => 'Web Developer',
+                'picture' => 'images/users/00.jpg',
+                'email' => 'samuel.bosawer@sagufoundation.org',
+                'password' => bcrypt('samuel.bosawer@sagufoundation.org'),
+                'status' => 'Publish',
+                'role' => 'administrator',
             ],
             [
                 'first_name' => 'Guest',
@@ -96,7 +102,6 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('admin.bpsdm@papua.go.id'),
                 'status' => 'Publish',
                 'role' => 'guest',
-
             ],
             [
                 'first_name' => 'Anastasia',
