@@ -65,54 +65,61 @@ class AppServiceProvider extends ServiceProvider
         $startDate = Carbon::now()->startOfWeek();
         $endDate = Carbon::now()->endOfWeek();
 
-        view()->share([
+        try {
+            // Your super fun database stuff
+            view()->share([
 
-            // Settings
-            'pengaturan' => Settings::first(),
+                // Settings
+                'pengaturan' => Settings::first(),
+    
+                // Totals
+                'dashboard_total_students' =>  User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count(),
+                'dashboard_total_students_draft' => User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count(),
+                'dashboard_total_students_semua' => User::count(),
+    
+                'dashboard_total_program' => Program::where('status','Publish')->count(),
+    
+                // TOTALS
+    
+                /*
+                | =========================
+                | STUDENT DATABASE
+                */
+    
+                'database_total_publish_students' =>  User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count(),
+                'database_total_publish_programs' =>  Program::where('status','Publish')->count(),
+    
+    
+                /*
+                | =========================
+                | LIBRARY
+                */
+    
+                // FOR ADMINISTRATOR
+                'database_total_publish_books' =>  Book::where('status','Publish')->orWhere('status', 'Draft')->count(),
+                'database_total_publish_catagories' =>  Catagories::where('status','Publish')->orWhere('status', 'Draft')->count(),
+                'database_total_publish_authors' =>  Author::where('status','Publish')->orWhere('status', 'Draft')->count(),
+                'database_total_publish_loan_books' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(),
+                
+                'database_total_publish_users' =>  Author::where('status','Publish')->orWhere('status', 'Draft')->count(),
+                'database_total_roles' =>  Roles::count(),
+                
+                // FOR USER / STUDENTS
+                'database_total_publish_books_forStudents' =>  Book::where('status','Publish')->count(),
+                'database_total_publish_loan_books_forStudents' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(), //  perlu diperbaiki agar jumlah yg tampil hanya jumlah milik user yg login
+    
+    
+                /*
+                | =========================
+                | USERS
+                */
+    
+            ]);
+        } catch (\Exception $e) {
+            // do nothing
+        }
 
-            // Totals
-            'dashboard_total_students' =>  User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count(),
-            'dashboard_total_students_draft' => User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count(),
-            'dashboard_total_students_semua' => User::count(),
-
-            'dashboard_total_program' => Program::where('status','Publish')->count(),
-
-            // TOTALS
-
-            /*
-            | =========================
-            | STUDENT DATABASE
-            */
-
-            'database_total_publish_students' =>  User::whereHas('roles',function($q){$q->where('name','users');})->where('status', 'Publish')->count(),
-            'database_total_publish_programs' =>  Program::where('status','Publish')->count(),
-
-
-            /*
-            | =========================
-            | LIBRARY
-            */
-
-            // FOR ADMINISTRATOR
-            'database_total_publish_books' =>  Book::where('status','Publish')->orWhere('status', 'Draft')->count(),
-            'database_total_publish_catagories' =>  Catagories::where('status','Publish')->orWhere('status', 'Draft')->count(),
-            'database_total_publish_authors' =>  Author::where('status','Publish')->orWhere('status', 'Draft')->count(),
-            'database_total_publish_loan_books' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(),
-            
-            'database_total_publish_users' =>  Author::where('status','Publish')->orWhere('status', 'Draft')->count(),
-            'database_total_roles' =>  Roles::count(),
-            
-            // FOR USER / STUDENTS
-            'database_total_publish_books_forStudents' =>  Book::where('status','Publish')->count(),
-            'database_total_publish_loan_books_forStudents' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(), //  perlu diperbaiki agar jumlah yg tampil hanya jumlah milik user yg login
-
-
-            /*
-            | =========================
-            | USERS
-            */
-
-        ]);
+        
 
     }
 
