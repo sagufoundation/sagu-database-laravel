@@ -30,8 +30,7 @@ class AuthorsController extends Controller
         return view(
             'dashboard.library.authors.index',
             compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
-        )
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        )->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // DRAFT
@@ -150,7 +149,7 @@ class AuthorsController extends Controller
     public function show($id)
     {
         $data = Author::where('id', $id)->first();
-        return view('dashboard.library.authors.show', compact('data'));
+        return view('dashboard.library.authors.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // DESTROY

@@ -23,7 +23,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Cover</th>
-                                <th>Name Book</th>
+                                <th>Name Title</th>
                                 <th>Categories </th>
                                 <th>Status</th>
                                 <th>#</th>
@@ -47,7 +47,7 @@
 
                                 <td class="d-flex">
                                     <div class="mr-1">
-                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-edit"></i></a>
+                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-show"></i></a>
                                     </div>
                                 </td>
                             </tr>

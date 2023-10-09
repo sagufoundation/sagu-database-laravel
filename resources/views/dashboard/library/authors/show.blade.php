@@ -25,7 +25,9 @@
                     <table class="table table-borderles">
                         <thead>
                             <tr>
-                                <th>Name Book</th>
+                                <th>No</th>
+                                <th>Cover</th>
+                                <th>Name Title</th>
                                 <th>Categories </th>
                                 <th>Status</th>
                                 <th>#</th>
@@ -35,6 +37,10 @@
                             @forelse ($data->books as $book)
                             <tr>
 
+                                <td>{{ ++$i }}</td>
+                                <td>
+                                    <img src="{{ asset($book->cover) }}" alt="cover" style="width:3rem;">
+                                </td>
                                 <td>
                                     {{ $book->title ?? '' }}
                                 </td>
@@ -45,9 +51,7 @@
 
                                 <td class="d-flex">
                                     <div class="mr-1">
-                                        <a href="#" target="_blank"
-                                            class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip"
-                                            title='Show'><i class="fa-solid fa-edit"></i></a>
+                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-eye"></i></a>
                                     </div>
 
                                 </td>
