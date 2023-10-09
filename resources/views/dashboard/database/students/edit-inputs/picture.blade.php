@@ -14,7 +14,7 @@
                 @endif
                 
             </div>
-            <label for="picture" class="form-label d-block">Picture <span class="text-danger">*</span></label>
+            <label for="picture" class="form-label d-block">Picture</label>
             @if ($errors->has('picture'))
             <span class="text-danger" role="alert">
                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('picture') }}</small>
@@ -29,10 +29,11 @@
         </div>
         <!-- input item end -->
 
-        <button  type="submit" class="btn btn-sm btn-lg btn-primary waves-effect waves-light">
+        <button type="submit" class="btn btn-lg btn-lg btn-primary waves-effect waves-light">
             <i class="fa-solid fa-save mr-1"></i> Save
         </button>
-        <!-- submit button end --> 
+        <!-- submit button end -->
+                <!-- submit button end --> 
     
     </div> <!-- ebd col -->
     

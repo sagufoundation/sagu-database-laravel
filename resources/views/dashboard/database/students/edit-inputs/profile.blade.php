@@ -92,6 +92,7 @@
     </div>
 
 </div>
+<!-- .row end -->
 
 <button type="submit" class="btn btn-lg btn-lg btn-primary waves-effect waves-light">
     <i class="fa-solid fa-save mr-1"></i> Save

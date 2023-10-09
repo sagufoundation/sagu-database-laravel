@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class StudentsController extends Controller
 {
@@ -86,7 +87,7 @@ class StudentsController extends Controller
         $request->validate(
             [
                 'first_name' => 'required',
-                'phone' => 'required|unique:users,phone|max:13',
+                // 'phone' => 'required|unique:users,phone|max:13',
                 'email' => 'required|unique:users,email|string',
                 'password'  => 'required|confirmed|min:8',
                 'password_confirmation' => 'required_with:password|same:password|min:8'
@@ -99,7 +100,7 @@ class StudentsController extends Controller
             ],
             [
                 'first_name.required'   => 'This is required',
-                'phone.required'        => 'This is required',
+                // 'phone.required'        => 'This is required',
                 'email.required'        => 'This is required',
                 'password.required'     => 'This is required',
                 'password_confirmation.required'     => 'This is required',
@@ -428,6 +429,43 @@ class StudentsController extends Controller
         return redirect()->back();
 
     }
+
+    // // UPDATE PASSWORD
+    // public function update_password(Request $request, $id)
+    // {
+
+    //     // dd($request->password);
+
+    //     // create validation
+    //     $request->validate(
+    //         [
+    //             'password'  => 'required|confirmed|min:8',
+    //             'password_confirmation' => 'required_with:password|same:password|min:8'
+    //         ],
+    //         [
+    //             'password.required'     => 'This is required',
+    //             'password_confirmation.required'     => 'This is required'
+    //         ]
+    //     );
+
+    //     // select data by id
+    //     $data = Students::find($id);
+
+    //     // create new variable
+    //     // $data->password = Hash::make($request->password);
+
+    //     // update process
+    //     // $data->update();
+
+    //     $data->password = Hash::make($request->password);
+    //     $data->save();
+
+    //     // create alert
+    //     alert()->success('Updated', 'Data has been updated')->autoclose(1100);
+
+    //     // redirect page
+    //     return redirect('dashboard/students/show/' . Students::find($data->id)->id);
+    // }
 
     // DESTROY OR MOVE TO TRASH
     public function destroy($id)

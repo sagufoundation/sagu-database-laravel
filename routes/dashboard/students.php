@@ -76,6 +76,10 @@ use Illuminate\Support\Facades\Route;
             Route::get('students/edit/educations/{id}','edit')
             ->name('dashboard.students.edit.educations');
 
+            // edit > educations
+            Route::get('students/edit/password/{id}','edit')
+            ->name('dashboard.students.edit.password');
+
 
 
 
@@ -116,6 +120,10 @@ use Illuminate\Support\Facades\Route;
             // update > educations
             Route::put('students/update/educations/{id}','update_educations')
                 ->name('dashboard.students.update.educations');
+
+            // update > change password
+            Route::put('students/update/password/{id}','update_password')
+                ->name('dashboard.students.update.password');
 
 
 

@@ -16,21 +16,6 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        // $rolesName = [
-        //     'administrator',
-        //     'users',
-        //     'guest',
-        //     'student',
-        //     'librarian'
-        // ];
-        // foreach ($rolesName as $role) {
-        //         Role::create([
-        //             'name' => $role,
-        //             'guard_name' => 'web',
-        //             'display_name' => Str::ucfirst($role),
-        //             'description' => $rolesDesc,
-        //         ]);
-        // }
 
         Role::create([
             'name' => 'administrator',

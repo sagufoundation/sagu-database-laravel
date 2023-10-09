@@ -40,6 +40,9 @@
                                         @elseif (Request::segment(4) == 'educations')
                                             @include('dashboard.database.students.edit-inputs.educations')
 
+                                        @elseif (Request::segment(4) == 'password')
+                                            @include('dashboard.database.students.edit-inputs.password')
+
                                         @elseif(Request::segment(4) == '')
 
                                         @endif

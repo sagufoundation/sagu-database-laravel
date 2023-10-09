@@ -44,6 +44,9 @@
                                                 <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/edit/educations', $data->id) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'educations') active @endif">
                                                     <i class="fa-solid fa-graduation-cap mr-1"></i> Educations
                                                 </a>
+                                                {{-- <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/edit/password', $data->id) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'password') active @endif">
+                                                    <i class="fa-solid fa-graduation-cap mr-1"></i> Password
+                                                </a> --}}
                                             </div>
 
                                         </div>

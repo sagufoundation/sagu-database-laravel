@@ -92,7 +92,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="job_title" class="form-label">Job </label>
-                            <input type="text" name="job_title" id="job_title" value="{{ old('job_title',$data->job_title) ?? '' }}"
+                            <input type="text" name="job_title" id="job_title" value="{{ old('job_title', $data->job_title) ?? '' }}"
                                 placeholder="job title" class="form-control">
                             @if ($errors->has('job_title'))
                             <span class="text-danger" role="alert">
@@ -113,9 +113,8 @@
                                 @foreach ($roles as $role )
                                     @if ($role->name === "student")
                                     @else
-                                     <option value="{{ $role->id }}"
-                                        @if ($idRole == $role->id)selected="selected"  @endif>
-                                        {{ $role->display_name }}
+                                     <option value="{{ $role->id }}" @if ($idRole == $role->id) selected @endif> 
+                                        {{ $role->display_name }} {{ $idRole }}
                                     </option>
                                     @endif
                                 @endforeach

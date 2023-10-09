@@ -201,10 +201,12 @@
                                                         </div> --}}
                                                         <!-- input group end -->
                                                     </div>
-                                                    <div class="col-md-8">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
                                                         <div class="mb-3">
                                                             <label for="full_address" class="form-label">Full Address</label>
-                                                            <textarea name="full_address" id="full_address" cols="30" rows="5" class="form-control">{{ old('full_address') ?? '' }}</textarea>
+                                                            <textarea name="full_address" id="full_address" cols="30" rows="3" class="form-control" placeholder="Write the full address here">{{ old('full_address') ?? '' }}</textarea>
                                                             @if ($errors->has('full_address'))
                                                                 <span class="text-danger" role="alert">
                                                                     <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('full_address') }}</small>
