@@ -157,25 +157,25 @@ class UserController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'first_name'        => 'required',
-                'last_name'         => 'required',
-                'email'             => 'required|email|unique:users,email,'.$id,
-                'phone'             => 'unique:users,phone,'.$id,
-                'password'          => 'confirmed',
-                'roles'             => 'required',
-                'status'            => 'required',
-                'picture'           => 'mimes:png,jpeg,jpg|max:2096',
+                'first_name'            => 'required',
+                'last_name'             => 'required',
+                'email'                 => 'required|email|unique:users,email,'.$id,
+                'phone'                 => 'unique:users,phone,'.$id,
+                'password'              => 'confirmed',
+                'roles'                 => 'required',
+                'status'                => 'required',
+                'picture'               => 'mimes:png,jpeg,jpg|max:2096',
             ],
             [
-                'first_name.required'     => 'This is a reaquired field',
-                'last_name.required'      => 'This is a reaquired field',
-                'email.required'          => 'This is a reaquired field',
-                'password.required'       => 'This is a reaquired field',
-                'roles.required'          => 'This is a reaquired field',
-                'status.required'         => 'This is a reaquired field',
+                'first_name.required'   => 'This is a reaquired field',
+                'last_name.required'    => 'This is a reaquired field',
+                'email.required'        => 'This is a reaquired field',
+                'password.required'     => 'This is a reaquired field',
+                'roles.required'        => 'This is a reaquired field',
+                'status.required'       => 'This is a reaquired field',
 
-                'picture.mimes'           => 'Type of this file must be PNG, JPG, JPEG',
-                'picture.max'             => 'Files must be a maximum of 2 MB',
+                'picture.mimes'         => 'Type of this file must be PNG, JPG, JPEG',
+                'picture.max'           => 'Files must be a maximum of 2 MB',
             ]
         );
         if ($validator->fails()) {
@@ -216,9 +216,6 @@ class UserController extends Controller
             }
         }
 
-
-
-
     }
 
     // DESTROY
@@ -227,7 +224,7 @@ class UserController extends Controller
         $data = User::findOrFail($id);
         $data->save();
         User::find($id)->delete();
-        alert()->success('Successfully', 'Sukses!!')->autoclose(1500);
+        alert()->success('Trashed', 'Data has been movet to trash!')->autoclose(1100);
         return redirect()->back();
     }
 
@@ -243,7 +240,7 @@ class UserController extends Controller
     // RESTORE
     public function restore($id){
         User::withTrashed()->where('id',$id)->restore();
-        alert()->success('Successfully', 'Sukses!!')->autoclose(1500);
+        alert()->success('Restored', 'Data has been resotred!')->autoclose(1100);
         return redirect()->back();
     }
 
@@ -255,10 +252,9 @@ class UserController extends Controller
 
         if (file_exists($path)) {
             File::delete($path);
-            // $data->delete();
         }
         $data->forceDelete();
-        alert()->success('Successfully', 'Sukses!!')->autoclose(1100);
+        alert()->success('Deleted', 'Data has been deleted permanently!')->autoclose(1100);
         return redirect()->back();
     }
 
