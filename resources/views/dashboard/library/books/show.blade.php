@@ -14,7 +14,6 @@
             <!-- end item -->
 
             <div class="mb-3">
-
                 <div class="row">
                     <div class="col-md-4">
                         <span class="font-weight-bold d-block">Author:</span>
@@ -35,7 +34,7 @@
             <!-- end item -->
 
             {{-- ===================================== USERS START ===================================== --}}
-            @if (Auth::user()->hasRole('users'))
+            @if (Auth::user()->hasRole('student'))
             <div class="mb-3">
 
                 <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">
@@ -59,6 +58,7 @@
 
             {{-- ===================================== ADMINISTRATOR START ===================================== --}}
             @if (Auth::user()->hasRole('administrator'))
+            
             <div class="mb-3">
 
                 <div class="row">
@@ -92,6 +92,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             @forelse ($data->loan as $loan)
                             <tr>
 
@@ -112,14 +113,12 @@
                                     <span class="text-warning"><i class="fa fa-dot-circle"></i> Pending</span>
                                     @endif
                                 </td>
-
                                 <td class="d-flex">
                                     <div class="mr-1">
                                         <a class="btn btn-primary w-100" href="{{ url('dashboard/books/loan-logs/edit',  $data->id) }}">
                                             <i class="fa-solid fa-pen-to-square"></i> Edit
                                         </a>
                                     </div>
-
                                 </td>
                             </tr>
 
@@ -148,6 +147,7 @@
         </div>
     </div>
     <!-- end col-->
+
     <div class="col-md-4">
         <div class="card-box">
             @if (!$data->cover)
@@ -158,6 +158,7 @@
         </div>
     </div>
     <!-- end col-->
+
 </div>
 <!-- end row-->
 

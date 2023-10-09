@@ -86,9 +86,9 @@
                         </div>
                         <!-- .row end -->
 
-                        @else
+                        @elseif (Auth::user()->hasRole('student'))
 
-                        {{-- ===================================== USERS START ===================================== --}}
+                        {{-- ===================================== USERS/STUDENT START ===================================== --}}
 
                         <div class="row">
                             <div class="col-12">
@@ -136,5 +136,6 @@
                             <!-- col end -->
                         </div>
                         <!-- row end -->
+
                         @endif
 @stop

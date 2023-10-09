@@ -76,39 +76,6 @@
                                 </li>
                                 <!-- menu item end -->
 
-                                {{-- <li class="@if(Request::segment(1) == 'regencies') menuitem-active @endif">
-                                    <a href="{{ url(Request::segment(1).'/regencies') }}">
-                                        <i class="fa-solid fa-building-columns"></i>
-                                        <span class="badge badge-success badge-pill float-right">
-                                            {{ '0' }}
-                                        </span>
-                                        <span> Regencies</span>
-                                    </a>
-                                </li>
-                                <!-- menu item end -->
-
-                                <li class="@if(Request::segment(1) == 'provinces') menuitem-active @endif">
-                                    <a href="{{ url(Request::segment(1).'/provinces') }}">
-                                        <i class="fa-solid fa-building-columns"></i>
-                                        <span class="badge badge-success badge-pill float-right">
-                                            {{ '0' }}
-                                        </span>
-                                        <span> Provinces</span>
-                                    </a>
-                                </li>
-                                <!-- menu item end -->
-
-                                <li class="@if(Request::segment(1) == 'universities') menuitem-active @endif">
-                                    <a href="{{ url(Request::segment(1).'/universities') }}">
-                                        <i class="fa-solid fa-graduation-cap"></i>
-                                        <span class="badge badge-success badge-pill float-right">
-                                            {{ '0' }}
-                                        </span>
-                                        <span> Universities</span>
-                                    </a>
-                                </li>
-                                <!-- menu item end --> --}}
-
                                 <li class="@if(Request::segment(2) == 'programs') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/programs') }}">
                                         <i class="fa-solid fa-bars-progress"></i> <span> Programs</span>
@@ -233,7 +200,9 @@
                             </ul>
 
                         </div>
+
                     @elseif (Auth::user()->hasRole('student'))
+                        
                         <div id="sidebar-menu">
 
                             <ul id="side-menu">
@@ -250,7 +219,7 @@
 
                                 <li class="menu-title mt-2">Library</li>
 
-                                <li class="@if(Request::segment(2) == 'books') menuitem-active @endif">
+                                <li class="@if(Request::segment(2) == 'books' && Request::segment(3) == '') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/books') }}">
                                         <i class="fa-solid fa-book"></i> <span> Books </span>
                                         @if($database_total_publish_books_forStudents != 0)
@@ -262,7 +231,7 @@
                                 </li>
                                 <!-- menu item end -->
 
-                                <li class="@if(Request::segment(2) == 'loan-logs') menuitem-active @endif">
+                                <li class="@if(Request::segment(3) == 'loan-logs') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/books/loan-logs') }}">
                                         <i class="fa-solid fa-book-bookmark"></i> <span> My Loan Logs </span>
                                         @if($database_total_publish_loan_books_forStudents != 0)
@@ -277,7 +246,9 @@
                             </ul>
 
                         </div>
+
                     @elseif (Auth::user()->hasRole('librarian'))
+                        
                         <div id="sidebar-menu">
                             <ul id="side-menu">
                                 <li class="@if(Request::segment(1) == 'dashboard') menuitem-active @endif">
@@ -344,6 +315,7 @@
 
                             </ul>
                         </div>
+
                     @endif
                     <!-- End Sidebar -->
 
