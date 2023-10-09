@@ -256,7 +256,7 @@ class StudentsController extends Controller
         $data->update();
 
         // create alert
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
 
         // redirect page
         return redirect('dashboard/students/show/' . Students::find($data->id)->id);
@@ -264,17 +264,14 @@ class StudentsController extends Controller
 
     // UPDATE PROFILE
     public function update_profile(Request $request, $id) {
-
-        // select data by id
+        
         $data = User::find($id);
-
-        // create new variable
+        
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
         $data->status = $request->status;
-        // $data->phone = $request->phone;
-        // update process
+        
         $data->update();
 
         $student = $data->student ?? new Students();
@@ -285,55 +282,45 @@ class StudentsController extends Controller
         $data->students()->save($student);
 
         // create alert & redirect
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
 
     }
 
     // UPDATE BIOGRAPHY
     public function update_biography(Request $request, $id) {
-
-        // select data by id
+        
         $data = User::find($id);
-        $data->status = $request->status;
-        // create new variable
+        
         $data->update();
+        
         $student = $data->student ?? new Students();
         $student->profile = $request->profile;
 
         $data->students()->save($student);
 
         // create alert & redirect
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
 
     }
 
     // UPDATE PICTURE
     public function update_picture(Request $request, $id) {
-        // dd('update picture');
-
-        // select data by id
+        
         $data = User::find($id);
 
         // picture creation
         if (isset($request->picture)) {
-
-            // create file name
+            
             $fileName = $request->picture->getClientOriginalName();
-
-            // crate file path
             $path = public_path('images/students/' . $data->picture);
-
-            // delete file if exist
+            
             if (file_exists($path)) {
                 File::delete($path);
             }
-
-            // adding file name into database variable
+            
             $data->picture = 'images/students/' . $fileName;
-
-            // move file into folder path with the file name
             $request->picture->move(public_path('images/students/'), $fileName);
         }
 
@@ -341,32 +328,30 @@ class StudentsController extends Controller
         $data->update();
 
         // create alert & redirect
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
 
     }
 
     // UPDATE CONTACT
     public function update_contact(Request $request, $id) {
-
-        // dd('contact info');
-
-        // select data by id
+        
         $data = User::find($id);
         $data->phone = $request->phone;
+
         $data->update();
-        // create new variable
+        
         $student = $data->student ?? new Students();
+
         $student->email_google = $request->email_google;
         $student->email_outlook = $request->email_outlook;
         $student->email_sagu = $request->email_sagu;
         $student->email_campus_1 = $request->email_campus_1;
-
-        // update process
+        
         $data->students()->save($student);
 
         // create alert & redirect
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
 
     }
@@ -376,37 +361,38 @@ class StudentsController extends Controller
 
         // select data by id
         $data = User::find($id);
+
         // update process
         $data->update();
-        // create new variable
+        
         $student = $data->student ?? new Students();
+
         $student->province_id = $request->province_id;
         $student->full_address = $request->full_address;
+
         $data->students()->save($student);
 
         // create alert & redirect
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
 
     }
 
     // UPDATE DOCUMENTS
     public function update_documents(Request $request, $id) {
-
-        // dd('doc_google_sheets');
-
-        // select data by id
+        
         $data = User::find($id);
-         // update process
+        
         $data->update();
-        // create new variable
+        
         $student = $data->student ?? new Students();
+
         $student->doc_google_sheets = $request->doc_google_sheets;
-         // update process
+        
         $data->students()->save($student);
 
         // create alert & redirect
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
 
     }
@@ -494,6 +480,7 @@ class StudentsController extends Controller
         return redirect()->back();
     }
 
+    // DELETE PROGRAM PERMANENTLY
     public function delete_program($id)
     {
         $data = User::findOrFail($id);

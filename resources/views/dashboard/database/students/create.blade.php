@@ -176,7 +176,7 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="mb-3">
-                                                            <label for="province_id" class="form-label">Province <span class="text-danger">*</span></label>
+                                                            <label for="province_id" class="form-label">Province</label>
                                                             <select class="custom-select" name="province_id">
                                                                 <option value="" hidden>Select</option>
                                                                 @foreach ($provinces as  $province)
