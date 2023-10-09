@@ -56,7 +56,7 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="d-block p-1">
-                                                                        <a class="btn btn-primary w-100" href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/biography',  $data->id) }}">
+                                                                        <a class="btn btn-primary w-100" href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit/profile',  $data->id) }}">
                                                                             <i class="fa-solid fa-pen-to-square d-block"></i> Edit
                                                                         </a>
                                                                     </div>
