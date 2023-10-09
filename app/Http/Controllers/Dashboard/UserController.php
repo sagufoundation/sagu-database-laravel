@@ -189,6 +189,9 @@ class UserController extends Controller
                 $data->job_title = $request->job_title;
                 $data->email = $request->email;
                 $data->phone = $request->phone;
+                
+                $data->password = Hash::make($request->password);
+
                 $data->status = $request->status;
                 $data->slug = Str::slug($data->first_name);
 
@@ -206,7 +209,9 @@ class UserController extends Controller
                 }
 
                 $data->update();
+
                 $data->syncRoles(explode(',', $request->roles));
+
                 Alert::toast('Created! This data has been updated successfully.', 'success');
                 return redirect('dashboard/users/show/' . $data->id);
 
