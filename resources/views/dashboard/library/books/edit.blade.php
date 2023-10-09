@@ -36,7 +36,7 @@
                                         <option value="" hidden>Select</option>
                                         @foreach ($authors as $author )
                                             <option value="{{ $author->id }}"
-                                                @if($data->author_id == $author->id)selected="selected"@endif >
+                                                @if($data->author_id == $author->id) selected="selected" @endif >
                                             {{ $author->name }}
                                         </option>
                                         @endforeach
@@ -55,7 +55,7 @@
                                     <select name="catagory_id" id="catagory_id" class="form-control">
                                         <option value="" hidden>Select</option>
                                         @foreach ($categories as $category )
-                                            <option value="{{ $category->id }}" @if($data->catagory_id == $category->id)selected="selected"@endif>
+                                            <option value="{{ $category->id }}" @if($data->catagory_id == $category->id) selected="selected" @endif>
                                                 {{ $category->name }}
                                             </option>
                                         @endforeach
@@ -112,14 +112,14 @@
                         <div class="mb-3">
                             <div class="mb-2 p-0">
                                 @if (!$data->cover)
-                                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile image not found" class="img img-thumbnail" id="preview-images">
+                                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile image not found" class="img img-thumbnail" id="preview-cover">
                                 @else
-                                <img src="{{ asset($data->cover) }}" alt="Profile image not found" class="img img-thumbnail" id="preview-images">
+                                <img src="{{ asset($data->cover) }}" alt="Profile image not found" class="img img-thumbnail" id="preview-cover">
                                 @endif
                             </div>
                             <label for="image" class="form-label d-block">Images</label>
                             <div class="custom-file w-100">
-                                <input type="file" name="cover" class="custom-file-input" id="image" value="">
+                                <input type="file" name="cover" class="custom-file-input" id="cover" value="">
                                 <small class="text-muted mt-2 d-block">Choose a file from your computer</small>
                                 <label class="custom-file-label" for="customFile">Upload images</label>
                                 @if ($errors->has('image'))
@@ -152,16 +152,15 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function (e) {
-               $('#image').change(function(){
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                  $('#preview-images').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-               });
+        $('#cover').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-cover').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+        });
 
-            });
-
+    });
 
 </script>
 @endpush

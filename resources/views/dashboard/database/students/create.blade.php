@@ -286,15 +286,15 @@
 <script type="text/javascript">
 
     $(document).ready(function (e) {
-               $('#images').change(function(){
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                  $('#preview-images').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-               });
+        $('#images').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-images').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+        });
 
-            });
+    });
 
     CKEDITOR.config.height='150px';
 </script>

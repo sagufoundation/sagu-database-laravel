@@ -118,8 +118,7 @@
                     <div class="col-md-4">
                         <div class="mb-3">
                             <div class="mb-2 p-0">
-                                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}"
-                                    alt="Profile image not found" class="img img-thumbnail" id="preview-images">
+                                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile image not found" class="img img-thumbnail" id="preview-cover">
                             </div>
                             <label for="cover" class="form-label d-block">Cover</label>
                             <div class="custom-file w-100">
@@ -157,13 +156,13 @@
 <script type="text/javascript">
 
     $(document).ready(function (e) {
-        $('#image').change(function(){
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                  $('#preview-images').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-            });
+        $('#cover').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-cover').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+        });
 
     });
 
