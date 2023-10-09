@@ -26,6 +26,7 @@
                             @endif
                         </div>
                         <!-- input group end -->
+
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-md-6">
@@ -35,7 +36,7 @@
                                         <select name="author_id" id="author_id" class="form-control">
                                             <option value="" hidden>Select</option>
                                             @foreach ($authors as $author )
-                                                <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                                <option value="{{ $author->id }}" @if(old('author_id') == $author->id) selected @endif>{{ $author->name }}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('author_id'))
@@ -46,13 +47,17 @@
                                         @endif
                                     </div>
                                     <!-- input group end -->
+                                </div>
+                                <!-- end col -->
+
+                                <div class="col-md-6">
 
                                     <div class="mb-3">
                                         <label for="catagory_id" class="form-label">Categories <span class="text-danger">*</span></label>
                                         <select name="catagory_id" id="catagory_id" class="form-control">
                                             <option value="" hidden>Select</option>
                                             @foreach ($categories as $category )
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}" @if(old('catagory_id') == $category->id) selected @endif>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('catagory_id'))
@@ -73,6 +78,7 @@
 
                         <div class="mb-3">
                             <div class="row">
+
                                 <div class="col-md-6">
                                     <label for="total" class="form-label">Total Book(s) <span class="text-danger">*</span></label>
                                     <input type="number" name="total" id="total" value="{{ old('total') ?? '' }}" class="form-control">
@@ -84,12 +90,13 @@
                                     @endif
                                 </div>
                                 <!-- end col -->
+
                                 <div class="col-md-6">
                                     <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                                     <select name="status" id="" class="form-control">
                                         <option value="" hidden>Select</option>
-                                        <option value="Publish">Publish</option>
-                                        <option value="Draft">Draft</option>
+                                        <option value="Publish" @if(old('status') == 'Publish') selected @endif>Publish</option>
+                                        <option value="Draft" @if(old('status') == 'Draft') selected @endif>Draft</option>
                                     </select>
                                     @if ($errors->has('status'))
                                     <span class="text-danger" role="alert">
@@ -100,10 +107,12 @@
                                     @endif
                                 </div>
                                 <!-- end col -->
+                                
                             </div>
 
                         </div>
                         <!-- input group end -->
+
                     </div>
 
                     <div class="col-md-4">

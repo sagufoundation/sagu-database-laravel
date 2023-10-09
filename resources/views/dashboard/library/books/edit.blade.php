@@ -26,8 +26,10 @@
                             @endif
                         </div>
                         <!-- input group end -->
+
                         <div class="mb-3">
                             <div class="row">
+                                
                                 <div class="col-md-6">
                                     <label for="author_id" class="form-label">Author <span class="text-danger">*</span></label>
                                     <select name="author_id" id="author_id" class="form-control">
@@ -47,6 +49,7 @@
                                     @endif
                                 </div>
                                 <!-- end col -->
+
                                 <div class="col-md-6">
                                     <label for="catagory_id" class="form-label">Categories</label>
                                     <select name="catagory_id" id="catagory_id" class="form-control">
@@ -65,6 +68,7 @@
                                     @endif
                                 </div>
                                 <!-- end col -->
+
                             </div>
 
                         </div>
@@ -101,6 +105,7 @@
 
                         </div>
                         <!-- input group end -->
+
                     </div>
 
                     <div class="col-md-4">
