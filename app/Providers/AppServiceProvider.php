@@ -86,8 +86,8 @@ class AppServiceProvider extends ServiceProvider
                 | STUDENT DATABASE
                 */
     
-                'database_total_publish_students' =>  User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count(),
-                'database_total_publish_programs' =>  Program::where('status','Publish')->count(),
+                'database_total_publish_students' =>  User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->orWhere('status', 'Draft')->count(),
+                'database_total_publish_programs' =>  Program::where('status','Publish')->orWhere('status', 'Draft')->count(),
     
     
                 /*
