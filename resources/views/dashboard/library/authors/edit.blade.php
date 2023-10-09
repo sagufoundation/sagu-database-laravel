@@ -15,9 +15,9 @@
                     <div class="col-md-6">
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name Author <span class="text-danger">*</span></label>
+                            <label for="name" class="form-label">Author Name <span class="text-danger">*</span></label>
                             <input type="text" name="name" id="name" value="{{ old('name',$data->name) ?? '' }}"
-                                placeholder="Name authors" class="form-control">
+                                placeholder="Write the full name" class="form-control">
                                 @if ($errors->has('name'))
                                 <span class="text-danger" role="alert">
                                     <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
@@ -26,8 +26,19 @@
                                 @endif
                         </div>
                         <!-- input group end -->
-                    </div>
-                    <div class="col-md-6">
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea name="description"  cols="30" rows="5" class="form-control" placeholder="A short description about this author">{{ old('description',$data->description) ?? '' }}</textarea>
+                                @if ($errors->has('description'))
+                                <span class="text-danger" role="alert">
+                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
+                                        $errors->first('description') }}</small>
+                                </span>
+                                @endif
+                        </div>
+                        <!-- input group end -->
+
                         <div class="mb-3">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                             <select name="status" id="" class="form-control">

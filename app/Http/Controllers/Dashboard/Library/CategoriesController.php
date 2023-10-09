@@ -27,8 +27,10 @@ class CategoriesController extends Controller
         $jumlahdraft = Catagories::where('status', 'Draft')->count();
         $datapublish = Catagories::where('status', 'Publish')->count();
 
-        return view('dashboard.library.categories.index',
-        compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view(
+            'dashboard.library.categories.index',
+            compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
+        )->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // DRAFT
@@ -42,15 +44,17 @@ class CategoriesController extends Controller
                         ->get();
                 }
             }]
-        ])->orderBy('name', 'asc')->where('status','draft')->paginate(10);
+        ])->orderBy('name', 'asc')->where('status', 'draft')->paginate(10);
 
         $jumlahtrash = Catagories::onlyTrashed()->count();
         $jumlahdraft = Catagories::where('status', 'Draft')->count();
         $datapublish = Catagories::where('status', 'Publish')->count();
 
 
-        return view('dashboard.library.categories.index',
-        compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))
+        return view(
+            'dashboard.library.categories.index',
+            compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
+        )
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -60,114 +64,116 @@ class CategoriesController extends Controller
         return view('dashboard.library.categories.create');
     }
 
-     // STORE
-     public function store(Request $request)
-     {
-         $validator = Validator::make(
-             $request->all(),
-             [
-                 'name' => 'required',
-                //  'status' => 'required',
-             ],
-             [
-                 'name.required' => 'This is a reaquired field',
-                //  'status.required' => 'This is a reaquired field',
-             ]
-         );
-
-         if ($validator->fails()) {
-             return redirect()->back()->withInput($request->all())->withErrors($validator);
-         } else {
-             try {
-                 $data = new Catagories();
-
-                 $data->name = $request->name;
-                 $data->slug = Str::slug($data->name);
-
-                 $data->description = $request->description;
-                 $data->status = $request->status;
-
-                 $data->save();
-
-                 Alert::toast('Created! This data has been created successfully.', 'success');
-                 return redirect('dashboard/categories/show/' . $data->id);
-
-             } catch (\Throwable $th) {
-                 Alert::toast('Failed! Something is wrong', 'error');
-                 return redirect()->back();
-             }
-         }
-     }
-
-     // UPDATE
-     public function update(Request $request, $id)
-     {
-         $validator = Validator::make(
-             $request->all(),
-             [
-                 'name' => 'required',
-                //  'status' => 'required',
-             ],
-             [
-                 'name.required' => 'This is a reaquired field',
-                //  'status.required' => 'This is a reaquired field',
-             ]
-         );
-
-         if ($validator->fails()) {
-             return redirect()->back()->withInput($request->all())->withErrors($validator);
-         } else {
-             try {
-                 $data = Catagories::find($id);
-                 
-                 $data->name = $request->name;
-                 $data->slug = Str::slug($data->name);
-                 $data->description = $request->description;
-                 $data->status = $request->status;
-
-                 $data->update();
-
-                 Alert::toast('Updated! This data has been updated successfully.', 'success');
-                 return redirect('dashboard/categories/show/' . $data->id);
-
-             } catch (\Throwable $th) {
-                 Alert::toast('Failed! Something is wrong', 'error');
-                 return redirect()->back();
-             }
-         }
-     }
-
-     // SHOW
-    public function show($id)
+    // STORE
+    public function store(Request $request)
     {
-        $data = Catagories::where('id', $id)->first();
-        return view('dashboard.library.categories.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                 'status' => 'required',
+            ],
+            [
+                'name.required' => 'This is a reaquired field',
+                 'status.required' => 'This is a reaquired field',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        } else {
+            try {
+                $data = new Catagories();
+
+                $data->name = $request->name;
+                $data->slug = Str::slug($data->name);
+
+                $data->description = $request->description;
+                $data->status = $request->status;
+
+                $data->save();
+
+                Alert::toast('Created! This data has been created successfully.', 'success');
+                return redirect('dashboard/categories/show/' . $data->id);
+
+            } catch (\Throwable $th) {
+                Alert::toast('Failed! Something is wrong', 'error');
+                return redirect()->back();
+            }
+        }
     }
 
     // EDIT
     public function edit($id)
     {
         $data = Catagories::where('id', $id)->first();
-        return view('dashboard.library.categories.edit',compact('data'));
+        return view('dashboard.library.categories.edit', compact('data'));
     }
 
-     // DESTROY
-     public function destroy($id)
-     {
-         $data = Catagories::find($id);
-         $data->delete();
-         alert()->success('Trashed', 'Data has been movet to trash!')->autoclose(1100);
-         return redirect()->route('dashboard.categories.trash');
-     }
-      // TRASH
+    // UPDATE
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                 'status' => 'required',
+            ],
+            [
+                'name.required' => 'This is a reaquired field',
+                 'status.required' => 'This is a reaquired field',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        } else {
+            try {
+                $data = Catagories::find($id);
+
+                $data->name = $request->name;
+                $data->slug = Str::slug($data->name);
+                $data->description = $request->description;
+                $data->status = $request->status;
+
+                $data->update();
+
+                Alert::toast('Updated! This data has been updated successfully.', 'success');
+                return redirect('dashboard/categories/show/' . $data->id);
+            } catch (\Throwable $th) {
+                Alert::toast('Failed! Something is wrong', 'error');
+                return redirect()->back();
+            }
+        }
+    }
+
+    // SHOW
+    public function show($id)
+    {
+        $data = Catagories::where('id', $id)->first();
+        return view('dashboard.library.categories.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    // DESTROY
+    public function destroy($id)
+    {
+        $data = Catagories::find($id);
+        $data->delete();
+        alert()->success('Trashed', 'Data has been movet to trash!')->autoclose(1100);
+        return redirect()->route('dashboard.categories.trash');
+    }
+
+    // TRASH
     public function trash()
     {
         $datas = Catagories::onlyTrashed()->paginate(10);
         $jumlahtrash = Catagories::onlyTrashed()->count();
         $jumlahdraft = Catagories::where('status', 'Draft')->count();
         $datapublish = Catagories::where('status', 'Publish')->count();
-        return view('dashboard.library.categories.trash',
-        compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view(
+            'dashboard.library.categories.trash',
+            compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
+        )->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // RESTORE
@@ -178,6 +184,7 @@ class CategoriesController extends Controller
         alert()->success('Restored', 'Data has been resotred!')->autoclose(1100);
         return redirect()->back();
     }
+
     // DELETE
     public function delete($id)
     {
@@ -186,6 +193,4 @@ class CategoriesController extends Controller
         alert()->success('Deleted', 'Data has been deleted permanently!')->autoclose(1100);
         return redirect()->back();
     }
-
 }
-

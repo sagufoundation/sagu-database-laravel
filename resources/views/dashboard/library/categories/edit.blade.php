@@ -39,7 +39,7 @@
                         <!-- input group end -->
 
                         <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
+                            <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                             <select name="status" id="" class="form-control">
                                 <option value="" hidden>Select</option>
                                 <option value="Draft" @if($data->status == 'Draft') selected @endif>Draft</option>

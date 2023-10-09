@@ -12,7 +12,7 @@
 
             <div class="mb-3">
                 <span class="font-weight-bold d-block">Name:</span>
-                <h1>{{ $data->name }}</h1>
+                <h1>{!! $data->name !!}</h1>
             </div>
             <div class="mb-3">
                 <span class="font-weight-bold d-block">Status :</span>
@@ -64,7 +64,7 @@
             </div>
 
 
-            @if (Auth::user()->hasRole('users'))
+            @if (Auth::user()->hasRole('student'))
             <div class="mb-3">
 
                 <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">
@@ -85,6 +85,8 @@
     </div>
 </div>
 <!-- end row-->
+
+@include('dashboard.layout.includes.form-input.edit-button')
 
 @stop
 
