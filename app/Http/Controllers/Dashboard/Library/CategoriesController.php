@@ -42,7 +42,7 @@ class CategoriesController extends Controller
                         ->get();
                 }
             }]
-        ])->orderBy('name', 'asc')->paginate(10);
+        ])->orderBy('name', 'asc')->where('status','draft')->paginate(10);
 
         $jumlahtrash = Catagories::onlyTrashed()->count();
         $jumlahdraft = Catagories::where('status', 'Draft')->count();
@@ -80,10 +80,13 @@ class CategoriesController extends Controller
          } else {
              try {
                  $data = new Catagories();
+
                  $data->name = $request->name;
-                 $data->description = $request->status;
-                 $data->status = $request->status;
                  $data->slug = Str::slug($data->name);
+
+                 $data->description = $request->description;
+                 $data->status = $request->status;
+
                  $data->save();
 
                  Alert::toast('Created! This data has been created successfully.', 'success');
@@ -95,6 +98,7 @@ class CategoriesController extends Controller
              }
          }
      }
+
      // UPDATE
      public function update(Request $request, $id)
      {
@@ -115,13 +119,15 @@ class CategoriesController extends Controller
          } else {
              try {
                  $data = Catagories::find($id);
+                 
                  $data->name = $request->name;
-                 $data->description = $request->status;
-                 $data->status = $request->status;
                  $data->slug = Str::slug($data->name);
+                 $data->description = $request->description;
+                 $data->status = $request->status;
+
                  $data->update();
 
-                 Alert::toast('Created! This data has been updateds successfully.', 'success');
+                 Alert::toast('Updated! This data has been updated successfully.', 'success');
                  return redirect('dashboard/categories/show/' . $data->id);
 
              } catch (\Throwable $th) {
@@ -150,7 +156,7 @@ class CategoriesController extends Controller
      {
          $data = Catagories::find($id);
          $data->delete();
-         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+         alert()->success('Trashed', 'Data has been movet to trash!')->autoclose(1100);
          return redirect()->route('dashboard.categories.trash');
      }
       // TRASH
@@ -169,7 +175,7 @@ class CategoriesController extends Controller
     {
         $data = Catagories::onlyTrashed()->where('id', $id);
         $data->restore();
-        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        alert()->success('Restored', 'Data has been resotred!')->autoclose(1100);
         return redirect()->back();
     }
     // DELETE
@@ -177,7 +183,7 @@ class CategoriesController extends Controller
     {
         $data = Catagories::onlyTrashed()->findOrFail($id);
         $data->forceDelete();
-        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        alert()->success('Deleted', 'Data has been deleted permanently!')->autoclose(1100);
         return redirect()->back();
     }
 

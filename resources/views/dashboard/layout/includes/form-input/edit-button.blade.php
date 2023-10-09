@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-3">
-                    <div class="button-list pe-xl-4 d-grid">
+                    <div class="">
 
                         <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit',  $data->id) }}" class="btn btn-lg btn-primary">
                             <i class="fa-solid fa-pen-to-square"></i> Edit

@@ -29,35 +29,41 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="author_id" class="form-label">Author <span class="text-danger">*</span></label>
-                                    <select name="author_id" id="author_id" class="form-control">
-                                        <option value="" hidden>Select</option>
-                                        @foreach ($authors as $author )
-                                            <option value="{{ $author->id }}">{{ $author->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->has('author_id'))
-                                    <span class="text-danger" role="alert">
-                                        <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
-                                            $errors->first('author_id') }}</small>
-                                    </span>
-                                    @endif
-                                </div>
-                                <!-- end col -->
-                                <div class="col-md-6">
-                                    <label for="catagory_id" class="form-label">Categories <span class="text-danger">*</span></label>
-                                    <select name="catagory_id" id="catagory_id" class="form-control">
-                                        <option value="" hidden>Select</option>
-                                        @foreach ($categories as $category )
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->has('catagory_id'))
-                                    <span class="text-danger" role="alert">
-                                        <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
-                                            $errors->first('catagory_id') }}</small>
-                                    </span>
-                                    @endif
+                                    
+                                    <div class="mb-3">
+                                        <label for="author_id" class="form-label">Author <span class="text-danger">*</span></label>
+                                        <select name="author_id" id="author_id" class="form-control">
+                                            <option value="" hidden>Select</option>
+                                            @foreach ($authors as $author )
+                                                <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('author_id'))
+                                        <span class="text-danger" role="alert">
+                                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
+                                                $errors->first('author_id') }}</small>
+                                        </span>
+                                        @endif
+                                    </div>
+                                    <!-- input group end -->
+
+                                    <div class="mb-3">
+                                        <label for="catagory_id" class="form-label">Categories <span class="text-danger">*</span></label>
+                                        <select name="catagory_id" id="catagory_id" class="form-control">
+                                            <option value="" hidden>Select</option>
+                                            @foreach ($categories as $category )
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('catagory_id'))
+                                        <span class="text-danger" role="alert">
+                                            <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
+                                                $errors->first('catagory_id') }}</small>
+                                        </span>
+                                        @endif
+                                    </div>
+                                    <!-- input group end -->
+
                                 </div>
                                 <!-- end col -->
                             </div>
