@@ -48,7 +48,7 @@
                                 </div>
                                 <!-- end col -->
                                 <div class="col-md-6">
-                                    <label for="catagory_id" class="form-label">Categories <span class="text-danger">*</span></label>
+                                    <label for="catagory_id" class="form-label">Categories</label>
                                     <select name="catagory_id" id="catagory_id" class="form-control">
                                         <option value="" hidden>Select</option>
                                         @foreach ($categories as $category )

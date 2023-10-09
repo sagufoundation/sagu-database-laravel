@@ -28,8 +28,7 @@ class CategoriesController extends Controller
         $datapublish = Catagories::where('status', 'Publish')->count();
 
         return view('dashboard.library.categories.index',
-        compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))
-                ->with('i', (request()->input('page', 1) - 1) * 5);
+        compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // DRAFT
@@ -133,9 +132,9 @@ class CategoriesController extends Controller
      }
 
      // SHOW
-    public function show($slug)
+    public function show($id)
     {
-        $data = Catagories::where('slug', $slug)->first();
+        $data = Catagories::where('id', $id)->first();
         return view('dashboard.library.categories.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

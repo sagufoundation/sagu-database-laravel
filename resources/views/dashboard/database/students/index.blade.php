@@ -40,12 +40,12 @@
                                                             <td>{{ $data->phone ?? '' }}</td>
                                                             <td>{{ $data->student->provinces->name ?? '' }}</td>
                                                             <td>
-
-                                                                @foreach ($data->student->program as $program)
+                                                                {{ $data->student->program->program_title ?? '' }}
+                                                                {{-- @foreach ($data->student->program as $program)
                                                                     <ul>
                                                                         <li> {{ $program->program_title ?? '' }}</li>
                                                                     </ul>
-                                                                @endforeach
+                                                                @endforeach --}}
 
                                                             </td>
                                                             <td>

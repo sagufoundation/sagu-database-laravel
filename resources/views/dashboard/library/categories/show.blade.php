@@ -63,7 +63,7 @@
             </div>
 
 
-            @if (Auth::user()->hasRole('users'))
+            @if (Auth::user()->hasRole('student'))
             <div class="mb-3">
 
                 <form action="{{ url('dashboard/books/loan-logs/store/' )}}" method="POST">

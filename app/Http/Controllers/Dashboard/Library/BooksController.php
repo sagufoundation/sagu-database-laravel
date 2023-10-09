@@ -74,7 +74,7 @@ class BooksController extends Controller
             [
                 'title' => 'required',
                 'total' => 'required',
-                'catagory_id' => 'required',
+                // 'catagory_id' => 'required',
                 'author_id' => 'required',
                 'status' => 'required',
                 'cover' => 'required|image|mimes:png,jpeg,jpg|max:4096',
@@ -82,7 +82,7 @@ class BooksController extends Controller
             [
                 'title.required' => 'This is a reaquired field',
                 'total.required' => 'This is a reaquired field',
-                'catagory_id.required' => 'This is a reaquired field',
+                // 'catagory_id.required' => 'This is a reaquired field',
                 'status.required' => 'This is a reaquired field',
                 'author_id.required' => 'This is a reaquired field',
                 'cover.required' => 'This is a reaquired field',
@@ -133,7 +133,7 @@ class BooksController extends Controller
             [
                 'title' => 'required',
                 'total' => 'required',
-                'catagory_id' => 'required',
+                // 'catagory_id' => 'required',
                 'author_id' => 'required',
                 'status' => 'required',
                 'cover' => 'required|image|mimes:png,jpeg,jpg|max:4096',
@@ -141,7 +141,7 @@ class BooksController extends Controller
             [
                 'title.required' => 'This is a reaquired field',
                 'total.required' => 'This is a reaquired field',
-                'catagory_id.required' => 'This is a reaquired field',
+                // 'catagory_id.required' => 'This is a reaquired field',
                 'status.required' => 'This is a reaquired field',
                 'author_id.required' => 'This is a reaquired field',
                 'cover.required' => 'This is a reaquired field',
