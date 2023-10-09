@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="col-3">
+                <div class="col">
                     <div class="">
 
                         <a href="{{ url(Request::segment(1).'/'.Request::segment(2). '/edit',  $data->id) }}" class="btn btn-lg btn-primary">
