@@ -73,6 +73,7 @@
                                             </div>
                                             <!-- end .mt-4 -->
                                             {!! $datas->links() !!}
+                                            
                                         </div>
                                         <!-- end inbox-rightbar-->
 

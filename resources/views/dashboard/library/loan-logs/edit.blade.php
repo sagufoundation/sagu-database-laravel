@@ -68,9 +68,10 @@
                                                     <i class="fa-solid fa-save"></i> Update
                                                 </button>
 
-                                                <a href="{{ url()->previous() }}" class="btn btn-outline-primary mt-3">
+                                                <a href="{{ url('dashboard/books/loan-logs') }}" class="btn btn-outline-primary mt-3">
                                                     <i class="fa-solid fa-reply"></i> Back
                                                 </a>
+                                                
                                             </form>
 
                                         </div>

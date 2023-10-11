@@ -94,67 +94,89 @@
                         {{-- ===================================== USERS START ===================================== --}}
                         <div class="row">
                             <div class="col-12">
-                                <div class="card-header">
-                                    <h3>My Loan Logs</h3>
-                                </div>
                                 <div class="card">
-
-                                    <div class="card-body">
-                                        <div class="mt-3 table-responsive">
-                                            <table class="table table-bordered">
-                                                    <tr>
-                                                        <th width="1%">No</th>
-                                                        <th>Cover</th>
-                                                        <th>Title</th>
-                                                        <th>Categories</th>
-                                                        <th>Author</th>
-                                                        <th>Duration</th>
-                                                        <th>Status</th>
-                                                        <th></th>
-                                                    </tr>
-                                                    @forelse($datas as $data)
-                                                    <tr>
-                                                        <td>{{ ++$i }}</td>
-                                                        <td style="width: 12rem">
-                                                            <img src="{{ asset($data->book->cover) ?? '' }}" alt="Book Cover" class="w-100">
-                                                        </td>
-                                                        <td>{{ $data->book->title ?? '' }}</td>
-                                                        <td>{{ $data->book->category->name ?? '' }}</td>
-                                                        <td>{{ $data->book->author->name ?? '' }}</td>
-                                                        <td>{{ $data->return_date ?? '-' }}</td>
-                                                        <td>
-                                                            @if($data->status == 'Active')
-                                                            <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span> @else
-                                                            <span class="text-warning"><i class="fa fa-dot-circle"></i> Pending</span>
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            <div class="d-block p-1">
-                                                                <form action="{{ url('dashboard/books/loan-logs/delete/' . $data->id) }}" method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger w-100">
-                                                                        <i class="fa-solid fa-trash d-block"></i> Trash
-                                                                    </button>
-                                                                </form>
-                                                            </div>                                                            
-                                                        </td>
-                                                    </tr>
-                                                    @empty
-                                                    <tr>
-                                                        <td colspan="8">
-                                                            No data
-                                                        </td>
-                                                    </tr>
-                                                    @endforelse
-                                            </table>
-                                        </div>
+                                    <div class="card-header">
+                                        <h3>My Loan Logs</h3>
                                     </div>
-                                </div> <!-- end col -->
+                                    <div class="card-body">
 
+                                        <div class="inbox-leftbar">
+
+                                            <div class="list-group">
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}" class="list-group-item list-group-item-action @if(Request::segment(3) == '') active @endif">
+                                                    <i class="dripicons-star mr-1"></i> Pending 
+                                                    <span class="badge @if(Request::segment(3) == '') badge-soft-light @else badge-soft-info @endif float-end ms-2"> {{ '1' }} </span>
+                                                </a>
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/draft') }}" class="list-group-item list-group-item-action @if(Request::segment(3) == 'draft') active @endif">
+                                                    <i class="dripicons-star mr-1"></i> Active 
+                                                    <span class="badge @if(Request::segment(3) == 'draft') badge-soft-light @else badge-soft-info @endif float-end ms-2"> {{ '2' }} </span>
+                                                </a>
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/trash') }}" class="list-group-item list-group-item-action @if(Request::segment(3) == 'trash') active @endif">
+                                                    <i class="dripicons-star mr-1"></i> Returned 
+                                                    <span class="badge @if(Request::segment(3) == 'trash') badge-soft-light @else badge-soft-info @endif  float-end ms-2"> {{ '3' }} </span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="inbox-rightbar">
+                                            
+                                            <div class="mt-3 table-responsive">
+                                                <table class="table table-bordered">
+                                                        <tr>
+                                                            <th width="1%">No</th>
+                                                            <th>Cover</th>
+                                                            <th>Title</th>
+                                                            <th>Categories</th>
+                                                            <th>Author</th>
+                                                            <th>Duration</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                        @forelse($datas as $data)
+                                                        <tr>
+                                                            <td>{{ ++$i }}</td>
+                                                            <td style="width: 12rem">
+                                                                <img src="{{ asset($data->book->cover) ?? '' }}" alt="Book Cover" class="w-100">
+                                                            </td>
+                                                            <td>{{ $data->book->title ?? '' }}</td>
+                                                            <td>{{ $data->book->category->name ?? '' }}</td>
+                                                            <td>{{ $data->book->author->name ?? '' }}</td>
+                                                            <td>{{ $data->return_date ?? '-' }}</td>
+                                                            <td>
+                                                                @if($data->status == 'Active')
+                                                                <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span> @else
+                                                                <span class="text-warning"><i class="fa fa-dot-circle"></i> Pending</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-block p-1">
+                                                                    <form action="{{ url('dashboard/books/loan-logs/delete/' . $data->id) }}" method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-danger w-100">
+                                                                            <i class="fa-solid fa-trash d-block"></i> Trash
+                                                                        </button>
+                                                                    </form>
+                                                                </div>                                                            
+                                                            </td>
+                                                        </tr>
+                                                        @empty
+                                                        <tr>
+                                                            <td colspan="8">
+                                                                No data
+                                                            </td>
+                                                        </tr>
+                                                        @endforelse
+                                                </table>
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <!-- .row end -->
 
                         @endif
 
