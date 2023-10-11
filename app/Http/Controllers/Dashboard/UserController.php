@@ -42,8 +42,7 @@ class UserController extends Controller
 
     }
 
-    // DRAFT
-    
+    // DRAFT    
     public function draft(Request $request)
     {
         $datas = User::where([
@@ -80,7 +79,6 @@ class UserController extends Controller
             $request->all(),
             [
                 'first_name'        => 'required',
-                'last_name'         => 'required',
                 'email'             => 'required|email|unique:users,email',
                 'phone'             => 'unique:users,phone',
                 'password'          => 'required|confirmed|min:8',
@@ -90,7 +88,6 @@ class UserController extends Controller
             ],
             [
                 'first_name.required'     => 'This is a reaquired field',
-                'last_name.required'      => 'This is a reaquired field',
                 'email.required'          => 'This is a reaquired field',
                 'password.required'       => 'This is a reaquired field',
                 'roles.required'          => 'This is a reaquired field',
@@ -127,9 +124,11 @@ class UserController extends Controller
                 }
                 $data->save();
                 $data->assignRole($request->roles);
-
+        
+                // create alert & redirect
                 Alert::toast('Created! This data has been created successfully.', 'success');
                 return redirect('dashboard/users/show/' . $data->id);
+
             } catch (\Throwable $th) {
 
                 Alert::toast('Failed', 'error');
@@ -161,7 +160,6 @@ class UserController extends Controller
             $request->all(),
             [
                 'first_name'            => 'required',
-                'last_name'             => 'required',
                 'email'                 => 'required|email|unique:users,email,'.$id,
                 // 'phone'                 => 'unique:users,phone,'.$id,
                 'password'              => 'confirmed',
@@ -171,7 +169,6 @@ class UserController extends Controller
             ],
             [
                 'first_name.required'   => 'This is a reaquired field',
-                'last_name.required'    => 'This is a reaquired field',
                 'email.required'        => 'This is a reaquired field',
                 'password.required'     => 'This is a reaquired field',
                 'roles.required'        => 'This is a reaquired field',
@@ -214,7 +211,8 @@ class UserController extends Controller
                 $data->update();
 
                 $data->syncRoles(explode(',', $request->roles));
-
+        
+                // create alert & redirect
                 Alert::toast('Created! This data has been updated successfully.', 'success');
                 return redirect('dashboard/users/show/' . $data->id);
 
@@ -232,7 +230,9 @@ class UserController extends Controller
         $data = User::findOrFail($id);
         $data->save();
         User::find($id)->delete();
-        alert()->success('Trashed', 'Data has been movet to trash!')->autoclose(1100);
+        
+        // create alert & redirect
+        alert()->success('Trashed', 'Data has been moved to trash!')->autoclose(1100);
         return redirect()->back();
     }
 
@@ -248,7 +248,9 @@ class UserController extends Controller
     // RESTORE
     public function restore($id){
         User::withTrashed()->where('id',$id)->restore();
-        alert()->success('Restored', 'Data has been resotred!')->autoclose(1100);
+        
+        // create alert & redirect
+        alert()->success('Restored', 'Data has been restored!!')->autoclose(1100);
         return redirect()->back();
     }
 
@@ -262,7 +264,9 @@ class UserController extends Controller
             File::delete($path);
         }
         $data->forceDelete();
-        alert()->success('Deleted', 'Data has been deleted permanently!')->autoclose(1100);
+        
+        // create alert & redirect
+        alert()->success('Deleted', 'Data Program has been delete!')->autoclose(1100);
         return redirect()->back();
     }
 

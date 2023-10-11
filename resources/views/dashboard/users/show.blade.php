@@ -7,53 +7,73 @@
 
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-12">
         <div class="card-box">
 
-            <div class="mb-3">
-                <span class="font-weight-bold d-block">Full Name:</span>
-                <h4>
-                    {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }}
-                </h4>
-            </div>
-            <div class="mb-3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <span class="font-weight-bold d-block">Job :</span>
-                        {{ $data->job_title }}
+            <div class="row">
+                
+                <div class="col-md-4">
+
+                    <div class="mb-3">
+                        <span class="font-weight-bold d-block">Full Name:</span>
+                        {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }}
                     </div>
-                    <div class="col-md-4">
-                        <span class="font-weight-bold d-block">Mobile Number :</span>
+                    <!-- item group end -->
+
+                    <div class="mb-3">
+                        <span class="font-weight-bold d-block">Phone Number:</span>
                         {{ $data->phone }}
                     </div>
-                    <div class="col-md-4">
-                        <span class="font-weight-bold d-block">Email :</span>
-                        {{ $data->email }}
+                    <!-- item group end -->
+
+                    <div class="mb-3">
+                        <span class="font-weight-bold d-block">Job Title:</span>
+                        {{ $data->job_title }}
                     </div>
+                    <!-- item group end -->
+
                 </div>
-            </div>
-            <div class="mb-3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <span class="font-weight-bold d-block">Role :</span>
+                <!-- .col end -->
+                
+                <div class="col-md-4">
+
+                    <div class="mb-3">
+                        <span class="font-weight-bold d-block">Role:</span>
                         {{ implode(",",$data->roles()->pluck('display_name')->toArray()) }}
                     </div>
-                    <div class="col-md-4">
-                        <span class="font-weight-bold d-block">Status :</span>
-                        {{ $data->status }}
+                    <!-- item group end -->
+
+                    <div class="mb-3">
+                        <span class="font-weight-bold d-block">Email:</span>
+                        {{ $data->email }}
                     </div>
+                    <!-- item group end -->
+
+                    <div class="mb-3">
+                        <span class="font-weight-bold d-block">Password:</span>
+                        <a href="{{ url('dashboard/users/edit', $data->id) }}">Edit</a>
+                    </div>
+                    <!-- item group end -->
+
                 </div>
+                <!-- .col end -->
+                
+                <div class="col-md-4">
+
+                    <div class="mb-3">
+                        @if (!$data->picture)
+                        <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Book Cover" class="w-100">
+                        @else
+                        <img src="{{ asset($data->picture) }}" alt="Book Cover" class="w-100">
+                        @endif
+                    </div>
+                    <!-- item group end -->
+
+                </div>
+                <!-- .col end -->
 
             </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card-box">
-            @if (!$data->picture)
-            <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Book Cover" class="w-100">
-                @else
-                <img src="{{ asset($data->picture) }}" alt="Book Cover" class="w-100">
-            @endif
+            <!-- .row end -->
         </div>
     </div>
 </div>

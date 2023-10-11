@@ -91,12 +91,6 @@ class StudentsController extends Controller
                 'email' => 'required|unique:users,email|string',
                 'password'  => 'required|confirmed|min:8',
                 'password_confirmation' => 'required_with:password|same:password|min:8'
-
-                // 'province_id' => 'required',
-                // 'place_of_birth' => 'required',
-                // 'date_of_birth' => 'required',
-
-                // 'status' => 'required',
             ],
             [
                 'first_name.required'   => 'This is required',
@@ -104,12 +98,6 @@ class StudentsController extends Controller
                 'email.required'        => 'This is required',
                 'password.required'     => 'This is required',
                 'password_confirmation.required'     => 'This is required',
-
-                // 'province_id.required'      => 'This is required',
-                // 'place_of_birth.required'   => 'This is required',
-                // 'date_of_birth.required'    => 'This is required',
-
-                // 'status.required'       => 'This is required',
             ]
         );
 
@@ -162,10 +150,12 @@ class StudentsController extends Controller
         $student->email_google = $request->email_google;
         $student->email_outlook = $request->email_outlook;
         $student->email_sagu = $request->email_sagu;
+
         $data->students()->save($student);
         $data->assignRole(3);
-
-        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
+        
+        // create alert & redirect
+        alert()->success('Created', 'Data has been created')->autoclose(1100);
         return redirect('dashboard/students/show/' . User::find($data->id)->id);
     }
 
@@ -255,11 +245,9 @@ class StudentsController extends Controller
 
         // update process
         $data->update();
-
-        // create alert
+        
+        // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
-
-        // redirect page
         return redirect('dashboard/students/show/' . Students::find($data->id)->id);
     }
 
@@ -430,43 +418,6 @@ class StudentsController extends Controller
 
     }
 
-    // // UPDATE PASSWORD
-    // public function update_password(Request $request, $id)
-    // {
-
-    //     // dd($request->password);
-
-    //     // create validation
-    //     $request->validate(
-    //         [
-    //             'password'  => 'required|confirmed|min:8',
-    //             'password_confirmation' => 'required_with:password|same:password|min:8'
-    //         ],
-    //         [
-    //             'password.required'     => 'This is required',
-    //             'password_confirmation.required'     => 'This is required'
-    //         ]
-    //     );
-
-    //     // select data by id
-    //     $data = Students::find($id);
-
-    //     // create new variable
-    //     // $data->password = Hash::make($request->password);
-
-    //     // update process
-    //     // $data->update();
-
-    //     $data->password = Hash::make($request->password);
-    //     $data->save();
-
-    //     // create alert
-    //     alert()->success('Updated', 'Data has been updated')->autoclose(1100);
-
-    //     // redirect page
-    //     return redirect('dashboard/students/show/' . Students::find($data->id)->id);
-    // }
-
     // DESTROY OR MOVE TO TRASH
     public function destroy($id)
     {
@@ -524,6 +475,7 @@ class StudentsController extends Controller
         $data = User::findOrFail($id);
         $data->student->program()->detach();
         $data->delete();
+
         // create alert & redirect
         alert()->success('Deleted', 'Data Program has been delete!')->autoclose(1100);
         return redirect()->back();

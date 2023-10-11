@@ -18,7 +18,7 @@
                         <div class="mb-3">
                             <label for="first_name" class="form-label"> First Name <span class="text-danger">*</span></label>
                             <input type="text" name="first_name" id="first_name" value="{{ old('first_name') ?? '' }}"
-                                placeholder="First Namee" class="form-control">
+                                placeholder="First name" class="form-control">
                             @if ($errors->has('first_name'))
                             <span class="text-danger" role="alert">
                                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
@@ -42,9 +42,9 @@
                         <!-- input group end -->
 
                         <div class="mb-3">
-                            <label for="last_name" class="form-label"> Last Name <span class="text-danger">*</span></label>
+                            <label for="last_name" class="form-label"> Last Name    </label>
                             <input type="text" name="last_name" id="last_name" value="{{ old('last_name') ?? '' }}"
-                                placeholder="Middle name" class="form-control">
+                                placeholder="Last name" class="form-control">
                             @if ($errors->has('last_name'))
                             <span class="text-danger" role="alert">
                                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
@@ -53,24 +53,11 @@
                             @endif
                         </div>
                         <!-- input group end -->
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label"> Email <span class="text-danger">*</span></label>
-                            <input type="email" name="email" id="email" value="{{ old('email') ?? '' }}"
-                                placeholder="Email" class="form-control">
-                            @if ($errors->has('email'))
-                            <span class="text-danger" role="alert">
-                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
-                                    $errors->first('email') }}</small>
-                            </span>
-                            @endif
-                        </div>
-                        <!-- input group end -->
                         
                         <div class="mb-3">
                             <label for="phone" class="form-label"> Phone Number</label>
                             <input type="number" name="phone" id="phone" value="{{ old('phone') ?? '' }}"
-                                placeholder="Mobile Phone" class="form-control">
+                                placeholder="Phone or WhatsApp number" class="form-control">
                             @if ($errors->has('phone'))
                             <span class="text-danger" role="alert">
                                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
@@ -81,9 +68,9 @@
                         <!-- input group end -->
                         
                         <div class="mb-3">
-                            <label for="job_title" class="form-label">Job </label>
+                            <label for="job_title" class="form-label">Job Title </label>
                             <input type="text" name="job_title" id="job_title" value="{{ old('job_title') ?? '' }}"
-                                placeholder="job title" class="form-control">
+                                placeholder="Job title" class="form-control">
                             @if ($errors->has('job_title'))
                             <span class="text-danger" role="alert">
                                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
@@ -99,7 +86,7 @@
                     <div class="col-md-4">
                         
                         <div class="mb-3">
-                            <label for="roles" class="form-label"> Roles <span class="text-danger">*</span></label>
+                            <label for="roles" class="form-label"> Role <span class="text-danger">*</span></label>
                             <select name="roles" id="roles" class="form-control">
                                 <option value="" hidden>Select</option>
                                 @foreach ($roles as $role )
@@ -114,6 +101,19 @@
                             <span class="text-danger" role="alert">
                                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
                                     $errors->first('roles') }}</small>
+                            </span>
+                            @endif
+                        </div>
+                        <!-- input group end -->
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label"> Email <span class="text-danger">*</span></label>
+                            <input type="email" name="email" id="email" value="{{ old('email') ?? '' }}"
+                                placeholder="Email" class="form-control">
+                            @if ($errors->has('email'))
+                            <span class="text-danger" role="alert">
+                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
+                                    $errors->first('email') }}</small>
                             </span>
                             @endif
                         </div>
