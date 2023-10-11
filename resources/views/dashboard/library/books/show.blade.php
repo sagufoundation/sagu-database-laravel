@@ -46,10 +46,13 @@
                     <button type="submit" class="btn btn-lg btn-primary">
                         <i class="fa-solid fa-paper-plane"></i> Borrow
                     </button>
+                    <!-- end item -->
 
-                    <a href="{{ url()->previous() }}" class="btn btn-lg btn-outline-primary">
-                        <i class="fa-solid fa-reply"></i> Back
+                    <a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}" class="btn btn-lg btn-outline-primary">
+                        <i class="fa-solid fa-reply"></i> Back to {{ ucfirst(Request::segment(2)) }}
                     </a>
+                    <!-- end item -->
+
                 </form>
 
             </div>
@@ -141,10 +144,11 @@
             </a>
             <!-- end item -->
 
-            <a href="{{ url()->previous() }}" class="btn btn-lg btn-outline-primary">
-                <i class="fa-solid fa-reply"></i> Back
+            <a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}" class="btn btn-lg btn-outline-primary">
+                <i class="fa-solid fa-reply"></i> Back to {{ ucfirst(Request::segment(2)) }}
             </a>
             <!-- end item -->
+
             @endif
 
         </div>

@@ -20,6 +20,14 @@ use Illuminate\Support\Facades\Route;
             Route::get('books/loan-logs','loanLogs')
                 ->name('dashboard.books.loan-logs');
 
+            // loan-logs
+            Route::get('books/loan-logs/pending','loanLogsPending')
+                ->name('dashboard.books.loan-logs');
+
+            // loan-logs
+            Route::get('books/loan-logs/returned','loanLogsReturned')
+                ->name('dashboard.books.loan-logs');
+
             // store
             Route::post('books/loan-logs/store','store')
                 ->name('dashboard.books.loan-logs.store');

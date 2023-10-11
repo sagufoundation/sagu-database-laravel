@@ -74,11 +74,7 @@
                                                         </td>
                                                     </tr>
                                                     @empty
-                                                    <tr>
-                                                        <td colspan="9">
-                                                            No data
-                                                        </td>
-                                                    </tr>
+                                                    No data
                                                     @endforelse
                                             </table>
                                         </div>
@@ -103,17 +99,17 @@
                                         <div class="inbox-leftbar">
 
                                             <div class="list-group">
-                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2)) }}" class="list-group-item list-group-item-action @if(Request::segment(3) == '') active @endif">
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/'.Request::segment(3)) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == '') active @endif">
+                                                    <i class="dripicons-star mr-1"></i> Active  
+                                                    <span class="badge @if(Request::segment(3) == '') badge-soft-light @else badge-soft-info @endif float-end ms-2"> {{ $totalActive ?? '' }} </span>
+                                                </a>
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/'.Request::segment(3).'/pending') }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'pending') active @endif">
                                                     <i class="dripicons-star mr-1"></i> Pending 
-                                                    <span class="badge @if(Request::segment(3) == '') badge-soft-light @else badge-soft-info @endif float-end ms-2"> {{ '1' }} </span>
+                                                    <span class="badge @if(Request::segment(3) == 'pending') badge-soft-light @else badge-soft-info @endif float-end ms-2"> {{ $totalPending ?? '' }} </span>
                                                 </a>
-                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/draft') }}" class="list-group-item list-group-item-action @if(Request::segment(3) == 'draft') active @endif">
-                                                    <i class="dripicons-star mr-1"></i> Active 
-                                                    <span class="badge @if(Request::segment(3) == 'draft') badge-soft-light @else badge-soft-info @endif float-end ms-2"> {{ '2' }} </span>
-                                                </a>
-                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/trash') }}" class="list-group-item list-group-item-action @if(Request::segment(3) == 'trash') active @endif">
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/'.Request::segment(3).'/returned') }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'returned') active @endif">
                                                     <i class="dripicons-star mr-1"></i> Returned 
-                                                    <span class="badge @if(Request::segment(3) == 'trash') badge-soft-light @else badge-soft-info @endif  float-end ms-2"> {{ '3' }} </span>
+                                                    <span class="badge @if(Request::segment(3) == 'returned') badge-soft-light @else badge-soft-info @endif  float-end ms-2"> {{ $totalReturned ?? '' }} </span>
                                                 </a>
                                             </div>
 

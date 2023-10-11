@@ -234,11 +234,11 @@
                                 <li class="@if(Request::segment(3) == 'loan-logs') menuitem-active @endif">
                                     <a href="{{ url(Request::segment(1).'/books/loan-logs') }}">
                                         <i class="fa-solid fa-book-bookmark"></i> <span> My Loan Logs </span>
-                                        {{-- @if($database_total_publish_loan_books_forStudents != 0)
+                                        @if($database_total_publish_loan_books_forStudents != 0)
                                         <span class="badge badge-success badge-pill float-right">
                                             {{ $database_total_publish_loan_books_forStudents ?? '0' }}
                                         </span>
-                                        @endif --}}
+                                        @endif
                                     </a>
                                 </li>
                                 <!-- menu item end -->

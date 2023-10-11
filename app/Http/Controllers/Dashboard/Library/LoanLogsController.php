@@ -15,14 +15,44 @@ class LoanLogsController extends Controller
 {
 
 
-    // USER AREA
-
+    // ACTIVE
     public function loanLogs()
     {
-        $datas = LoanBook::where('user_id', Auth::user()->id)->paginate();
+        $datas = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Active')->paginate();
+        $totalActive = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Active')->count();
+        $totalPending = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Pending')->count();
+        $totalReturned = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Returned')->count();
+
         $adminDatas = LoanBook::get();
 
-        return view('dashboard.library.loan-logs.index', compact('datas', 'adminDatas'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dashboard.library.loan-logs.index', compact('datas', 'adminDatas', 'totalActive', 'totalPending', 'totalReturned'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    // PENDING
+    public function loanLogsPending()
+    {
+        $datas = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Pending')->paginate();
+        $totalActive = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Active')->count();
+        $totalPending = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Pending')->count();
+        $totalReturned = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Returned')->count();
+
+        $adminDatas = LoanBook::get();
+
+        return view('dashboard.library.loan-logs.index', compact('datas', 'adminDatas', 'totalActive', 'totalPending', 'totalReturned'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+
+    // RETURNED
+    public function loanLogsReturned()
+    {
+        $datas = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Returned')->paginate();
+        $totalActive = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Active')->count();
+        $totalPending = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Pending')->count();
+        $totalReturned = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Returned')->count();
+
+        $adminDatas = LoanBook::get();
+
+        return view('dashboard.library.loan-logs.index', compact('datas', 'adminDatas', 'totalActive', 'totalPending', 'totalReturned'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function store(Request $request)
