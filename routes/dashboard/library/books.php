@@ -61,8 +61,6 @@ use Illuminate\Support\Facades\Route;
             Route::delete('books/delete/{id}','delete')
                 ->name('dashboard.books.delete');
 
-            /*LOAD LOGS*/
-
         });
 
     });

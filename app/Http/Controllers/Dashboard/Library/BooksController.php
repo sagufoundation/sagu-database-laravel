@@ -128,25 +128,26 @@ class BooksController extends Controller
     // UPDATE
     public function update(Request $request, $id)
     {
+        // dd('update book');
         $validator = Validator::make(
             $request->all(),
             [
                 'title' => 'required',
-                'total' => 'required',
-                // 'catagory_id' => 'required',
-                'author_id' => 'required',
-                'status' => 'required',
-                'cover' => 'required|image|mimes:png,jpeg,jpg|max:4096',
+                // 'total' => 'required',
+                // // 'catagory_id' => 'required',
+                // // 'author_id' => 'required',
+                // 'status' => 'required',
+                // 'cover' => 'required|image|mimes:png,jpeg,jpg|max:4096',
             ],
             [
                 'title.required' => 'This is a reaquired field',
-                'total.required' => 'This is a reaquired field',
-                // 'catagory_id.required' => 'This is a reaquired field',
-                'status.required' => 'This is a reaquired field',
-                'author_id.required' => 'This is a reaquired field',
-                'cover.required' => 'This is a reaquired field',
-                'cover.mimes' => 'Type of this file must be PNG, JPG, JPEG',
-                'cover.max' => 'Files must be a maximum of 2 MB',
+                // 'total.required' => 'This is a reaquired field',
+                // // 'catagory_id.required' => 'This is a reaquired field',
+                // 'status.required' => 'This is a reaquired field',
+                // // 'author_id.required' => 'This is a reaquired field',
+                // 'cover.required' => 'This is a reaquired field',
+                // 'cover.mimes' => 'Type of this file must be PNG, JPG, JPEG',
+                // 'cover.max' => 'Files must be a maximum of 2 MB',
             ]
         );
 
@@ -205,8 +206,6 @@ class BooksController extends Controller
         $data = Book::where('id', $id)->first();
         return view('dashboard.library.books.edit',compact('data','authors','categories'));
     }
-
-
 
     // DESTROY
     public function destroy($id)

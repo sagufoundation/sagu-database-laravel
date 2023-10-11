@@ -109,8 +109,11 @@
                                 <td>{{ $loan->return_date ?? '-' }}</td>
                                 <td>
                                     @if($loan->user->status == 'Active')
-                                    <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span> @else
+                                    <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span>
+                                    @elseif($loan->user->status == 'Pending')
                                     <span class="text-warning"><i class="fa fa-dot-circle"></i> Pending</span>
+                                    @else
+                                    <span class="text-dark"><i class="fa fa-dot-circle"></i> Returned</span>
                                     @endif
                                 </td>
                                 <td class="d-flex">
