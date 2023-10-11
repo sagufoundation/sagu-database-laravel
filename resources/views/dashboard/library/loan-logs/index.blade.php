@@ -8,14 +8,36 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <div class="card-header">
-                                    <h3>Loan Logs</h3>
-                                </div>
                                 <div class="card">
-
+                                    <div class="card-header">
+                                        <h3>Loan Logs</h3>
+                                    </div>
                                     <div class="card-body">
-                                        <div class="mt-3 table-responsive">
-                                            <table class="table table-bordered">
+
+                                        <div class="inbox-leftbar">
+
+                                            <div class="list-group">
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/'.Request::segment(3)) }}" class="list-group-item list-group-item-action @if(Request::segment(4) == '') active @endif">
+                                                    <i class="dripicons-star mr-1"></i> Active  
+                                                    <span class="badge @if(Request::segment(3) == '') badge-soft-light @else badge-soft-info @endif float-end ms-2"> {{ $adminTotalActive ?? '' }} </span>
+                                                </a>
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/'.Request::segment(3).'/pending') }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'pending') active @endif">
+                                                    <i class="dripicons-star mr-1"></i> Pending 
+                                                    <span class="badge @if(Request::segment(3) == 'pending') badge-soft-light @else badge-soft-info @endif float-end ms-2"> {{ $adminTotalPending ?? '' }} </span>
+                                                </a>
+                                                <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/'.Request::segment(3).'/returned') }}" class="list-group-item list-group-item-action @if(Request::segment(4) == 'returned') active @endif">
+                                                    <i class="dripicons-star mr-1"></i> Returned 
+                                                    <span class="badge @if(Request::segment(3) == 'returned') badge-soft-light @else badge-soft-info @endif  float-end ms-2"> {{ $adminTotalReturned ?? '' }} </span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="inbox-rightbar">
+                                            
+                                            <div class="mt-3 table-responsive">
+                                                
+                                                <table class="table table-bordered">
                                                     <tr>
                                                         <th width="1%">No</th>
                                                         <th>Cover</th>
@@ -23,9 +45,9 @@
                                                         <th>Categories</th>
                                                         <th>Author</th>
                                                         <th>Student</th>
-                                                        <th>Status</th>
+                                                        {{-- <th>Status</th> --}}
                                                         <th>Return Date</th>
-                                                        <th width="180px"></th>
+                                                        <th width="180px">Opsi</th>
                                                     </tr>
                                                     @forelse($adminDatas as $data)
                                                     <tr>
@@ -37,7 +59,7 @@
                                                         <td>{{ $data->book->author->name ?? '' }}</td>
                                                         <td>{{ $data->book->category->name ?? '' }}</td>
                                                         <td>{{ $data->user->first_name ?? '' }} {{ $data->user->last_name ?? '' }}</td>
-                                                        <td>
+                                                        {{-- <td>
                                                             @if($data->status == 'Active')
                                                             <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span> 
                                                             @elseif($data->status == 'Pending')
@@ -45,7 +67,7 @@
                                                             @elseif($data->status == 'Returned')
                                                             <span class="text-dark"><i class="fa fa-dot-circle"></i> Returned</span>
                                                             @endif
-                                                        </td>
+                                                        </td> --}}
                                                         {{-- <td>{{ $data->return_date ?? '' }}</td> --}}
                                                         <td>{{ Carbon\Carbon::parse($data->return_date)->format('d F Y') }}</td>
                                                         <td>
@@ -74,20 +96,28 @@
                                                         </td>
                                                     </tr>
                                                     @empty
-                                                    No data
+                                                    <tr>
+                                                        <td colspan="9">
+                                                            No data
+                                                        </td>
+                                                    </tr>
                                                     @endforelse
                                             </table>
-                                        </div>
-                                    </div>
-                                </div> <!-- end col -->
+                                                
 
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <!-- .row end -->
 
                         @else
 
                         {{-- ===================================== USERS START ===================================== --}}
+                        
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">

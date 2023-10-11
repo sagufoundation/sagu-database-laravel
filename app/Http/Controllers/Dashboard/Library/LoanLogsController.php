@@ -19,13 +19,27 @@ class LoanLogsController extends Controller
     public function loanLogs()
     {
         $datas = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Active')->paginate();
+
         $totalActive = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Active')->count();
         $totalPending = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Pending')->count();
         $totalReturned = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Returned')->count();
 
-        $adminDatas = LoanBook::get();
+        $adminDatas = LoanBook::where('status', 'Active')->paginate();
 
-        return view('dashboard.library.loan-logs.index', compact('datas', 'adminDatas', 'totalActive', 'totalPending', 'totalReturned'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $adminTotalActive = LoanBook::where('status', 'Active')->count();
+        $adminTotalPending = LoanBook::where('status', 'Pending')->count();
+        $adminTotalReturned = LoanBook::where('status', 'Returned')->count();
+
+        return view('dashboard.library.loan-logs.index', compact(
+            'datas', 
+            'adminDatas', 
+            'totalActive', 
+            'totalPending', 
+            'totalReturned',
+            'adminTotalActive', 
+            'adminTotalPending', 
+            'adminTotalReturned',
+            ))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // PENDING
@@ -36,10 +50,24 @@ class LoanLogsController extends Controller
         $totalPending = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Pending')->count();
         $totalReturned = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Returned')->count();
 
-        $adminDatas = LoanBook::get();
+        $adminDatas = LoanBook::where('status', 'Pending')->paginate();
 
-        return view('dashboard.library.loan-logs.index', compact('datas', 'adminDatas', 'totalActive', 'totalPending', 'totalReturned'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $adminTotalActive = LoanBook::where('status', 'Active')->count();
+        $adminTotalPending = LoanBook::where('status', 'Pending')->count();
+        $adminTotalReturned = LoanBook::where('status', 'Returned')->count();
+
+        return view('dashboard.library.loan-logs.index', compact(
+            'datas', 
+            'adminDatas', 
+            'totalActive', 
+            'totalPending', 
+            'totalReturned',
+            'adminTotalActive', 
+            'adminTotalPending', 
+            'adminTotalReturned',
+            ))->with('i', (request()->input('page', 1) - 1) * 5);
     }
+    
 
 
     // RETURNED
@@ -50,9 +78,22 @@ class LoanLogsController extends Controller
         $totalPending = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Pending')->count();
         $totalReturned = LoanBook::where('user_id', Auth::user()->id)->where('status', 'Returned')->count();
 
-        $adminDatas = LoanBook::get();
+        $adminDatas = LoanBook::where('status', 'Returned')->paginate();
 
-        return view('dashboard.library.loan-logs.index', compact('datas', 'adminDatas', 'totalActive', 'totalPending', 'totalReturned'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $adminTotalActive = LoanBook::where('status', 'Active')->count();
+        $adminTotalPending = LoanBook::where('status', 'Pending')->count();
+        $adminTotalReturned = LoanBook::where('status', 'Returned')->count();
+
+        return view('dashboard.library.loan-logs.index', compact(
+            'datas', 
+            'adminDatas', 
+            'totalActive', 
+            'totalPending', 
+            'totalReturned',
+            'adminTotalActive', 
+            'adminTotalPending', 
+            'adminTotalReturned',
+            ))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function store(Request $request)
