@@ -4,41 +4,22 @@
                         @include('dashboard.layout.includes.breadcrumb3')
 
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="card-box">
-
-                                    <div class="mb-3">
-                                        <span class="font-weight-bold d-block">Title:</span>
-                                        <h1>{{ $data->book->title }}</h1>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <span class="font-weight-bold d-block">Author:</span>
-                                                {{ $data->book->author->name ?? '' }}
-                                            </div>
-                                            <div class="col-md-6">
-                                                <span class="font-weight-bold d-block">Categories :</span>
-                                                {{ $data->book->category->name ?? '' }}
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <span class="font-weight-bold d-block">Summary:</span>
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos totam unde corporis ea consequatur, quibusdam vero repellendus! Nobis, voluptatibus ab ipsam quasi ex ea adipisci soluta fugit commodi dolorum atque consectetur, nisi, eum sunt facilis.</p>
-                                    </div>
-
                                     
                                     <div class="border shadow">
                                         <h5 class="bg-secondary text-light px-3 py-1 p-0 m-0">Loan Logs Information</h5>
                                         
                                         <div class="px-3 mt-3">
+                                            <img src="{{ asset($data->user->picture) }}" alt="Picture" class="img img-thumbnail rounded-circle" style="width:5rem;">
+                                        </div>
+                                        <!-- input group end --> 
+
+                                        <div class="px-3 mt-3">
                                             <span class="font-weight-bold d-block">Student:</span>
                                             {{ $data->user->first_name ?? '' }} {{ $data->user->last_name ?? '' }}
                                         </div>
+                                        <!-- input group end --> 
 
                                         <div class="px-3 my-3">
 
@@ -47,30 +28,32 @@
                                                 @csrf
                                                 @method('PUT')
 
-                                                {{-- <input type="text" name="id" value="{{ $data->id }}"> --}}
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label for="return_date" class="font-weight-bold d-block">Return Date:</label>
-                                                        <input type="date" id="return_date" name="return_date" value="{{ $data->return_date }}" class="form-control">
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <label for="status" class="font-weight-bold d-block">Status :</label>
-                                                        <select name="status" id="" class="form-control">
-                                                            <option value="" hidden>Select</option>
-                                                            <option value="Active" @if($data->status == 'Active') selected @endif>Active</option>
-                                                            <option value="Pending" @if($data->status == 'Pending') selected @endif>Pending</option>
-                                                            <option value="Returned" @if($data->status == 'Returned') selected @endif>Returned</option>
-                                                        </select>
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <label for="return_date" class="font-weight-bold d-block">Return Date:</label>
+                                                    <input type="date" id="return_date" name="return_date" value="{{ $data->return_date }}" class="form-control">
                                                 </div>
+                                                <!-- input group end -->   
+                                                
+                                                <div class="mb-3">
+                                                    <label for="status" class="font-weight-bold d-block">Status :</label>
+                                                    <select name="status" id="" class="form-control">
+                                                        <option value="" hidden>Select</option>
+                                                        <option value="Active" @if($data->status == 'Active') selected @endif>Active</option>
+                                                        <option value="Pending" @if($data->status == 'Pending') selected @endif>Pending</option>
+                                                        <option value="Returned" @if($data->status == 'Returned') selected @endif>Returned</option>
+                                                    </select>
+                                                </div>
+                                                <!-- input group end -->   
 
                                                 <button type="submit" class="btn btn-primary mt-3">
                                                     <i class="fa-solid fa-save"></i> Update
                                                 </button>
+                                                <!-- item end -->   
 
                                                 <a href="{{ url('dashboard/books/loan-logs') }}" class="btn btn-outline-primary mt-3">
-                                                    <i class="fa-solid fa-reply"></i> Back
+                                                    <i class="fa-solid fa-reply"></i> Back to 
                                                 </a>
+                                                <!-- item end -->   
                                                 
                                             </form>
 
@@ -82,9 +65,45 @@
                                 </div>
                             </div>
                             <!-- end col-->
-                            <div class="col-md-4">
+
+                            <div class="col-md-6">
                                 <div class="card-box">
-                                    <img src="{{ asset($data->book->cover) }}" alt="Book Cover" class="w-100">
+
+                                    <div class="mb-3">
+                                        <span class="font-weight-bold d-block">Cover:</span>
+                                        <img src="{{ asset($data->book->cover) }}" alt="Book Cover" class="w-50">
+                                    </div>
+                                    <!-- input group end -->                                    
+
+                                    <div class="mb-3">
+                                        <span class="font-weight-bold d-block">Title:</span>
+                                        <h1>{{ $data->book->title }}</h1>
+                                    </div>
+                                    <!-- input group end -->
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <span class="font-weight-bold d-block">Author:</span>
+                                                {{ $data->book->author->name ?? '' }}
+                                            </div>
+                                            <!-- input group end -->
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <span class="font-weight-bold d-block">Categories :</span>
+                                                {{ $data->book->category->name ?? '' }}
+                                            </div>
+                                            <!-- input group end -->
+                                        </div>
+                                    </div>                                 
+
+                                    <div class="mb-3">
+                                        <span class="font-weight-bold d-block">Summary:</span>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos totam unde corporis ea consequatur, quibusdam vero repellendus! Nobis, voluptatibus ab ipsam quasi ex ea adipisci soluta fugit commodi dolorum atque consectetur, nisi, eum sunt facilis.</p>
+                                    </div>
+                                    <!-- input group end -->
+                                    
                                 </div>
                             </div>
                             <!-- end col-->

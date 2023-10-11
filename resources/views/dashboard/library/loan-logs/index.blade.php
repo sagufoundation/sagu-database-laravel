@@ -73,7 +73,7 @@
                                                         <td>
                                                             <div class="d-flex gap-1">
                                                                 <div class="d-block p-1">
-                                                                    <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" target="_blank" class="btn btn-success w-100">
+                                                                    <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->book->id) }}" target="_blank" class="btn btn-success w-100">
                                                                         <i class="fa-solid fa-id-badge d-block"></i> Show
                                                                     </a>
                                                                 </div>
@@ -102,8 +102,7 @@
                                                         </td>
                                                     </tr>
                                                     @endforelse
-                                            </table>
-                                                
+                                                </table>    
 
                                             </div>
                                             
