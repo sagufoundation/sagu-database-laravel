@@ -1,7 +1,7 @@
                                         <div class="inbox-leftbar">
 
-                                            <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/create') }}" class="btn btn-danger w-100 waves-effect waves-light mb-2">
-                                                <i class="fa-solid fa-plus-square mr-1"></i>New {{ ucfirst(Request::segment(2)) }}
+                                            <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/create') }}" class="btn btn-lg py-2 btn-primary w-100 waves-effect waves-light mb-2">
+                                                <i class="fa-solid fa-plus-square mr-1"></i> Create
                                             </a>
 
                                             <div class="list-group">

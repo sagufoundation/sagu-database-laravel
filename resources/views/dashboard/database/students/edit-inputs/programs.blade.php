@@ -26,7 +26,7 @@
                         <td>{{ $program->short_description ?? '' }}</td>
                         <td class="d-flex">
                             <div class="mr-1">
-                                <form action="#" method="POST">
+                                <form action="{{ url('dashboard/students/delete/programs', $program->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger w-100">

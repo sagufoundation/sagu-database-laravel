@@ -12,7 +12,9 @@
             <div class="card-body">
 
                 <div class="row">
+
                     <div class="col-md-4">
+                        
                         <div class="mb-3">
                             <label for="first_name" class="form-label"> First Name <span class="text-danger">*</span></label>
                             <input type="text" name="first_name" id="first_name" value="{{ old('first_name') ?? '' }}"
@@ -24,9 +26,8 @@
                             </span>
                             @endif
                         </div>
-                    </div>
-                    <!-- input group end -->
-                    <div class="col-md-4">
+                        <!-- input group end -->
+
                         <div class="mb-3">
                             <label for="middle_name" class="form-label"> Middle Name </label>
                             <input type="text" name="middle_name" id="middle_name" value="{{ old('middle_name') ?? '' }}"
@@ -38,9 +39,8 @@
                             </span>
                             @endif
                         </div>
-                    </div>
-                    <!-- input group end -->
-                    <div class="col-md-4">
+                        <!-- input group end -->
+
                         <div class="mb-3">
                             <label for="last_name" class="form-label"> Last Name <span class="text-danger">*</span></label>
                             <input type="text" name="last_name" id="last_name" value="{{ old('last_name') ?? '' }}"
@@ -52,13 +52,8 @@
                             </span>
                             @endif
                         </div>
-                    </div>
-                    <!-- input group end -->
+                        <!-- input group end -->
 
-                </div>
-                <!-- input item end-->
-                <div class="row">
-                    <div class="col-md-6">
                         <div class="mb-3">
                             <label for="email" class="form-label"> Email <span class="text-danger">*</span></label>
                             <input type="email" name="email" id="email" value="{{ old('email') ?? '' }}"
@@ -70,9 +65,8 @@
                             </span>
                             @endif
                         </div>
-                    </div>
-                     <!-- input group end -->
-                    <div class="col-md-6">
+                        <!-- input group end -->
+                        
                         <div class="mb-3">
                             <label for="phone" class="form-label"> Phone Number</label>
                             <input type="number" name="phone" id="phone" value="{{ old('phone') ?? '' }}"
@@ -84,12 +78,8 @@
                             </span>
                             @endif
                         </div>
-                    </div>
-                     <!-- input group end -->
-
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
+                        <!-- input group end -->
+                        
                         <div class="mb-3">
                             <label for="job_title" class="form-label">Job </label>
                             <input type="text" name="job_title" id="job_title" value="{{ old('job_title') ?? '' }}"
@@ -101,8 +91,13 @@
                             </span>
                             @endif
                         </div>
+                        <!-- input group end -->
+
                     </div>
-                    <div class="col-md-6">
+                    <!-- .col end -->
+
+                    <div class="col-md-4">
+                        
                         <div class="mb-3">
                             <label for="roles" class="form-label"> Roles <span class="text-danger">*</span></label>
                             <select name="roles" id="roles" class="form-control">
@@ -122,11 +117,8 @@
                             </span>
                             @endif
                         </div>
-                    </div>
-                    <!-- input group end -->
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
+                        <!-- input group end -->
+                        
                         <div class="mb-3">
                             <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                             <input type="password" name="password" id="password"
@@ -138,36 +130,24 @@
                                 </span>
                                 @endif
                         </div>
-                    </div>
-                    <div class="col-md-6">
+                        <!-- input group end -->
+                        
                         <div class="mb-3">
                             <label for="password_confirmation" class="form-label">Confirmation Password <span class="text-danger">*</span></label>
                             <input type="password" name="password_confirmation" id="password_confirmation" placeholder="*********" class="form-control">
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
-                            <select name="status" id="" class="form-control">
-                                <option value="" hidden>Select</option>
-                                <option value="Publish">Publish</option>
-                                <option value="Draft">Draft</option>
-                            </select>
-                            @if ($errors->has('status'))
-                            <span class="text-danger" role="alert">
-                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i>
-                                    {{$errors->first('status') }}
-                                </small>
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
+                        <!-- input group end -->
 
+                    </div>
+                    <!-- .col end -->
+
+                    <div class="col-md-4">
+                        
+                        <div class="mb-3">
                             <label for="picture" class="form-label d-block">Picture</label>
+                            <div class="mb-2 p-0">
+                                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile image not found" class="img img-thumbnail w-100" id="preview-images">
+                            </div>
                             <div class="custom-file w-100">
                                 <input type="file" name="picture" class="custom-file-input" id="picture" value="">
                                 <small class="text-muted mt-2 d-block">Choose a file from your computer</small>
@@ -180,13 +160,32 @@
                                     </span>
                                     @endif
                             </div>
-                            <div class="mb-2 p-0">
-                                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile image not found"
-                                class="img img-thumbnail" id="preview-images" width="80">
-                            </div>
                         </div>
+                        <!-- input group end -->
+                        
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+                            <select name="status" id="" class="form-control">
+                                <option value="" hidden>Select</option>
+                                <option value="Publish">Publish</option>
+                                <option value="Draft" selected>Draft</option>
+                            </select>
+                            @if ($errors->has('status'))
+                            <span class="text-danger" role="alert">
+                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i>
+                                    {{$errors->first('status') }}
+                                </small>
+                            </span>
+                            @endif
+                        </div>
+                        <!-- input group end -->
+
                     </div>
+                    <!-- .col end -->
+
                 </div>
+                <!-- .row end -->
+
             </div>
         </div> <!-- .card end -->
     </div> <!-- .col end -->

@@ -43,24 +43,27 @@ class UserController extends Controller
     }
 
     // DRAFT
+    
     public function draft(Request $request)
     {
         $datas = User::where([
-            ['name', '!=', Null],
+            ['first_name', '!=', Null],
             [function ($query) use ($request) {
                 if (($s = $request->s)) {
-                    $query->orWhere('name', 'LIKE', '%' . $s . '%')
+                    $query->orWhere('first_name', 'LIKE', '%' . $s . '%')
+                        ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $s . '%')
                         ->orWhere('email', 'LIKE', '%' . $s . '%')
                         ->get();
                 }
             }]
-        ])->where('status','Draft')->latest()->paginate(10);
+        ])->where('status','Draft')->orderBy('first_name','asc')->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
         $jumlahdraft = User::where('status', 'Draft')->count();
         $datapublish = User::where('status', 'Publish')->count();
-        return view('dashboard.users.index',compact('datas','jumlahtrash','jumlahdraft','datapublish'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('dashboard.users.index',compact('datas','jumlahtrash','jumlahdraft','datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
+
     }
 
     // CREATE
