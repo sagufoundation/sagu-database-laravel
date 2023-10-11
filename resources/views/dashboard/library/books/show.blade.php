@@ -115,7 +115,7 @@
                                     <span class="text-success"><i class="fa fa-dot-circle text-success"></i> Active</span>
                                     @elseif($loan->user->status == 'Pending')
                                     <span class="text-warning"><i class="fa fa-dot-circle"></i> Pending</span>
-                                    @else
+                                    @elseif($loan->user->status == 'Returned')
                                     <span class="text-dark"><i class="fa fa-dot-circle"></i> Returned</span>
                                     @endif
                                 </td>
