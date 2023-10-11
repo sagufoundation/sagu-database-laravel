@@ -90,7 +90,6 @@
                                                                             <i class="fa-solid fa-trash d-block"></i> Trash
                                                                         </button>
                                                                     </form>
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </td>

@@ -98,11 +98,13 @@ class BooksController extends Controller
                 $data = new Book();
 
                 $data->title = $request->title;
-                $data->status = $request->status;
                 $data->slug = Str::slug($data->title);
-                $data->total = $request->total;
+
                 $data->author_id = $request->author_id;
                 $data->catagory_id = $request->catagory_id;
+                $data->total = $request->total;
+                $data->summary = $request->summary;
+                $data->status = $request->status;
 
                 if ($request->cover) {
                     $imageName = $data->slug .'-'. time() .'.' . $request->cover->extension();
@@ -158,11 +160,13 @@ class BooksController extends Controller
                 $data = Book::find($id);
 
                 $data->title = $request->title;
-                $data->status = $request->status;
                 $data->slug = Str::slug($data->title);
-                $data->total = $request->total;
+
                 $data->author_id = $request->author_id;
                 $data->catagory_id = $request->catagory_id;
+                $data->total = $request->total;
+                $data->summary = $request->summary;
+                $data->status = $request->status;
 
                 if ($request->cover) {
                     $imageName = $data->slug .'-'. time() .'.' . $request->cover->extension();

@@ -122,9 +122,18 @@
                                 <td class="d-flex">
                                     <div class="mr-1">
                                         <a class="btn btn-primary w-100" href="{{ url('dashboard/books/loan-logs/edit',  $loan->id) }}">
-                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                            <i class="fa-solid fa-pen-to-square d-block"></i>
                                         </a>
                                     </div>
+
+                                    <form action="{{ url('dashboard/books/loan-logs/delete/' . $loan->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger w-100">
+                                            <i class="fa-solid fa-trash d-block"></i>
+                                        </button>
+                                    </form>
+                                    
                                 </td>
                             </tr>
 
@@ -157,11 +166,21 @@
 
     <div class="col-md-4">
         <div class="card-box">
-            @if (!$data->cover)
-            <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Book Cover" class="w-100">
+            <div class="mb-3">
+                @if (!$data->cover)
+                <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Book Cover" class="w-100">
                 @else
                 <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
-            @endif
+                @endif
+            </div>
+            <!-- end item -->
+            
+            <div class="mb-3">
+                <span class="font-weight-bold d-block">Status</span>
+                {{ $data->category->status ?? '' }}
+            </div>
+            <!-- end item -->
+
         </div>
     </div>
     <!-- end col-->

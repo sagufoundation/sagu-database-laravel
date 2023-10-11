@@ -90,7 +90,7 @@
 
                                 <li class="menu-title mt-2">Library</li>
 
-                                    <li class="@if(Request::segment(2) == 'books' && Request::segment(3) == '') menuitem-active @endif">
+                                    <li class="@if(Request::segment(2) == 'books' && Request::segment(3) == 'show' || Request::segment(3) == 'edit') menuitem-active @endif">
                                         <a href="{{ url(Request::segment(1).'/books') }}">
                                             <i class="fa-solid fa-book"></i> <span> Books </span>
                                             @if($database_total_publish_books != 0)
