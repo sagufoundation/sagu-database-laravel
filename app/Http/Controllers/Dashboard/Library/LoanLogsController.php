@@ -86,8 +86,8 @@ class LoanLogsController extends Controller
     // FORCE DELETE
     public function delete($id)
     {
-        dd('delete');
-        $data = LoanBook::first();
+        // dd($id);
+        $data = LoanBook::where('id',$id);
 
 
         $data->forceDelete();

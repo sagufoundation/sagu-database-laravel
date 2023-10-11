@@ -75,7 +75,7 @@
                                                     </tr>
                                                     @empty
                                                     <tr>
-                                                        <td colspan="8">
+                                                        <td colspan="9">
                                                             No data
                                                         </td>
                                                     </tr>
