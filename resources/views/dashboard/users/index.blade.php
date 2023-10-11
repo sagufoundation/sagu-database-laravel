@@ -22,6 +22,7 @@
                                                 <table class="table table-bordered">
                                                         <tr>
                                                             <th width="1%">No</th>
+                                                            <th>Picture</th>
                                                             <th>Name</th>
                                                             <th>Email</th>
                                                             <th>Job</th>
@@ -31,6 +32,7 @@
                                                         @forelse($datas as $data)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
+                                                            @include('dashboard.layout.includes.index-picture')
                                                             <td>
                                                                 {{ $data->first_name ?? '' }}
                                                                 {{ $data->middle_name ?? '' }}
