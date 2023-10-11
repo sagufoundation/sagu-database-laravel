@@ -1,19 +1,21 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
-use App\Http\Controllers\Controller;
-
 use App\Models\User;
+
 use App\Models\Program;
 use App\Models\Province;
 use App\Models\Students;
 use App\Models\Documents;
 use App\Models\Education;
-
 use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\ProgramStudent;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class StudentsController extends Controller
@@ -253,14 +255,14 @@ class StudentsController extends Controller
 
     // UPDATE PROFILE
     public function update_profile(Request $request, $id) {
-        
+
         $data = User::find($id);
-        
+
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
         $data->status = $request->status;
-        
+
         $data->update();
 
         $student = $data->student ?? new Students();
@@ -278,11 +280,11 @@ class StudentsController extends Controller
 
     // UPDATE BIOGRAPHY
     public function update_biography(Request $request, $id) {
-        
+
         $data = User::find($id);
-        
+
         $data->update();
-        
+
         $student = $data->student ?? new Students();
         $student->profile = $request->profile;
 
@@ -296,19 +298,19 @@ class StudentsController extends Controller
 
     // UPDATE PICTURE
     public function update_picture(Request $request, $id) {
-        
+
         $data = User::find($id);
 
         // picture creation
         if (isset($request->picture)) {
-            
+
             $fileName = $request->picture->getClientOriginalName();
             $path = public_path('images/students/' . $data->picture);
-            
+
             if (file_exists($path)) {
                 File::delete($path);
             }
-            
+
             $data->picture = 'images/students/' . $fileName;
             $request->picture->move(public_path('images/students/'), $fileName);
         }
@@ -324,19 +326,19 @@ class StudentsController extends Controller
 
     // UPDATE CONTACT
     public function update_contact(Request $request, $id) {
-        
+
         $data = User::find($id);
         $data->phone = $request->phone;
 
         $data->update();
-        
+
         $student = $data->student ?? new Students();
 
         $student->email_google = $request->email_google;
         $student->email_outlook = $request->email_outlook;
         $student->email_sagu = $request->email_sagu;
         $student->email_campus_1 = $request->email_campus_1;
-        
+
         $data->students()->save($student);
 
         // create alert & redirect
@@ -353,7 +355,7 @@ class StudentsController extends Controller
 
         // update process
         $data->update();
-        
+
         $student = $data->student ?? new Students();
 
         $student->province_id = $request->province_id;
@@ -369,15 +371,15 @@ class StudentsController extends Controller
 
     // UPDATE DOCUMENTS
     public function update_documents(Request $request, $id) {
-        
+
         $data = User::find($id);
-        
+
         $data->update();
-        
+
         $student = $data->student ?? new Students();
 
         $student->doc_google_sheets = $request->doc_google_sheets;
-        
+
         $data->students()->save($student);
 
         // create alert & redirect
@@ -389,14 +391,40 @@ class StudentsController extends Controller
     // UPDATE PROGRAMS
     public function update_programs(Request $request, $id) {
 
-        // select data by id
-        $data = User::find($id);
-        $data->student->program()->attach([$request->program]);
-        $data->update();
 
-        // create alert & redirect
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
-        return redirect()->back();
+        $validator = Validator::make(
+            $request->only('program'),
+            [
+                'program' => 'required|unique:student_program,program_id,'.$id,
+            ],
+            [
+                'program.required' => 'This is required',
+                'program.unique' => 'Program The data already exists',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }  else {
+
+            try {
+                // select data by id
+                $data = User::find($id);
+                $data->student->program()->attach([$request->program]);
+                $data->update();
+
+                // create alert & redirect
+                alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+                return redirect()->back();
+            } catch (\Throwable $th) {
+               alert()->error('Gagal', 'Failed')->autoclose(1100);
+                return redirect()->back();
+            }
+        }
+
+
+
+
 
     }
 
@@ -472,8 +500,7 @@ class StudentsController extends Controller
     // DELETE PROGRAM PERMANENTLY
     public function delete_program($id)
     {
-        $data = User::findOrFail($id);
-        $data->student->program()->detach();
+        $data = ProgramStudent::findOrFail($id);
         $data->delete();
 
         // create alert & redirect
