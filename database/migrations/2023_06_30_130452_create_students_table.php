@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreignId('province_id')->nullable();
+            $table->unsignedBigInteger('province_id')->nullable();
 
             // profile
             $table->longText('profile')->nullable();
@@ -47,6 +47,7 @@ return new class extends Migration
             $table->longText('doc_google_sheets')->nullable(); // google sheets
 
             $table->timestamps();
+            $table->foreign('province_id')->references('id')->on('provinces')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->softDeletes();
 

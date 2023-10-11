@@ -11,6 +11,6 @@ class Province extends Model
     public $guarded = [];
 
     public function student(){
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Students::class,'id');
     }
 }

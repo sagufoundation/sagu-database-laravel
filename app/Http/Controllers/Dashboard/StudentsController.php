@@ -155,7 +155,7 @@ class StudentsController extends Controller
 
         $data->students()->save($student);
         $data->assignRole(3);
-        
+
         // create alert & redirect
         alert()->success('Created', 'Data has been created')->autoclose(1100);
         return redirect('dashboard/students/show/' . User::find($data->id)->id);
@@ -247,7 +247,7 @@ class StudentsController extends Controller
 
         // update process
         $data->update();
-        
+
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect('dashboard/students/show/' . Students::find($data->id)->id);

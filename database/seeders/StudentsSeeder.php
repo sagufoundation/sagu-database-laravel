@@ -21,14 +21,8 @@ class StudentsSeeder extends Seeder
 
         $students_baru = Students::create(
             [
-                'user_id' => 7,
+                'user_id' => 8,
                 'province_id' => 1,
-
-                // 'first_name' => 'Anastasia',
-                // 'middle_name' => 'Febriani',
-                // 'last_name' => 'Yandong',
-
-                // 'slug' => Str::slug('anastasia-febriani-yandong'),
 
                 // profile
                 'profile' => "<p>Anastasia Febriani Yandong is a determined individual with a strong passion for pursuing higher education in vocational school. Her unwavering commitment to gaining practical skills and knowledge is evident in her relentless pursuit of excellence. Anastasia's drive and enthusiasm make her an inspiring role model for others who share her desire to succeed in vocational education.</p>

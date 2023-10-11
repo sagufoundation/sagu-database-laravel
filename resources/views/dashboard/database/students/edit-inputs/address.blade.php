@@ -6,8 +6,8 @@
             <label for="province_id" class="form-label">Province</label>
             <select class="custom-select" name="province_id">
                 @foreach ($provinces as $province)
-                <option value="{{ $province->id }}" @if($data->province_id == $province->id) Selected @endif>{{
-                    $province->name ?? '' }}</option>
+                <option value="{{ $province->id }}" @if($data->student->provinsi->id == $province->id) Selected @endif>{{
+                    $province->name  }}</option>
                 @endforeach
             </select>
         </div>

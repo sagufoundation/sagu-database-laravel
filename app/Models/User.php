@@ -55,20 +55,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user(){
-        return $this->hasMany(User::class,'user_id');
-    }
+
 
     public function students(){
         return $this->hasMany(Students::class,'user_id');
     }
 
     public function student(){
-        return $this->hasOne(Students::class,'user_id');
+        return $this->hasOne(Students::class,'user_id','id');
     }
 
-    public function program()
-    {
-        return $this->belongsToMany(Program::class, 'student_program');
-    }
+
+
+
 }

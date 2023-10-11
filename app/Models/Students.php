@@ -16,10 +16,15 @@ class Students extends Model
         return $this->belongsToMany(Program::class, 'student_program');
     }
 
-
-    public function provinces(){
-        return $this->belongsTo(Province::class,'province_id', 'id');
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id');
     }
+
+    public function provinsi(){
+        return $this->belongsTo(Province::class,'province_id','id');
+    }
+
 
     // public function loan_logs(){
     //     return $this->belongsToMany(Loan_logs::class,'loan_student');
