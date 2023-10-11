@@ -20,7 +20,12 @@
                             <option hidden>Pilih</option>
                             @foreach ($programs as $program )
 
-                            <option value="{{ $program->id }}">{{ $program->program_title }}</option>
+                                <option value="{{ $program->id }}" @if ($program->id == $data->id)
+                                    hidden
+                                @endif>
+                                    {{ $program->program_title }}
+                                </option>
+
                             @endforeach
 
                         </select>
