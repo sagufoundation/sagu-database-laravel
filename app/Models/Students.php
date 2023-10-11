@@ -16,6 +16,7 @@ class Students extends Model
         return $this->belongsToMany(Program::class, 'student_program');
     }
 
+
     public function provinces(){
         return $this->belongsTo(Province::class,'province_id', 'id');
     }
