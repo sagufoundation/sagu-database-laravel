@@ -391,7 +391,6 @@ class StudentsController extends Controller
     // UPDATE PROGRAMS
     public function update_programs(Request $request, $id) {
 
-
         $validator = Validator::make(
             $request->only('program'),
             [
@@ -500,7 +499,7 @@ class StudentsController extends Controller
     // DELETE PROGRAM PERMANENTLY
     public function delete_program($id)
     {
-        $data = ProgramStudent::findOrFail($id);
+        $data = ProgramStudent::first('id',$id);
         $data->delete();
 
         // create alert & redirect

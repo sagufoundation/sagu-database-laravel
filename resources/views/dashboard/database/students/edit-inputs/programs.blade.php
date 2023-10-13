@@ -27,33 +27,53 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($data->student->program as $program)
-                    <tr>
-                        <td>{{ $program->program_title ?? '' }}</td>
-                        <td>{{ $program->short_description ?? '' }}</td>
-                        <td class="d-flex">
-                            <div class="mr-1">
-                                <form action="{{ route('dashboard.students.delete.programs', $program->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger w-100">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
+                    @if($data->student->program)
+                        @forelse($data->student->program as $program)
+                        <tr>
+                            <td>{{ $program->program_title ?? '' }}</td>
+                            <td>{{ $program->short_description ?? '' }}</td>
+                            <td class="d-flex">
+                                <div class="mr-1">
+                                    <form action="{{ route('dashboard.students.delete.programs', $program->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger w-100">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
 
-                            </div>
-                        </td>
-                    </tr>
-
-                    @empty
-                    <tr>
-                        <td colspan="3">Data tidak ada</td>
-                    </tr>
-                    @endforelse
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="3">Data tidak ada</td>
+                        </tr>
+                        @endforelse    
+                    @endif
+                    
                 </tbody>
             </table>
         </div>
 
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        <form action="{{ url('dashboard/student/edit/program', $data->id) }}" method="POST">
+            @csrf
+
+            @foreach ($programs as $program)
+
+            <label for="option1">
+                <input type="checkbox" name="programs[]" value="SUP Vokasi 2020" id="option1"> {{ $program->program_title ?? '' }}
+            </label><br>
+                
+            @endforeach
+    
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </div>
 
