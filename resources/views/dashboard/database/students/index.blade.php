@@ -50,7 +50,9 @@
                                             <ul>
                                                 <li> {{ $item->program_title ?? '' }}</li>
                                             </ul>
-                                        @endforelse
+                                            @empty
+                                            no data
+                                            @endforelse  
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1">
