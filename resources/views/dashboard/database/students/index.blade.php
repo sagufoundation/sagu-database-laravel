@@ -46,6 +46,7 @@
                                     {{ $data->student->provinsi->name ?? '' }}
                                 </td>
                                 <td>
+                                    @if ($students->program)
                                     @forelse ($students->program as $item)
                                         <div class="badge border">
                                             {{ $item->program_title ?? '' }}
@@ -53,6 +54,8 @@
                                     @empty
                                     no data
                                     @endforelse
+                                        
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1">
