@@ -46,11 +46,11 @@
                                     {{ $data->student->provinsi->name ?? '' }}
                                 </td>
                                 <td>
-                                        @foreach ($students->program as $item)
+                                        @forelse ($students->program as $item)
                                             <ul>
                                                 <li> {{ $item->program_title ?? '' }}</li>
                                             </ul>
-                                        @endforeach
+                                        @endforelse
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1">
