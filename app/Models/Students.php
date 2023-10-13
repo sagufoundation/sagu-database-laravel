@@ -18,11 +18,12 @@ class Students extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'id');
+        return $this->belongsTo(User::class, 'id');
     }
 
-    public function provinsi(){
-        return $this->belongsTo(Province::class,'province_id','id');
+    public function provinsi()
+    {
+        return $this->belongsTo(Province::class, 'province_id', 'id');
     }
 
 
