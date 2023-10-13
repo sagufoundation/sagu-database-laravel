@@ -46,8 +46,9 @@
                                     {{ $data->student->provinsi->name ?? '' }}
                                 </td>
                                 <td>
-                                    @if ($students->program)
-                                    @forelse ($students->program as $item)
+                                    {{-- {{ $data->student->program }} --}}
+                                    @if ($data->student->program)
+                                    @forelse ($data->student->program as $item)
                                         <div class="badge border">
                                             {{ $item->program_title ?? '' }}
                                         </div>
