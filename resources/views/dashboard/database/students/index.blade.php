@@ -46,13 +46,13 @@
                                     {{ $data->student->provinsi->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{-- @forelse ($students->program as $item)
+                                    @forelse ($students->program as $item)
                                         <div class="badge border">
                                             {{ $item->program_title ?? '' }}
                                         </div>
                                     @empty
                                     no data
-                                    @endforelse --}}
+                                    @endforelse
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1">

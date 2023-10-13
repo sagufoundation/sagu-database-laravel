@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @forelse($data->student->program as $program)
+                    @forelse($data->student->program as $program)
                         <tr>
                             <td>{{ $program->program_title ?? '' }}</td>
                             <td>{{ $program->short_description ?? '' }}</td>
@@ -48,7 +48,7 @@
                         <tr>
                             <td colspan="3">Data tidak ada</td>
                         </tr>
-                        @endforelse                        --}}
+                        @endforelse                       
                 </tbody>
             </table>
         </div>
