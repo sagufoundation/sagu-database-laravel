@@ -46,17 +46,16 @@
                                     {{ $data->student->provinsi->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{-- {{ $data->student->program }} --}}
-                                    @if ($data->student->program)
-                                    @forelse ($data->student->program as $item)
-                                        <div class="badge border">
-                                            {{ $item->program_title ?? '' }}
-                                        </div>
-                                    @empty
-                                    no data
-                                    @endforelse
-                                        
-                                    @endif
+                                    {{-- {{ $ProgramStudent }} --}}
+                                    {{-- @if ($data->student->program)
+                                        @forelse ($data->student->program as $item)
+                                            <div class="badge border">
+                                                {{ $item->program_title ?? '' }}
+                                            </div>
+                                        @empty
+                                        no data
+                                        @endforelse                                        
+                                    @endif --}}
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1">

@@ -39,6 +39,8 @@ class StudentsController extends Controller
 
         $jumlahtrash = User::onlyTrashed()->count();
 
+        $ProgramStudent = ProgramStudent::count();
+
         $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
         $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
 
@@ -47,7 +49,8 @@ class StudentsController extends Controller
                 'datas',
                 'jumlahtrash',
                 'jumlahdraft',
-                'datapublish'
+                'datapublish',
+                'ProgramStudent'
             ))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

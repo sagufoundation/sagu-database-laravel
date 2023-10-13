@@ -93,12 +93,9 @@
                                     $idRole = implode(",",$data->roles()->pluck('id')->toArray())
                                 @endphp
                                 @foreach ($roles as $role )
-                                    @if ($role->name === "student")
-                                    @else
-                                     <option value="{{ $role->id }}" @if ($idRole == $role->id) selected @endif> 
-                                        {{ $role->display_name }}
-                                    </option>
-                                    @endif
+                                <option value="{{ $role->id }}" @if ($idRole == $role->id) selected @endif> 
+                                    {{ $role->display_name }}
+                                </option>
                                 @endforeach
 
                             </select>
