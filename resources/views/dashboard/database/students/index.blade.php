@@ -46,6 +46,7 @@
                                     {{ $data->student->provinsi->name ?? '' }}
                                 </td>
                                 <td>
+                                    
                                     {{-- {{ $ProgramStudent }} --}}
                                     {{-- @if ($data->student->program)
                                         @forelse ($data->student->program as $item)

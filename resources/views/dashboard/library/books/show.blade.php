@@ -60,7 +60,7 @@
             @endif
 
             {{-- ===================================== ADMINISTRATOR START ===================================== --}}
-            @if (Auth::user()->hasRole('administrator'))
+            @if (Auth::user()->hasRole('administrator') || Auth::user()->hasRole('librarian'))
             
             <div class="mb-3">
 

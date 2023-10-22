@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -68,6 +69,8 @@ class AppServiceProvider extends ServiceProvider
         try {
             // Your super fun database stuff
             view()->share([
+
+                // 'user_id' => Auth::user()->id,
 
                 // Settings
                 'pengaturan' => Settings::first(),
@@ -106,7 +109,7 @@ class AppServiceProvider extends ServiceProvider
                 
                 // FOR USER / STUDENTS
                 'database_total_publish_books_forStudents' =>  Book::where('status','Publish')->count(),
-                'database_total_publish_loan_books_forStudents' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(), //  perlu diperbaiki agar jumlah yg tampil hanya jumlah milik user yg login
+                'database_total_publish_loan_books_forStudents' =>  LoanBook::where('user_id', 8)->count(), //  perlu diperbaiki agar jumlah yg tampil hanya jumlah milik user yg login
     
     
                 /*

@@ -25,7 +25,6 @@
                                                             <th>Picture</th>
                                                             <th>Name</th>
                                                             <th>Email</th>
-                                                            <th>Job</th>
                                                             <th>Roles</th>
                                                             <th width="280px"></th>
                                                         </tr>
@@ -40,9 +39,6 @@
                                                             </td>
                                                             <td>
                                                                 {{ $data->email ?? '' }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $data->job_title ?? '' }}
                                                             </td>
                                                             <td>
                                                                 {{ implode(",",$data->roles()->pluck('display_name')->toArray()) }}

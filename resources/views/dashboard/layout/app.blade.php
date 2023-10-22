@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8" />
 
-    <title> {{ $pengaturan->site_title }} </title>
+    <title> {{ $pengaturan->site_title ?? '' }} </title>
 
     <!-- HTML METAS -->
     <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ $pengaturan->site_title }}" />
-    <meta property="og:description" content="{{ $pengaturan->meta_description }}" />
-    <meta property="og:site_name" content="{{ $pengaturan->site_title }}" />
-    <meta property="og:image" content="{{ asset('gambar/settings' . $pengaturan->logo) }}" />
+    <meta property="og:title" content="{{ $pengaturan->site_title ?? '' }}" />
+    <meta property="og:description" content="{{ $pengaturan->meta_description ?? '' }}" />
+    <meta property="og:site_name" content="{{ $pengaturan->site_title ?? '' }}" />
+    <meta property="og:image" content="{{ asset('gambar/settings' . $pengaturan->logo ?? '') }}" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <!-- FAVICON -->
-    <link rel="apple-touch-icon" href="{{ asset('gambar/settings/' . $pengaturan->favicon) }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('gambar/settings/' . $pengaturan->favicon) }}">
+    <link rel="apple-touch-icon" href="{{ asset('gambar/settings/' . $pengaturan->favicon ?? '') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('gambar/settings/' . $pengaturan->favicon ?? '') }}">
 
     <!-- CSRF TOKEN -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

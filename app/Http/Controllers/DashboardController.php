@@ -19,10 +19,12 @@ class DashboardController extends Controller
             return view('dashboard.index');
         }
         elseif(Auth::user()->hasRole('student')){
-            return view('dashboard.index');
+            // return view('dashboard.index');
+            return redirect('dashboard/books');
         }
         elseif(Auth::user()->hasRole('librarian')) {
-            return view('dashboard.index');
+            return redirect('dashboard/books');
+            // return view('dashboard.index');
         }
         else {
             echo "oops!";

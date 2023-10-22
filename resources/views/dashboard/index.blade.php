@@ -70,9 +70,9 @@
                     <div id="cardCollpase5" class="collapse pt-3 show" dir="ltr">
                         <div id="chartSiswa"></div>
                             <!-- JUMLAH siswa -->
-                            <input type="hidden" value="{{ $dashboard_total_students }}" name="dashboard_total_students" id="dashboard_total_students">
+                            {{-- <input type="hidden" value="{{ $dashboard_total_students }}" name="dashboard_total_students" id="dashboard_total_students">
                             <input type="hidden" value="{{ $dashboard_total_students_semua }}" name="dashboard_total_students_semua" id="dashboard_total_students_semua">
-                            <input type="hidden" value="{{ $dashboard_total_students_draft }}" name="dashboard_total_students_draft" id="dashboard_total_students_draft">
+                            <input type="hidden" value="{{ $dashboard_total_students_draft }}" name="dashboard_total_students_draft" id="dashboard_total_students_draft"> --}}
                     </div> <!-- collapsed end -->
                 </div> <!-- end card-body -->
             </div> <!-- end card-->

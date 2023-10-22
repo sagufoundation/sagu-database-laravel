@@ -39,8 +39,6 @@ class StudentsController extends Controller
 
         $jumlahtrash = User::onlyTrashed()->count();
 
-        $ProgramStudent = ProgramStudent::count();
-
         $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
         $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
 
@@ -49,8 +47,7 @@ class StudentsController extends Controller
                 'datas',
                 'jumlahtrash',
                 'jumlahdraft',
-                'datapublish',
-                'ProgramStudent'
+                'datapublish'
             ))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -394,35 +391,21 @@ class StudentsController extends Controller
     // UPDATE PROGRAMS
     public function update_programs(Request $request, $id) {
 
-        $validator = Validator::make(
-            $request->only('program'),
-            [
-                'program' => 'required|unique:student_program,program_id,'.$id,
-            ],
-            [
-                'program.required' => 'This is required',
-                'program.unique' => 'Program The data already exists',
-            ]
-        );
+        // select data by id
+        $data = User::find($id);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withInput($request->all())->withErrors($validator);
-        }  else {
+        // update process
+        $data->update();
 
-            try {
-                // select data by id
-                $data = User::find($id);
-                $data->student->program()->attach([$request->program]);
-                $data->update();
+        $student = $data->student ?? new Students();
 
-                // create alert & redirect
-                alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
-                return redirect()->back();
-            } catch (\Throwable $th) {
-               alert()->error('Gagal', 'Failed')->autoclose(1100);
-                return redirect()->back();
-            }
-        }
+        $student->programs = $request->programs;
+
+        $data->students()->save($student);
+
+        // create alert & redirect
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
+        return redirect()->back();
 
 
 

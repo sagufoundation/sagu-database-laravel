@@ -3,7 +3,7 @@
 
                         @include('dashboard.layout.includes.breadcrumb2')
 
-                        @if (Auth::user()->hasRole('administrator'))
+                        @if (Auth::user()->hasRole('administrator') || Auth::user()->hasRole('librarian'))
 
                         <div class="row">
                             <div class="col-12">
