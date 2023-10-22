@@ -47,7 +47,7 @@
                                                         <th>Student</th>
                                                         {{-- <th>Status</th> --}}
                                                         <th>Return Date</th>
-                                                        <th width="180px">Opsi</th>
+                                                        <th width="180px"></th>
                                                     </tr>
                                                     @forelse($adminDatas as $data)
                                                     <tr>

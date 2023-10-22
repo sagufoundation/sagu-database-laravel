@@ -30,7 +30,7 @@
                                 <th>Name Title</th>
                                 <th>Categories </th>
                                 <th>Status</th>
-                                <th>#</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>

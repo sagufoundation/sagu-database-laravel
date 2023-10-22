@@ -47,7 +47,7 @@
 
                                 <td class="d-flex">
                                     <div class="mr-1">
-                                        <a href="#" target="_blank" class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-show"></i></a>
+                                        <a href="{{ url('dashboard/books/show', $book->id) }}" target="_blank" class="btn btn-sm btn-outline-success w-100 border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>
