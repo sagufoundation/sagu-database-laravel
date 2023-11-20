@@ -17,10 +17,9 @@
             @endphp
 
             @foreach($programs as $program)
-            <label for="option{{ $program->id }}">
-                <input type="checkbox" name="programs[]" value="{{ $program->id }}" id="option{{ $program->id }}" {{ in_array($program->id, $decodedData) ? 'checked' : '' }}> {{ $program->program_title ?? '' }}
-            </label><br>
-                
+                <label for="option{{ $program->id }}">
+                    <input type="checkbox" name="programs[]" value="{{ $program->id }}" id="option{{ $program->id }}" {{ is_array($decodedData) && in_array($program->id, $decodedData) ? 'checked' : '' }}> {{ $program->program_title ?? '' }}
+                </label><br>
             @endforeach
     
             <button type="submit" class="btn btn-primary">Submit</button>
