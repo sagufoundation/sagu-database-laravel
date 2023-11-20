@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     require_once 'dashboard/students.php';
+    require_once 'dashboard/students_program.php';
     require_once 'dashboard/users.php';
     require_once 'dashboard/roles.php';
     require_once 'dashboard/documents.php';

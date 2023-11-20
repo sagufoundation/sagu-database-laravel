@@ -74,6 +74,7 @@ class AppServiceProvider extends ServiceProvider
 
                 // Settings
                 'pengaturan' => Settings::first(),
+                'programs' => Program::get(),
     
                 // Totals
                 'dashboard_total_students' =>  User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count(),

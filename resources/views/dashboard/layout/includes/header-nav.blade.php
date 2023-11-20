@@ -96,27 +96,30 @@
                             </a>
                         </li> --}}
                         @if (Auth::user()->hasRole('administrator'))
-                        <li class="dropdown d-none d-xl-block">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <i class="fe-file-plus"></i> Jalan Pintas
-                                <i class="mdi mdi-chevron-down"></i>
-                            </a>
-                            <div class="dropdown-menu">
 
-                                <!-- item-->
-                                <a href="{{ url('dashboard/siswa/create') }}" class="dropdown-item">
-                                    <i class="mdi mdi-newspaper"></i>
-                                    <span>Siswa Baru</span>
+                            @if(Request::segment(2) == 'students')
+
+                            <li class="dropdown d-none d-xl-block">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="mdi mdi-label"></i> Programs
+                                    <i class="mdi mdi-chevron-down"></i>
                                 </a>
+                                <div class="dropdown-menu">
 
-                                <!-- item-->
-                                <a href="{{ url('dashboard/kelompok/create') }}" class="dropdown-item">
-                                    <i class="mdi mdi-text-box-multiple-outline"></i>
-                                    <span>Kelompok Siswa</span>
-                                </a>
+                                    @foreach ($programs as $program)
 
-                            </div>
-                        </li>
+                                    <!-- item-->
+                                    <a href="{{ url('dashboard/students/programs', $program->slug) }}" class="dropdown-item">
+                                        <i class="mdi mdi-label"></i>
+                                        <span>{{ $program->program_title }}</span>
+                                    </a>
+                                        
+                                    @endforeach
+
+                                </div>
+                            </li>
+                            
+                            @endif 
                         @endif
                     </ul>
                     <div class="clearfix"></div>
