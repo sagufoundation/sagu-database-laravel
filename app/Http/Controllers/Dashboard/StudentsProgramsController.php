@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+
 use App\Models\User;
 
 use App\Models\Program;
@@ -23,22 +24,42 @@ class StudentsProgramsController extends Controller
     // PUBLISH VIEW
     public function index()
     {
-        $datas = User::whereHas('roles',function($q){
-            $q->where('name','student');
+        $datas = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
         })->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
 
-        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
-        $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
+        $jumlahdraft = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Publish')->count();
 
-        return view('dashboard.database.students.index',
-               compact(
+        return view(
+            'dashboard.database.students.index',
+            compact(
                 'datas',
                 'jumlahtrash',
                 'jumlahdraft',
                 'datapublish'
-            ))->with('i', (request()->input('page', 1) - 1) * 5);
+            )
+        )->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    // SHOW VIEW
+    public function show($id)
+    {
+        $data = User::where('id', $id)->first();
+        $documents = Documents::where('user_id', $id)->orderBy('title', 'asc')->get();
+        $formal_educations = Education::where('user_id', $id)->where('category', 'Formal')->orderBy('year', 'desc')->get();
+        $non_formal_educations = Education::where('user_id', $id)->where('category', 'Non Formal')->orderBy('year', 'desc')->get();
+
+        if ($data) {
+            return view('dashboard.database.students.show', compact('data', 'documents', 'formal_educations', 'non_formal_educations'))->with('i', (request()->input('page', 1) - 1) * 5);
+        } else {
+            return redirect('dashboard/students');
+        }
+    }
 }

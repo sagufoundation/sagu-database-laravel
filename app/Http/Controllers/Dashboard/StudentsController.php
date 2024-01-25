@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+
 use App\Models\User;
 
 use App\Models\Program;
@@ -33,22 +34,28 @@ class StudentsController extends Controller
                         ->get();
                 }
             }]
-        ])->whereHas('roles',function($q){
-            $q->where('name','student');
+        ])->whereHas('roles', function ($q) {
+            $q->where('name', 'student');
         })->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
 
-        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
-        $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
+        $jumlahdraft = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Publish')->count();
 
-        return view('dashboard.database.students.index',
-               compact(
+        return view(
+            'dashboard.database.students.index',
+            compact(
                 'datas',
                 'jumlahtrash',
                 'jumlahdraft',
                 'datapublish'
-            ))->with('i', (request()->input('page', 1) - 1) * 5);
+            )
+        )->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // DRAFT VIEW
@@ -64,13 +71,17 @@ class StudentsController extends Controller
                         ->get();
                 }
             }]
-        ])->whereHas('roles',function($q){
-            $q->where('name','student');
+        ])->whereHas('roles', function ($q) {
+            $q->where('name', 'student');
         })->where('status', 'Draft')->orderBy('first_name', 'asc')->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
-        $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
+        $jumlahdraft = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Publish')->count();
 
         return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -79,7 +90,7 @@ class StudentsController extends Controller
     public function create()
     {
         $provinces = Province::all();
-        return view('dashboard.database.students.create',compact('provinces'));
+        return view('dashboard.database.students.create', compact('provinces'));
     }
 
     // STORE
@@ -169,13 +180,11 @@ class StudentsController extends Controller
         $formal_educations = Education::where('user_id', $id)->where('category', 'Formal')->orderBy('year', 'desc')->get();
         $non_formal_educations = Education::where('user_id', $id)->where('category', 'Non Formal')->orderBy('year', 'desc')->get();
 
-        if($data)
-        {
+        if ($data) {
             return view('dashboard.database.students.show', compact('data', 'documents', 'formal_educations', 'non_formal_educations'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else {
             return redirect('dashboard/students');
         }
-
     }
 
     // EDIT VIEW
@@ -190,7 +199,7 @@ class StudentsController extends Controller
 
         $data_programs = explode(',', $data->programs);
 
-        return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs','data_programs'));
+        return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs', 'data_programs'));
     }
 
     // UPDATE
@@ -254,7 +263,8 @@ class StudentsController extends Controller
     }
 
     // UPDATE PROFILE
-    public function update_profile(Request $request, $id) {
+    public function update_profile(Request $request, $id)
+    {
 
         $data = User::find($id);
 
@@ -275,11 +285,11 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
-
     }
 
     // UPDATE BIOGRAPHY
-    public function update_biography(Request $request, $id) {
+    public function update_biography(Request $request, $id)
+    {
 
         $data = User::find($id);
 
@@ -293,11 +303,11 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
-
     }
 
     // UPDATE PICTURE
-    public function update_picture(Request $request, $id) {
+    public function update_picture(Request $request, $id)
+    {
 
         $data = User::find($id);
 
@@ -321,11 +331,11 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
-
     }
 
     // UPDATE CONTACT
-    public function update_contact(Request $request, $id) {
+    public function update_contact(Request $request, $id)
+    {
 
         $data = User::find($id);
         $data->phone = $request->phone;
@@ -344,11 +354,11 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
-
     }
 
     // UPDATE ADDRESS
-    public function update_address(Request $request, $id) {
+    public function update_address(Request $request, $id)
+    {
 
         // select data by id
         $data = User::find($id);
@@ -366,11 +376,11 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
-
     }
 
     // UPDATE DOCUMENTS
-    public function update_documents(Request $request, $id) {
+    public function update_documents(Request $request, $id)
+    {
 
         $data = User::find($id);
 
@@ -385,11 +395,11 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
-
     }
 
     // UPDATE PROGRAMS
-    public function update_programs(Request $request, $id) {
+    public function update_programs(Request $request, $id)
+    {
 
         // select data by id
         $data = User::find($id);
@@ -406,15 +416,11 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
-
-
-
-
-
     }
 
     // UPDATE EDUCATION
-    public function update_educations(Request $request, $id) {
+    public function update_educations(Request $request, $id)
+    {
 
         // select data by id
         $data = Students::find($id);
@@ -428,7 +434,6 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);
         return redirect()->back();
-
     }
 
     // DESTROY OR MOVE TO TRASH
@@ -448,8 +453,12 @@ class StudentsController extends Controller
         $datas = User::onlyTrashed()->paginate(10);
 
         $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Draft')->count();
-        $datapublish = User::whereHas('roles',function($q){$q->where('name','student');})->where('status', 'Publish')->count();
+        $jumlahdraft = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Publish')->count();
 
         return view('dashboard.database.students.trash', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -485,7 +494,7 @@ class StudentsController extends Controller
     // DELETE PROGRAM PERMANENTLY
     public function delete_program($id)
     {
-        $data = ProgramStudent::first('id',$id);
+        $data = ProgramStudent::first('id', $id);
         $data->delete();
 
         // create alert & redirect
