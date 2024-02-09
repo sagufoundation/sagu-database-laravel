@@ -125,35 +125,49 @@
                                     <th width="280px"></th>
                                 </tr>
                                 @forelse($datas as $data)
-                                    <tr>
-                                        <td>{{ ++$i }}</td>
-                                        @include('dashboard.layout.includes.index-picture')
-                                        <td>
-                                            {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
-                                            <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
-                                                {{ $data->email_sagu ?? '' }}</small>
-                                        </td>
-                                        <td>{{ $data->phone ?? '' }}</td>
-                                        <td>{{ $data->provinces->name ?? '' }}</td>
-                                        <td>{{ $data->program->program_title ?? '' }}</td>
-                                        <td>
-                                            <div class="d-flex gap-1">
-                                                <div class="d-block p-1">
-                                                    <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}"
-                                                        class="btn btn-success w-100">
-                                                        <i class="fa-solid fa-id-badge d-block"></i> Show
-                                                    </a>
+                                    @php
+                                        $students = $data->students ?? '';
+                                    @endphp
+                                    @forelse ($students as $student)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+
+                                            @include('dashboard.layout.includes.index-picture')
+                                            <td>
+
+                                                {{ $student->users->first_name . ' ' . $student->users->middle_name . ' ' . $student->users->last_name ?? '' }}
+                                                <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
+                                                    {{ $student->users->email ?? '' }}</small>
+                                            </td>
+                                            <td>{{ $student->users->phone ?? '' }}</td>
+
+                                            <td>
+                                                {{ $student->provinsi->name ?? '' }}
+                                            </td>
+                                            <td>
+                                                <div class="badge border">
+                                                    {{ $data->program_title ?? '' }}
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6">
-                                            Data tidak ada
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                            </td>
+                                            <td>
+                                                <div class="d-flex gap-1">
+                                                    <div class="d-block p-1">
+                                                        <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $student->users->id) }}"
+                                                            class="btn btn-success w-100">
+                                                            <i class="fa-solid fa-id-badge d-block"></i> Show
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="8">
+                                                Data tidak ada
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                @endforeach
                             </table>
                         </div>
                         <!-- end .mt-4 -->
