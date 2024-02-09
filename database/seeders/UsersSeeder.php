@@ -115,42 +115,6 @@ class UsersSeeder extends Seeder
                 'role' => 'student',
                 'phone' => '082112341234'
             ],
-            [
-                'first_name' => 'Tes',
-                'middle_name' => 'Febriani',
-                'last_name' => 'Yandong',
-                'slug' => 'anastasia-febriani-yandong',
-                'picture' => 'images/users/anastasia-yandong.jpg',
-                'email' => 'tesanastasia@gmail.com',
-                'password' => bcrypt('anastasia@gmail.com'),
-                'status' => 'Publish',
-                'role' => 'student',
-                'phone' => '082112341221'
-            ],
-            [
-                'first_name' => 'Testt',
-                'middle_name' => '',
-                'last_name' => '',
-                'slug' => 'testt',
-                'job_title' => 'Pemerintah Provinsi Papua',
-                'picture' => 'images/users/profile-provinsi-papua.jpg',
-                'email' => 'anastasia2@gmail.com',
-                'password' => bcrypt('anastasia2@gmail.com'),
-                'status' => 'Publish',
-                'role' => 'guest',
-            ],
-            [
-                'first_name' => 'Testtrr',
-                'middle_name' => '',
-                'last_name' => '',
-                'slug' => 'testtrr',
-                'job_title' => 'Pemerintah Provinsi Papua',
-                'picture' => 'images/users/profile-provinsi-papua.jpg',
-                'email' => 'anastasia3@gmail.com',
-                'password' => bcrypt('anastasia3@gmail.com'),
-                'status' => 'Publish',
-                'role' => 'guest',
-            ],
         ]);
 
         $users->map(function ($user) {
