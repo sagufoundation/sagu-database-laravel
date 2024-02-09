@@ -202,6 +202,33 @@ class StudentsController extends Controller
         return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs', 'data_programs'));
     }
 
+    // PROGRAM
+    public function programs($id)
+    {
+        // With untuk menarik data dari relasi yang telah di buat
+        // paginate untuk membuat halaman/links()
+        $datas = Program::where('id', $id)->with('students')->paginate(10);
+
+        $jumlahtrash = User::onlyTrashed()->count();
+
+        $jumlahdraft = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Draft')->count();
+        $datapublish = User::whereHas('roles', function ($q) {
+            $q->where('name', 'student');
+        })->where('status', 'Publish')->count();
+
+        return view(
+            'dashboard.database.students.program',
+            compact(
+                'datas',
+                'jumlahtrash',
+                'jumlahdraft',
+                'datapublish'
+            )
+        )->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
     // UPDATE
     public function update(Request $request, $id)
     {
@@ -402,16 +429,24 @@ class StudentsController extends Controller
     {
 
         // select data by id
-        $data = User::find($id);
+        $user = User::find($id);
 
-        // update process
-        $data->update();
+        //get student id
+        $student_id = ($user->student->id);
 
-        $student = $data->student ?? new Students();
+        // delete program student
+        $data = ProgramStudent::where('students_id', $student_id);
+        $data->delete();
 
-        $student->programs = $request->programs;
-
-        $data->students()->save($student);
+        // Add program student
+        if ($request->programs) {
+            foreach ($request->programs as $program) {
+                $student =  new ProgramStudent();
+                $student->program_id = $program;
+                $student->students_id = $student_id;
+                $student->save();
+            }
+        }
 
         // create alert & redirect
         alert()->success('Updated', 'Data has been updated')->autoclose(1100);

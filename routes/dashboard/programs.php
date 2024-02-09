@@ -22,42 +22,42 @@ use Illuminate\Support\Facades\Route;
     | delete
     |--------------------------------------------------------------------------
     */
-    Route::group(['middleware' => ['role:administrator']], function () {
 
-        Route::controller(ProgramsController::class)->group(function(){
+Route::group(['middleware' => ['role:administrator']], function () {
 
-            // index
-            Route::get('programs','index')->name('dashboard.programs');
+    Route::controller(ProgramsController::class)->group(function () {
 
-            // draft
-            Route::get('programs/draft','draft')->name('dashboard.programs.draft');
+        // index
+        Route::get('programs', 'index')->name('dashboard.programs');
 
-            // create
-            Route::get('programs/create','create')->name('dashboard.programs.create');
+        // draft
+        Route::get('programs/draft', 'draft')->name('dashboard.programs.draft');
 
-            // store
-            Route::post('programs','store')->name('dashboard.programs.store');
+        // create
+        Route::get('programs/create', 'create')->name('dashboard.programs.create');
 
-            // show
-            Route::get('programs/show/{id}','show')->name('dashboard.programs.show');
+        // store
+        Route::post('programs', 'store')->name('dashboard.programs.store');
 
-            // edit
-            Route::get('programs/edit/{id}','edit')->name('dashboard.programs.edit');
+        // show
+        Route::get('programs/show/{id}', 'show')->name('dashboard.programs.show');
 
-            // update
-            Route::put('programs/update/{id}','update')->name('dashboard.programs.update');
+        // edit
+        Route::get('programs/edit/{id}', 'edit')->name('dashboard.programs.edit');
 
-            // destroy
-            Route::delete('programs/{id}','destroy')->name('dashboard.programs.destroy');
+        // update
+        Route::put('programs/update/{id}', 'update')->name('dashboard.programs.update');
 
-            // trash
-            Route::get('programs/trash','trash')->name('dashboard.programs.trash');
+        // destroy
+        Route::delete('programs/{id}', 'destroy')->name('dashboard.programs.destroy');
 
-            // restore
-            Route::post('programs/restore/{id}','restore')->name('dashboard.programs.restore');
+        // trash
+        Route::get('programs/trash', 'trash')->name('dashboard.programs.trash');
 
-            // delete
-            Route::delete('programs/delete/{id}','delete')->name('dashboard.programs.delete');
+        // restore
+        Route::post('programs/restore/{id}', 'restore')->name('dashboard.programs.restore');
 
-        });
+        // delete
+        Route::delete('programs/delete/{id}', 'delete')->name('dashboard.programs.delete');
     });
+});

@@ -1,6 +1,7 @@
 @if ($errors->has('program'))
     <span role="alert">
-        <h5 class="text-uppercase bg-light p-2 mt-0 mb-3 text-danger"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('program') }}</h5>
+        <h5 class="text-uppercase bg-light p-2 mt-0 mb-3 text-danger"><i class="fe-alert-triangle mr-1"></i>
+            {{ $errors->first('program') }}</h5>
     </span>
 @endif
 
@@ -9,20 +10,28 @@
 
 <div class="row">
     <div class="col">
-            {!! Form::model($data, array( 'url'=>'dashboard/student/edit/program'. Request::segment(5) . '/' .$data->id, 'method'=>'put','files'=>'true'))!!}
-            @csrf
+        {!! Form::model($data, [
+            'url' => 'dashboard/student/edit/program' . Request::segment(5) . '/' . $data->id,
+            'method' => 'put',
+            'files' => 'true',
+        ]) !!}
+        @csrf
 
-            @php
-                $decodedData = json_decode($data->student->programs, true)
-            @endphp
+        @php
+            $decodedData = json_decode($data->student->programs, true);
+            // var_dump($decodedData);
+        @endphp
 
-            @foreach($programs as $program)
-                <label for="option{{ $program->id }}">
-                    <input type="checkbox" name="programs[]" value="{{ $program->id }}" id="option{{ $program->id }}" {{ is_array($decodedData) && in_array($program->id, $decodedData) ? 'checked' : '' }}> {{ $program->program_title ?? '' }}
-                </label><br>
-            @endforeach
-    
-            <button type="submit" class="btn btn-primary">Submit</button>
+        @foreach ($programs as $program)
+            <label for="option{{ $program->id }}">
+                <input type="checkbox" name="programs[]" value="{{ $program->id }}" id="option{{ $program->id }}"
+                    @foreach ($data->student->program as $student_program)
+                        @if ($student_program->id === $program->id) {{ 'checked' }}
+                        @endif @endforeach>
+                {{ $program->program_title ?? '' }}
+            </label><br>
+        @endforeach
+        <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>

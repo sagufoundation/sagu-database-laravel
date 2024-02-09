@@ -12,7 +12,7 @@
         </li>
         <!-- menu item end -->
 
-        <li class="@if(Request::segment(1) == 'siswa') menuitem-active @endif">
+        <li class="@if (Request::segment(1) == 'siswa') menuitem-active @endif">
             <a href="{{ url('dashboard/siswa') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="badge badge-success badge-pill float-right">

@@ -15,7 +15,7 @@ class Program extends Model
     //     return $this->hasMany(Siswa::class);
     // }
 
-    public function student()
+    public function students()
     {
         return $this->belongsToMany(Students::class, 'student_program');
     }

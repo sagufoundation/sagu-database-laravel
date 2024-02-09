@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 
 use App\Models\Program;
-
+use App\Models\User;
+use App\Models\ProgramStudent;
+use App\Models\Students;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -52,7 +54,6 @@ class ProgramsController extends Controller
         $datapublish = Program::where('status', 'Publish')->count();
 
         return view('dashboard.database.programs.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
-        
     }
 
     // CREATE VIEW
@@ -89,7 +90,6 @@ class ProgramsController extends Controller
 
                 Alert::toast('Created! This data has been created successfully.', 'success');
                 return redirect('dashboard/programs/show/' . $data->id);
-
             } catch (\Throwable $th) {
                 Alert::toast('Failed! Something is wrong', 'error');
                 return redirect()->back();
@@ -101,9 +101,9 @@ class ProgramsController extends Controller
     public function show($id)
     {
         $data = Program::where('id', $id)->first();
-        if($data) 
-        {
-            return view('dashboard.database.programs.show', compact('data'));
+
+        if ($data) {
+            return view('dashboard.database.programs.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else {
             return redirect('dashboard/programs');
         }
