@@ -48,14 +48,18 @@
                                             <td>
 
                                                 {{-- {{ $ProgramStudent }} --}}
-                                                @if ($data->student->program)
-                                                    @forelse ($data->student->program as $item)
-                                                        <div class="badge border">
-                                                            {{ $item->program_title ?? '' }}
-                                                        </div>
-                                                    @empty
-                                                        no data
-                                                    @endforelse
+                                                @if ($data->student)
+                                                    @if ($data->student->program)
+                                                        @forelse ($data->student->program as $item)
+                                                            <div class="badge border">
+                                                                {{ $item->program_title ?? '' }}
+                                                            </div>
+                                                        @empty
+                                                            no data
+                                                        @endforelse
+                                                    @endif
+                                                @else
+                                                    no data
                                                 @endif
                                             </td>
                                             <td>
