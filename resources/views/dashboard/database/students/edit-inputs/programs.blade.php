@@ -22,11 +22,16 @@
         @foreach ($programs as $program)
             <label for="option{{ $program->id }}">
                 <input type="checkbox" name="programs[]" value="{{ $program->id }}" id="option{{ $program->id }}"
-                    @foreach ($data->student->program as $student_program)
-                        @if ($student_program->id === $program->id) {{ 'checked' }}
-                        @endif @endforeach>
+                    @if ($data->student != null) @foreach ($data->student->program as $student_program)
+                            @if ($student_program->id === $program->id) {{ 'checked' }} @endif
+                    @endforeach>
                 {{ $program->program_title ?? '' }}
             </label><br>
+        @else
+            >{{ $program->program_title ?? '' }}
+            </label><br>
+        @endif
+
         @endforeach
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Students;
 
 class UserController extends Controller
 {
@@ -33,16 +34,24 @@ class UserController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status','Publish')->orderBy('first_name','asc')->paginate(10);
+        ])->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })
+            ->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(10);
 
-        $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::where('status', 'Draft')->count();
-        $datapublish = User::where('status', 'Publish')->count();
-        return view('dashboard.users.index',compact('datas','jumlahtrash','jumlahdraft','datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
-
+        $jumlahtrash = User::whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->onlyTrashed()->count();
+        $jumlahdraft = User::where('status', 'Draft')->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->count();
+        $datapublish = User::where('status', 'Publish')->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->count();
+        return view('dashboard.users.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
-    // DRAFT    
+    // DRAFT
     public function draft(Request $request)
     {
         $datas = User::where([
@@ -56,19 +65,27 @@ class UserController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status','Draft')->orderBy('first_name','asc')->paginate(10);
+        ])->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->where('status', 'Draft')->orderBy('first_name', 'asc')->paginate(10);
 
-        $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::where('status', 'Draft')->count();
-        $datapublish = User::where('status', 'Publish')->count();
-        return view('dashboard.users.index',compact('datas','jumlahtrash','jumlahdraft','datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
 
+        $jumlahtrash = User::whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->onlyTrashed()->count();
+        $jumlahdraft = User::where('status', 'Draft')->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->count();
+        $datapublish = User::where('status', 'Publish')->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->count();
+        return view('dashboard.users.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     // CREATE
     public function create()
     {
-        $roles = Role::all();
+        $roles = Role::where('name', '!=', 'student')->get();
         return view('dashboard.users.create', compact('roles'));
     }
 
@@ -97,7 +114,6 @@ class UserController extends Controller
                 'picture.max'             => 'Files must be a maximum of 2 MB',
             ]
         );
-
         if ($validator->fails()) {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         } else {
@@ -114,7 +130,7 @@ class UserController extends Controller
                 $data->slug = Str::slug($data->first_name);
 
                 if ($request->picture) {
-                    $imageName = $data->slug .'-'. time() .'.' . $request->picture->extension();
+                    $imageName = $data->slug . '-' . time() . '.' . $request->picture->extension();
                     $path = public_path('images/users');
                     if (!empty($data->picture) && file_exists($path . '/' . $data->picture)) :
                         unlink($path . '/' . $data->picture);
@@ -124,11 +140,10 @@ class UserController extends Controller
                 }
                 $data->save();
                 $data->assignRole($request->roles);
-        
+
                 // create alert & redirect
                 Alert::toast('Created! This data has been created successfully.', 'success');
                 return redirect('dashboard/users/show/' . $data->id);
-
             } catch (\Throwable $th) {
 
                 Alert::toast('Failed', 'error');
@@ -141,16 +156,16 @@ class UserController extends Controller
     public function show($id)
     {
         $data = User::find($id);
-        return view('dashboard.users.show',compact('data'));
+        return view('dashboard.users.show', compact('data'));
     }
 
     // EDIT
     public function edit($id)
     {
         $data = User::find($id);
-        $roles = Role::all();
+        $roles = Role::where('name', '!=', 'student')->get();
 
-        return view('dashboard.users.edit',compact('data','roles'));
+        return view('dashboard.users.edit', compact('data', 'roles'));
     }
 
     // UPDATE
@@ -160,7 +175,7 @@ class UserController extends Controller
             $request->all(),
             [
                 'first_name'            => 'required',
-                'email'                 => 'required|email|unique:users,email,'.$id,
+                'email'                 => 'required|email|unique:users,email,' . $id,
                 // 'phone'                 => 'unique:users,phone,'.$id,
                 'password'              => 'confirmed',
                 'roles'                 => 'required',
@@ -178,6 +193,7 @@ class UserController extends Controller
                 'picture.max'           => 'Files must be a maximum of 2 MB',
             ]
         );
+
         if ($validator->fails()) {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         } else {
@@ -189,7 +205,7 @@ class UserController extends Controller
                 $data->job_title = $request->job_title;
                 $data->email = $request->email;
                 $data->phone = $request->phone;
-                
+
                 $data->password = Hash::make($request->password);
 
                 $data->status = $request->status;
@@ -199,7 +215,7 @@ class UserController extends Controller
                     $data->password = bcrypt($request->password);
                 }
                 if ($request->picture) {
-                    $imageName = $data->slug .'-'. time() .'.' . $request->picture->extension();
+                    $imageName = $data->slug . '-' . time() . '.' . $request->picture->extension();
                     $path = public_path('images/users');
                     if (!empty($data->picture) && file_exists($path . '/' . $data->picture)) :
                         unlink($path . '/' . $data->picture);
@@ -211,17 +227,26 @@ class UserController extends Controller
                 $data->update();
 
                 $data->syncRoles(explode(',', $request->roles));
-        
+
+                // if ($request->roles == 3) {
+                //     // Student data
+                //     $student = new Students();
+                //     $student->user_id = $data->id;
+                //     $student->save();
+                // } else {
+                //     $student = Students::where('user_id', $data->id);
+
+                //     $student->delete();
+                // }
+
                 // create alert & redirect
                 Alert::toast('Created! This data has been updated successfully.', 'success');
                 return redirect('dashboard/users/show/' . $data->id);
-
             } catch (\Throwable $th) {
                 Alert::toast('Failed', 'error');
                 return redirect()->back();
             }
         }
-
     }
 
     // DESTROY
@@ -230,44 +255,46 @@ class UserController extends Controller
         $data = User::findOrFail($id);
         $data->save();
         User::find($id)->delete();
-        
+
         // create alert & redirect
         alert()->success('Trashed', 'Data has been moved to trash!')->autoclose(1100);
         return redirect()->back();
     }
 
     // TRASH
-    public function trash(){
+    public function trash()
+    {
         $datas = User::onlyTrashed()->paginate(5);
         $jumlahtrash = User::onlyTrashed()->count();
         $jumlahdraft = User::where('status', 'Draft')->count();
         $datapublish = User::where('status', 'Publish')->count();
-        return view('dashboard.users.trash',compact('datas','datapublish','jumlahdraft','jumlahtrash'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dashboard.users.trash', compact('datas', 'datapublish', 'jumlahdraft', 'jumlahtrash'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     // RESTORE
-    public function restore($id){
-        User::withTrashed()->where('id',$id)->restore();
-        
+    public function restore($id)
+    {
+        User::withTrashed()->where('id', $id)->restore();
+
         // create alert & redirect
         alert()->success('Restored', 'Data has been restored!!')->autoclose(1100);
         return redirect()->back();
     }
 
     // DELETE
-    public function delete($id){
+    public function delete($id)
+    {
 
-        $data = User::withTrashed()->where('id',$id)->first();
+        $data = User::withTrashed()->where('id', $id)->first();
         $path = public_path('images/users/' . $data->picture);
 
         if (file_exists($path)) {
             File::delete($path);
         }
         $data->forceDelete();
-        
+
         // create alert & redirect
         alert()->success('Deleted', 'Data Program has been delete!')->autoclose(1100);
         return redirect()->back();
     }
-
 }
