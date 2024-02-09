@@ -32,8 +32,7 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $data->program_title ?? '' }} </td>
                                             <td>{{ $data->short_description ?? '' }} </td>
-                                            <td class="text-center"> <button class="btn btn-secondary">
-                                                    {{ $data->students->count() }} </button> </td>
+                                            <td class="text-center"> {{ $data->students->count() }}</td>
                                             <td>
                                                 <div class="d-flex gap-1">
                                                     <div class="d-block p-1">
