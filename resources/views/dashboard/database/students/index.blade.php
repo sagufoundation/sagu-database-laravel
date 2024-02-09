@@ -143,7 +143,20 @@
                                         </td>
                                         <td>{{ $data->phone ?? '' }}</td>
                                         <td>{{ $data->provinces->name ?? '' }}</td>
-                                        <td>{{ $data->program->program_title ?? '' }}</td>
+                                        {{-- {{ $ProgramStudent }} --}}
+                                        @if ($data->student)
+                                            @if ($data->student->program)
+                                                @forelse ($data->student->program as $item)
+                                                    <div class="badge border">
+                                                        {{ $item->program_title ?? '' }}
+                                                    </div>
+                                                @empty
+                                                    no data
+                                                @endforelse
+                                            @endif
+                                        @else
+                                            no data
+                                        @endif
                                         <td>
                                             <div class="d-flex gap-1">
                                                 <div class="d-block p-1">

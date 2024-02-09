@@ -17,10 +17,7 @@
         ]) !!}
         @csrf
 
-        @php
-            $decodedData = json_decode($data->student->programs, true);
-            // var_dump($decodedData);
-        @endphp
+
 
         @foreach ($programs as $program)
             <label for="option{{ $program->id }}">
