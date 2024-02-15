@@ -1,20 +1,36 @@
 @extends('dashboard.layout.app')
 @section('content')
 
-    @include('dashboard.layout.includes.breadcrumb2')
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item">
+                            <a href="{{ url(Request::segment(1)) }}">{{ ucfirst(Request::segment(1)) }}</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ url('dashboard/' . Request::segment(2)) }}">{{ ucfirst(Request::segment(2)) }}</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            {{ $program->program_title }}
+                        </li>
+                    </ol>
+                </div>
+                <h4 class="page-title">{{ ucfirst(Request::segment(2)) }} Program {{ $program->program_title }}</h4>
+            </div>
+        </div>
+    </div>
+    <!-- .row end -->
+
 
     @if (Auth::user()->hasRole('administrator'))
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-
-
-
                         <div class="">
-
                             @include('dashboard.layout.includes.form-input.search')
-
                             <div class="mt-3 table-responsive">
                                 <table class="table table-bordered">
                                     <tr>

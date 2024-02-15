@@ -108,7 +108,21 @@
                     <li class="dropdown d-none d-xl-block">
                         <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
                             href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <i class="mdi mdi-label"></i> Programs
+                            @if (Request::segment(4))
+                                @forelse ($programs as $program)
+                                    @if ($program->id == Request::segment(4))
+                                        <i class="mdi mdi-label"></i> {{ $program->program_title }}
+                                    @else
+                                    @endif
+                                @empty
+                                    Programs
+                                @endforelse
+                            @else
+                                Programs
+                            @endif
+
+
+
                             <i class="mdi mdi-chevron-down"></i>
                         </a>
                         <div class="dropdown-menu">

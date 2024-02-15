@@ -208,6 +208,7 @@ class StudentsController extends Controller
         // With untuk menarik data dari relasi yang telah di buat
         // paginate untuk membuat halaman/links()
         $datas = Program::where('id', $id)->with('students')->paginate(10);
+        $program = Program::where('id', $id)->first();
 
         $jumlahtrash = User::onlyTrashed()->count();
 
@@ -222,6 +223,7 @@ class StudentsController extends Controller
             'dashboard.database.students.program',
             compact(
                 'datas',
+                'program',
                 'jumlahtrash',
                 'jumlahdraft',
                 'datapublish'
