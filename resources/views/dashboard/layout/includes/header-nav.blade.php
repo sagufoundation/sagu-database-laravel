@@ -137,7 +137,7 @@
 
                 @endif
 
-                @if (((Request::segment(2) == 'students' && Request::segment(3) == 'programs' || Request::segment(3) == null ) || (Request::segment(2) == 'programs' && Request::segment(3) == 'show' )))
+                @if (((Request::segment(2) == 'students' &&  Request::segment(3) == null || Request::segment(3) == 'programs' ) || (Request::segment(2) == 'programs' && Request::segment(3) == 'show' )))
 
                     <li class="dropdown d-none d-xl-block">
 
@@ -148,7 +148,7 @@
                                     Export to Excel
                                 </a>
                             @empty
-                            @if (Request::segment(2) == 'students' && Request::segment(3) == 'programs' || Request::segment(3) == null )
+                            @if (Request::segment(2) == 'students' || Request::segment(3) == 'programs' || Request::segment(3) == null )
                                 <a class="nav-link  waves-effect waves-light" href="{{ url('dashboard/students/excel') }}">
                                 Export to Excel
                                 </a>
@@ -156,7 +156,7 @@
 
                             @endforelse
                         @else
-                        @if (Request::segment(2) == 'students' && Request::segment(3) == 'programs' )
+                        @if (Request::segment(2) == 'students' || Request::segment(3) == null )
                         <a class="nav-link  waves-effect waves-light" href="{{ url('dashboard/students/excel') }}">
                         Export to Excel
                         </a>
