@@ -103,7 +103,7 @@
                         </li> --}}
             @if (Auth::user()->hasRole('administrator'))
 
-                @if (Request::segment(2) == 'students')
+                @if (Request::segment(2) == 'students' && (Request::segment(3) == 'programs' || Request::segment(3) == null))
 
                     <li class="dropdown d-none d-xl-block">
                         <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
@@ -120,9 +120,6 @@
                             @else
                                 Programs
                             @endif
-
-
-
                             <i class="mdi mdi-chevron-down"></i>
                         </a>
                         <div class="dropdown-menu">
@@ -138,9 +135,11 @@
                         </div>
                     </li>
 
+                @endif
+
+                @if (((Request::segment(2) == 'students' && Request::segment(3) == 'programs' || Request::segment(3) == null ) || (Request::segment(2) == 'programs' && Request::segment(3) == 'show' )))
 
                     <li class="dropdown d-none d-xl-block">
-
 
                         @if (Request::segment(4))
                             @forelse ($programs as $program)
@@ -149,21 +148,22 @@
                                     Export to Excel
                                 </a>
                             @empty
-                                <a class="nav-link  waves-effect waves-light"
-                                    href="{{ url('dashboard/students/excel') }}">
-                                    Export to Excel
+                            @if (Request::segment(2) == 'students' && Request::segment(3) == 'programs' || Request::segment(3) == null )
+                                <a class="nav-link  waves-effect waves-light" href="{{ url('dashboard/students/excel') }}">
+                                Export to Excel
                                 </a>
+                            @endif
+
                             @endforelse
                         @else
-                            <a class="nav-link  waves-effect waves-light" href="{{ url('dashboard/students/excel') }}">
-                                Export to Excel
-                            </a>
+                        @if (Request::segment(2) == 'students' && Request::segment(3) == 'programs' )
+                        <a class="nav-link  waves-effect waves-light" href="{{ url('dashboard/students/excel') }}">
+                        Export to Excel
+                        </a>
+                    @endif
                         @endif
-
-
                     </li>
                 @endif
-
 
             @endif
         </ul>

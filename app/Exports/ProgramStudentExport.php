@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Students;
+use App\Models\Program;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -15,20 +15,21 @@ class ProgramStudentExport implements FromView, WithColumnWidths, WithStyles
     /**
      * @return \Illuminate\Support\Collection
      */
-    // public function __construct(int $year)
-    // {
-    //     $this->month = $month;
-    //     $this->year  = $year;
-    // }
+    private $id;
 
-    public function view($id): View
+    public function __construct(int $id)
     {
-        dd($id);
-        $datas = User::whereHas('roles', function ($q) {
-            $q->where('name', 'student');
-        })->where('status', 'Publish')->orderBy('first_name', 'asc')->get();
-        return view('exports.students', [
-            'datas' =>  $datas
+        $this->id = $id;
+    }
+
+    public function view(): View
+    {
+        $datas = Program::where('id', $this->id)->with('students')->get();
+        $program = Program::where('id', $this->id)->first();
+
+        return view('exports.students-program', [
+            'datas' =>  $datas,
+            'program' =>  $program,
         ]);
     }
 

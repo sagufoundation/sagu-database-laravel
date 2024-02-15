@@ -552,7 +552,8 @@ class StudentsController extends Controller
 
     public function excel_program($id)
     {
-        $title = 'student-' . Carbon::now()->isoFormat('D-M-Y') . '.xlsx';
+        $program = Program::where('id',$id)->first();
+        $title = 'student-' .Str::slug($program->program_title).'-'. Carbon::now()->isoFormat('D-M-Y') . '.xlsx';
         return Excel::download(new ProgramStudentExport($id), $title);
     }
 }
