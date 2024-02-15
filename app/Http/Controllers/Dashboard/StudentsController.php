@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
+use App\Exports\StudentExport;
+use App\Exports\ProgramStudentExport;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+
 class StudentsController extends Controller
 {
     // PUBLISH VIEW
@@ -537,5 +542,17 @@ class StudentsController extends Controller
         // create alert & redirect
         alert()->success('Deleted', 'Data Program has been delete!')->autoclose(1100);
         return redirect()->back();
+    }
+
+    public function excel()
+    {
+        $title = 'student-' . Carbon::now()->isoFormat('D-M-Y') . '.xlsx';
+        return Excel::download(new StudentExport, $title);
+    }
+
+    public function excel_program($id)
+    {
+        $title = 'student-' . Carbon::now()->isoFormat('D-M-Y') . '.xlsx';
+        return Excel::download(new ProgramStudentExport($id), $title);
     }
 }

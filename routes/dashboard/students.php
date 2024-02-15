@@ -152,5 +152,14 @@ Route::group(['middleware' => ['auth']], function () {
         // delete Programs
         Route::delete('students/delete/programs/{id}', 'delete_program')
             ->name('dashboard.students.delete.programs');
+
+
+        // export excel
+        Route::get('students/excel', 'excel')
+            ->name('dashboard.students.excel');
+
+        // export program excel
+        Route::get('students/excel-program/{id}', 'excel_program')
+            ->name('dashboard.students.excel-program');
     });
 });

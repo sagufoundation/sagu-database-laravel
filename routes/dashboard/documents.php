@@ -1,7 +1,7 @@
 <?php
 
 // dashboard CONTROLLERS
-use App\Http\Controllers\dashboard\DocumentsController;
+use App\Http\Controllers\Dashboard\DocumentsController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -22,40 +22,40 @@ use Illuminate\Support\Facades\Route;
     | delete
     |--------------------------------------------------------------------------
     */
-    Route::group(['middleware' => ['role:administrator']], function () { 
-    
-        Route::controller(DocumentsController::class)->group(function(){
 
-            // index
-            Route::get('documents','index')
-                ->name('dashboard.documents');
+Route::group(['middleware' => ['role:administrator']], function () {
 
-            // draft
-            Route::get('students/documents/draft','draft')
-                ->name('dashboard.students.documents.draft');
+    Route::controller(DocumentsController::class)->group(function () {
 
-            // create
-            Route::get('students/documents/create','create')
-                ->name('dashboard.students.documents.create');
+        // index
+        Route::get('documents', 'index')
+            ->name('dashboard.documents');
 
-            // store
-            Route::post('students/documents','store')
-                ->name('dashboard.students.documents.store');
+        // draft
+        Route::get('students/documents/draft', 'draft')
+            ->name('dashboard.students.documents.draft');
 
-            // show
-            Route::get('students/documents/show/{id}','show')
-                ->name('dashboard.students.documents.show');
+        // create
+        Route::get('students/documents/create', 'create')
+            ->name('dashboard.students.documents.create');
 
-            // edit
-            Route::get('students/documents/edit/{id}','edit')
-                ->name('dashboard.students.documents.edit');
+        // store
+        Route::post('students/documents', 'store')
+            ->name('dashboard.students.documents.store');
 
-            // update
-            Route::put('students/documents/{id}','update')
-                ->name('dashboard.students.documents.update');
+        // show
+        Route::get('students/documents/show/{id}', 'show')
+            ->name('dashboard.students.documents.show');
 
-            // destroy
-            Route::delete('students/documents/destroy/{id}','destroy');
+        // edit
+        Route::get('students/documents/edit/{id}', 'edit')
+            ->name('dashboard.students.documents.edit');
 
-        });
+        // update
+        Route::put('students/documents/{id}', 'update')
+            ->name('dashboard.students.documents.update');
+
+        // destroy
+        Route::delete('students/documents/destroy/{id}', 'destroy');
     });
+});

@@ -138,7 +138,33 @@
                         </div>
                     </li>
 
+
+                    <li class="dropdown d-none d-xl-block">
+
+
+                        @if (Request::segment(4))
+                            @forelse ($programs as $program)
+                                <a class="nav-link  waves-effect waves-light"
+                                    href="{{ url('dashboard/students/excel-program', Request::segment(4)) }}">
+                                    Export to Excel
+                                </a>
+                            @empty
+                                <a class="nav-link  waves-effect waves-light"
+                                    href="{{ url('dashboard/students/excel') }}">
+                                    Export to Excel
+                                </a>
+                            @endforelse
+                        @else
+                            <a class="nav-link  waves-effect waves-light" href="{{ url('dashboard/students/excel') }}">
+                                Export to Excel
+                            </a>
+                        @endif
+
+
+                    </li>
                 @endif
+
+
             @endif
         </ul>
         <div class="clearfix"></div>

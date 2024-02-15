@@ -185,7 +185,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // Intervention\Image\ImageServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -217,6 +217,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         // 'Image' => Intervention\Image\Facades\Image::class,
         // 'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ])->toArray(),
 
