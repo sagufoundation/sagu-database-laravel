@@ -5,9 +5,16 @@
         <div class="mb-3">
             <label for="province_id" class="form-label">Province</label>
             <select class="custom-select" name="province_id">
+                @if($data->student->provinsi == null)
+                    <option value=""></option>
+                @endif
                 @foreach ($provinces as $province)
-                <option value="{{ $province->id }}" @if($data->student->provinsi->id == $province->id) Selected @endif>{{
-                    $province->name  }}</option>
+                    @if($data->student->provinsi != null)
+                        <option value="{{ $province->id }}" @if($data->student->provinsi->id == $province->id ) Selected @endif>{{
+                        $province->name  }}</option>
+                    @else
+                        <option value="{{ $province->id }}">{{$province->name  }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>

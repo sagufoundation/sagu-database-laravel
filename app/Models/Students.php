@@ -31,7 +31,7 @@ class Students extends Model
 
     public function provinsi()
     {
-        return $this->belongsTo(Province::class, 'province_id', 'id');
+        return $this->belongsTo(Province::class,'province_id', 'id');
     }
 
 
