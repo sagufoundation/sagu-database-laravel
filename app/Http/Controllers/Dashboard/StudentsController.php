@@ -60,7 +60,7 @@ class StudentsController extends Controller
                 'jumlahdraft',
                 'datapublish'
             )
-        )->with('i', (request()->input('page', 1) - 1) * 5);
+        )->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // DRAFT VIEW
@@ -88,7 +88,7 @@ class StudentsController extends Controller
             $q->where('name', 'student');
         })->where('status', 'Publish')->count();
 
-        return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dashboard.database.students.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // CREATE VIEW

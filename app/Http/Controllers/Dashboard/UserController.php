@@ -79,7 +79,7 @@ class UserController extends Controller
         $datapublish = User::where('status', 'Publish')->whereHas('roles', function ($q) {
             $q->where('name', '!=', 'student');
         })->count();
-        return view('dashboard.users.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('dashboard.users.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     // CREATE
@@ -268,7 +268,7 @@ class UserController extends Controller
         $jumlahtrash = User::onlyTrashed()->count();
         $jumlahdraft = User::where('status', 'Draft')->count();
         $datapublish = User::where('status', 'Publish')->count();
-        return view('dashboard.users.trash', compact('datas', 'datapublish', 'jumlahdraft', 'jumlahtrash'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dashboard.users.trash', compact('datas', 'datapublish', 'jumlahdraft', 'jumlahtrash'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // RESTORE
