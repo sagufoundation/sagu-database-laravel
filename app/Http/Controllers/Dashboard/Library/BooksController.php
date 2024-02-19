@@ -33,7 +33,7 @@ class BooksController extends Controller
 
         return view('dashboard.library.books.index',
                 compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))
-                ->with('i', (request()->input('page', 1) - 1) * 5);
+                ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // DRAFT
@@ -54,7 +54,7 @@ class BooksController extends Controller
 
         return view('dashboard.library.books.index',
             compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // CREATE

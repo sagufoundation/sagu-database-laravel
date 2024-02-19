@@ -31,15 +31,15 @@ class LoanLogsController extends Controller
         $adminTotalReturned = LoanBook::where('status', 'Returned')->count();
 
         return view('dashboard.library.loan-logs.index', compact(
-            'datas', 
-            'adminDatas', 
-            'totalActive', 
-            'totalPending', 
+            'datas',
+            'adminDatas',
+            'totalActive',
+            'totalPending',
             'totalReturned',
-            'adminTotalActive', 
-            'adminTotalPending', 
+            'adminTotalActive',
+            'adminTotalPending',
             'adminTotalReturned',
-            ))->with('i', (request()->input('page', 1) - 1) * 5);
+            ))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // PENDING
@@ -57,17 +57,17 @@ class LoanLogsController extends Controller
         $adminTotalReturned = LoanBook::where('status', 'Returned')->count();
 
         return view('dashboard.library.loan-logs.index', compact(
-            'datas', 
-            'adminDatas', 
-            'totalActive', 
-            'totalPending', 
+            'datas',
+            'adminDatas',
+            'totalActive',
+            'totalPending',
             'totalReturned',
-            'adminTotalActive', 
-            'adminTotalPending', 
+            'adminTotalActive',
+            'adminTotalPending',
             'adminTotalReturned',
-            ))->with('i', (request()->input('page', 1) - 1) * 5);
+            ))->with('i', (request()->input('page', 1) - 1) * 10);
     }
-    
+
 
 
     // RETURNED
@@ -85,15 +85,15 @@ class LoanLogsController extends Controller
         $adminTotalReturned = LoanBook::where('status', 'Returned')->count();
 
         return view('dashboard.library.loan-logs.index', compact(
-            'datas', 
-            'adminDatas', 
-            'totalActive', 
-            'totalPending', 
+            'datas',
+            'adminDatas',
+            'totalActive',
+            'totalPending',
             'totalReturned',
-            'adminTotalActive', 
-            'adminTotalPending', 
+            'adminTotalActive',
+            'adminTotalPending',
             'adminTotalReturned',
-            ))->with('i', (request()->input('page', 1) - 1) * 5);
+            ))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function store(Request $request)

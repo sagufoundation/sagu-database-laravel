@@ -14,7 +14,7 @@
             <a href="{{ url(Request::segment(1) . '/students') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="badge badge-success badge-pill float-right">
-                    {{ $database_total_publish_students ?? '' }}
+                    {{ $dashboard_total_students ?? '' }}
                 </span>
                 <span> Students</span>
             </a>

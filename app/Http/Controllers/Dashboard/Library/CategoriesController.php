@@ -30,7 +30,7 @@ class CategoriesController extends Controller
         return view(
             'dashboard.library.categories.index',
             compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
-        )->with('i', (request()->input('page', 1) - 1) * 5);
+        )->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // DRAFT
@@ -55,7 +55,7 @@ class CategoriesController extends Controller
             'dashboard.library.categories.index',
             compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
         )
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // CREATE
@@ -151,7 +151,7 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $data = Catagories::where('id', $id)->first();
-        return view('dashboard.library.categories.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dashboard.library.categories.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // DESTROY
@@ -173,7 +173,7 @@ class CategoriesController extends Controller
         return view(
             'dashboard.library.categories.trash',
             compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
-        )->with('i', (request()->input('page', 1) - 1) * 5);
+        )->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // RESTORE

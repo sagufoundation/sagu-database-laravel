@@ -30,7 +30,7 @@ class AuthorsController extends Controller
         return view(
             'dashboard.library.authors.index',
             compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
-        )->with('i', (request()->input('page', 1) - 1) * 5);
+        )->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // DRAFT
@@ -55,7 +55,7 @@ class AuthorsController extends Controller
             'dashboard.library.authors.index',
             compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
         )
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // CREATE
@@ -84,7 +84,7 @@ class AuthorsController extends Controller
         } else {
             try {
                 $data = new Author();
-                
+
                 $data->name = $request->name;
                 $data->slug = Str::slug($data->name);
 
@@ -149,7 +149,7 @@ class AuthorsController extends Controller
     public function show($id)
     {
         $data = Author::where('id', $id)->first();
-        return view('dashboard.library.authors.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dashboard.library.authors.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // DESTROY
@@ -171,7 +171,7 @@ class AuthorsController extends Controller
         return view(
             'dashboard.library.authors.trash',
             compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish')
-        )->with('i', (request()->input('page', 1) - 1) * 5);
+        )->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // RESTORE
