@@ -26,13 +26,15 @@
                 $students = $data->students ?? '';
             @endphp
             @forelse ($students as $student)
-                <tr>
-                    <td>{{ ++$i }}</td>
-                    <td>{{ $student->users->first_name }}</td>
-                    <td>{{ $student->users->middle_name }}</td>
-                    <td>{{ $student->users->last_name }}</td>
-                    <td>{{ $student->users->email }}</td>
-                </tr>
+                @if($student->users)
+                    <tr>
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $student->users->first_name }}</td>
+                        <td>{{ $student->users->middle_name }}</td>
+                        <td>{{ $student->users->last_name }}</td>
+                        <td>{{ $student->users->email }}</td>
+                    </tr>
+                @endif
             @empty
                 <tr>
                     <td>Tidak ada data</td>

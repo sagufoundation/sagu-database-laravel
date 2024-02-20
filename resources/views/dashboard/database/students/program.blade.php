@@ -49,54 +49,56 @@
                                             $students = $data->students ?? '';
                                         @endphp
                                         @forelse ($students as $student)
-                                            <tr>
-                                                <td>{{ ++$i }}</td>
+                                            @if($student->users)
+                                                <tr>
+                                                    <td>{{ ++$i }}</td>
 
-                                                @include('dashboard.layout.includes.index-picture')
-                                                <td>
+                                                    @include('dashboard.layout.includes.index-picture')
+                                                    <td>
 
-                                                    {{ $student->users->first_name . ' ' . $student->users->middle_name . ' ' . $student->users->last_name ?? '' }}
-                                                    <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
-                                                        {{ $student->users->email ?? '' }}</small>
-                                                </td>
-                                                <td>{{ $student->users->phone ?? '' }}</td>
+                                                        {{ $student->users->first_name . ' ' . $student->users->middle_name . ' ' . $student->users->last_name ?? '' }}
+                                                        <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
+                                                            {{ $student->users->email ?? '' }}</small>
+                                                    </td>
+                                                    <td>{{ $student->users->phone ?? '' }}</td>
 
-                                                <td>
-                                                    {{ $student->provinsi->name ?? '' }}
-                                                </td>
-                                                <td>
-                                                    <div class="badge border">
-                                                        {{ $data->program_title ?? '' }}
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex gap-1">
-                                                        <div class="d-block p-1">
-                                                            <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $student->users->id) }}"
-                                                                class="btn btn-success w-100">
-                                                                <i class="fa-solid fa-id-badge d-block"></i> Show
-                                                            </a>
+                                                    <td>
+                                                        {{ $student->provinsi->name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="badge border">
+                                                            {{ $data->program_title ?? '' }}
                                                         </div>
-                                                        <div class="d-block p-1">
-                                                            <a class="btn btn-primary w-100"
-                                                                href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/edit/profile', $student->users->id) }}">
-                                                                <i class="fa-solid fa-pen-to-square d-block"></i> Edit
-                                                            </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex gap-1">
+                                                            <div class="d-block p-1">
+                                                                <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $student->users->id) }}"
+                                                                    class="btn btn-success w-100">
+                                                                    <i class="fa-solid fa-id-badge d-block"></i> Show
+                                                                </a>
+                                                            </div>
+                                                            <div class="d-block p-1">
+                                                                <a class="btn btn-primary w-100"
+                                                                    href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/edit/profile', $student->users->id) }}">
+                                                                    <i class="fa-solid fa-pen-to-square d-block"></i> Edit
+                                                                </a>
+                                                            </div>
+                                                            <div class="d-block p-1">
+                                                                <form
+                                                                    action="{{ url(Request::segment(1) . '/' . Request::segment(2), $student->users->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger w-100">
+                                                                        <i class="fa-solid fa-trash d-block"></i> Trash
+                                                                    </button>
+                                                                </form>
+                                                            </div>
                                                         </div>
-                                                        <div class="d-block p-1">
-                                                            <form
-                                                                action="{{ url(Request::segment(1) . '/' . Request::segment(2), $student->users->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger w-100">
-                                                                    <i class="fa-solid fa-trash d-block"></i> Trash
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @empty
                                             <tr>
                                                 <td colspan="8">
@@ -108,7 +110,7 @@
                                 </table>
                             </div>
                             <!-- end .mt-4 -->
-                            {{-- {!! $datas->links() !!} --}}
+                            {!! $datas->links() !!}
                         </div>
                         <!-- end inbox-rightbar-->
 
@@ -145,37 +147,39 @@
                                         $students = $data->students ?? '';
                                     @endphp
                                     @forelse ($students as $student)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
+                                        @if($student->users)
+                                                <tr>
+                                                    <td>{{ ++$i }}</td>
 
-                                            @include('dashboard.layout.includes.index-picture')
-                                            <td>
+                                                    @include('dashboard.layout.includes.index-picture')
+                                                    <td>
 
-                                                {{ $student->users->first_name . ' ' . $student->users->middle_name . ' ' . $student->users->last_name ?? '' }}
-                                                <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
-                                                    {{ $student->users->email ?? '' }}</small>
-                                            </td>
-                                            <td>{{ $student->users->phone ?? '' }}</td>
+                                                        {{ $student->users->first_name . ' ' . $student->users->middle_name . ' ' . $student->users->last_name ?? '' }}
+                                                        <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
+                                                            {{ $student->users->email ?? '' }}</small>
+                                                    </td>
+                                                    <td>{{ $student->users->phone ?? '' }}</td>
 
-                                            <td>
-                                                {{ $student->provinsi->name ?? '' }}
-                                            </td>
-                                            <td>
-                                                <div class="badge border">
-                                                    {{ $data->program_title ?? '' }}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex gap-1">
-                                                    <div class="d-block p-1">
-                                                        <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $student->users->id) }}"
-                                                            class="btn btn-success w-100">
-                                                            <i class="fa-solid fa-id-badge d-block"></i> Show
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    <td>
+                                                        {{ $student->provinsi->name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="badge border">
+                                                            {{ $data->program_title ?? '' }}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex gap-1">
+                                                            <div class="d-block p-1">
+                                                                <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $student->users->id) }}"
+                                                                    class="btn btn-success w-100">
+                                                                    <i class="fa-solid fa-id-badge d-block"></i> Show
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                        @endif
                                     @empty
                                         <tr>
                                             <td colspan="8">
@@ -187,8 +191,7 @@
                             </table>
                         </div>
                         <!-- end .mt-4 -->
-                        {!! $datas->links() !!}
-
+                        {{-- {!! $datas->students->links() !!} --}}
                         <div class="clearfix"></div>
                     </div>
 

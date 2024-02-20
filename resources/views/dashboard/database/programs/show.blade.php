@@ -52,29 +52,31 @@
                                 {{-- <th width="280px"></th> --}}
                             </tr>
                             @forelse($data->students as $data)
-                                <tr>
-                                    <td>{{ ++$i }}</td>
-                                    <td class="p-0" width="100px">
-                                        @if (!empty($data->users->picture))
-                                            <img src="{{ asset($data->users->picture) }}" alt="Profile picture"
-                                                class="img img-fluid w-100">
-                                        @else
-                                            <img src="{{ asset('images/students/00.jpg') }}" alt="Profile picture not found"
-                                                class="img w-100">
-                                        @endif
-                                    </td>
+                                @if($data->users)
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                        <td class="p-0" width="100px">
+                                            @if (!empty($data->users->picture))
+                                                <img src="{{ asset($data->users->picture) }}" alt="Profile picture"
+                                                    class="img img-fluid w-100">
+                                            @else
+                                                <img src="{{ asset('images/students/00.jpg') }}" alt="Profile picture not found"
+                                                    class="img w-100">
+                                            @endif
+                                        </td>
 
-                                    <td>
-                                        {{ $data->users->first_name . ' ' . $data->users->middle_name . ' ' . $data->users->last_name ?? '' }}
-                                        <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
-                                            {{ $data->users->email ?? '' }}</small>
-                                    </td>
-                                    <td>{{ $data->users->phone ?? '' }}</td>
-                                    <td>
-                                        {{ $data->provinsi->name ?? '' }}
-                                    </td>
+                                        <td>
+                                            {{ $data->users->first_name . ' ' . $data->users->middle_name . ' ' . $data->users->last_name ?? '' }}
+                                            <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
+                                                {{ $data->users->email ?? '' }}</small>
+                                        </td>
+                                        <td>{{ $data->users->phone ?? '' }}</td>
+                                        <td>
+                                            {{ $data->provinsi->name ?? '' }}
+                                        </td>
 
-                                </tr>
+                                    </tr>
+                                @endif
                             @empty
                                 <tr>
                                     <td colspan="8">

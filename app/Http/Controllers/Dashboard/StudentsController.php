@@ -212,7 +212,11 @@ class StudentsController extends Controller
     {
         // With untuk menarik data dari relasi yang telah di buat
         // paginate untuk membuat halaman/links()
-        $datas = Program::where('id', $id)->with('students')->paginate(10);
+        $datas = Program::where('id', $id)->with('students')->with(['students.users' => function ($query) {
+                $query->orderBy('created_at', 'desc');
+        }])->paginate(10);
+
+        // $datas = Program::where('id', $id)->with('students')->paginate(10);
         $program = Program::where('id', $id)->first();
 
         $jumlahtrash = User::onlyTrashed()->count();
@@ -233,7 +237,7 @@ class StudentsController extends Controller
                 'jumlahdraft',
                 'datapublish'
             )
-        )->with('i', (request()->input('page', 1) - 1) * 5);
+        )->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // UPDATE

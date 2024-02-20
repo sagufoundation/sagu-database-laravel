@@ -10,7 +10,6 @@
     <div class="row">
         <div class="col-lg-4 col-xl-4">
             <div class="card-box text-center">
-
                 @if (!$data->picture)
                     <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found"
                         class="rounded-0 w-100">
@@ -19,14 +18,6 @@
                 @endif
 
                 <h4 class="mb-0 mt-3">{{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}</h4>
-
-                @if (!$data->email_sagu)
-                    <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->student->email_sagu ?? '' }}
-                    </p>
-                @elseif(!$data->email_google)
-                    <p class="text-muted"><i class="fa-solid fa-envelope mr-1"></i> {{ $data->student->email_google ?? '' }}
-                    </p>
-                @endif
 
                 @if (Auth::user()->hasRole('administrator'))
                     <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/edit/profile', $data->id) }}"
