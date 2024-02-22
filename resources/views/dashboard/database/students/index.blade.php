@@ -37,7 +37,9 @@
                                             <td>{{ ++$i }}</td>
                                             @include('dashboard.layout.includes.index-picture')
                                             <td>
-                                                {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
+
+
+                                                <a class="text-dark" href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}">  {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}</a>
                                                 <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
                                                     {{ $data->email ?? '' }}</small>
                                             </td>

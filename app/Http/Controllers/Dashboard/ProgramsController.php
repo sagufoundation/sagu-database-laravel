@@ -100,10 +100,17 @@ class ProgramsController extends Controller
     // SHOW VIEW
     public function show($id)
     {
-        $data = Program::where('id', $id)->first();
+        $program = Program::where('id', $id)->first();
 
-        if ($data) {
-            return view('dashboard.database.programs.show', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $datas = ProgramStudent::where('program_id', $id)
+        ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
+        ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+        ->leftJoin('users', 'students.user_id', '=', 'users.id')
+        ->orderBy('users.first_name','asc')
+        ->paginate(10);
+
+        if ($program) {
+            return view('dashboard.database.programs.show', compact('program','datas'))->with('i', (request()->input('page', 1) - 1) * 10);
         } else {
             return redirect('dashboard/programs');
         }

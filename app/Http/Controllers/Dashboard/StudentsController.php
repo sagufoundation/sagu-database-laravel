@@ -202,43 +202,61 @@ class StudentsController extends Controller
         $provinces = Province::orderBy('name', 'asc')->get();
         $programs = Program::orderBy('id', 'desc')->get();
 
-        $data_programs = explode(',', $data->programs);
-
-        return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs', 'data_programs'));
+        return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs'));
     }
 
     // PROGRAM
     public function programs($id)
     {
-        // With untuk menarik data dari relasi yang telah di buat
-        // paginate untuk membuat halaman/links()
-        $datas = Program::where('id', $id)->with('students')->with(['students.users' => function ($query) {
-                $query->orderBy('created_at', 'desc');
-        }])->paginate(10);
+        $datas = ProgramStudent::where('program_id', $id)
+                ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
+                ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+                ->leftJoin('users', 'students.user_id', '=', 'users.id')
+                ->orderBy('users.first_name','asc')
+                ->paginate(10);
 
         // $datas = Program::where('id', $id)->with('students')->paginate(10);
         $program = Program::where('id', $id)->first();
-
-        $jumlahtrash = User::onlyTrashed()->count();
-
-        $jumlahdraft = User::whereHas('roles', function ($q) {
-            $q->where('name', 'student');
-        })->where('status', 'Draft')->count();
-        $datapublish = User::whereHas('roles', function ($q) {
-            $q->where('name', 'student');
-        })->where('status', 'Publish')->count();
 
         return view(
             'dashboard.database.students.program',
             compact(
                 'datas',
-                'program',
-                'jumlahtrash',
-                'jumlahdraft',
-                'datapublish'
+                'program'
             )
         )->with('i', (request()->input('page', 1) - 1) * 10);
     }
+
+      // Provinces
+      public function provinces($id)
+      {
+          $datas = Students::where('province_id', $id)
+                  ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+                  ->leftJoin('users', 'students.user_id', '=', 'users.id')
+                  ->orderBy('users.first_name','asc')
+                  ->paginate(10);
+          // $datas = Program::where('id', $id)->with('students')->paginate(10);
+
+          $province = Province::where('id', $id)->first();
+          $jumlahtrash = User::onlyTrashed()->count();
+          $jumlahdraft = User::whereHas('roles', function ($q) {
+              $q->where('name', 'student');
+          })->where('status', 'Draft')->count();
+          $datapublish = User::whereHas('roles', function ($q) {
+              $q->where('name', 'student');
+          })->where('status', 'Publish')->count();
+
+          return view(
+              'dashboard.database.students.province',
+              compact(
+                  'datas',
+                  'province',
+                  'jumlahtrash',
+                  'jumlahdraft',
+                  'datapublish'
+              )
+          )->with('i', (request()->input('page', 1) - 1) * 10);
+      }
 
     // UPDATE
     public function update(Request $request, $id)

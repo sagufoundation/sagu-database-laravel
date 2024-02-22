@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('students/programs/{id}', 'programs')
             ->name('dashboard.students.programs');
 
+        // student > provinces
+        Route::get('students/provinces/{id}', 'provinces')
+        ->name('dashboard.students.provinces');
 
         // edit
         Route::get('students/edit/{id}', 'edit')

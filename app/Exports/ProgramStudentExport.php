@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Program;
 use App\Models\User;
+use App\Models\ProgramStudent;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
@@ -24,7 +25,13 @@ class ProgramStudentExport implements FromView, WithColumnWidths, WithStyles
 
     public function view(): View
     {
-        $datas = Program::where('id', $this->id)->with('students')->get();
+        $datas = ProgramStudent::where('program_id', $this->id)
+        ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
+        ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+        ->leftJoin('users', 'students.user_id', '=', 'users.id')
+        ->orderBy('users.first_name','asc')
+        ->get();
+
         $program = Program::where('id', $this->id)->first();
 
         return view('exports.students-program', [

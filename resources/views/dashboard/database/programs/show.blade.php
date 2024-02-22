@@ -10,24 +10,24 @@
 
                 <div class="mb-3">
                     <span class="font-weight-bold d-block">Program Title:</span>
-                    <p>{{ $data->program_title }}</p>
+                    <p>{{ $program->program_title }}</p>
                 </div>
                 <!-- end item -->
 
                 <div class="mb-3">
                     <span class="font-weight-bold d-block">Short Description :</span>
-                    <p>{{ $data->short_description }}</p>
+                    <p>{{ $program->short_description }}</p>
                 </div>
                 <!-- end item -->
 
                 <div class="mb-3">
                     <span class="font-weight-bold d-block">Full Description :</span>
-                    <p>{!! $data->full_description !!}</p>
+                    <p>{!! $program->full_description !!}</p>
                 </div>
                 <!-- end item -->
 
                 <div class="mb-3">
-                    <span class="font-weight-bold">Status :</span> {!! $data->status !!}
+                    <span class="font-weight-bold">Status :</span> {!! $program->status !!}
                 </div>
                 <!-- end item -->
 
@@ -51,13 +51,12 @@
                                 <th>Province</th>
                                 {{-- <th width="280px"></th> --}}
                             </tr>
-                            @forelse($data->students as $data)
-                                @if($data->users)
+                            @forelse($datas as $data)
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         <td class="p-0" width="100px">
-                                            @if (!empty($data->users->picture))
-                                                <img src="{{ asset($data->users->picture) }}" alt="Profile picture"
+                                            @if (!empty($data->picture))
+                                                <img src="{{ asset($data->picture) }}" alt="Profile picture"
                                                     class="img img-fluid w-100">
                                             @else
                                                 <img src="{{ asset('images/students/00.jpg') }}" alt="Profile picture not found"
@@ -66,17 +65,16 @@
                                         </td>
 
                                         <td>
-                                            {{ $data->users->first_name . ' ' . $data->users->middle_name . ' ' . $data->users->last_name ?? '' }}
+                                            {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
                                             <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
-                                                {{ $data->users->email ?? '' }}</small>
+                                                {{ $data->email ?? '' }}</small>
                                         </td>
-                                        <td>{{ $data->users->phone ?? '' }}</td>
+                                        <td>{{ $data->phone ?? '' }}</td>
                                         <td>
-                                            {{ $data->provinsi->name ?? '' }}
+                                            {{ $data->name ?? '' }}
                                         </td>
 
                                     </tr>
-                                @endif
                             @empty
                                 <tr>
                                     <td colspan="8">
@@ -87,7 +85,7 @@
                         </table>
                     </div>
                     <!-- end .mt-4 -->
-                    {{-- {!! $data->student->links() !!} --}}
+                    {!! $datas->links() !!}
                     <!-- end inbox-rightbar-->
                 @else
                 @endif

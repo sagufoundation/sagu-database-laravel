@@ -22,29 +22,18 @@
             $i = 0;
         @endphp
         @forelse ($datas as $data )
-            @php
-                $students = $data->students ?? '';
-            @endphp
-            @forelse ($students as $student)
-                @if($student->users)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $student->users->first_name }}</td>
-                        <td>{{ $student->users->middle_name }}</td>
-                        <td>{{ $student->users->last_name }}</td>
-                        <td>{{ $student->users->email }}</td>
+                        <td>{{ $data->first_name }}</td>
+                        <td>{{ $data->middle_name }}</td>
+                        <td>{{ $data->last_name }}</td>
+                        <td>{{ $data->email }}</td>
                     </tr>
-                @endif
             @empty
                 <tr>
                     <td>Tidak ada data</td>
                 </tr>
             @endforelse
-        @empty
-            <tr>
-                <td>Tidak ada data</td>
-            </tr>
-        @endforelse
     </table>
 </body>
 

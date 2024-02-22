@@ -13,11 +13,11 @@
                             <a href="{{ url('dashboard/' . Request::segment(2)) }}">{{ ucfirst(Request::segment(2)) }}</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            {{ $program->program_title }}
+                            {{ $province->name }}
                         </li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ ucfirst(Request::segment(2)) }} Program {{ $program->program_title }}</h4>
+                <h4 class="page-title">{{ ucfirst(Request::segment(2)) }} Province {{ $province->name }}</h4>
             </div>
         </div>
     </div>
@@ -39,7 +39,6 @@
                                         <th>Full Name</th>
                                         <th>Phone</th>
                                         <th>Province</th>
-                                        <th>Program</th>
                                         <th width="280px"></th>
                                     </tr>
 
@@ -50,10 +49,7 @@
 
                                                     @include('dashboard.layout.includes.index-picture')
                                                     <td>
-
-                                                        <a class="text-dark" href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}">
-                                                            {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
-                                                        </a>
+                                                        <a class="text-dark" href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}"> {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}</a>
 
                                                         <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
                                                             {{ $data->email ?? '' }}</small>
@@ -62,11 +58,6 @@
 
                                                     <td>
                                                         {{ $data->name ?? '' }}
-                                                    </td>
-                                                    <td>
-                                                        <div class="badge border">
-                                                            {{ $program->program_title ?? '' }}
-                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="d-flex gap-1">
@@ -135,7 +126,6 @@
                                     <th>Full Name</th>
                                     <th>Phone</th>
                                     <th>Province</th>
-                                    <th>Program</th>
                                 </tr>
                                 @forelse($datas as $data)
                                 <tr>
@@ -144,10 +134,7 @@
                                     @include('dashboard.layout.includes.index-picture')
                                     <td>
 
-                                        <a class="text-dark" href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}">
-                                            {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
-                                        </a>
-
+                                        {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
                                         <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
                                             {{ $data->email ?? '' }}</small>
                                     </td>
@@ -155,11 +142,6 @@
 
                                     <td>
                                         {{ $data->name ?? '' }}
-                                    </td>
-                                    <td>
-                                        <div class="badge border">
-                                            {{ $program->program_title ?? '' }}
-                                        </div>
                                     </td>
                                 </tr>
                                 @empty
