@@ -134,36 +134,38 @@
                     </li>
                 @endif
 
+
+
                 @if (Request::segment(2) == 'students' &&  Request::segment(3) == NULL OR Request::segment(3) == 'provinces' )
-                <li class="dropdown d-none d-xl-block">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        @if (Request::segment(4))
-                            @forelse ($provinces as $province)
-                                @if ($province->id == Request::segment(4))
-                                    <i class="mdi mdi-label"></i> {{ $province->name }}
-                                @endif
-                            @empty
+                    <li class="dropdown d-none d-xl-block">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            @if (Request::segment(4))
+                                @forelse ($provinces as $province)
+                                    @if ($province->id == Request::segment(4))
+                                        <i class="mdi mdi-label"></i> {{ $province->name }}
+                                    @endif
+                                @empty
+                                    Provinces
+                                @endforelse
+                            @else
                                 Provinces
-                            @endforelse
-                        @else
-                            Provinces
-                        @endif
-                        <i class="mdi mdi-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu">
+                            @endif
+                            <i class="mdi mdi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
 
-                        @foreach ($provinces as $province)
-                            <!-- item-->
-                            <a href="{{ url('dashboard/students/provinces', $province->id) }}" class="dropdown-item">
-                                <i class="mdi mdi-label"></i>
-                                <span>{{ $province->name }}</span>
-                            </a>
-                        @endforeach
+                            @foreach ($provinces as $province)
+                                <!-- item-->
+                                <a href="{{ url('dashboard/students/provinces', $province->id) }}" class="dropdown-item">
+                                    <i class="mdi mdi-label"></i>
+                                    <span>{{ $province->name }}</span>
+                                </a>
+                            @endforeach
 
-                    </div>
-                </li>
-            @endif
+                        </div>
+                    </li>
+                @endif
 
                 @if ((Request::segment(2) == 'students' &&  Request::segment(3) == null ))
 
@@ -189,6 +191,39 @@
                             href="{{ url('dashboard/students/excel-program', Request::segment(4)) }}">
                             Export to Excel
                         </a>
+                    </li>
+                @endif
+
+
+
+                    @if (Request::segment(2) == 'students' && Request::segment(3) == 'show' )
+                    <li class="dropdown d-none d-xl-block">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        Students
+                            <i class="mdi mdi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <!-- item-->
+                            <a href="{{  url(Request::segment(1) . '/' . Request::segment(2) . '/show', Request::segment(4)) }}" class="dropdown-item">
+                                <i class="mdi mdi-label"></i>
+                                <span>Show</span>
+                            </a>
+                            <a href="{{  url(Request::segment(1) . '/' . Request::segment(2) . '/edit/profile', Request::segment(4)) }}" class="dropdown-item">
+                                <i class="mdi mdi-label"></i>
+                                <span>Edit</span>
+                            </a>
+                            <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/draft') }}" class="dropdown-item">
+                                <i class="mdi mdi-label"></i>
+                                <span>Draft</span>
+                            </a>
+                            <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/trash') }}" class="dropdown-item">
+                                <i class="mdi mdi-label"></i>
+                                <span>Trash</span>
+                            </a>
+
+
+                        </div>
                     </li>
                 @endif
 
