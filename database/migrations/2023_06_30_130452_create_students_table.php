@@ -21,6 +21,7 @@ return new class extends Migration
 
             // profile
             $table->longText('profile')->nullable();
+            $table->string('gender')->nullable();
 
             // birth
             $table->string('place_of_birth')->nullable();

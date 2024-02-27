@@ -54,6 +54,21 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="mb-3">
+                                                            <label for="genre" class="form-label">Genre</label>
+                                                            <select class="custom-select" name="genre">
+                                                                <option value="" hidden>Select</option>
+                                                                <option value="Male" >Male</option>
+                                                                <option value="Female" >Female</option>
+                                                            </select>
+                                                            @if ($errors->has('genre'))
+                                                                <span class="text-danger" role="alert">
+                                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('province_id') }}</small>
+                                                                </span>
+                                                             @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="mb-3">
                                                             <label for="place_of_birth" class="form-label">Place Of Birth  Name</label>
                                                             <input type="text" name="place_of_birth" id="place_of_birth" value="{{ old('place_of_birth') ?? '' }}" placeholder="Place Of Birth" class="form-control">
                                                             @if ($errors->has('place_of_birth'))

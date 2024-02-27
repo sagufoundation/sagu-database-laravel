@@ -18,50 +18,55 @@
     <!-- row end -->
 
     @if (Auth::user()->hasRole('administrator'))
-        
+
     <div class="row">
-        <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-4">
            <div class="card">
                 <div class="widget-rounded-circle card-body">
                     <div class="row">
-                        <div class="col-6">
-                            <div class="avatar-lg rounded bg-soft-success border-success border">
-                                <i class="mdi mdi-newspaper display-4 avatar-title text-success"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-right">
-                                <h3 class="mt-1 h1"><span data-plugin="counterup">{{ $dashboard_total_students ?? '' }}</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Total Students</p>
+                        <div class="col-12">
+                            <div class="text-center">
+                                <h3 class="mt-1 h5"> Total Students By Genres </h3>
+                                <div id="pie-chart" style="height: 100%;" data-colors="#f4f8fb,#4a81d4,#1abc9c" dir="ltr"></div>
                             </div>
                         </div>
                     </div> <!-- end row-->
                 </div> <!-- end widget-rounded-circle-->
            </div>
         </div> <!-- end col-->
-    
-        <div class="col-md-6 col-xl-3">
-               <div class="card">
-                <div class="widget-rounded-circle card-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="avatar-lg rounded bg-soft-success border-success border">
-                                <i class="mdi mdi-account-group display-4 avatar-title text-success"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-right">
-                                <h3 class="text-dark mt-1 h1"><span data-plugin="counterup">{{ $dasbor_jml_pengguna ?? '' }}</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Total Pengguna</p>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-                </div> <!-- end widget-rounded-circle-->
-               </div>
+
+        <div class="col-md-6 col-xl-4">
+            <div class="card">
+                 <div class="widget-rounded-circle card-body">
+                     <div class="row">
+                         <div class="col-12">
+                             <div class="text-center">
+                                 <h3 class="mt-1 h5"> Total Students By Programs </h3>
+                                 <div id="programs-chart" style="height: 100%;" data-colors="#f4f8fb,#4a81d4,#1abc9c" dir="ltr"></div>
+                             </div>
+                         </div>
+                     </div> <!-- end row-->
+                 </div> <!-- end widget-rounded-circle-->
+            </div>
         </div> <!-- end col-->
-    
+
+        <div class="col-md-6 col-xl-4">
+            <div class="card">
+                 <div class="widget-rounded-circle card-body">
+                     <div class="row">
+                         <div class="col-12">
+                             <div class="text-center">
+                                 <h3 class="mt-1 h5"> Total Students By Provinces </h3>
+                                 <div id="provinces-chart" style="height: 100%;" data-colors="#f4f8fb,#4a81d4,#1abc9c" dir="ltr"></div>
+                             </div>
+                         </div>
+                     </div> <!-- end row-->
+                 </div> <!-- end widget-rounded-circle-->
+            </div>
+        </div> <!-- end col-->
+
     </div> <!-- row end -->
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -77,13 +82,98 @@
                 </div> <!-- end card-body -->
             </div> <!-- end card-->
         </div> <!-- end col-->
-        
+
     </div> <!-- row end -->
-    
-    <script src="{{ asset('assets/js/grafik.js')}}"></script>
+
+
+
+    {{-- <script src="{{ asset('assets/js/grafik.js')}}"></script> --}}
 
     @else
         <h1>Welcome! {{ Auth::user()->name }}</h1>
     @endif
 
   @stop
+  @push('script-footer')
+    <script>
+        // By Genre
+        var chart = c3.generate({
+            bindto: '#pie-chart',
+            data: {
+        columns: [
+            ['Female', {{$female}}],
+            ['Male', {{$male}}],
+        ],
+        type : 'pie'
+        },
+        pie: {
+            label: {
+                format: function (value, ratio, id) {
+                    return value;
+                }
+            },
+        },
+        tooltip: {
+            format: {
+                value: function(value, ratio, id) {
+                    return value;
+                }
+            }
+        }
+    });
+
+     // By Program
+    var chart = c3.generate({
+            bindto: '#programs-chart',
+            data: {
+        columns: [
+            @foreach($programs as $program )
+                ['{{$program->program_title}}', {{$program->students->count()}}],
+            @endforeach
+        ],
+        type : 'bar'
+        },
+        pie: {
+            label: {
+                format: function (value, ratio, id) {
+                    return value;
+                }
+            },
+        },
+        tooltip: {
+            format: {
+                value: function(value, ratio, id) {
+                    return value;
+                }
+            }
+        }
+    });
+
+    // By Provinces
+    var chart = c3.generate({
+            bindto: '#provinces-chart',
+            data: {
+        columns: [
+            @foreach($provinces as $province )
+                ['{{$province->name}}', {{$province->student->count()}}],
+            @endforeach
+        ],
+        type : 'bar'
+        },
+        pie: {
+            label: {
+                format: function (value, ratio, id) {
+                    return value;
+                }
+            },
+        },
+        tooltip: {
+            format: {
+                value: function(value, ratio, id) {
+                    return value;
+                }
+            }
+        }
+    });
+    </script>
+  @endpush

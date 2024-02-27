@@ -40,6 +40,12 @@
                             class="d-block">{{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}</span>
                     </p>
 
+                    @if (!empty($data->student->genre))
+                        <p class="text-muted mb-1 font-13"><strong>Genre :</strong>
+                            <span class="d-block"> {{ $data->student->genre ?? '' }}</span>
+                        </p>
+                     @endif
+
                     @if (!empty($data->phone))
                         <p class="text-muted mb-2 font-13"><strong>Mobile :</strong>
                             <span class="d-block"> {{ $data->phone }}</span>
