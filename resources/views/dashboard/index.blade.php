@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="text-center">
-                                <h3 class="mt-1 h5"> Total Students By Genres </h3>
+                                <h3 class="mt-1 h5"> Total Students By Genders </h3>
                                 <div id="pie-chart" style="height: 100%;" data-colors="#f4f8fb,#4a81d4,#1abc9c" dir="ltr"></div>
                             </div>
                         </div>

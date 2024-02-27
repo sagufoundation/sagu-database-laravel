@@ -15,13 +15,13 @@ class DashboardController extends Controller
     // INDEX
     public function index()
     {
-        // By Genres
+        // By Genders
         $female = Students::whereHas('users', function ($q) {
                         $q->where('status', 'Publish');
-                    })->where('genre', 'Female')->count();
+                    })->where('gender', 'Female')->count();
         $male = Students::whereHas('users', function ($q) {
                         $q->where('status', 'Publish');
-                    })->where('genre', 'Male')->count();
+                    })->where('gender', 'Male')->count();
 
         //  By Programs
         $programs = Program::where([['program_title', '!=', Null]])->where('status', 'Publish')->get();

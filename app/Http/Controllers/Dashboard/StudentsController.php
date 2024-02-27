@@ -158,7 +158,7 @@ class StudentsController extends Controller
 
         // Student data
         $student = $data->student ?? new Students();
-        $student->genre = $request->genre;
+        $student->gender = $request->gender;
         $student->user_id = $data->id;
         $student->province_id = $request->province_id;
         $student->profile = $request->profile;
@@ -335,7 +335,7 @@ class StudentsController extends Controller
         $student = $data->student ?? new Students();
 
         $student->place_of_birth = $request->place_of_birth;
-        $student->genre = $request->genre;
+        $student->gender = $request->gender;
         $student->date_of_birth = $request->date_of_birth;
 
         $data->students()->save($student);

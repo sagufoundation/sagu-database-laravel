@@ -49,15 +49,15 @@
 
     <div class="col-md-4">
         <div class="mb-3">
-            <label for="genre" class="form-label"> Genre</label>
-            <select class="custom-select" name="genre">
-                <option value="" @if($data->student->genre == '') Selected  @endif hidden>Select</option>
-                <option value="Female " @if($data->student->genre == 'Female') Selected  @endif>Female</option>
-                <option value="Male" @if($data->student->genre == 'Male') Selected  @endif >Male</option>
+            <label for="gender" class="form-label"> Gender</label>
+            <select class="custom-select" name="gender">
+                <option value="" @if($data->student->gender == '') Selected  @endif hidden>Select</option>
+                <option value="Female " @if($data->student->gender == 'Female') Selected  @endif>Female</option>
+                <option value="Male" @if($data->student->gender == 'Male') Selected  @endif >Male</option>
             </select>
-            @if ($errors->has('genre'))
+            @if ($errors->has('gender'))
             <span class="text-danger" role="alert">
-                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('genre')
+                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('gender')
                     }}</small>
             </span>
             @endif

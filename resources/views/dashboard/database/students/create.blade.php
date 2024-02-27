@@ -54,13 +54,13 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="mb-3">
-                                                            <label for="genre" class="form-label">Genre</label>
-                                                            <select class="custom-select" name="genre">
+                                                            <label for="gender" class="form-label">Gender</label>
+                                                            <select class="custom-select" name="gender">
                                                                 <option value="" hidden>Select</option>
                                                                 <option value="Male" >Male</option>
                                                                 <option value="Female" >Female</option>
                                                             </select>
-                                                            @if ($errors->has('genre'))
+                                                            @if ($errors->has('gender'))
                                                                 <span class="text-danger" role="alert">
                                                                     <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('province_id') }}</small>
                                                                 </span>

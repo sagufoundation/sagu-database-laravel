@@ -40,9 +40,9 @@
                             class="d-block">{{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}</span>
                     </p>
 
-                    @if (!empty($data->student->genre))
+                    @if (!empty($data->student->gender))
                         <p class="text-muted mb-1 font-13"><strong>Genre :</strong>
-                            <span class="d-block"> {{ $data->student->genre ?? '' }}</span>
+                            <span class="d-block"> {{ $data->student->gender ?? '' }}</span>
                         </p>
                      @endif
 
