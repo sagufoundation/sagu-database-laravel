@@ -131,7 +131,8 @@
                 ['{{$program->program_title}}', {{$program->students->count()}}],
             @endforeach
         ],
-        type : 'bar'
+        type : 'bar',
+        labels: true
         },
         pie: {
             label: {
@@ -158,7 +159,8 @@
                 ['{{$province->name}}', {{$province->student->count()}}],
             @endforeach
         ],
-        type : 'bar'
+        type : 'bar',
+        labels: true
         },
         pie: {
             label: {
