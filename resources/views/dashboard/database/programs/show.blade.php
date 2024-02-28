@@ -26,12 +26,12 @@
                 </div>
                 <!-- end item -->
 
-                <div class="mb-3">
+                <div class="">
                     <span class="font-weight-bold">Total Student :</span> {{ $program->students->count() }}
                 </div>
                 <!-- end item -->
 
-                <div class="mb-3">
+                <div class="">
                     <span class="font-weight-bold">Female :</span> {{ $female }}
                 </div>
                 <!-- end item -->
