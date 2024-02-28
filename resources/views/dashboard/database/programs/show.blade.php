@@ -27,6 +27,22 @@
                 <!-- end item -->
 
                 <div class="mb-3">
+                    <span class="font-weight-bold">Total Student :</span> {{ $program->students->count() }}
+                </div>
+                <!-- end item -->
+
+                <div class="mb-3">
+                    <span class="font-weight-bold">Female :</span> {{ $female }}
+                </div>
+                <!-- end item -->
+
+                <div class="mb-3">
+                    <span class="font-weight-bold">Male :</span> {{ $male }}
+                </div>
+                <!-- end item -->
+
+
+                <div class="mb-3">
                     <span class="font-weight-bold">Status :</span> {!! $program->status !!}
                 </div>
                 <!-- end item -->

@@ -106,11 +106,25 @@ class ProgramsController extends Controller
         ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
         ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
         ->leftJoin('users', 'students.user_id', '=', 'users.id')
+        ->where('users.status', 'Publish')
         ->orderBy('users.first_name','asc')
         ->paginate(10);
 
+         // By Genders
+         $female = Students::where('gender', 'Female')->whereHas('users', function ($q) {
+            $q->where('status', 'Publish');
+        })->whereHas('program', function ($q) use($id) {
+            $q->where('program_id', $id);
+        })->count();
+
+        $male = Students::where('gender', 'Male')->whereHas('users', function ($q) {
+            $q->where('status', 'Publish');
+        })->whereHas('program', function ($q) use($id) {
+            $q->where('program_id', $id);
+        })->count();
+
         if ($program) {
-            return view('dashboard.database.programs.show', compact('program','datas'))->with('i', (request()->input('page', 1) - 1) * 10);
+            return view('dashboard.database.programs.show', compact('program','datas','female','male'))->with('i', (request()->input('page', 1) - 1) * 10);
         } else {
             return redirect('dashboard/programs');
         }
