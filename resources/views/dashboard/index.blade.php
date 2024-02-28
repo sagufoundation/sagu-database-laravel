@@ -156,7 +156,7 @@
             data: {
         columns: [
             @foreach($provinces as $province )
-                ['{{$province->name}}', {{$province->student->count()}}],
+                ['{{$province->name}}', {{$province->students->count()}}],
             @endforeach
         ],
         type : 'bar',

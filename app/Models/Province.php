@@ -13,4 +13,9 @@ class Province extends Model
     public function student(){
         return $this->hasMany(Students::class,'id');
     }
+
+    public function students()
+    {
+        return $this->hasMany(Students::class);
+    }
 }

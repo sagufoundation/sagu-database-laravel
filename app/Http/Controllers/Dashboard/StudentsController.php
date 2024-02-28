@@ -236,25 +236,12 @@ class StudentsController extends Controller
                   ->leftJoin('users', 'students.user_id', '=', 'users.id')
                   ->orderBy('users.first_name','asc')
                   ->paginate(10);
-          // $datas = Program::where('id', $id)->with('students')->paginate(10);
-
           $province = Province::where('id', $id)->first();
-          $jumlahtrash = User::onlyTrashed()->count();
-          $jumlahdraft = User::whereHas('roles', function ($q) {
-              $q->where('name', 'student');
-          })->where('status', 'Draft')->count();
-          $datapublish = User::whereHas('roles', function ($q) {
-              $q->where('name', 'student');
-          })->where('status', 'Publish')->count();
-
           return view(
               'dashboard.database.students.province',
               compact(
                   'datas',
                   'province',
-                  'jumlahtrash',
-                  'jumlahdraft',
-                  'datapublish'
               )
           )->with('i', (request()->input('page', 1) - 1) * 10);
       }
