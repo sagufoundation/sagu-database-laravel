@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $programs = Program::where([['program_title', '!=', Null]])->where('status', 'Publish')->get();
 
          //  By Provinces
-         $provinces = Province::with('student')->get();
+         $provinces = Province::get();
 
         if(Auth::user()->hasRole('administrator')){
             return view('dashboard.index',compact(
