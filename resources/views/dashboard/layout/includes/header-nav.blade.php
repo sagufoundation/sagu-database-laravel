@@ -25,7 +25,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                    <a href="{{ url('dashboard/akun-saya') }}" class="dropdown-item notify-item">
+                    {{-- <a href="{{ url('dashboard/akun-saya') }}" class="dropdown-item notify-item">
                         <i class="fe-user"></i>
                         <span>Akun Saya</span>
                     </a>
@@ -36,7 +36,7 @@
                             <span>settings</span>
                         </a>
                     @endif
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider"></div> --}}
 
                     <a href="#" class="dropdown-item notify-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -96,39 +96,32 @@
                 </a>
                 <!-- End mobile menu toggle-->
             </li>
-            {{-- <li>
-                            <a href="{{ url('/') }}" target="_blank" class="nav-link">
-                                <i class="fe-globe"></i> Tampilkan Situs
-                            </a>
-                        </li> --}}
-            @if (Auth::user()->hasRole('administrator'))
-
+            
                 @if (Request::segment(2) == 'students' )
-                    <li class="dropdown d-none d-xl-block">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            Programs
+                <li class="dropdown d-none d-xl-block">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        Programs
 
-                            <i class="mdi mdi-chevron-down"></i>
-                        </a>
-                        <div class="dropdown-menu">
+                        <i class="mdi mdi-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
 
-                            @foreach ($programs as $program)
-                                <!-- item-->
-                                <a href="{{ url('dashboard/students/programs', $program->id) }}" class="dropdown-item">
-                                    <i class="mdi mdi-label"></i>
-                                    <span>{{ $program->program_title }}</span>
-                                </a>
-                            @endforeach
-                            <div class="dropdown-divider"></div>
-                            <a href="{{ url('dashboard/students/programs/other') }}" class="dropdown-item">
+                        @foreach ($programs as $program)
+                            <!-- item-->
+                            <a href="{{ url('dashboard/students/programs', $program->id) }}" class="dropdown-item">
                                 <i class="mdi mdi-label"></i>
-                                <span>Other</span>
+                                <span>{{ $program->program_title }}</span>
                             </a>
-                        </div>
-                    </li>
+                        @endforeach
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ url('dashboard/students/programs/other') }}" class="dropdown-item">
+                            <i class="mdi mdi-label"></i>
+                            <span>Other</span>
+                        </a>
+                    </div>
+                </li>
                 @endif
-
 
                 @if (Request::segment(2) == 'students')
 
@@ -171,6 +164,7 @@
                         </a>
                     </li>
                 @endif
+
                 @if (Request::segment(2) == 'programs' && Request::segment(3) == 'show')
                     <li class=" d-none d-xl-block">
                         <a class="nav-link  waves-effect waves-light"
@@ -179,9 +173,7 @@
                         </a>
                     </li>
                 @endif
-
-
-            @endif
+    
         </ul>
         <div class="clearfix"></div>
     </div>

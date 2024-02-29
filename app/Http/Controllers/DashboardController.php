@@ -16,12 +16,8 @@ class DashboardController extends Controller
     public function index()
     {
         // By Genders
-        $female = Students::whereHas('users', function ($q) {
-                        $q->where('status', 'Publish');
-                    })->where('gender', 'Female')->count();
-        $male = Students::whereHas('users', function ($q) {
-                        $q->where('status', 'Publish');
-                    })->where('gender', 'Male')->count();
+        $female = Students::whereHas('users', function ($q) { $q->where('status', 'Publish'); })->where('gender', 'Female')->count();
+        $male = Students::whereHas('users', function ($q) { $q->where('status', 'Publish'); })->where('gender', 'Male')->count();
 
         //  By Programs
         $programs = Program::where([['program_title', '!=', Null]])->where('status', 'Publish')->get();
@@ -30,7 +26,7 @@ class DashboardController extends Controller
         $provinces = Province::get();
 
         if(Auth::user()->hasRole('administrator')){
-            return view('dashboard.index',compact(
+            return view('dashboard.index', compact(
                 'female',
                 'male',
                 'male',
@@ -39,7 +35,13 @@ class DashboardController extends Controller
             ));
 
         } elseif(Auth::user()->hasRole('guest')){
-            return view('dashboard.index');
+            return view('dashboard.index', compact(
+                'female',
+                'male',
+                'male',
+                'programs',
+                'provinces'
+            ));
         }
         elseif(Auth::user()->hasRole('student')){
             // return view('dashboard.index');

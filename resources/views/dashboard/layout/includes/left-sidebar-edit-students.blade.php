@@ -1,11 +1,23 @@
                                         <div class="inbox-leftbar">
 
                                             <div class="mb-2">
-                                                @if(!$data->picture)
+
+
+                                                @if (!$data->picture)                    
+                                                    <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found" class="rounded-0 w-100">
+                                                @else
+                                                    @if (ENV('APP_ENV') == 'local')
+                                                    <img src="https://dbsf.sagufoundation.org/{{ $data->picture }}" alt="Profile picture" class="rounded-0 w-100">
+                                                    @else 
+                                                    <img src="{{ asset($data->picture) }}" alt="Profile picture" class="rounded-0 w-100">
+                                                    @endif
+                                                @endif
+
+                                                {{-- @if(!$data->picture)
                                                 <img src="{{ asset('images/' . Request::segment(2) . '/00.jpg') }}" alt="Profile picture not found" class="img img-thumbnail w-100 rounded p-2">
                                                 @else
                                                 <img src="{{ asset($data->picture) }}" alt="Profile picture" class="img img-thumbnail img-fluid w-100 rounded p-2">
-                                                @endif
+                                                @endif --}}
                                             </div>
 
                                             <div class="my-3 text-center">

@@ -116,12 +116,13 @@
         </div>
         <!-- .row end -->
     @else
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
 
-                        @include('dashboard.layout.includes.form-input.search')
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    @include('dashboard.layout.includes.form-input.search')
 
                         <div class="mt-3 table-responsive">
                             <table class="table table-bordered">
@@ -129,36 +130,46 @@
                                     <th width="1%">No</th>
                                     <th>Picture</th>
                                     <th>Full Name</th>
+                                    <th>Gender</th>
+                                    <th>Email Address</th>
                                     <th>Phone</th>
                                     <th>Province</th>
+                                    <th>Full Address</th>
                                     <th>Program</th>
                                     <th width="280px"></th>
                                 </tr>
                                 @forelse($datas as $data)
+                                    @php
+                                        $students = $data->student ?? '';
+                                    @endphp
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         @include('dashboard.layout.includes.index-picture')
                                         <td>
-                                            {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
-                                            <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
-                                                {{ $data->email_sagu ?? '' }}</small>
+                                            <a class="text-dark" href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}">  {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}</a>
                                         </td>
+                                        <td>{{ $data->student->gender ?? '' }}</td>
                                         <td>{{ $data->phone ?? '' }}</td>
-                                        <td>{{ $data->provinces->name ?? '' }}</td>
-                                        {{-- {{ $ProgramStudent }} --}}
-                                        @if ($data->student)
-                                            @if ($data->student->program)
-                                                @forelse ($data->student->program as $item)
-                                                    <div class="badge border">
-                                                        {{ $item->program_title ?? '' }}
-                                                    </div>
-                                                @empty
-                                                    no data
-                                                @endforelse
+                                        <td>{{ $data->email ?? '' }}</td>
+                                        <td>{{ $data->student->provinsi->name ?? '' }}</td>
+                                        <td>{{ $data->full_address ?? '' }}</td>
+                                        <td>
+
+                                            {{-- {{ $ProgramStudent }} --}}
+                                            @if ($data->student)
+                                                @if ($data->student->program)
+                                                    @forelse ($data->student->program as $item)
+                                                        <div class="badge border">
+                                                            {{ $item->program_title ?? '' }}
+                                                        </div>
+                                                    @empty
+                                                        no data
+                                                    @endforelse
+                                                @endif
+                                            @else
+                                                no data
                                             @endif
-                                        @else
-                                            no data
-                                        @endif
+                                        </td>
                                         <td>
                                             <div class="d-flex gap-1">
                                                 <div class="d-block p-1">
@@ -172,7 +183,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6">
+                                        <td colspan="8">
                                             Data tidak ada
                                         </td>
                                     </tr>
@@ -182,15 +193,15 @@
                         <!-- end .mt-4 -->
                         {!! $datas->links() !!}
 
-                        <div class="clearfix"></div>
-                    </div>
+                    <div class="clearfix"></div>
+                </div>
 
-                </div> <!-- end card-->
-            </div> <!-- end col -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
 
-        </div>
-        </div>
-        <!-- .row end -->
+    </div>
+    </div>
+    <!-- .row end -->
 
     @endif
 

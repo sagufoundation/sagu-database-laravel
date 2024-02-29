@@ -44,7 +44,7 @@
                     </p>
 
                     @if (!empty($data->student->gender))
-                        <p class="text-muted mb-1 font-13"><strong>Genre :</strong>
+                        <p class="text-muted mb-1 font-13"><strong>Gender :</strong>
                             <span class="d-block"> {{ $data->student->gender ?? '' }}</span>
                         </p>
                      @endif
