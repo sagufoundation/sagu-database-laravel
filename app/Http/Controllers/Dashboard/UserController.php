@@ -35,18 +35,25 @@ class UserController extends Controller
                 }
             }]
         ])->whereHas('roles', function ($q) {
-            $q->where('name', '!=', 'student');
-        })
-            ->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(10);
+            $q->where('name', '=', 'administrator')
+                ->orWhere('name','guest')
+                ->orWhere('name','librarian');
+        })->where('status', 'Publish')->orWhere('status', 'Draft')->orderBy('first_name', 'asc')->paginate(10);
 
         $jumlahtrash = User::whereHas('roles', function ($q) {
-            $q->where('name', '!=', 'student');
+            $q->where('name', '=', 'administrator')
+            ->orWhere('name','guest')
+            ->orWhere('name','librarian');
         })->onlyTrashed()->count();
         $jumlahdraft = User::where('status', 'Draft')->whereHas('roles', function ($q) {
-            $q->where('name', '!=', 'student');
+            $q->where('name', '=', 'administrator')
+            ->orWhere('name','guest')
+            ->orWhere('name','librarian');
         })->count();
         $datapublish = User::where('status', 'Publish')->whereHas('roles', function ($q) {
-            $q->where('name', '!=', 'student');
+            $q->where('name', '=', 'administrator')
+            ->orWhere('name','guest')
+            ->orWhere('name','librarian');
         })->count();
         return view('dashboard.users.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
