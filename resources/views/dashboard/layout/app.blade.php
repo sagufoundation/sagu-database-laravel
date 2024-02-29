@@ -5,6 +5,9 @@
 
     <title> {{ $pengaturan->site_title ?? '' }} </title>
 
+    {{-- no index tags --}}
+    <meta name="robots" content="noindex" />
+
     <!-- HTML METAS -->
     <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content="website" />
