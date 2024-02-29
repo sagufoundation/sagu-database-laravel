@@ -188,11 +188,13 @@
                         <p>Dokumen yang sering digunakan atau sedang dalam tahap penggunaan.</p>
 
                         <div>
+                            @if (Auth::user()->hasRole('administrator'))
                             @include('dashboard.database.students.documents.create-modal')
                             <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal"
                                 data-target="#standard-modal">
                                 <i class="fa-solid fa-plus-square"></i> Add
-                            </button>
+                            </button>                                
+                            @endif
                         </div>
 
                         <div class="table-responsive">
@@ -219,24 +221,27 @@
                                                 <td width="200px">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <a href="{{ $document->url ?? '' }}" target="_blank"
-                                                                class="btn btn-success border" data-toggle="tooltip"
-                                                                title='Show'><i class="fa-solid fa-file"></i></a>
+                                                            <a href="{{ $document->url ?? '' }}" target="_blank" class="btn btn-success border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-file"></i></a>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <form
-                                                                action="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/documents/destroy', $document->id) }}"
-                                                                method="POST">
+                                                            <form action="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/documents/destroy', $document->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger show_confirm"
-                                                                    data-toggle="tooltip" title='Delete'>
+                                                                <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </td>
+                                            @else 
+                                            <td width="200px">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <a href="{{ $document->url ?? '' }}" target="_blank" class="btn btn-success border" data-toggle="tooltip" title='Show'><i class="fa-solid fa-file"></i></a>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             @endif
                                         </tr>
 

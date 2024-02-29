@@ -136,7 +136,7 @@
                                     <th>Province</th>
                                     <th>Full Address</th>
                                     <th>Program</th>
-                                    <th width="280px"></th>
+                                    <th></th>
                                 </tr>
                                 @forelse($datas as $data)
                                     @php
@@ -149,10 +149,10 @@
                                             <a class="text-dark" href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}">  {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}</a>
                                         </td>
                                         <td>{{ $data->student->gender ?? '' }}</td>
-                                        <td>{{ $data->phone ?? '' }}</td>
                                         <td>{{ $data->email ?? '' }}</td>
+                                        <td>{{ $data->phone ?? '' }}</td>
                                         <td>{{ $data->student->provinsi->name ?? '' }}</td>
-                                        <td>{{ $data->full_address ?? '' }}</td>
+                                        <td>{{ $data->student->full_address ?? '-' }}</td>
                                         <td>
 
                                             {{-- {{ $ProgramStudent }} --}}
@@ -172,12 +172,9 @@
                                         </td>
                                         <td>
                                             <div class="d-flex gap-1">
-                                                <div class="d-block p-1">
-                                                    <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}"
-                                                        class="btn btn-success w-100">
-                                                        <i class="fa-solid fa-id-badge d-block"></i> Show
-                                                    </a>
-                                                </div>
+                                                <a href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}" class="btn btn-success w-100">
+                                                    <i class="fa-solid fa-id-badge d-block"></i> Show
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
