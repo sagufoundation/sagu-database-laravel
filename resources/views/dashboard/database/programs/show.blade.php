@@ -55,8 +55,6 @@
 
                 @if (Auth::user()->hasRole('administrator'))
 
-                    {{-- @include('dashboard.layout.includes.form-input.search') --}}
-
                     <div class="mt-3 table-responsive">
                         <table class="table table-bordered">
                             <tr>
@@ -72,11 +70,13 @@
                                         <td>{{ ++$i }}</td>
                                         <td class="p-0" width="100px">
                                             @if (!empty($data->picture))
-                                                <img src="{{ asset($data->picture) }}" alt="Profile picture"
-                                                    class="img img-fluid w-100">
+                                                @if (ENV('APP_ENV') == 'local')
+                                                <img src="https://dbsf.sagufoundation.org/{{ $data->picture }}" alt="Profile picture" class="img img-fluid w-100">
+                                                @else
+                                                <img src="{{ asset($data->picture) }}" alt="Profile picture" class="img img-fluid w-100">
+                                                @endif
                                             @else
-                                                <img src="{{ asset('images/students/00.jpg') }}" alt="Profile picture not found"
-                                                    class="img w-100">
+                                                <img src="{{ asset('images/students/00.jpg') }}" alt="Profile picture not found" class="img w-100">
                                             @endif
                                         </td>
 
@@ -100,9 +100,54 @@
                             @endforelse
                         </table>
                     </div>
-                    <!-- end .mt-4 -->
-                    <!-- end inbox-rightbar-->
+                    
                 @else
+
+                <div class="mt-3 table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="1%">No</th>
+                            <th>Picture</th>
+                            <th>Full Name</th>
+                            <th>Phone</th>
+                            <th>Province</th>
+                            {{-- <th width="280px"></th> --}}
+                        </tr>
+                        @forelse($datas as $data)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td class="p-0" width="100px">
+                                        @if (!empty($data->picture))
+                                            @if (ENV('APP_ENV') == 'local')
+                                            <img src="https://dbsf.sagufoundation.org/{{ $data->picture }}" alt="Profile picture" class="img img-fluid w-100">
+                                            @else
+                                            <img src="{{ asset($data->picture) }}" alt="Profile picture" class="img img-fluid w-100">
+                                            @endif
+                                        @else
+                                            <img src="{{ asset('images/students/00.jpg') }}" alt="Profile picture not found" class="img w-100">
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
+                                        <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
+                                            {{ $data->email ?? '' }}</small>
+                                    </td>
+                                    <td>{{ $data->phone ?? '' }}</td>
+                                    <td>
+                                        {{ $data->name ?? '' }}
+                                    </td>
+
+                                </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8">
+                                    Data tidak ada
+                                </td>
+                            </tr>
+                        @endforelse
+                    </table>
+                </div>
                 @endif
 
             </div>

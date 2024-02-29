@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Route;
     |--------------------------------------------------------------------------
     */
 
-Route::group(['middleware' => ['role:administrator']], function () {
+// Route::group(['middleware' => ['role:administrator']], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(ProgramsController::class)->group(function () {
 

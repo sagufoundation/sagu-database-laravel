@@ -26,7 +26,7 @@ class ProgramsController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status', 'Publish')->latest()->paginate(5);
+        ])->where('status', 'Publish')->latest()->paginate();
 
         $jumlahtrash = Program::onlyTrashed()->count();
         $jumlahdraft = Program::where('status', 'Draft')->count();
