@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Data Students {{ $program->program_title }}</h1>
+    <h1>Data Students {{ $program->program_title ?? 'Other' }}</h1>
     <table>
         <tr>
             <th>No</th>

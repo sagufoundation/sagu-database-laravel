@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Program;
 use App\Models\User;
+use App\Models\Students;
 use App\Models\ProgramStudent;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -18,19 +19,29 @@ class ProgramStudentExport implements FromView, WithColumnWidths, WithStyles
      */
     private $id;
 
-    public function __construct(int $id)
+    public function __construct($id)
     {
         $this->id = $id;
     }
 
     public function view(): View
     {
-        $datas = ProgramStudent::where('program_id', $this->id)
-        ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
-        ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
-        ->leftJoin('users', 'students.user_id', '=', 'users.id')
-        ->orderBy('users.first_name','asc')
-        ->get();
+        if($this->id != 'other')
+        {
+            $datas = ProgramStudent::where('program_id', $this->id)
+            ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
+            ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+            ->leftJoin('users', 'students.user_id', '=', 'users.id')
+            ->orderBy('users.first_name','asc')
+            ->get();
+        }else{
+            $datas = Students::leftJoin('student_program', 'student_program.students_id', '=', 'students.id')
+            ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+            ->leftJoin('users', 'students.user_id', '=', 'users.id')
+            ->orderBy('users.first_name','asc')
+            ->whereNull('student_program.students_id')
+            ->get();
+        }
 
         $program = Program::where('id', $this->id)->first();
 
