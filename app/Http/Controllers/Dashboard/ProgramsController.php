@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Exports\ProgramStudentExport;
+use App\Exports\StudentExport;
 use App\Http\Controllers\Controller;
 
 use App\Models\Program;
 use App\Models\User;
 use App\Models\ProgramStudent;
 use App\Models\Students;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 class ProgramsController extends Controller
 {
@@ -213,5 +218,15 @@ class ProgramsController extends Controller
         // create alert & redirect
         alert()->success('Deleted', 'Data dleted permanently!!')->autoclose(1100);
         return redirect()->back();
+    }
+
+    public function excel_program($id)
+    {
+
+        dd('program');
+        // $program = Program::where('id', $id)->first();
+        // $program_title = $program->program_title ?? 'Other';
+        // $title = 'Students-by-program-' .Str::slug($program_title).'-'. Carbon::now()->isoFormat('DMY') . '.xlsx';
+        // return Excel::download(new ProgramStudentExport($id), $title);
     }
 }

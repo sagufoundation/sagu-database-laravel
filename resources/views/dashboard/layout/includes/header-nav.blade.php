@@ -153,14 +153,14 @@
                     </li>
                 @endif
 
-                {{-- @if (Request::segment(2) == 'programs' && Request::segment(3) == 'show')
+                @if (Request::segment(2) == 'programs')
                     <li class=" d-none d-xl-block">
                         <a class="nav-link  waves-effect waves-light"
-                            href="{{ url('dashboard/students/excel-program', Request::segment(4)) }}">
+                            href="{{ url('dashboard/programs/excel', Request::segment(4)) }}">
                             Export to Excel
                         </a>
                     </li>
-                @endif --}}
+                @endif
     
         </ul>
         <div class="clearfix"></div>

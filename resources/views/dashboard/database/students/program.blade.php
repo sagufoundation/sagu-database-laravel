@@ -172,7 +172,7 @@
                             </table>
                         </div>
                         <!-- end .mt-4 -->
-                        {!! $datas->links() !!}
+                        {{-- {!! $datas->links() !!} --}}
                         <div class="clearfix"></div>
                     </div>
 

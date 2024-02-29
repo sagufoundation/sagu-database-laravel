@@ -571,7 +571,7 @@ class StudentsController extends Controller
         $data->forceDelete();
 
         // create alert & redirect
-        alert()->success('Deleted', 'Data dleted permanently!!')->autoclose(1100);
+        alert()->success('Deleted', 'Data deleted permanently!!')->autoclose(1100);
         return redirect()->back();
     }
 
@@ -582,21 +582,21 @@ class StudentsController extends Controller
         $data->delete();
 
         // create alert & redirect
-        alert()->success('Deleted', 'Data Program has been delete!')->autoclose(1100);
+        alert()->success('Deleted', 'Data Program has been deleted!')->autoclose(1100);
         return redirect()->back();
     }
 
     public function excel()
     {
-        $title = 'student-' . Carbon::now()->isoFormat('D-M-Y') . '.xlsx';
+        $title = 'All-Students-' . Carbon::now()->isoFormat('DMY') . '.xlsx';
         return Excel::download(new StudentExport, $title);
     }
 
     public function excel_program($id)
     {
-        $program = Program::where('id',$id)->first();
+        $program = Program::where('id', $id)->first();
         $program_title = $program->program_title??'Other';
-        $title = 'student-' .Str::slug($program_title).'-'. Carbon::now()->isoFormat('D-M-Y') . '.xlsx';
+        $title = 'Students-by-program-' .Str::slug($program_title).'-'. Carbon::now()->isoFormat('DMY') . '.xlsx';
         return Excel::download(new ProgramStudentExport($id), $title);
     }
 }

@@ -60,5 +60,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         // delete
         Route::delete('programs/delete/{id}', 'delete')->name('dashboard.programs.delete');
+
+        // export program excel
+        Route::get('programs/excel/{id}', 'excel_program')->name('dashboard.programs.excel');
+            
     });
 });

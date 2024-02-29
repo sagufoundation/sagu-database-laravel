@@ -5,35 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Student</title>
+    <title>Students by Program</title>
 </head>
 
 <body>
-    <h1>Data Students {{ $program->program_title ?? 'Other' }}</h1>
+    <h1>Students by Program</h1>
     <table>
         <tr>
             <th>No</th>
             <th>First Name</th>
             <th>Middle Name</th>
             <th>Last Name</th>
-            <th>Email</th>
+            <th>Gender</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Province</th>
+            <th>Full Address</th>
+            <th>Created at</th>
+            <th>Updated at</th>
         </tr>
         @php
             $i = 0;
         @endphp
         @forelse ($datas as $data )
-                    <tr>
-                        <td>{{ ++$i }}</td>
-                        <td>{{ $data->first_name }}</td>
-                        <td>{{ $data->middle_name }}</td>
-                        <td>{{ $data->last_name }}</td>
-                        <td>{{ $data->email }}</td>
-                    </tr>
-            @empty
-                <tr>
-                    <td>Tidak ada data</td>
-                </tr>
-            @endforelse
+            <tr>
+                <td>{{ ++$i }}</td>
+                <td>{{ $data->first_name ?? '-' }}</td>
+                <td>{{ $data->middle_name ?? '-' }}</td>
+                <td>{{ $data->last_name ?? '-' }}</td>
+                <td>{{ $data->gender ?? '-' }}</td>
+                <td>{{ $data->email ?? '-' }}</td>
+                <td>{{ $data->phone ?? '-' }}</td>
+                <td>{{ $data->student->provinsi->name ?? '' }}</td>
+                <td>{{ $data->student->full_address ?? '-' }}</td>
+                <td>{{ $data->created_at}}</td>
+                <td>{{ $data->updated_at}}</td>
+            </tr>
+        @empty
+            <tr>
+                <td>Tidak ada data</td>
+            </tr>
+        @endforelse
     </table>
 </body>
 
