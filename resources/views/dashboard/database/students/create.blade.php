@@ -93,6 +93,38 @@
                                                     </div>
                                                 </div>
 
+                                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">PROGRAM</h5>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            @foreach ($programs as $program)
+                                                                <label class="p-1" for="option{{ $program->id }}">
+                                                                    <input type="checkbox" name="programs[]" value="{{ $program->id }}" id="option{{ $program->id }}"
+                                                                        @if (old('programs') != null)
+                                                                            @foreach (old('programs') as $programold)
+
+                                                                            @if ($program->id == $programold)
+
+                                                                            {{
+
+                                                                                    'checked' }} @endif
+                                                                            @endforeach>
+
+                                                                            {{ $program->program_title ?? '' }}
+                                                                     </label>
+                                                                 @else
+                                                                > {{ $program->program_title ?? '' }}
+                                                                </label>
+                                                            @endif
+                                                            @endforeach
+                                                            {{-- @dd(old('programs')) --}}
+                                                        </div>
+                                                        <!-- input group end -->
+                                                    </div>
+
+                                                </div>
+
                                                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">CREATE ACCOUNT </h5>
                                                 <div class="row">
                                                     <div class="col-md-4">

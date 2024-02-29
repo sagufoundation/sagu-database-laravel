@@ -95,7 +95,8 @@ class StudentsController extends Controller
     public function create()
     {
         $provinces = Province::all();
-        return view('dashboard.database.students.create', compact('provinces'));
+        $programs = Program::orderBy('program_title', 'asc')->get();
+        return view('dashboard.database.students.create', compact('provinces','programs'));
     }
 
     // STORE
@@ -148,7 +149,7 @@ class StudentsController extends Controller
             }
 
             // adding file name into database variable
-            $data->picture = $fileName;
+            $data->picture = 'images/students/'.$fileName;
 
             // move file into folder path with the file name
             $request->picture->move(public_path('images/students'), $fileName);
@@ -172,6 +173,15 @@ class StudentsController extends Controller
 
         $data->students()->save($student);
         $data->assignRole(3);
+
+        if ($request->programs) {
+            foreach ($request->programs as $program) {
+                $programstudent =  new ProgramStudent();
+                $programstudent->program_id = $program;
+                $programstudent->students_id = $student->id;
+                $programstudent->save();
+            }
+        }
 
         // create alert & redirect
         alert()->success('Created', 'Data has been created')->autoclose(1100);
