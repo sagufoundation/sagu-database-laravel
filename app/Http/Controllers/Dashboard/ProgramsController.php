@@ -108,7 +108,7 @@ class ProgramsController extends Controller
         ->leftJoin('users', 'students.user_id', '=', 'users.id')
         ->where('users.status', 'Publish')
         ->orderBy('users.first_name','asc')
-        ->paginate(10);
+        ->get();
 
          // By Genders
          $female = Students::where('gender', 'Female')->whereHas('users', function ($q) {
@@ -140,8 +140,6 @@ class ProgramsController extends Controller
     // UPDATE
     public function update(Request $request, $id)
     {
-        // dd('update');
-
         $request->validate(
             [
                 'program_title' => 'required',

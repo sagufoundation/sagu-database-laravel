@@ -103,7 +103,7 @@
                         </li> --}}
             @if (Auth::user()->hasRole('administrator'))
 
-                @if (Request::segment(2) == 'students' && (Request::segment(3) == 'programs' || Request::segment(3) == null || Request::segment(3) == 'show' || Request::segment(3) == 'edit'  || Request::segment(3) == 'draft'  || Request::segment(3) == 'trash'))
+                @if (Request::segment(2) == 'students' )
                     <li class="dropdown d-none d-xl-block">
                         <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
                             href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -120,13 +120,17 @@
                                     <span>{{ $program->program_title }}</span>
                                 </a>
                             @endforeach
-
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ url('dashboard/students/programs/other') }}" class="dropdown-item">
+                                <i class="mdi mdi-label"></i>
+                                <span>Other</span>
+                            </a>
                         </div>
                     </li>
                 @endif
 
 
-                @if (Request::segment(2) == 'students' && (Request::segment(3) == 'provinces' || Request::segment(3) == null || Request::segment(3) == 'show' || Request::segment(3) == 'edit'  || Request::segment(3) == 'draft'  || Request::segment(3) == 'trash'))
+                @if (Request::segment(2) == 'students')
 
                     <li class="dropdown d-none d-xl-block">
                         <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
@@ -142,7 +146,11 @@
                                     <span>{{ $province->name }}</span>
                                 </a>
                             @endforeach
-
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ url('dashboard/students/provinces/other') }}" class="dropdown-item">
+                                <i class="mdi mdi-label"></i>
+                                <span>Other</span>
+                            </a>
                         </div>
                     </li>
                 @endif

@@ -13,11 +13,11 @@
                             <a href="{{ url('dashboard/' . Request::segment(2)) }}">{{ ucfirst(Request::segment(2)) }}</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            {{ $program->program_title }}
+                            {{ $program->program_title ?? 'Other' }}
                         </li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ ucfirst(Request::segment(2)) }} Program {{ $program->program_title }}</h4>
+                <h4 class="page-title">{{ ucfirst(Request::segment(2)) }} Program {{ $program->program_title ?? 'Other'}}</h4>
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="badge border">
-                                                            {{ $program->program_title ?? '' }}
+                                                            {{ $program->program_title ?? 'no data' }}
                                                         </div>
                                                     </td>
                                                     <td>
@@ -106,7 +106,6 @@
                                 </table>
                             </div>
                             <!-- end .mt-4 -->
-                            {!! $datas->links() !!}
                         </div>
                         <!-- end inbox-rightbar-->
 

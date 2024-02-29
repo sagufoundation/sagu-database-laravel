@@ -27,7 +27,7 @@
                 <!-- end item -->
 
                 <div class="">
-                    <span class="font-weight-bold">Total Student :</span> {{ $program->students->count() }}
+                    <span class="font-weight-bold">Total Students :</span> {{ $program->students->count() }}
                 </div>
                 <!-- end item -->
 
@@ -101,7 +101,6 @@
                         </table>
                     </div>
                     <!-- end .mt-4 -->
-                    {!! $datas->links() !!}
                     <!-- end inbox-rightbar-->
                 @else
                 @endif

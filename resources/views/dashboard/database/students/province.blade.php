@@ -13,11 +13,11 @@
                             <a href="{{ url('dashboard/' . Request::segment(2)) }}">{{ ucfirst(Request::segment(2)) }}</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            {{ $province->name }}
+                            {{ $province->name ?? 'Other' }}
                         </li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ ucfirst(Request::segment(2)) }} Province {{ $province->name }}</h4>
+                <h4 class="page-title">{{ ucfirst(Request::segment(2)) }} Province {{ $province->name  ?? 'Other'}}</h4>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
                                                     <td>{{ $data->phone ?? '' }}</td>
 
                                                     <td>
-                                                        {{ $data->name ?? '' }}
+                                                        {{ $data->name ?? 'Other' }}
                                                     </td>
                                                     <td>
                                                         <div class="d-flex gap-1">
@@ -97,7 +97,6 @@
                                 </table>
                             </div>
                             <!-- end .mt-4 -->
-                            {!! $datas->links() !!}
                         </div>
                         <!-- end inbox-rightbar-->
 

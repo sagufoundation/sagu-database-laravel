@@ -209,12 +209,22 @@ class StudentsController extends Controller
     // PROGRAM
     public function programs($id)
     {
-        $datas = ProgramStudent::where('program_id', $id)
-                ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
-                ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
-                ->leftJoin('users', 'students.user_id', '=', 'users.id')
-                ->orderBy('users.first_name','asc')
-                ->paginate(10);
+        if($id != 'other')
+        {
+            $datas = ProgramStudent::where('program_id', $id)
+            ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
+            ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+            ->leftJoin('users', 'students.user_id', '=', 'users.id')
+            ->orderBy('users.first_name','asc')
+            ->get();
+        }else{
+            $datas = Students::leftJoin('student_program', 'student_program.students_id', '=', 'students.id')
+            ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+            ->leftJoin('users', 'students.user_id', '=', 'users.id')
+            ->orderBy('users.first_name','asc')
+            ->whereNull('student_program.students_id')
+            ->get();
+        }
 
         // $datas = Program::where('id', $id)->with('students')->paginate(10);
         $program = Program::where('id', $id)->first();
@@ -231,13 +241,24 @@ class StudentsController extends Controller
       // Provinces
       public function provinces($id)
       {
-          $datas = Students::where('province_id', $id)
+        if($id != 'other')
+        {
+            $datas = Students::where('province_id', $id)
                   ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
                   ->leftJoin('users', 'students.user_id', '=', 'users.id')
                   ->orderBy('users.first_name','asc')
-                  ->paginate(10);
-          $province = Province::where('id', $id)->first();
-          return view(
+                  ->get();
+        }else{
+            $datas = Students::leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
+                ->leftJoin('users', 'students.user_id', '=', 'users.id')
+                ->orderBy('users.first_name','asc')
+                ->whereNull('students.province_id')
+                ->get();
+        }
+
+
+            $province = Province::where('id', $id)->first();
+            return view(
               'dashboard.database.students.province',
               compact(
                   'datas',
