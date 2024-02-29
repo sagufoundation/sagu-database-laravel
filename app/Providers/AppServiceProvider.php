@@ -107,7 +107,11 @@ class AppServiceProvider extends ServiceProvider
                 'database_total_publish_authors' =>  Author::where('status','Publish')->orWhere('status', 'Draft')->count(),
                 'database_total_publish_loan_books' =>  LoanBook::where('status','Active')->orWhere('status', 'pending')->count(),
 
-                'database_total_publish_users' =>  User::whereHas('roles',function($q){$q->where('name','administrator');})->where('status', 'Publish')->count(),
+                'database_total_publish_users' =>  User::whereHas('roles',function($q){
+                    $q->where('name','administrator')
+                    ->orWhere('name','guest')
+                    ->orWhere('name','librarian');
+                })->where('status', 'Publish')->orWhere('status', 'Draft')->count(),
                 
                 // 'database_total_publish_users' =>  User::where('status','Publish')->orWhere('status', 'Draft')->count(),
                 'database_total_roles' =>  Roles::count(),
