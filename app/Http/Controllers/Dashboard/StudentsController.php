@@ -201,7 +201,7 @@ class StudentsController extends Controller
         $documents = Documents::where('user_id', $id)->orderBy('title', 'asc')->get();
         $educations = Education::where('user_id', $id)->orderBy('year', 'asc')->get();
         $provinces = Province::orderBy('name', 'asc')->get();
-        $programs = Program::orderBy('id', 'desc')->get();
+        $programs = Program::orderBy('program_title', 'asc')->get();
 
         return view('dashboard.database.students.edit', compact('data', 'documents', 'educations', 'provinces', 'programs'));
     }
