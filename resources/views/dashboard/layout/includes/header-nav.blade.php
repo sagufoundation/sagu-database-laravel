@@ -25,18 +25,6 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                    {{-- <a href="{{ url('dashboard/akun-saya') }}" class="dropdown-item notify-item">
-                        <i class="fe-user"></i>
-                        <span>Akun Saya</span>
-                    </a>
-
-                    @if (Auth::user()->hasRole('administrator'))
-                        <a href="{{ url('dashboard/settings') }}" class="dropdown-item notify-item">
-                            <i class="fe-settings"></i>
-                            <span>settings</span>
-                        </a>
-                    @endif
-                    <div class="dropdown-divider"></div> --}}
 
                     <a href="#" class="dropdown-item notify-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -165,14 +153,14 @@
                     </li>
                 @endif
 
-                @if (Request::segment(2) == 'programs' && Request::segment(3) == 'show')
+                {{-- @if (Request::segment(2) == 'programs' && Request::segment(3) == 'show')
                     <li class=" d-none d-xl-block">
                         <a class="nav-link  waves-effect waves-light"
                             href="{{ url('dashboard/students/excel-program', Request::segment(4)) }}">
                             Export to Excel
                         </a>
                     </li>
-                @endif
+                @endif --}}
     
         </ul>
         <div class="clearfix"></div>
