@@ -74,8 +74,8 @@
             bindto: '#pie-chart',
             data: {
         columns: [
-            ['Female', {{$female}}],
-            ['Male', {{$male}}],
+            ['Female', {{$female??0}}],
+            ['Male', {{$male??0}}],
         ],
         type : 'pie'
         },

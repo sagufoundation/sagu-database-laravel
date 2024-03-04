@@ -28,6 +28,7 @@
 
                             @foreach ($datas as $data)
                             <tr>
+                                <td>{{++$i}}</td>
                                 <td>
                                     <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
                                 </td>

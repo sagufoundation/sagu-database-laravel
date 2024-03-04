@@ -1,7 +1,7 @@
 <div id="sidebar-menu">
     <ul id="side-menu">
-        
-        <li class="@if (Request::segment(1) == 'dashboard') menuitem-active @endif">
+
+        <li class="@if (Request::segment(1) == 'dashboard' && Request::segment(2) ==  null) menuitem-active @endif">
             <a href="{{ url('dashboard') }}">
                 <i data-feather="airplay"></i>
                 <span> Dashboard </span>

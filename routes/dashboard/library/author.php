@@ -5,7 +5,7 @@ use App\Http\Controllers\Dashboard\Library\AuthorsController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['role:administrator|librarian','auth']], function () {
 
 
     Route::controller(AuthorsController::class)->group(function(){

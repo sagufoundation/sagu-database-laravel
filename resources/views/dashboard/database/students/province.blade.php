@@ -154,7 +154,6 @@
                             </table>
                         </div>
                         <!-- end .mt-4 -->
-                        {!! $datas->links() !!}
                         <div class="clearfix"></div>
                     </div>
 

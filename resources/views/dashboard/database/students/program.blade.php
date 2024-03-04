@@ -157,7 +157,7 @@
                                     </td>
                                     <td>
                                         <div class="badge border">
-                                            {{ $program->program_title ?? '' }}
+                                            {{ $program->program_title ?? 'no data' }}
                                         </div>
                                     </td>
                                 </tr>

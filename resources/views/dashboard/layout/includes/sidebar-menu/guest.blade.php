@@ -3,8 +3,8 @@
     <ul id="side-menu">
 
         <li class="menu-title mt-2">Menu Utama</li>
-        
-        <li class="@if (Request::segment(1) == 'dashboard') menuitem-active @endif">
+
+        <li class="@if (Request::segment(1) == 'dashboard' && Request::segment(2) ==  null ) menuitem-active @endif">
             <a href="{{ url('dashboard') }}">
                 <i data-feather="airplay"></i>
                 <span> Dashboard </span>
