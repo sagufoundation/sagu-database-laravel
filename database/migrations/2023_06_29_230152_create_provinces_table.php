@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('provinces', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
+            $table->geometry('map')->nullable();
             $table->timestamps();
         });
     }

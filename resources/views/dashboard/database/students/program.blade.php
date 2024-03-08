@@ -31,6 +31,14 @@
                     <div class="card-body">
                         <div class="">
                             @include('dashboard.layout.includes.form-input.search')
+                            {{-- <form action="{{ url(Request::segment(1) . '/' . Request::segment(2) .'/' . Request::segment(3) .'/' . Request::segment(4) )}}" method="get">
+                                <div class="input-group mb-3">
+                                    <input type="search" name="s" class="form-control" placeholder="Search {{ ucfirst(Request::segment(2)) }}" value="{{ request()->s ?? '' }}">
+                                    <button type="submit" class="btn btn-primary">
+                                        <div class="fa-solid fa-search me-1"></div> Go!
+                                    </button>
+                                </div>
+                            </form> --}}
                             <div class="mt-3 table-responsive">
                                 <table class="table table-bordered">
                                     <tr>
@@ -124,7 +132,15 @@
                 <div class="card">
                     <div class="card-body">
 
-                        @include('dashboard.layout.includes.form-input.search')
+
+                        <form action="{{ url(Request::segment(1) . '/' . Request::segment(2) .'/' . Request::segment(3) .'/' . Request::segment(4) )}}" method="get">
+                            <div class="input-group mb-3">
+                                <input type="search" name="s" class="form-control" placeholder="Search {{ ucfirst(Request::segment(2)) }}" value="{{ request()->s ?? '' }}">
+                                <button type="submit" class="btn btn-primary">
+                                    <div class="fa-solid fa-search me-1"></div> Go!
+                                </button>
+                            </div>
+                        </form>
 
                         <div class="mt-3 table-responsive">
                             <table class="table table-bordered">

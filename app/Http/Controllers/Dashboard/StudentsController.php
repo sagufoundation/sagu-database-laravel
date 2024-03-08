@@ -225,6 +225,18 @@ class StudentsController extends Controller
             ->leftJoin('students', 'student_program.students_id', '=', 'students.id')
             ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
             ->leftJoin('users', 'students.user_id', '=', 'users.id')
+            ->where('users.status', 'Publish')
+            ->where('users.deleted_at', null)
+            // ->where(function ($query) {
+            //     // Add your search condition here
+            //     $searchTerm = request()->s;
+            //     if ($searchTerm) {
+            //         $query->where('users.first_name', 'LIKE', '%' . $searchTerm . '%')
+            //         ->orWhere('users.middle_name', 'LIKE', '%' . $searchTerm . '%')
+            //         ->orWhere('users.last_name', 'LIKE', '%' . $searchTerm . '%')
+            //         ->get();
+            //     }
+            // })
             ->orderBy('users.first_name','asc')
             ->get();
         }else{
@@ -232,6 +244,19 @@ class StudentsController extends Controller
             ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
             ->leftJoin('users', 'students.user_id', '=', 'users.id')
             ->orderBy('users.first_name','asc')
+            ->where('users.status', 'Publish')
+            ->where('users.deleted_at', null)
+            // ->where([
+            //     ['users.first_name', '!=', Null],
+            //     [function ($query) {
+            //         if (($s = request()->s)) {
+            //             $query->orWhere('first_name', 'LIKE', '%' . $s . '%')
+            //                 ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
+            //                 ->orWhere('last_name', 'LIKE', '%' . $s . '%')
+            //                 ->get();
+            //         }
+            //     }]
+            // ])
             ->whereNull('student_program.students_id')
             ->get();
         }
@@ -256,12 +281,40 @@ class StudentsController extends Controller
             $datas = Students::where('province_id', $id)
                   ->leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
                   ->leftJoin('users', 'students.user_id', '=', 'users.id')
+                  ->where('users.status', 'Publish')
                   ->orderBy('users.first_name','asc')
+                  ->where('users.status', 'Publish')
+                  ->where('users.deleted_at', null)
+                //   ->where([
+                //     ['users.first_name', '!=', Null],
+                //     [function ($query) {
+                //         if (($s = request()->s)) {
+                //             $query->orWhere('first_name', 'LIKE', '%' . $s . '%')
+                //                 ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
+                //                 ->orWhere('last_name', 'LIKE', '%' . $s . '%')
+                //                 ->get();
+                //         }
+                //     }]
+                // ])
                   ->get();
         }else{
             $datas = Students::leftJoin('provinces', 'students.province_id', '=', 'provinces.id')
                 ->leftJoin('users', 'students.user_id', '=', 'users.id')
                 ->orderBy('users.first_name','asc')
+                ->where('users.status', 'Publish')
+                ->where('users.status', 'Publish')
+                ->where('users.deleted_at', null)
+                // ->where([
+                //     ['users.first_name', '!=', Null],
+                //     [function ($query) {
+                //         if (($s = request()->s)) {
+                //             $query->orWhere('first_name', 'LIKE', '%' . $s . '%')
+                //                 ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
+                //                 ->orWhere('last_name', 'LIKE', '%' . $s . '%')
+                //                 ->get();
+                //         }
+                //     }]
+                // ])
                 ->whereNull('students.province_id')
                 ->get();
         }

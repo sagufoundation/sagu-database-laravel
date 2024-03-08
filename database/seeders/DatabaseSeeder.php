@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             Library\CateegoriesSeeder::class,
             Library\BooksSeeder::class,
             Library\LoanLogsSeeder::class,
+
+            // PapuaGeoSeeder::class,
         ]);
     }
 }

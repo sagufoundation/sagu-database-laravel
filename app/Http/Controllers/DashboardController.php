@@ -15,6 +15,7 @@ class DashboardController extends Controller
     // INDEX
     public function index()
     {
+
         // By Genders
         $female = Students::whereHas('users', function ($q) { $q->where('status', 'Publish'); })->where('gender', 'Female')->count();
         $male = Students::whereHas('users', function ($q) { $q->where('status', 'Publish'); })->where('gender', 'Male')->count();
