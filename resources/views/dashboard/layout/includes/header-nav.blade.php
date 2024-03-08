@@ -11,14 +11,29 @@
             </li>
 
             <li class="dropdown notification-list topbar-dropdown">
-                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
-                    href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    @if (!Auth::user()->picture)
-                        <img src="{{ asset('images/users/00.jpg') }}" alt="images" class="rounded-circle">
+                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    
+
+                    @if (ENV('APP_ENV') == 'local')
+                        @if (!Auth::user()->picture)
+                            <img src="{{ ('https://dbsf.sagufoundation.org/images/users/00.jpg') }}" alt="images" class="rounded-circle">
+                        @else
+                            <img src="{{ ('https://dbsf.sagufoundation.org/'.Auth::user()->picture) }}" alt="images" title="{{ Auth::user()->first_name }}" class="rounded-circle">
+                        @endif
+
                     @else
-                        <img src="{{ asset(Auth::user()->picture) }}" alt="images"
-                            title="{{ Auth::user()->first_name }}" class="rounded-circle">
+                        @if (!Auth::user()->picture)
+                            <img src="{{ asset('images/users/00.jpg') }}" alt="images" class="rounded-circle">
+                        @else
+                            <img src="{{ asset(Auth::user()->picture) }}" alt="images" title="{{ Auth::user()->first_name }}" class="rounded-circle">
+                        @endif
+
                     @endif
+                    
+                    
+                    
+
+
                     <span class="pro-user-name ml-1">
                         {{ Auth::user()->first_name }} <i class="mdi mdi-chevron-down"></i>
                     </span>
@@ -26,8 +41,7 @@
 
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
 
-                    <a href="#" class="dropdown-item notify-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a href="#" class="dropdown-item notify-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fe-log-out"></i>
                         <span> {{ __('Keluar') }}</span>
                     </a>

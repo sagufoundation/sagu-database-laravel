@@ -8,42 +8,27 @@
                     <!-- User box -->
                     <div class="user-box text-center">
 
-                        @if (!Auth::user()->picture)
-                        <img src="{{ asset('images/users/00.jpg') }}" alt="user-img" class="rounded-circle avatar-md">
-                        @else
-                        <img src="{{ asset(Auth::user()->picture) }}" alt="user-img" title="{{ Auth::user()->first_name }}" class="rounded-circle avatar-md">
+                        @if (ENV('APP_ENV') == 'local')
+
+                            @if (!Auth::user()->picture)
+                            <img src="{{ ('https://dbsf.sagufoundation.org/images/users/00.jpg') }}" alt="user-img" class="rounded-circle avatar-md">
+                            @else
+                            <img src="{{ ('https://dbsf.sagufoundation.org/'. Auth::user()->picture) }}" alt="user-img" title="{{ Auth::user()->first_name }}" class="rounded-circle avatar-md">
+                            @endif
+                        
+                        @else 
+
+                            @if (!Auth::user()->picture)
+                            <img src="{{ asset('images/users/00.jpg') }}" alt="user-img" class="rounded-circle avatar-md">
+                            @else
+                            <img src="{{ asset(Auth::user()->picture) }}" alt="user-img" title="{{ Auth::user()->first_name }}" class="rounded-circle avatar-md">
+                            @endif                        
+                        
                         @endif
 
-                        <div class="dropdown">
-                            <a href="{{ url('dashboard/users/akun-saya') }}" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
-                                data-toggle="dropdown">{{ Auth::user()->first_name }}</a>
-                            <div class="dropdown-menu user-pro-dropdown">
-
-                                <!-- item-->
-                                <a href="{{ url('dashboard/akun-saya') }}" class="dropdown-item notify-item">
-                                    <i class="fe-user mr-1"></i>
-                                    <span>Akun Saya</span>
-                                </a>
-
-                                @if (Auth::user()->hasRole('administrator'))
-                                <!-- item-->
-                                <a href="{{ url('dashboard/settings') }}" class="dropdown-item notify-item">
-                                    <i class="fe-settings mr-1"></i>
-                                    <span>Settings</span>
-                                </a>
-                                @endif
-
-                                <!-- item-->
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
-                                    <i class="fe-log-out mr-1"></i>
-                                    <span>Logout</span>
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-
-                            </div>
+                        <div class="">
+                            <a class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown">{{ Auth::user()->first_name }} {{ Auth::user()->middle_name ?? '' }} {{ Auth::user()->last_name ?? '' }}</a>
+                            <small>{{ Auth::user()->email ?? '' }}</small>
                         </div>
                         <p class="text-muted">
                             {{ implode('', Auth::user()->roles()->pluck('display_name')->toArray()) }}

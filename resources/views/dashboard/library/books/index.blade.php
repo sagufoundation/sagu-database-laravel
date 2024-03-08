@@ -33,7 +33,11 @@
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             <td width="150px">
+                                                                @if (ENV('APP_ENV') == 'local')
+                                                                <img src="{{ ('https://dbsf.sagufoundation.org/'.$data->cover) }}" alt="Book Cover" class="w-100">
+                                                                @else 
                                                                 <img src="{{ asset($data->cover) }}" alt="Book Cover" class="w-100">
+                                                                @endif
                                                             </td>
                                                             <td>{{ $data->title ?? '' }} </td>
                                                             <td>{{ $data->author->name ?? '' }}</td>
@@ -103,7 +107,11 @@
                                                     
                                                         <div class="card border shadow">
                                                             <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}">
+                                                                @if (ENV('APP_ENV') == 'local')
+                                                                <img src="{{ ('https://dbsf.sagufoundation.org/'.$data->cover) }}" alt="cover" class="card-img-top">
+                                                                @else 
                                                                 <img src="{{ asset($data->cover) }}" alt="cover" class="card-img-top">
+                                                                @endif
                                                             </a>
                                                             <div class="card-body">
                                                                 <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/show', $data->id) }}" class="link-primary">

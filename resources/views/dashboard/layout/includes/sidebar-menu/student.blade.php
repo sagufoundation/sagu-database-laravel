@@ -2,15 +2,12 @@
 
     <ul id="side-menu">
 
-        {{-- <li class="menu-title mt-2">Menu Utama </li>
-
-        <li>
-            <a href="{{ url('dashboard') }}">
-                <i data-feather="airplay"></i>
-                <span> Dashboard </span>
+        <li class="@if(Request::segment(2) == 'profile' && Request::segment(2) ==  null) menuitem-active @endif">
+            <a href="{{ url(Request::segment(1).'/profile') }}">
+                <i class="fa-solid fa-user"></i> <span> My Profile </span>
             </a>
         </li>
-        <!-- menu item end --> --}}
+        <!-- menu item end -->
 
         <li class="menu-title mt-2">Library</li>
 
