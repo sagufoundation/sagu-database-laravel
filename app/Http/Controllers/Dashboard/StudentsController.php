@@ -573,6 +573,24 @@ class StudentsController extends Controller
         return redirect()->back();
     }
 
+    // UPDATE EDUCATION
+    public function update_account(Request $request, $id)
+    {
+
+        // select data by id
+        $data = Students::find($id);
+
+        // create new variable
+        $data->doc_google_sheets = $request->doc_google_sheets;
+
+        // update process
+        $data->update();
+
+        // create alert & redirect
+        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
+        return redirect()->back();
+    }
+
     // DESTROY OR MOVE TO TRASH
     public function destroy($id)
     {

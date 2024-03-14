@@ -34,21 +34,21 @@ Route::group(['middleware' => ['auth']], function () {
 
         // student > provinces
         Route::get('students/provinces/{id}', 'provinces')
-        ->name('dashboard.students.provinces');
+            ->name('dashboard.students.provinces');
 
-        Route::group(['middleware' => ['role:administrator','auth']], function () {
+        Route::group(['middleware' => ['role:administrator', 'auth']], function () {
 
             // create
             Route::get('students/create', 'create')
-            ->name('dashboard.students.create');
+                ->name('dashboard.students.create');
 
             // store
             Route::post('students', 'store')
-            ->name('dashboard.students.store');
+                ->name('dashboard.students.store');
 
-             // edit
+            // edit
             Route::get('students/edit/{id}', 'edit')
-            ->name('dashboard.students.edit');
+                ->name('dashboard.students.edit');
 
             // edit > profile
             Route::get('students/edit/profile/{id}', 'edit')
@@ -85,6 +85,10 @@ Route::group(['middleware' => ['auth']], function () {
             // edit > educations
             Route::get('students/edit/password/{id}', 'edit')
                 ->name('dashboard.students.edit.password');
+
+            // edit > account
+            Route::get('students/edit/account/{id}', 'edit')
+                ->name('dashboard.students.edit.account');
 
             // // update
             // Route::put('students/{id}','update')
@@ -126,6 +130,10 @@ Route::group(['middleware' => ['auth']], function () {
             Route::put('students/update/password/{id}', 'update_password')
                 ->name('dashboard.students.update.password');
 
+            // update > account
+            Route::put('students/update/account/{id}', 'account')
+                ->name('dashboard.students.update.account');
+
 
 
             // destroy
@@ -144,9 +152,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::delete('students/delete/{id}', 'delete')
                 ->name('dashboard.students.delete');
 
-              // delete Programs
+            // delete Programs
             Route::delete('students/delete/programs/{id}', 'delete_program')
-            ->name('dashboard.students.delete.programs');
+                ->name('dashboard.students.delete.programs');
         });
 
 
@@ -157,6 +165,5 @@ Route::group(['middleware' => ['auth']], function () {
 
         // export program excel
         Route::get('students/excel-program/{id}', 'excel_program')->name('dashboard.students.excel-program');
-
     });
 });

@@ -1,39 +1,49 @@
-@if ($errors->has('program'))
-    <span role="alert">
-        <h5 class="text-uppercase bg-light p-2 mt-0 mb-3 text-danger"><i class="fe-alert-triangle mr-1"></i>
-            {{ $errors->first('program') }}</h5>
-    </span>
-@endif
-
-<h5 class="text-uppercase bg-light p-2 mt-0 mb-3">CCOUNT</h5>
-
+<h5 class="text-uppercase bg-light p-2 mt-0 mb-3">ACCOUNT</h5>
 
 <div class="row">
-    <div class="col">
-        {!! Form::model($data, [
-            'url' => 'dashboard/student/edit/account' . Request::segment(5) . '/' . $data->id,
-            'method' => 'put',
-            'files' => 'true',
-        ]) !!}
-        @csrf
 
+    <div class="col-md-6">
 
-
-        @foreach ($programs as $program)
-            <label for="option{{ $program->id }}">
-                <input type="checkbox" name="programs[]" value="{{ $program->id }}" id="option{{ $program->id }}"
-                    @if ($data->student != null) @foreach ($data->student->program as $student_program)
-                            @if ($student_program->id === $program->id) {{ 'checked' }} @endif
-                    @endforeach>
-                {{ $program->program_title ?? '' }}
-            </label><br>
-        @else
-            >{{ $program->program_title ?? '' }}
-            </label><br>
-        @endif
-
-        @endforeach
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div class="mb-3">
+            <label for="old_password" class="form-label">Old Password <span class="text-danger">*</span></label>
+            <input type="text" name="old_password" id="old_password" value="" placeholder="Old Password" class="form-control">
+            @if ($errors->has('old_password'))
+            <span class="text-danger" role="alert">
+                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('old_password')
+                    }}</small>
+            </span>
+            @endif
+        </div>
+        <!-- input group end -->
+        
+        <div class="mb-3">
+            <label for="new_password" class="form-label">New Password</label>
+            <input type="text" name="new_password" id="new_password" value="" placeholder="New Password" class="form-control">
+            @if ($errors->has('new_password'))
+            <span class="text-danger" role="alert">
+                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('new_password')
+                    }}</small>
+            </span>
+            @endif
+        </div>
+        <!-- input group end -->
+        
+        <div class="mb-3">
+            <label for="new_password2" class="form-label">Confirm New Password</label>
+            <input type="text" name="new_password2" id="new_password2" value="" placeholder="Confirm New Password" class="form-control">
+            @if ($errors->has('new_password2'))
+            <span class="text-danger" role="alert">
+                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('new_password2')
+                    }}</small>
+            </span>
+            @endif
+        </div>
+        <!-- input group end -->
     </div>
+
 </div>
+
+<button type="submit" class="btn btn-lg btn-lg btn-primary waves-effect waves-light">
+    <i class="fa-solid fa-save mr-1"></i> Save
+</button>
+<!-- submit button end -->
