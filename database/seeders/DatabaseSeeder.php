@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             SettingsSeeder::class,
             RoleSeeder::class,
             UsersSeeder::class,
-            ProvincesSeeder::class,
+            // ProvincesSeeder::class,
             ProgramSeeder::class,
             StudentsSeeder::class,
             DocumentsSeeder::class,
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             Library\BooksSeeder::class,
             Library\LoanLogsSeeder::class,
 
-            // PapuaGeoSeeder::class,
+            PapuaGeoSeeder::class,
         ]);
     }
 }

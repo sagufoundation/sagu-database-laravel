@@ -271,10 +271,18 @@ class UserController extends Controller
     // TRASH
     public function trash()
     {
-        $datas = User::onlyTrashed()->paginate(5);
-        $jumlahtrash = User::onlyTrashed()->count();
-        $jumlahdraft = User::where('status', 'Draft')->count();
-        $datapublish = User::where('status', 'Publish')->count();
+        $datas = User::onlyTrashed()->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->paginate(5);
+        $jumlahtrash = User::onlyTrashed()->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->count();
+        $jumlahdraft = User::where('status', 'Draft')->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->count();
+        $datapublish = User::where('status', 'Publish')->whereHas('roles', function ($q) {
+            $q->where('name', '!=', 'student');
+        })->count();
         return view('dashboard.users.trash', compact('datas', 'datapublish', 'jumlahdraft', 'jumlahtrash'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 

@@ -16,7 +16,7 @@ class PapuaGeoSeeder extends Seeder
      */
     public function run()
     {
-        $json = file_get_contents('public/assets/papua/papua2.geo.json');
+        $json = file_get_contents('public/assets/papua/91.geo.json');
         $data = json_decode($json, true);
 
         // Iterasi setiap 'feature' dalam file JSON
@@ -25,18 +25,27 @@ class PapuaGeoSeeder extends Seeder
             $properties = $feature['properties'];
 
             // Mengakses kode provinces, nama dalam 'properties'
-            $kode_prov = $properties['code'];
+            // $kode_prov = $properties['code'];
             $name = $properties['name'];
 
             // Menyimpan data ke database
            $provinces = Province::create([
-                'id' => $kode_prov,
-                'name' => $name,
-                'map' => DB::raw("ST_GeomFromGeoJSON('$geometry')"),
+                // 'id' => $kode_prov,
+                'name' => 'b',
+                // 'name' => $name,
+                // 'map' => DB::raw("ST_GeomFromGeoJSON('$geometry')"),
                 // 'map' => 'tes',
                 'created_at' => now(),
             ]);
-            error_log('SEEDING DISTRICT : ' . $name);
+            $distrik = DB::table('provinces')->insert([
+                // 'id' => $kode_kec,
+                'name' => 'b',
+                // 'nama_distrik' => $nama,
+                'map' => DB::raw("ST_GeomFromGeoJSON('$geometry')"),
+                'created_at' => now(),
+            ]);
+
+            error_log('SEEDING  : ' . $name);
         }
     }
 }

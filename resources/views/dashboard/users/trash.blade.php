@@ -40,7 +40,7 @@
                             @endforeach
                             @else
                             <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                                     Empty!
                                 </td>
                             </tr>
