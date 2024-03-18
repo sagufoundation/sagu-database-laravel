@@ -576,19 +576,26 @@ class StudentsController extends Controller
     // UPDATE EDUCATION
     public function update_account(Request $request, $id)
     {
+        $request->validate(
+            [
+                'password'  => 'required|confirmed|min:8',
+                'password_confirmation' => 'required_with:password|same:password|min:8'
+            ],
+            [
+                'password.required'     => 'This is required',
+                'password_confirmation.required'     => 'This is required',
+            ]
+        );
 
-        // select data by id
-        $data = Students::find($id);
+        $data = new User();
+        $data->password = Hash::make($request->password);
 
-        // create new variable
-        $data->doc_google_sheets = $request->doc_google_sheets;
+        $data->save();
 
-        // update process
-        $data->update();
+        alert()->success('Created', 'Data has been created')->autoclose(1100);
+        return redirect('dashboard/students/show/' . User::find($data->id)->id);
 
-        // create alert & redirect
-        alert()->success('Updated', 'Data has been updated')->autoclose(1100);
-        return redirect()->back();
+
     }
 
     // DESTROY OR MOVE TO TRASH

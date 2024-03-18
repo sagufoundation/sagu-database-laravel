@@ -131,7 +131,7 @@ Route::group(['middleware' => ['auth']], function () {
                 ->name('dashboard.students.update.password');
 
             // update > account
-            Route::put('students/update/account/{id}', 'account')
+            Route::put('students/update/account/{id}', 'update_account')
                 ->name('dashboard.students.update.account');
 
 
