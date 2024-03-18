@@ -3,10 +3,10 @@
 <div class="row">
 
     <div class="col-md-6">
-        
+
         <div class="mb-3">
             <label for="password" class="form-label">New Password</label>
-            <input type="text" name="password" id="password" value="" placeholder="New Password" class="form-control">
+            <input type="password" name="password" id="password" value="" placeholder="New Password" class="form-control">
             @if ($errors->has('password'))
             <span class="text-danger" role="alert">
                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('password')
@@ -15,10 +15,10 @@
             @endif
         </div>
         <!-- input group end -->
-        
+
         <div class="mb-3">
             <label for="password_confirmation" class="form-label">Confirm New Password</label>
-            <input type="text" name="password_confirmation" id="password_confirmation" value="" placeholder="Confirm New Password" class="form-control">
+            <input type="password" name="password_confirmation" id="password_confirmation" value="" placeholder="Confirm New Password" class="form-control">
             @if ($errors->has('password_confirmation'))
             <span class="text-danger" role="alert">
                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('password_confirmation')

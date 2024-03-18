@@ -587,10 +587,9 @@ class StudentsController extends Controller
             ]
         );
 
-        $data = new User();
+        $data =  User::find($id);
         $data->password = Hash::make($request->password);
-
-        $data->save();
+        $data->update();
 
         alert()->success('Created', 'Data has been created')->autoclose(1100);
         return redirect('dashboard/students/show/' . User::find($data->id)->id);
