@@ -90,6 +90,7 @@ class ProgramsController extends Controller
                 $data->short_description = $request->short_description;
                 $data->full_description = $request->full_description;
                 $data->status = $request->status;
+                $data->program_year = $request->program_year;
 
                 $data->save();
 
@@ -148,11 +149,11 @@ class ProgramsController extends Controller
         $request->validate(
             [
                 'program_title' => 'required',
-                'short_description' => 'required',
+                // 'short_description' => 'required',
             ],
             [
                 'program_title.required' => 'Data ini wajib dilengkapi',
-                'short_description.required' => 'Data ini wajib dilengkapi',
+                // 'short_description.required' => 'Data ini wajib dilengkapi',
             ]
         );
 
@@ -162,6 +163,7 @@ class ProgramsController extends Controller
         $data->short_description = $request->short_description;
         $data->full_description = $request->full_description;
 
+        $data->program_year = $request->program_year;
         $data->program_start = $request->program_start;
         $data->program_end = $request->program_end;
 

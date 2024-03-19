@@ -15,6 +15,12 @@
                 <!-- end item -->
 
                 <div class="mb-3">
+                    <span class="font-weight-bold d-block">Program Year</span>
+                    <p>{{ $program->program_year }}</p>
+                </div>
+                <!-- end item -->
+
+                <div class="mb-3">
                     <span class="font-weight-bold d-block">Short Description :</span>
                     <p>{{ $program->short_description }}</p>
                 </div>
@@ -100,7 +106,7 @@
                             @endforelse
                         </table>
                     </div>
-                    
+
                 @else
 
                 <div class="mt-3 table-responsive">

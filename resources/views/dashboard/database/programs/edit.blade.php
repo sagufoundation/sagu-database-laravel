@@ -25,6 +25,24 @@
                         </div>
                         <!-- input group end -->
 
+                            <!-- input group end -->
+                            <div class="mb-3">
+                                <label for="year" class="form-label">Year</label>
+                                <select name="program_year" id="" class="form-control">
+                                    <option value="" hidden>Select</option>
+                                    @for ($x = 2022; $x<= 2030; $x++)
+                                        <option @if(old('program_year') ?? $data->program_year == $x) {{'selected'}} @endif value="{{$x}}">{{$x}}</option>
+                                    @endfor
+                                </select>
+                                @if ($errors->has('year'))
+                                <span class="text-danger" role="alert">
+                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i>
+                                        {{$errors->first('year') }}
+                                    </small>
+                                </span>
+                                @endif
+                            </div>
+
                         <div class="mb-3">
                             <label for="short_description" class="form-label">Short Description</label>
                             <textarea name="short_description"  cols="30" rows="5" class="form-control">{{ old('short_description',$data->short_description) ?? '' }}</textarea>
@@ -36,7 +54,7 @@
                                 @endif
                         </div>
                         <!-- input group end -->
-                        
+
                         <div class="mb-3">
                             <label for="full_description" class="form-label">Full Description</label>
                             <textarea name="full_description" id="ckeditor" cols="30" rows="5" class="form-control">{{ old('full_description',$data->full_description) ?? '' }}</textarea>
@@ -65,7 +83,7 @@
                             @endif
                         </div>
                         <!-- input group end -->
-                        
+
                     </div>
                     <!-- col end-->
                 </div>

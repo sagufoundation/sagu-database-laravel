@@ -23,6 +23,7 @@
                                     <tr>
                                         <th width="1%">No</th>
                                         <th>Program Title</th>
+                                        <th>Year</th>
                                         <th>Short Description</th>
                                         <th>Total Student</th>
                                         <th width="280px"></th>
@@ -31,6 +32,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $data->program_title ?? '' }} </td>
+                                            <td>{{ $data->program_year ?? '' }} </td>
                                             <td>{{ $data->short_description ?? '' }} </td>
                                             <td class="text-center"> {{ $data->students->count() }}</td>
                                             <td>

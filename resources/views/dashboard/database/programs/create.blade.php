@@ -13,7 +13,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        
+
                         <div class="mb-3">
                             <label for="program_title" class="form-label">Program Title <span class="text-danger">*</span></label>
                             <input type="text" name="program_title" id="program_title" value="{{ old('program_title') ?? '' }}" placeholder="Program title" class="form-control">
@@ -21,6 +21,24 @@
                             <span class="text-danger" role="alert">
                                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{
                                     $errors->first('program_title') }}</small>
+                            </span>
+                            @endif
+                        </div>
+
+                        <!-- input group end -->
+                        <div class="mb-3">
+                            <label for="year" class="form-label">Year</label>
+                            <select name="program_year" id="" class="form-control">
+                                <option value="" hidden>Select</option>
+                                @for ($x = 2022; $x<= 2030; $x++)
+                                    <option @if(old('program_year') == $x) {{'selected'}} @endif value="{{$x}}">{{$x}}</option>
+                                @endfor
+                            </select>
+                            @if ($errors->has('year'))
+                            <span class="text-danger" role="alert">
+                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i>
+                                    {{$errors->first('year') }}
+                                </small>
                             </span>
                             @endif
                         </div>
@@ -37,7 +55,7 @@
                                 @endif
                         </div>
                         <!-- input group end -->
-                        
+
                         <div class="mb-3">
                             <label for="full_description" class="form-label">Full Description</label>
                             <textarea name="full_description" id="ckeditor" cols="30" rows="5" class="form-control" placeholder="The full description">{{ old('full_description') ?? '' }}</textarea>
@@ -66,7 +84,7 @@
                             @endif
                         </div>
                         <!-- input group end -->
-                        
+
                     </div>
                     <!-- col end -->
                 </div>

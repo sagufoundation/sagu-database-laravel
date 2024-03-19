@@ -22,6 +22,7 @@ return new class extends Migration
             $table->mediumText('full_description')->nullable();
             $table->string('program_start')->nullable();
             $table->string('program_end')->nullable();
+            $table->string('program_year')->nullable();
 
             // other
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
