@@ -63,10 +63,25 @@
             </div>
         </div> <!-- end col-->
 
+        <div class="col-md-6 col-xl-4">
+            <div class="card">
+                 <div class="widget-rounded-circle card-body">
+                     <div class="row">
+                         <div class="col-12">
+                             <div class="text-center">
+                                 <h3 class="mt-1 h5"> Total Program By Year </h3>
+                                 <div id="year-chart" style="height: 100%;" data-colors="#f4f8fb,#4a81d4,#1abc9c" dir="ltr"></div>
+                             </div>
+                         </div>
+                     </div> <!-- end row-->
+                 </div> <!-- end widget-rounded-circle-->
+            </div>
+        </div> <!-- end col-->
+
     </div> <!-- row end -->
 
   @stop
-  
+
   @push('script-footer')
     <script>
         // By Genre
@@ -130,6 +145,35 @@
         columns: [
             @foreach($provinces as $province )
                 ['{{$province->name}}', {{$province->students->count()}}],
+            @endforeach
+        ],
+        type : 'bar',
+        labels: true
+        },
+        pie: {
+            label: {
+                format: function (value, ratio, id) {
+                    return value;
+                }
+            },
+        },
+        tooltip: {
+            format: {
+                value: function(value, ratio, id) {
+                    return value;
+                }
+            }
+        }
+    });
+
+
+    // By Year
+    var chart = c3.generate({
+            bindto: '#year-chart',
+            data: {
+        columns: [
+            @foreach($programYear as $year )
+                ['{{$year->program_year}}', {{$year->jumlah}}],
             @endforeach
         ],
         type : 'bar',

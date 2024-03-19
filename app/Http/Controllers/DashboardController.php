@@ -9,6 +9,7 @@ use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -26,13 +27,24 @@ class DashboardController extends Controller
          //  By Provinces
         $provinces = Province::get();
 
+        // By Year
+        $programYear = Program::select('program_year', DB::raw('COUNT(*) as jumlah'))
+                        ->whereNotNull('program_title')
+                        ->where('status', 'Publish')
+                        ->whereNotNull('program_year')
+                        ->groupBy('program_year')
+                        ->get();
+
+        // NamaModel::select(DB::raw('YEAR(tanggal_column) as tahun'))->distinct()->get();
         if(Auth::user()->hasRole('administrator')){
             return view('dashboard.index', compact(
                 'female',
                 'male',
                 'male',
                 'programs',
-                'provinces'
+                'provinces',
+                'programYear'
+
             ));
 
         } elseif(Auth::user()->hasRole('guest')){
@@ -41,7 +53,8 @@ class DashboardController extends Controller
                 'male',
                 'male',
                 'programs',
-                'provinces'
+                'provinces',
+
             ));
         }
         elseif(Auth::user()->hasRole('student')){

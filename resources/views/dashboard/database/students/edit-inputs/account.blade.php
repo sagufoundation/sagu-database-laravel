@@ -20,7 +20,7 @@
             <label for="password_confirmation" class="form-label">Confirm New Password</label>
             <input type="password" name="password_confirmation" id="password_confirmation" value="" placeholder="Confirm New Password" class="form-control">
             @if ($errors->has('password_confirmation'))
-            <span class="text-danger" role="alert">
+        <span class="text-danger" role="aler[t">
                 <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('password_confirmation')
                     }}</small>
             </span>
