@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Exports\ProgramStudentExport;
 use App\Exports\StudentExport;
 use App\Http\Controllers\Controller;
-
+use App\Models\Group;
 use App\Models\Program;
 use App\Models\User;
 use App\Models\ProgramStudent;
@@ -64,7 +64,8 @@ class ProgramsController extends Controller
     // CREATE VIEW
     public function create()
     {
-        return view('dashboard.database.programs.create');
+        $groups = Group::where('status','Publish')->get();
+        return view('dashboard.database.programs.create',compact('groups'));
     }
 
     // STORE
@@ -91,6 +92,7 @@ class ProgramsController extends Controller
                 $data->full_description = $request->full_description;
                 $data->status = $request->status;
                 $data->program_year = $request->program_year;
+                $data->group_id = $request->group_id;
 
                 $data->save();
 
@@ -139,8 +141,9 @@ class ProgramsController extends Controller
     // EDIT VIEW
     public function edit($id)
     {
+        $groups = Group::where('status','Publish')->get();
         $data = Program::where('id', $id)->first();
-        return view('dashboard.database.programs.edit', compact('data'));
+        return view('dashboard.database.programs.edit', compact('data','groups'));
     }
 
     // UPDATE
@@ -166,7 +169,7 @@ class ProgramsController extends Controller
         $data->program_year = $request->program_year;
         $data->program_start = $request->program_start;
         $data->program_end = $request->program_end;
-
+        $data->group_id = $request->group_id;
         // other
         $data->status = $request->status;
 

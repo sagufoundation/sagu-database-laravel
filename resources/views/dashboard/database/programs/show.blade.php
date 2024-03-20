@@ -15,6 +15,12 @@
                 <!-- end item -->
 
                 <div class="mb-3">
+                    <span class="font-weight-bold d-block">Group</span>
+                    <p>{{ $program->group->group_title }}</p>
+                </div>
+                <!-- end item -->
+
+                <div class="mb-3">
                     <span class="font-weight-bold d-block">Program Year</span>
                     <p>{{ $program->program_year }}</p>
                 </div>

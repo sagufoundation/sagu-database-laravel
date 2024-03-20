@@ -19,4 +19,9 @@ class Program extends Model
     {
         return $this->belongsToMany(Students::class, 'student_program');
     }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
+    }
 }

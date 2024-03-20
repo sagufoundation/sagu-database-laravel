@@ -28,7 +28,7 @@ class GroupSeeder extends Seeder
         Group::create(
             [
                 'group_title' => 'General English',
-                'slug' => 'vokasi',
+                'slug' => 'general-english',
                 // 'description' => '',
                 // other
                 'status' => 'Publish',

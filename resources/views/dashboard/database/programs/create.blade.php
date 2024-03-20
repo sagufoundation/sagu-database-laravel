@@ -25,6 +25,26 @@
                             @endif
                         </div>
 
+
+                        <!-- input group end -->
+                        <div class="mb-3">
+                            <label for="year" class="form-label">Group</label>
+                            <select name="group_id" id="" class="form-control">
+                                <option value="" hidden>Select</option>
+                                @foreach ($groups as $group )
+                                    <option @if(old('group_id') == $group->id) {{'selected'}} @endif value="{{$group->id}}">{{$group->group_title}}</option>
+                                @endforeach ($x = 2019; $x<= 2030; $x++)
+                            </select>
+                            @if ($errors->has('group_id'))
+                            <span class="text-danger" role="alert">
+                                <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i>
+                                    {{$errors->first('group_id') }}
+                                </small>
+                            </span>
+                            @endif
+                        </div>
+
+
                         <!-- input group end -->
                         <div class="mb-3">
                             <label for="year" class="form-label">Year</label>

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('program_start')->nullable();
             $table->string('program_end')->nullable();
             $table->string('program_year')->nullable();
+            $table->unsignedBigInteger('group_id')->nullable();
 
             // other
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
