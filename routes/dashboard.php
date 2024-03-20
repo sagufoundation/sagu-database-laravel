@@ -11,6 +11,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     require_once 'dashboard/documents.php';
     require_once 'dashboard/educations.php';
     require_once 'dashboard/programs.php';
+    require_once 'dashboard/groups.php';
 
     /*
     | =====================

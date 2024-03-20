@@ -13,6 +13,7 @@ use App\Models\Library\Author;
 use App\Models\Library\LoanBook;
 use App\Models\Roles;
 use App\Models\Province;
+use App\Models\Group;
 
 use App\Models\Banner;
 use App\Models\Faq;
@@ -84,6 +85,7 @@ class AppServiceProvider extends ServiceProvider
                 'dashboard_total_students_semua' => User::count(),
 
                 'dashboard_total_program' => Program::where('status','Publish')->count(),
+                'dashboard_total_group' =>  Group::where('status','Publish')->count(),
 
                 // TOTALS
 
@@ -112,7 +114,7 @@ class AppServiceProvider extends ServiceProvider
                     ->orWhere('name','guest')
                     ->orWhere('name','librarian');
                 })->where('status', 'Publish')->orWhere('status', 'Draft')->count(),
-                
+
                 // 'database_total_publish_users' =>  User::where('status','Publish')->orWhere('status', 'Draft')->count(),
                 'database_total_roles' =>  Roles::count(),
 

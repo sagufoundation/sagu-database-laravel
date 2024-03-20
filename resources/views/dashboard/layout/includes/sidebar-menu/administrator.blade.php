@@ -34,6 +34,18 @@
         </li>
         <!-- menu item end -->
 
+        <li class="@if (Request::segment(2) == 'groups') menuitem-active @endif">
+            <a href="{{ url(Request::segment(1) . '/groups') }}">
+                <i class="fa-solid fa-layer-group"></i> <span> Groups</span>
+                @if ($dashboard_total_group != 0)
+                    <span class="badge badge-success badge-pill float-right">
+                        {{ $dashboard_total_group ?? '0' }}
+                    </span>
+                @endif
+            </a>
+        </li>
+        <!-- menu item end -->
+
         <li class="menu-title mt-2">Library</li>
 
         {{-- <li class="@if ((Request::segment(2) == 'books' && Request::segment(3) == 'show') || Request::segment(3) == 'edit') menuitem-active @endif"> --}}

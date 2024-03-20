@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             ProvincesSeeder::class,
             ProgramSeeder::class,
+            GroupSeeder::class,
             StudentsSeeder::class,
             DocumentsSeeder::class,
             EducationSeeder::class,

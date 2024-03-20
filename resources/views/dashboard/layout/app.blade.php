@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-
+{{-- @dd($pengaturan) --}}
     <title> {{ $pengaturan->site_title ?? '' }} </title>
 
     {{-- no index tags --}}
