@@ -23,6 +23,7 @@ class UserController extends Controller
     // INDEX
     public function index(Request $request)
     {
+
         $datas = User::where([
             ['first_name', '!=', Null],
             [function ($query) use ($request) {
@@ -35,17 +36,11 @@ class UserController extends Controller
                 }
             }]
         ])->whereHas('roles', function ($q) {
-            $q->where('name', '=', 'administrator')
-                ->orWhere('name','guest')
-                ->orWhere('name','librarian')
-                ->where('name', '!=', 'student');
-        })->where('status', 'Publish')->orWhere('status', 'Draft')->orderBy('first_name', 'asc')->paginate(10);
+            $q->where('name', '!=', 'student');
+        })->where('status', 'Publish')->orderBy('first_name', 'asc')->paginate(10);
 
         $jumlahtrash = User::whereHas('roles', function ($q) {
-            $q->where('name', '=', 'administrator')
-            ->orWhere('name','guest')
-            ->orWhere('name','librarian')
-            ->where('name', '!=', 'student');
+            $q->where('name', '!=', 'student');
         })->onlyTrashed()->count();
         $jumlahdraft = User::where('status', 'Draft')->whereHas('roles', function ($q) {
             $q->where('name', '=', 'administrator')
