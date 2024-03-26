@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 14, 2024 at 12:37 PM
+-- Generation Time: Mar 26, 2024 at 08:09 AM
 -- Server version: 10.6.16-MariaDB-cll-lve
 -- PHP Version: 8.1.25
 
@@ -637,6 +637,34 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `group_title` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `short_description` varchar(255) DEFAULT NULL,
+  `full_description` mediumtext DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `group_title`, `slug`, `short_description`, `full_description`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 'General English', NULL, 'General English Classes at SAGU Foundation', '<p>General English Classes at SAGU Foundation</p>', 'Publish', '2024-03-21 09:29:36', '2024-03-21 09:29:36', NULL),
+(4, 'Computer Literacy', NULL, 'Computer Literacy Classes at SAGU Foundation', '<p>Computer Literacy Classes at SAGU Foundation</p>', 'Publish', '2024-03-21 09:30:02', '2024-03-21 09:30:02', NULL),
+(5, 'IELTS Preparation', NULL, 'IELTS Preparation Classes', '<p>IELTS Preparation Classes</p>', 'Publish', '2024-03-21 09:33:29', '2024-03-21 09:33:29', NULL),
+(6, 'TOEFL Preparation', NULL, 'TOEFL Preparation Classes', '<p>TOEFL Preparation Classes</p>', 'Publish', '2024-03-21 09:33:46', '2024-03-21 09:33:46', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `loan_books`
 --
 
@@ -912,6 +940,39 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (3, 'App\\Models\\User', 241),
 (3, 'App\\Models\\User', 242),
 (3, 'App\\Models\\User', 243),
+(3, 'App\\Models\\User', 246),
+(3, 'App\\Models\\User', 247),
+(3, 'App\\Models\\User', 248),
+(3, 'App\\Models\\User', 249),
+(3, 'App\\Models\\User', 250),
+(3, 'App\\Models\\User', 251),
+(3, 'App\\Models\\User', 252),
+(3, 'App\\Models\\User', 253),
+(3, 'App\\Models\\User', 254),
+(3, 'App\\Models\\User', 255),
+(3, 'App\\Models\\User', 256),
+(3, 'App\\Models\\User', 257),
+(3, 'App\\Models\\User', 258),
+(3, 'App\\Models\\User', 259),
+(3, 'App\\Models\\User', 260),
+(3, 'App\\Models\\User', 261),
+(3, 'App\\Models\\User', 262),
+(3, 'App\\Models\\User', 263),
+(3, 'App\\Models\\User', 264),
+(3, 'App\\Models\\User', 265),
+(3, 'App\\Models\\User', 266),
+(3, 'App\\Models\\User', 267),
+(3, 'App\\Models\\User', 268),
+(3, 'App\\Models\\User', 269),
+(3, 'App\\Models\\User', 270),
+(3, 'App\\Models\\User', 271),
+(3, 'App\\Models\\User', 272),
+(3, 'App\\Models\\User', 273),
+(3, 'App\\Models\\User', 274),
+(3, 'App\\Models\\User', 275),
+(3, 'App\\Models\\User', 276),
+(3, 'App\\Models\\User', 277),
+(3, 'App\\Models\\User', 278),
 (4, 'App\\Models\\User', 6),
 (4, 'App\\Models\\User', 7),
 (5, 'App\\Models\\User', 12);
@@ -970,9 +1031,11 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `programs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `program_title` varchar(255) DEFAULT NULL,
+  `group_id` bigint(20) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
   `short_description` varchar(255) DEFAULT NULL,
   `full_description` mediumtext DEFAULT NULL,
+  `program_year` varchar(255) DEFAULT NULL,
   `program_start` varchar(255) DEFAULT NULL,
   `program_end` varchar(255) DEFAULT NULL,
   `status` enum('Publish','Draft') DEFAULT 'Publish',
@@ -985,18 +1048,22 @@ CREATE TABLE `programs` (
 -- Dumping data for table `programs`
 --
 
-INSERT INTO `programs` (`id`, `program_title`, `slug`, `short_description`, `full_description`, `program_start`, `program_end`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'SUP Vokasi 2020', 'sup-vokasi-2020', 'Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2020', '<p>Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2020 merupakan beasiswa yang diselenggarakan oleh BPSDM Provinsi Papua.</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, 'Publish', '2023-10-13 05:29:55', '2024-02-28 06:49:39', NULL),
-(2, 'SUP 2021', 'sup-vokasi-2021', 'Beasiswa Siswa Unggul Papua Tahun 2021', '<p>Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2021 merupakan beasiswa yang diselenggarakan oleh BPSDM Provinsi Papua.</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, 'Publish', '2023-10-13 05:29:55', '2024-02-28 06:49:48', NULL),
-(3, 'YKM 2020', 'ykm-2020', 'Program Beasiswa Mahasiswa Yahukimo di Jayapura, Tahun 2020', '<p>Program beasiswa Pemerintah Daerah Kabupaten Yahukimo bagi Mahasiswa yang sedang studi di Jayapura.</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, 'Draft', '2023-10-13 05:29:55', '2024-02-28 07:07:34', NULL),
-(4, 'Kopernik - Computer Literacy', NULL, 'Program Membangun Pemuda, Membangun Papua 2023.', '<p>SAGU Foundation dan&nbsp;Kopernik menyelenggarakan program &ldquo;Literasi Komputer : Pemanfaatan Teknologi Untuk Peningkatan Efisiensi Kerja dan Kolaborasi Organisasi&rdquo; yang berfokus pada pengembangan peluang bekerja dan peningkatan literasi komputer bagi generasi muda Papua. Program akan berlangsung selama 7 bulan dengan materi yang dikaji secara khusus untuk keterampilan penggunaan platform digital dalam membangun karir di Abad-21.</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>', NULL, NULL, 'Publish', '2023-11-14 04:12:27', '2024-02-28 07:12:58', NULL),
-(5, 'Internship', NULL, 'Student internship from school, university and others.', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, 'Publish', '2023-11-20 00:01:31', '2024-02-28 06:48:21', NULL),
-(6, 'General English Term 1 2024', NULL, 'General English Class', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, 'Publish', '2024-01-25 02:08:40', '2024-02-28 06:48:12', NULL),
-(7, 'YKM 2024', NULL, 'Beasiswa Pemerintah Daerah Kabupaten Yahukimo Tahun 2024', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Laporan Kegiatan Akademik [<a href=\"https://www.canva.com/design/DAF6kmCMHxA/ox-TFwP1PNEmcGuz03vo5g/edit?utm_content=DAF6kmCMHxA&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton\">view here</a>]</li>\r\n	<li>...</li>\r\n	<li>...</li>\r\n	<li>...</li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, 'Publish', '2024-01-25 02:09:53', '2024-03-08 02:32:25', NULL),
-(8, 'SUP Vokasi 2020 Dalam Negeri', NULL, 'Siswa Program Beasiswa SUP Vokasi 2020 yang mengikuti program pada universitas yang ada di Indonesia', '<p>Siswa Program Beasiswa SUP Vokasi 2020 yang mengikuti program pada universitas yang ada di Indonesia</p>', NULL, NULL, 'Publish', '2024-02-28 02:55:17', '2024-02-28 06:12:47', '2024-02-28 06:12:47'),
-(9, 'SUP Vokasi 2020 Dalam Negeri', NULL, 'Siswa Program Beasiswa SUP Vokasi 2020 yang masuk pada universitas di Indonesia', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, 'Publish', '2024-02-28 05:55:59', '2024-02-28 06:47:54', NULL),
-(10, 'SUP 2021 Dalam Negeri', NULL, 'Siswa Program Beasiswa SUP 2021 yang masuk pada universitas di Indonesia', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, 'Publish', '2024-02-28 05:56:35', '2024-02-28 06:47:43', NULL),
-(11, 'General English Khusus SMK - 2024', NULL, 'General English Khusus SMK - 2024', '<p>General English Khusus SMK - 2024</p>', NULL, NULL, 'Publish', '2024-03-06 03:58:22', '2024-03-06 03:58:22', NULL);
+INSERT INTO `programs` (`id`, `program_title`, `group_id`, `slug`, `short_description`, `full_description`, `program_year`, `program_start`, `program_end`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'SUP Vokasi 2020', NULL, 'sup-vokasi-2020', 'Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2020', '<p>Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2020 merupakan beasiswa yang diselenggarakan oleh BPSDM Provinsi Papua.</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '2020', NULL, NULL, 'Publish', '2023-10-13 05:29:55', '2024-03-19 02:11:42', NULL),
+(2, 'SUP 2021', NULL, 'sup-vokasi-2021', 'Beasiswa Siswa Unggul Papua Tahun 2021', '<p>Beasiswa Siswa Unggul Papua Bidang Vokasi Tahun 2021 merupakan beasiswa yang diselenggarakan oleh BPSDM Provinsi Papua.</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '2021', NULL, NULL, 'Publish', '2023-10-13 05:29:55', '2024-03-19 02:12:23', NULL),
+(3, 'YKM 2020', NULL, 'ykm-2020', 'Program Beasiswa Mahasiswa Yahukimo di Jayapura, Tahun 2020', '<p>Program beasiswa Pemerintah Daerah Kabupaten Yahukimo bagi Mahasiswa yang sedang studi di Jayapura.</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '2020', NULL, NULL, 'Publish', '2023-10-13 05:29:55', '2024-03-22 07:37:43', NULL),
+(4, 'Kopernik - Computer Literacy', 4, NULL, 'Program Membangun Pemuda, Membangun Papua 2023.', '<p>SAGU Foundation dan&nbsp;Kopernik menyelenggarakan program &ldquo;Literasi Komputer : Pemanfaatan Teknologi Untuk Peningkatan Efisiensi Kerja dan Kolaborasi Organisasi&rdquo; yang berfokus pada pengembangan peluang bekerja dan peningkatan literasi komputer bagi generasi muda Papua. Program akan berlangsung selama 7 bulan dengan materi yang dikaji secara khusus untuk keterampilan penggunaan platform digital dalam membangun karir di Abad-21.</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>', '2023', NULL, NULL, 'Publish', '2023-11-14 04:12:27', '2024-03-22 02:06:55', NULL),
+(5, 'Internship', NULL, NULL, 'Student internship from school, university and others.', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', NULL, NULL, NULL, 'Publish', '2023-11-20 00:01:31', '2024-02-28 06:48:21', NULL),
+(6, 'General English Term 1 2024', 3, NULL, 'General English Class', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '2024', NULL, NULL, 'Publish', '2024-01-25 02:08:40', '2024-03-22 02:23:34', NULL),
+(7, 'YKM 2024', NULL, NULL, 'Beasiswa Pemerintah Daerah Kabupaten Yahukimo Tahun 2024', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Laporan Kegiatan Akademik [<a href=\"https://www.canva.com/design/DAF6kmCMHxA/ox-TFwP1PNEmcGuz03vo5g/edit?utm_content=DAF6kmCMHxA&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton\">view here</a>]</li>\r\n	<li>...</li>\r\n	<li>...</li>\r\n	<li>...</li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '2024', NULL, NULL, 'Publish', '2024-01-25 02:09:53', '2024-03-19 02:07:48', NULL),
+(8, 'SUP Vokasi 2020 Dalam Negeri', NULL, NULL, 'Siswa Program Beasiswa SUP Vokasi 2020 yang mengikuti program pada universitas yang ada di Indonesia', '<p>Siswa Program Beasiswa SUP Vokasi 2020 yang mengikuti program pada universitas yang ada di Indonesia</p>', '2020', NULL, NULL, 'Publish', '2024-02-28 02:55:17', '2024-02-28 06:12:47', '2024-02-28 06:12:47'),
+(9, 'SUP Vokasi 2020 Dalam Negeri', NULL, NULL, 'Siswa Program Beasiswa SUP Vokasi 2020 yang masuk pada universitas di Indonesia', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '2020', NULL, NULL, 'Publish', '2024-02-28 05:55:59', '2024-03-19 02:07:28', NULL),
+(10, 'SUP 2021 Dalam Negeri', NULL, NULL, 'Siswa Program Beasiswa SUP 2021 yang masuk pada universitas di Indonesia', '<p>Write something here...</p>\r\n\r\n<p><strong>Status Program</strong></p>\r\n\r\n<p>On progress...</p>\r\n\r\n<p><strong>Documents</strong></p>\r\n\r\n<ol>\r\n	<li>Initial reports <a href=\"#\">[view here]</a></li>\r\n	<li>Progress reports <a href=\"#\">[view here]</a></li>\r\n	<li>Final reports <a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p><strong>Documentation (Photos &amp; Videos)</strong></p>\r\n\r\n<ol>\r\n	<li>Class activity <a href=\"#\">[view here]</a></li>\r\n	<li>Video on youtube&nbsp;<a href=\"#\">[view here]</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '2021', NULL, NULL, 'Publish', '2024-02-28 05:56:35', '2024-03-19 02:07:07', NULL),
+(11, 'General English Khusus SMK - 2024', 1, NULL, 'General English Khusus SMK - 2024', '<p>General English Khusus SMK - 2024</p>', '2024', NULL, NULL, 'Publish', '2024-03-06 03:58:22', '2024-03-20 07:02:46', NULL),
+(12, 'General English Term II 2022', 3, NULL, 'General English Term II 2022 students', '<p>General English Term II 2022 students</p>', '2022', NULL, NULL, 'Publish', '2024-03-22 07:37:08', '2024-03-25 03:00:49', '2024-03-25 03:00:49'),
+(13, 'General English Term I 2022', 3, NULL, 'General English Term I 2022 students', '<p>General English Term I 2022 students</p>', '2022', NULL, NULL, 'Publish', '2024-03-22 07:37:32', '2024-03-25 03:00:47', '2024-03-25 03:00:47'),
+(14, 'General English Yahukimo Term I 2022', 3, NULL, 'General English Yahukimo Term I 2022 students', '<p>General English Yahukimo Term I 2022 students</p>', '2022', NULL, NULL, 'Publish', '2024-03-22 07:38:28', '2024-03-25 03:00:45', '2024-03-25 03:00:45'),
+(15, 'General English Yahukimo Term I 2023', 3, NULL, 'General English Yahukimo Term I 2023 students', '<p>General English Yahukimo Term I 2023 students</p>', '2023', NULL, NULL, 'Publish', '2024-03-22 07:38:55', '2024-03-25 03:00:42', '2024-03-25 03:00:42');
 
 -- --------------------------------------------------------
 
@@ -1330,7 +1397,40 @@ INSERT INTO `students` (`id`, `user_id`, `province_id`, `profile`, `gender`, `pl
 (212, 240, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-06 04:56:52', '2024-03-06 04:56:52', NULL, NULL),
 (213, 241, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 02:03:01', '2024-03-08 02:03:01', NULL, NULL),
 (214, 242, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 02:07:23', '2024-03-08 02:07:23', NULL, NULL),
-(215, 243, NULL, NULL, 'Male', NULL, NULL, NULL, NULL, NULL, 'martiasbusup.busup@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 02:09:19', '2024-03-08 02:09:39', NULL, NULL);
+(215, 243, NULL, NULL, 'Male', NULL, NULL, NULL, NULL, NULL, 'martiasbusup.busup@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 02:09:19', '2024-03-08 02:09:39', NULL, NULL),
+(217, 246, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:23:53', '2024-03-22 07:23:53', NULL, NULL),
+(218, 247, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:24:43', '2024-03-22 07:24:43', NULL, NULL),
+(219, 248, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:25:21', '2024-03-22 07:25:21', NULL, NULL),
+(220, 249, NULL, NULL, NULL, 'Yahukimo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:25:49', '2024-03-22 07:25:49', NULL, NULL),
+(221, 250, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:26:02', '2024-03-22 07:26:02', NULL, NULL),
+(222, 251, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:26:33', '2024-03-22 07:26:33', NULL, NULL),
+(223, 252, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:27:10', '2024-03-22 07:27:10', NULL, NULL),
+(224, 253, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:27:40', '2024-03-22 07:27:40', NULL, NULL),
+(225, 254, NULL, NULL, 'Male', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:27:44', '2024-03-22 07:27:44', NULL, NULL),
+(226, 255, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:28:15', '2024-03-22 07:28:15', NULL, NULL),
+(227, 256, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:28:51', '2024-03-22 07:28:51', NULL, NULL),
+(228, 257, NULL, NULL, 'Male', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:29:14', '2024-03-22 07:29:14', NULL, NULL),
+(229, 258, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:29:38', '2024-03-22 07:29:38', NULL, NULL),
+(230, 259, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:30:07', '2024-03-22 07:30:07', NULL, NULL),
+(231, 260, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:30:43', '2024-03-22 07:30:43', NULL, NULL),
+(232, 261, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:30:43', '2024-03-22 07:30:43', NULL, NULL),
+(233, 262, NULL, NULL, 'Male', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:31:33', '2024-03-22 07:31:33', NULL, NULL),
+(234, 263, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:32:14', '2024-03-22 07:32:14', NULL, NULL),
+(235, 264, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:32:54', '2024-03-22 07:32:54', NULL, NULL),
+(236, 265, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:33:07', '2024-03-22 07:33:07', NULL, NULL),
+(237, 266, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:33:32', '2024-03-22 07:33:32', NULL, NULL),
+(238, 267, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:34:03', '2024-03-22 07:34:03', NULL, NULL),
+(239, 268, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:34:40', '2024-03-22 07:34:40', NULL, NULL),
+(240, 269, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:35:21', '2024-03-22 07:35:21', NULL, NULL),
+(241, 270, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:36:02', '2024-03-22 07:36:02', NULL, NULL),
+(242, 271, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:36:07', '2024-03-22 07:36:07', NULL, NULL),
+(243, 272, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:36:47', '2024-03-22 07:36:47', NULL, NULL),
+(244, 273, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:36:51', '2024-03-22 07:36:51', NULL, NULL),
+(245, 274, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:37:42', '2024-03-22 07:37:42', NULL, NULL),
+(246, 275, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:38:17', '2024-03-22 07:38:17', NULL, NULL),
+(247, 276, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:38:52', '2024-03-22 07:38:52', NULL, NULL),
+(248, 277, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:39:28', '2024-03-22 07:39:28', NULL, NULL),
+(249, 278, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 07:40:43', '2024-03-22 07:40:43', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1518,10 +1618,17 @@ INSERT INTO `student_program` (`id`, `students_id`, `program_id`, `created_at`, 
 (181, 192, 11, '2024-03-08 02:10:04', '2024-03-08 02:10:04'),
 (182, 161, 11, '2024-03-08 02:10:43', '2024-03-08 02:10:43'),
 (183, 191, 11, '2024-03-08 02:11:35', '2024-03-08 02:11:35'),
-(184, 1, 1, '2024-03-08 02:34:39', '2024-03-08 02:34:39'),
 (188, 149, 1, '2024-03-08 06:47:35', '2024-03-08 06:47:35'),
 (189, 206, 1, '2024-03-08 06:47:44', '2024-03-08 06:47:44'),
-(190, 189, 1, '2024-03-08 06:48:15', '2024-03-08 06:48:15');
+(190, 189, 1, '2024-03-08 06:48:15', '2024-03-08 06:48:15'),
+(191, 220, 7, '2024-03-22 07:25:49', '2024-03-22 07:25:49'),
+(192, 228, 7, '2024-03-22 07:29:14', '2024-03-22 07:29:14'),
+(193, 230, 7, '2024-03-22 07:30:07', '2024-03-22 07:30:07'),
+(194, 231, 7, '2024-03-22 07:30:43', '2024-03-22 07:30:43'),
+(195, 233, 7, '2024-03-22 07:31:33', '2024-03-22 07:31:33'),
+(196, 235, 7, '2024-03-22 07:32:54', '2024-03-22 07:32:54'),
+(197, 237, 7, '2024-03-22 07:33:32', '2024-03-22 07:33:32'),
+(200, 1, 1, '2024-03-25 02:56:12', '2024-03-25 02:56:12');
 
 -- --------------------------------------------------------
 
@@ -1569,7 +1676,7 @@ INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `job_title`
 (2, 'Febe', '', 'Worabay', 'Administration Officer', 'febe-woaraby@sagufoundation.org', NULL, NULL, '$2y$10$c5zvztV2dzPdlcZ8wv8lAuVNBsqHjXnGEnpcW5p2wcNQbnCHZRiQy', 'images/users/Febe-200x200.jpg', 'febe-worabay', 'Publish', NULL, '2023-10-13 05:29:54', '2023-10-13 05:29:54', NULL),
 (3, 'Tisha', NULL, 'Rumbewas', 'Director', 'tisha.rumbewas@sagufoundation.org', NULL, NULL, '$2y$10$LhOGklOQj/J1eBYKS4lB0ee6h1PJGHevCDruGjfdVDRioo4KToC4W', 'images/users/Tisha-200x200.jpg', 'tisha-rumbewas', 'Publish', NULL, '2023-10-13 05:29:54', '2023-10-13 05:29:54', NULL),
 (4, 'Elisabeth', '', 'Jakarimilena', 'Finance Officer', 'elisabeth.jakarimilena@sagufoundation.org', NULL, NULL, '$2y$10$RBCvnVmjxKzDPL/oDHqVsulWw8KNqwFrCZW1A3.rA1EY9DWeVWNmi', 'images/users/Ellysabeth-200x200.jpg', 'elisabeth-jakarimilena', 'Publish', NULL, '2023-10-13 05:29:54', '2023-10-13 05:29:54', NULL),
-(5, 'Samuel', NULL, 'Bosawer', 'Web Developer', 'samuel.bosawer@sagufoundation.org', NULL, NULL, '$2y$10$jMVnv.V5NAh01T75dcNLLuNOoXDfmuuBUPAw34FrtHdsz3gL1.Pim', 'images/users/samuel-1707466130.png', 'samuel', 'Publish', '9xaFCAVnHECFqySfkmnOtCXXgyhxg0IbteDs7QlOExDYDjkb0szC4kD6b8qP', '2023-10-13 05:29:55', '2024-02-13 01:37:51', NULL),
+(5, 'Samuel', NULL, 'Bosawer', 'Web Developer', 'samuel.bosawer@sagufoundation.org', NULL, NULL, '$2y$10$jMVnv.V5NAh01T75dcNLLuNOoXDfmuuBUPAw34FrtHdsz3gL1.Pim', 'images/users/samuel-1707466130.png', 'samuel', 'Publish', '3JujlJoIlRwiONSmzukCpUjRqALPCKMeBBge8oyEJohI89BKupiJwze5YGXh', '2023-10-13 05:29:55', '2024-02-13 01:37:51', NULL),
 (6, 'Guest', '', 'SAGU', 'Guest SAGU Foundation', 'guest@sagufoundation.org', NULL, NULL, '$2y$10$LQyaQDaRTWGe85IzbfTMlOIgOc38rBXdY9Jx/quQ.Q6bOpgWQyR4u', 'images/users/profile-sagu-foundation.jpg', 'guest-sagu', 'Publish', NULL, '2023-10-13 05:29:55', '2023-10-13 05:29:55', NULL),
 (7, 'BPSDM', '', '', 'Pemerintah Provinsi Papua', 'admin.bpsdm@papua.go.id', NULL, NULL, '$2y$10$PsAaKk66rmunPlUeaTz2j.7YlZnqUkHwVFt6.v/fQovKoBkLIhW6K', 'images/users/profile-provinsi-papua.jpg', 'bpsdm', 'Publish', NULL, '2023-10-13 05:29:55', '2023-10-13 05:29:55', NULL),
 (8, 'Anastasia', 'Febriani', 'Yandong', NULL, 'anastasia@gmail.com', '082112341234', NULL, '$2y$10$sRWnauPvCFjbsYGgMNDYEegMCv3aJ/GBOqqNJhDLBQa7CPbRed5qe', 'images/users/anastasia-yandong.jpg', 'anastasia-febriani-yandong', 'Publish', NULL, '2023-10-13 05:29:55', '2023-10-13 05:29:55', NULL),
@@ -1667,7 +1774,6 @@ INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `job_title`
 (106, 'Ryan', NULL, 'Dwitama Raya', NULL, 'ryandwitamaraya@gmail.com', '085298622531', NULL, '$2y$10$gNqojmujyxNLgaJIfTrY4.UhKTqK02ckVQWjhEhZnQyfJGnG6vUGq', 'images/students/31.png', 'ryandwitama-raya', 'Publish', NULL, '2023-11-16 02:41:46', '2024-02-20 02:20:28', NULL),
 (107, 'Sindy', NULL, 'Margaretha Hamadi', NULL, 'sindyhamadi13@gmail.com', NULL, NULL, '$2y$10$03I.rQ7B6vjui13yO0vhaePoN3gVc8pZeAViJ8Wsl0lW.eT.k17pG', 'images/students/25.png', 'sindymargaretha-hamadi', 'Publish', NULL, '2023-11-16 02:42:41', '2024-01-29 03:35:33', NULL),
 (108, 'Nona', NULL, 'Isaura Naomi Vewen', NULL, 'naomi.vwn@gmail.com', '081344961199', NULL, '$2y$10$x60agqDw4Ri6ADewfTLx1ecvkpHsR4CIcjAwx72VeeQzPIOiDXyHe', 'images/students/Nona Isaura Naomi Vewen.png', 'nonaisaura-naomi-vewen', 'Publish', NULL, '2023-11-16 02:44:37', '2024-02-20 02:18:01', NULL),
-(119, 'Siska', NULL, 'Asso', NULL, 'tessiskaasso@gmail.com', NULL, NULL, '$2y$10$cHenJU/ExEF52lOUR7.P6eYw18mr7FMt7KtKCZi7pBh.r6b9PFOPW', NULL, 'siskaasso', 'Draft', NULL, '2024-01-30 04:33:39', '2024-03-08 06:45:35', NULL),
 (125, 'Nipen', NULL, 'soo', NULL, 'nipensoo24@gmail.com', '0812-7044-3081', NULL, '$2y$10$f91RfaW3kTlUJ/JkV0nBieqKPvbNBnRHPq7lgORXZ933E.FFXDIAy', 'images/students/SAGU - WEB USER AVATARS (6).png', 'nipensoo', 'Publish', NULL, '2024-01-30 05:44:28', '2024-01-30 05:44:49', NULL),
 (126, 'Selli', NULL, 'Mirin', NULL, 'illesmirin@gmail.com', '+62 812-3954-8690', NULL, '$2y$10$n1/vHuDAACqvyGEfGnGZDe4BpAqS86dkZutySQczoeEVxjOn2zCpS', 'images/students/SAGU - WEB USER AVATARS (8).png', 'sellimirin', 'Publish', NULL, '2024-01-30 05:46:45', '2024-02-20 01:25:17', NULL),
 (127, 'Selpius', NULL, 'Asso', NULL, 'hubulaap@gmail.com', '0822-1125-2908', NULL, '$2y$10$64bZbuDkYzsfN3sEIh6vu.EAiVkHV1e9iH34MrvVtIzEz1sMEEr3G', 'images/students/SAGU - WEB USER AVATARS (9).png', 'selpiusasso', 'Publish', NULL, '2024-01-30 05:48:30', '2024-01-30 05:48:49', NULL),
@@ -1744,9 +1850,9 @@ INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `job_title`
 (215, 'Frans', NULL, 'Dogopia', NULL, 'gmbak105@gmail.com', '082252651998', NULL, '$2y$10$Rq8RKrFnn1sZGPnxxejdBOGApM2fd18dnAz8FwpiZ1mB/a/rEHo2y', NULL, 'fransdogopia', 'Publish', NULL, '2024-03-06 04:42:08', '2024-03-06 04:42:08', NULL),
 (216, 'Netty', 'Oktavia', 'Manuri', NULL, 'nettymanuri01@icloud.con', '081240361237', NULL, '$2y$10$9wMoMqrpA5PXLxKcI9j64OT0GqpC3MNSUz3FXISev0CVNegCcXtrG', NULL, 'nettyoktavia-manuri', 'Publish', NULL, '2024-03-06 04:42:08', '2024-03-08 01:58:40', NULL),
 (217, 'Imelda', NULL, 'Okoseray', NULL, 'imeldaokoseray3@gmail.com', '082252651998 082239648421', NULL, '$2y$10$7GpMrVSEmWt1G32FI5L9qOdPiyXNu74t8dFQ5H7Dx5FAp3G4sUxz.', NULL, 'imeldaokoseray', 'Publish', NULL, '2024-03-06 04:42:52', '2024-03-06 04:42:52', NULL),
-(218, 'Otis', NULL, 'Dawe', NULL, 'otisdawedawe@gmail.com', '081229475147', NULL, '$2y$10$Nyw0W0AaZB5n4IGJ65If6.lBD.XF4Md0DqRhzh33I6W2wLm0M5UH2', NULL, 'otisdawe', 'Publish', NULL, '2024-03-06 04:43:39', '2024-03-06 04:43:39', NULL);
+(218, 'Otis', NULL, 'Dawe', NULL, 'otisdawedawe@gmail.com', '081229475147', NULL, '$2y$10$Nyw0W0AaZB5n4IGJ65If6.lBD.XF4Md0DqRhzh33I6W2wLm0M5UH2', NULL, 'otisdawe', 'Publish', NULL, '2024-03-06 04:43:39', '2024-03-06 04:43:39', NULL),
+(219, 'Yakob', NULL, 'Ayeri', NULL, 'hansbritay@gmail.com', '081240361910', NULL, '$2y$10$go5YEynNnlj8oSMvPZCeieNnwDO5nRNAhrDNRbg3FQdB6TOwUum.G', NULL, 'yakobariyeri', 'Publish', NULL, '2024-03-06 04:43:39', '2024-03-08 02:11:21', NULL);
 INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `job_title`, `email`, `phone`, `email_verified_at`, `password`, `picture`, `slug`, `status`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(219, 'Yakob', NULL, 'Ayeri', NULL, 'hansbritay@gmail.com', '081240361910', NULL, '$2y$10$go5YEynNnlj8oSMvPZCeieNnwDO5nRNAhrDNRbg3FQdB6TOwUum.G', NULL, 'yakobariyeri', 'Publish', NULL, '2024-03-06 04:43:39', '2024-03-08 02:11:21', NULL),
 (220, 'Oriwan', NULL, 'Kakyarmabin', NULL, 'oriwan56@gmail.com', '081352521303', NULL, '$2y$10$4eCBvtISDAvQsPCvPyaDv.gt6gA9EIYnPSS51Y7QnH52OCmAx0PaC', NULL, 'oriwankakyarmabin', 'Publish', NULL, '2024-03-06 04:44:40', '2024-03-06 04:44:40', NULL),
 (221, 'Yetis', NULL, 'makaian', NULL, 'yetismakaian@gmail.com', '081341253975', NULL, '$2y$10$qrkjtncyb/2mFBd09VKS8.Ykj9YDaaO7FVK8vXs1g4Udwresfi2a.', NULL, 'yetismakaian', 'Publish', NULL, '2024-03-06 04:46:03', '2024-03-06 04:46:03', NULL),
 (222, 'Heriyek', NULL, 'Ulunggi', NULL, 'yalifilyalak@gmail.com', '0852-4495-9329', NULL, '$2y$10$ntbBaLsiEmBVow2hfc76bO7SOMgxpQyTiBC7ozz0CKABohL8rdGca', NULL, 'heriyekulunggi', 'Publish', NULL, '2024-03-06 04:46:29', '2024-03-06 04:46:29', NULL),
@@ -1764,7 +1870,40 @@ INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `job_title`
 (240, 'Savira', 'Margaretha', 'Kosay', NULL, 'kossaysavira@gmail.com', '082114395864', NULL, '$2y$10$GexLwXFqzOG5Z3KAALZzeO37O8732Gn2scNkr0sX/EUIbw0MqfCK2', NULL, 'saviramargaretha-kosay', 'Publish', NULL, '2024-03-06 04:56:52', '2024-03-08 02:00:51', NULL),
 (241, 'Deasynta', 'Golda', 'Soindemi', NULL, 'soindemi80@gmail.com', '081247788246', NULL, '$2y$10$yoQxXRvxV.0XrRZgJZ930ui5TsXYuOADHc5TYCImSZNWspk7MlM9S', NULL, 'deasyntagoldasoindemi', 'Publish', NULL, '2024-03-08 02:03:01', '2024-03-08 02:03:01', NULL),
 (242, 'Iriani', 'Irene', 'Arfusauw', NULL, 'arfusauw@gmail.com', '085233717969', NULL, '$2y$10$S6QMwfjIf4SGNP5ja4vb9OUFFEqegQhi1QHhbCdY8Vuq3PXFxDQKG', NULL, 'irianiirenearfusauw', 'Publish', NULL, '2024-03-08 02:07:23', '2024-03-08 02:07:23', NULL),
-(243, 'Martias', NULL, 'Busup', NULL, 'martiasbusup.busup@gmail.com', NULL, NULL, '$2y$10$cKAw6cke86uBWM2C65SG8eybBStD00U/4CKw3rwwMCBlL04UNR7r6', NULL, 'martiasbusup', 'Publish', NULL, '2024-03-08 02:09:19', '2024-03-08 02:09:19', NULL);
+(243, 'Martias', NULL, 'Busup', NULL, 'martiasbusup.busup@gmail.com', NULL, NULL, '$2y$10$cKAw6cke86uBWM2C65SG8eybBStD00U/4CKw3rwwMCBlL04UNR7r6', NULL, 'martiasbusup', 'Publish', NULL, '2024-03-08 02:09:19', '2024-03-08 02:09:19', NULL),
+(246, 'Lakiek', NULL, 'Kobak', NULL, 'lakiekkobak@gmail.com', NULL, NULL, '$2y$10$MRcrtQ1QrPvobk5la8dP/enKa8QJ8btP2Bm4T1g/X4bOYE0ndwzDm', NULL, 'lakiekkobak', 'Draft', NULL, '2024-03-22 07:23:53', '2024-03-22 07:23:53', NULL),
+(247, 'Niadimus', NULL, 'Oso', NULL, 'niadimusoso@gmail.com', NULL, NULL, '$2y$10$aFQc.OthKw8I/2cdEv03gu7r8EAUH4i1qGfzxlh4BRuCDCWASsQXC', NULL, 'niadimusoso', 'Draft', NULL, '2024-03-22 07:24:43', '2024-03-22 07:24:43', NULL),
+(248, 'Albertus', NULL, 'Heluka', NULL, 'albertusheluka@gmail.com', NULL, NULL, '$2y$10$HnwW6mVBN2krNVY9GhRg3ejUbxJY6wPli9j8dXER3hLNWI9jrFRS6', NULL, 'albertusheluka', 'Draft', NULL, '2024-03-22 07:25:21', '2024-03-22 07:25:21', NULL),
+(249, 'Heni', NULL, 'Kobak', NULL, 'henikobak@gmail.com', NULL, NULL, '$2y$10$XrzsS6LeDcFRwH9qbRnXwOcwJWa8sVL7bAac6Wn9SwOs1Qn/xJlFO', NULL, 'henikobak', 'Draft', NULL, '2024-03-22 07:25:49', '2024-03-22 07:25:49', NULL),
+(250, 'Alinus', NULL, 'Aliknoe', NULL, 'alinusaliknoe@gmail.com', NULL, NULL, '$2y$10$DbGBaJwkxQgfZqfRekERIe94OePGa3hSfER1rq5tgqClR4waobyYe', NULL, 'alinusaliknoe', 'Draft', NULL, '2024-03-22 07:26:02', '2024-03-22 07:26:02', NULL),
+(251, 'Maikel', NULL, 'Silak', NULL, 'maikelsilak@mail.com', NULL, NULL, '$2y$10$C7x35k61rMMZAAu.775KlukfHwjqBEmm2wQfoFFwZYJmQ.GwxIPN6', NULL, 'maikelsilak', 'Draft', NULL, '2024-03-22 07:26:33', '2024-03-22 07:26:33', NULL),
+(252, 'Omil', NULL, 'Bahabol', NULL, 'omilbahabol@mail.com', NULL, NULL, '$2y$10$rO3LdfUrTU2WoxkKxk6kWeEXJTVywnJk3Zq.YO27.4FGobMq2T3kK', NULL, 'omilbahabol', 'Draft', NULL, '2024-03-22 07:27:10', '2024-03-22 07:27:10', NULL),
+(253, 'Petrus', NULL, 'Kwebu', NULL, 'petruskwebu@mail.com', NULL, NULL, '$2y$10$VVjtJyHgJc09vpxsjerXdObf9NFgQfbBdxH3lOpgIOcb7Z.9ErYIu', NULL, 'petruskwebu', 'Draft', NULL, '2024-03-22 07:27:40', '2024-03-22 07:27:40', NULL),
+(254, 'Anias', NULL, 'Serongan', NULL, 'aniasserongan@mail.com', NULL, NULL, '$2y$10$xKUJc2NNO2Te/vRcT8uqoO9nKLeto8CVBM2yDEc3q7nLTFpw2lqnG', NULL, 'aniasserongan', 'Draft', NULL, '2024-03-22 07:27:44', '2024-03-22 07:27:44', NULL),
+(255, 'Semai', NULL, 'Yando', NULL, 'semiyando@mail.com', NULL, NULL, '$2y$10$sZTILuSl94N7YOo.rLkKy.1BAb6dy.DNTO0gbqZfZ/Nzd02qronnW', NULL, 'semaiyando', 'Draft', NULL, '2024-03-22 07:28:15', '2024-03-22 07:28:15', NULL),
+(256, 'Septinus', NULL, 'Wetipo', NULL, 'septinuswetipo@mail.com', NULL, NULL, '$2y$10$Q9Q5iPrEFXp6HwicGE0eHOKDMsS51GgzRst.SvX3Wr1DWO.DLc0De', NULL, 'septinuswetipo', 'Draft', NULL, '2024-03-22 07:28:51', '2024-03-22 07:28:51', NULL),
+(257, 'Abimael', 'Michael Robby', 'Miram', NULL, 'abimaelmiram@gmail.com', NULL, NULL, '$2y$10$SfxeLOTlSJIX3C7dDZweRuWMOey.tQh9BomqNgVF5tTdH7f9/aBju', NULL, 'abimaelmichael-robbymiram', 'Draft', NULL, '2024-03-22 07:29:14', '2024-03-22 07:29:14', NULL),
+(258, 'Yetinus', NULL, 'Kobak', NULL, 'yeniuskabak@mail.com', NULL, NULL, '$2y$10$/01pqPv33yWsvyiX104jFeh9LbQSltAlGr8h6YYOWx9PIJ15aobqG', NULL, 'yetinuskobak', 'Draft', NULL, '2024-03-22 07:29:38', '2024-03-22 07:29:38', NULL),
+(259, 'Elia', NULL, 'Itlay', NULL, 'eliaitlay@gmail.com', NULL, NULL, '$2y$10$V5TGUM.YT8HC/nPc5ugvr.Z7Vu0WBTicS.APYECjinIE8GBMKekDa', NULL, 'eliaitlay', 'Draft', NULL, '2024-03-22 07:30:07', '2024-03-22 07:30:07', NULL),
+(260, 'Elis', NULL, 'Silip', NULL, 'elissilip@gmail.com', NULL, NULL, '$2y$10$Dhotfq.71WscvSRTUdbRD.TFy1kCLNtOxJNu03D0WwB9EilZ9SHPe', NULL, 'elissilip', 'Draft', NULL, '2024-03-22 07:30:43', '2024-03-22 07:30:43', NULL),
+(261, 'Yosem', NULL, 'Suhuniap', NULL, 'yosemsuhuniap@mail.com', NULL, NULL, '$2y$10$O7sARpZxjEpW6oGU2fIXQuRNCYrB4BdpCqHcNGOUX8LP1JCSXUMFG', NULL, 'yosemsuhuniap', 'Draft', NULL, '2024-03-22 07:30:43', '2024-03-22 07:30:43', NULL),
+(262, 'Hodani', NULL, 'Kobak', NULL, 'hodanikobat@gmail.com', NULL, NULL, '$2y$10$4wTWZs3AYjv52ebuwb7alOA1gfDYI2SC0c.fdVexBVZrf3jCAVnF.', NULL, 'hodanikobak', 'Draft', NULL, '2024-03-22 07:31:33', '2024-03-22 07:31:33', NULL),
+(263, 'Nius', NULL, 'Asso', NULL, 'niusasso@gmail.com', NULL, NULL, '$2y$10$F5x19wF2dty08hb0sfR84ucNa7vwCQzC/UrKSyrjdrb4CXChE2hHe', NULL, 'niusasso', 'Draft', NULL, '2024-03-22 07:32:14', '2024-03-22 07:32:14', NULL),
+(264, 'Tiel', NULL, 'Kobak', NULL, 'tielkobak@gmail.com', NULL, NULL, '$2y$10$k/1vpSNpuBax2VkzKamkJuyLL/pPEyW.jJph6k0V35RRuF3XvieNS', NULL, 'tielkobak', 'Draft', NULL, '2024-03-22 07:32:54', '2024-03-22 07:32:54', NULL),
+(265, 'Queen', 'Agnel', 'Michiko', NULL, 'queen.agnel.michiko@gmail.com', NULL, NULL, '$2y$10$6lh8yyvmdKKQwZJxl4hb3Ot4FBhkUurYVj/VuOUrJg9I7YFhJoSxm', NULL, 'queenagnelmichiko', 'Draft', NULL, '2024-03-22 07:33:07', '2024-03-22 07:33:07', NULL),
+(266, 'Yuspat', NULL, 'Asso', NULL, 'yuspatasso@gmail.com', NULL, NULL, '$2y$10$Ohh3gDAC.yOuZc1zts6ztO3lhnNsHOZHfAi87VvDaxsmMjhdLckJm', NULL, 'yuspatasso', 'Draft', NULL, '2024-03-22 07:33:32', '2024-03-22 07:33:32', NULL),
+(267, 'Caroline', 'Maria Rita', 'Bolang', NULL, 'caroline220506@gmail.com', NULL, NULL, '$2y$10$GNOTtq1.ftmMjpMXlP6bBO6EHHrRDNMF7axPVJGjbpjkQH4lN0uFq', NULL, 'carolinemaria-ritabolang', 'Draft', NULL, '2024-03-22 07:34:03', '2024-03-22 07:34:03', NULL),
+(268, 'Dimas', 'Ibnu', 'Nugroho', NULL, 'dimasinugroho@gmail.com', NULL, NULL, '$2y$10$HMcMmw.nyvUI1RdXurET...ONioJtDKCqzQy0N4lMEo/h7JtW6rr6', NULL, 'dimasibnunugroho', 'Draft', NULL, '2024-03-22 07:34:40', '2024-03-22 07:34:40', NULL),
+(269, 'Enggar', 'Tri', 'Maulana', NULL, 'enggarmlna@gmail.com', NULL, NULL, '$2y$10$sNN3BGy.y18PRgVqmdIy..fpsl2Y5Ag0Dw9Oh5/WtaFduC0VX3SlG', NULL, 'enggartrimaulana', 'Draft', NULL, '2024-03-22 07:35:21', '2024-03-22 07:35:21', NULL),
+(270, 'Immanuel', 'Richard', 'Ayorbaba', NULL, 'iangeissler5212@gmail.com', NULL, NULL, '$2y$10$NzzDfu81jR/uNemk/I7Kp./SREr6YHl2AqL9rChwxQ/vB2o/GoD9G', NULL, 'immanuelrichardayorbaba', 'Draft', NULL, '2024-03-22 07:36:02', '2024-03-22 07:36:02', NULL),
+(271, 'Aldi', 'Putra', 'Viantara', NULL, 'aldiviantara04@gmail.com', NULL, NULL, '$2y$10$qC8xpZMG9tp6sx8IUvTUL.uisV2xISBQlBosEkIb45cliFB2pjWha', NULL, 'aldiputraviantara', 'Draft', NULL, '2024-03-22 07:36:07', '2024-03-22 07:36:07', NULL),
+(272, 'Dewi', 'Gracea Akma Suhemasari', 'Ketaren', NULL, 'dewiketaren07@gmail.com', NULL, NULL, '$2y$10$Kq5eIILOv0NRNuIbPOH9xOnAoArIMvjoGrF5vixtH74CFzp4ILIXa', NULL, 'dewigracea-akma-suhemasariketaren', 'Draft', NULL, '2024-03-22 07:36:47', '2024-03-22 07:36:47', NULL),
+(273, 'Tamariska Terra', 'Incognita', 'Abidondifu', NULL, 'tabidondifu18@gmail.com', NULL, NULL, '$2y$10$pjAe37CUUncxuHa9KKYDWun6xt6X5pcZzlz6NT.QMTugphuh7sO8y', NULL, 'tamariska-terraincognitaabidondifu', 'Draft', NULL, '2024-03-22 07:36:51', '2024-03-22 07:36:51', NULL),
+(274, 'Gllory', 'Flamengo Lionel', 'Wanimbo', NULL, 'greylione120@gmail.com', NULL, NULL, '$2y$10$4vuCS2c27XPK2jWt60EZSuPe5sgBH6hA5eHOxeZyTgGXrHi2OfNlm', NULL, 'glloryflamengo-lionelwanimbo', 'Draft', NULL, '2024-03-22 07:37:42', '2024-03-22 07:37:42', NULL),
+(275, 'Kenny', 'Virginia', 'Johannes', NULL, 'virginiakenny896@gmail.com', NULL, NULL, '$2y$10$HJaaCj01VB0UQtbAO0quKOqFwR1S6E19TJnasxLG1xIHVMYnZVXbe', NULL, 'kennyvirginiajohannes', 'Draft', NULL, '2024-03-22 07:38:17', '2024-03-22 07:38:17', NULL),
+(276, 'Magrid', NULL, 'Kogoya', NULL, 'kogoyagwemagrid@gmail.com', NULL, NULL, '$2y$10$uC1CkZ7x7uwN./GHqHh3fuUs0Xc00N6VLUTdilaC91V0yXUF9d3VC', NULL, 'magridkogoya', 'Draft', NULL, '2024-03-22 07:38:52', '2024-03-22 07:38:52', NULL),
+(277, 'Renti', 'Br.', 'Tompul', NULL, 'rentisitompul486@gmail.com', NULL, NULL, '$2y$10$xSBRgEKDg4E3rTJJpOP4juG8UI4uQ18WLypid7.xKgos4cXNmYigm', NULL, 'rentibrtompul', 'Draft', NULL, '2024-03-22 07:39:28', '2024-03-22 07:39:28', NULL),
+(278, 'Yosua', 'Imanuel', 'Patasik', NULL, 'yosuapatasik52@gmail.com', NULL, NULL, '$2y$10$88PREd5U5FMx8O54RexmreFWWv582XYfbgSYWMEaq00IgYJuYUQ/W', NULL, 'yosuaimanuelpatasik', 'Draft', NULL, '2024-03-22 07:40:43', '2024-03-22 07:40:43', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1810,6 +1949,12 @@ ALTER TABLE `education`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `loan_books`
@@ -1963,6 +2108,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `loan_books`
 --
 ALTER TABLE `loan_books`
@@ -1990,7 +2141,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -2014,13 +2165,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 
 --
 -- AUTO_INCREMENT for table `student_program`
 --
 ALTER TABLE `student_program`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT for table `universitas`
@@ -2032,7 +2183,7 @@ ALTER TABLE `universitas`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=279;
 
 --
 -- Constraints for dumped tables
