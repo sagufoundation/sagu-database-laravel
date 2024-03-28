@@ -27,7 +27,7 @@
                         @empty
                         <tr>
                             <td colspan="8">
-                                No data
+                                -
                             </td>
                         </tr>
                         @endforelse

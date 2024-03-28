@@ -51,11 +51,11 @@
                                                         @forelse ($data->student->program as $item)
                                                         <a href="{{ url('dashboard/programs/show/'. $item->id) }}" class="btn btn-sm btn-link">{{ $item->program_title ?? '' }}</a>
                                                         @empty
-                                                            no data
+                                                            -
                                                         @endforelse
                                                     @endif
                                                 @else
-                                                    no data
+                                                    -
                                                 @endif
                                             </td>
                                             <td>
@@ -89,7 +89,7 @@
                                     @empty
                                         <tr>
                                             <td colspan="8">
-                                                Data tidak ada
+                                                -
                                             </td>
                                         </tr>
                                     @endforelse
