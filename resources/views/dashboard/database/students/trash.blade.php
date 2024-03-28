@@ -26,8 +26,7 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Name</th>
-                                                        <th>Email</th>
-                                                        <th width="280px">Action</th>
+                                                        <th width="280px">Options</th>
                                                     </tr>
                                                     @if(!$datas->isEmpty()) 
 
@@ -36,7 +35,6 @@
                                                             <td>{{ ++$i }}</td>
                             
                                                             <td>{{ $data->first_name ?? '' }}</td>
-                                                            <td>{{ $data->email ?? '' }}</td>
                                                             @include('dashboard.layout.includes.trash-action')
                                                         </tr>
                                                         @endforeach
@@ -55,12 +53,9 @@
                         
                                             </div>
                                             {!! $datas->links() !!}
-
                                         </div>                    
-
                                     </div> <!-- end card-->
                                 </div> <!-- end col -->
-
                             </div>
                         </div>
                         <!-- end row -->

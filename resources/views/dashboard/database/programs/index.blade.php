@@ -26,7 +26,7 @@
                                         <th>Short Description</th>
                                         <th class="text-center">Year</th>
                                         <th class="text-center">Total Students</th>
-                                        <th width="280px"></th>
+                                        <th width="280px">Options</th>
                                     </tr>
                                     @forelse($datas as $data)
                                         <tr>

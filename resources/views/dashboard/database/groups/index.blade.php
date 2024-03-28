@@ -25,7 +25,7 @@
                                         <th>Group Title</th>
                                         <th>Short Description</th>
                                         <th class="text-center">Total Programs</th>
-                                        <th width="280px"></th>
+                                        <th width="280px">Options</th>
                                     </tr>
                                     @forelse($datas as $data)
                                         <tr>

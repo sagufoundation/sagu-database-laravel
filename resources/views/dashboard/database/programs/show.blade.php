@@ -73,7 +73,7 @@
                                 <th width="1%">No</th>
                                 <th>Picture</th>
                                 <th>Full Name</th>
-                                <th width="280px"></th>
+                                <th width="280px">Options</th>
                             </tr>
                             @forelse($datas as $data)
                                     <tr>
@@ -92,7 +92,6 @@
 
                                         <td>
                                             {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
-                                            <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email ?? '' }}</small>
                                         </td>
                                         <td>
                                             <div class="d-flex gap-1">

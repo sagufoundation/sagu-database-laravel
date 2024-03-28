@@ -26,7 +26,7 @@
                                         <th>Full Name</th>
                                         <th>Program</th>
                                         {{-- <th>Province</th> --}}
-                                        <th width="280px"></th>
+                                        <th width="280px">Options</th>
                                     </tr>
                                     @forelse($datas as $data)
                                         @php
@@ -36,11 +36,7 @@
                                             <td>{{ ++$i }}</td>
                                             @include('dashboard.layout.includes.index-picture')
                                             <td>
-
-
                                                 <a class="text-dark" href="{{ url(Request::segment(1) . '/' . Request::segment(2) . '/show', $data->id) }}">  {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}</a>
-                                                <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
-                                                    {{ $data->email ?? '' }}</small>
                                             </td>
                                             {{-- <td>
                                                 {{ $data->student->provinsi->name ?? '' }}

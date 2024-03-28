@@ -19,7 +19,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Program Title</th>
-                                <th width="280px">Action</th>
+                                <th width="280px">Options</th>
                             </tr>
                             @if(!$datas->isEmpty())
 
@@ -41,12 +41,9 @@
 
                     </div>
                     {!! $datas->links() !!}
-
                 </div>
-
             </div> <!-- end card-->
         </div> <!-- end col -->
-
     </div>
 </div>
 <!-- end row -->
