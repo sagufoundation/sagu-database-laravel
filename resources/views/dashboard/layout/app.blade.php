@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-{{-- @dd($pengaturan) --}}
+    {{-- @dd($pengaturan) --}}
     <title> {{ $pengaturan->site_title ?? '' }} </title>
 
     {{-- no index tags --}}
@@ -14,12 +14,12 @@
     <meta property="og:title" content="{{ $pengaturan->site_title ?? '' }}" />
     <meta property="og:description" content="{{ $pengaturan->meta_description ?? '' }}" />
     <meta property="og:site_name" content="{{ $pengaturan->site_title ?? '' }}" />
-    <meta property="og:image" content="{{ asset('gambar/settings' . $pengaturan->logo ?? '') }}" />
+    <meta property="og:image" content="{{ asset('images/settings' . $pengaturan->logo ?? '') }}" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <!-- FAVICON -->
-    <link rel="apple-touch-icon" href="{{ asset('gambar/settings/' . $pengaturan->favicon ?? '') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('gambar/settings/' . $pengaturan->favicon ?? '') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/settings/' . $pengaturan->favicon ?? '') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/settings/' . $pengaturan->favicon ?? '') }}">
 
     <!-- CSRF TOKEN -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
