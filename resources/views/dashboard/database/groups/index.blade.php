@@ -21,9 +21,10 @@
                             <div class="mt-3 table-responsive">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th width="1%">No</th>
+                                        <th class="text-center" width="1%">No</th>
                                         <th>Group Title</th>
                                         <th>Short Description</th>
+                                        <th class="text-center">Total Programs</th>
                                         <th width="280px"></th>
                                     </tr>
                                     @forelse($datas as $data)
@@ -31,6 +32,7 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $data->group_title ?? '' }} </td>
                                             <td>{{ $data->short_description ?? '' }} </td>
+                                            <td class="text-center">{{ $data->programs->count() }} </td>
                                             <td>
                                                 <div class="d-flex gap-1">
                                                     <div class="d-block p-1">

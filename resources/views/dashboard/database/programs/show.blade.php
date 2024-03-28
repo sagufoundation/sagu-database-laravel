@@ -73,9 +73,7 @@
                                 <th width="1%">No</th>
                                 <th>Picture</th>
                                 <th>Full Name</th>
-                                <th>Phone</th>
-                                <th>Province</th>
-                                {{-- <th width="280px"></th> --}}
+                                <th width="280px"></th>
                             </tr>
                             @forelse($datas as $data)
                                     <tr>
@@ -94,12 +92,34 @@
 
                                         <td>
                                             {{ $data->first_name . ' ' . $data->middle_name . ' ' . $data->last_name ?? '' }}
-                                            <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
-                                                {{ $data->email ?? '' }}</small>
+                                            <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i> {{ $data->email ?? '' }}</small>
                                         </td>
-                                        <td>{{ $data->phone ?? '' }}</td>
                                         <td>
-                                            {{ $data->name ?? '' }}
+                                            <div class="d-flex gap-1">
+                                                <div class="d-block p-1">
+                                                    <a href="{{ url('dashboard/students/show', $data->id) }}"
+                                                        class="btn btn-success w-100">
+                                                        <i class="fa-solid fa-id-badge d-block"></i> Show
+                                                    </a>
+                                                </div>
+                                                <div class="d-block p-1">
+                                                    <a class="btn btn-primary w-100"
+                                                        href="{{ url('dashboard/students/edit/profile', $data->id) }}">
+                                                        <i class="fa-solid fa-pen-to-square d-block"></i> Edit
+                                                    </a>
+                                                </div>
+                                                <div class="d-block p-1">
+                                                    <form
+                                                        action="{{ url('dashboard/students', $data->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger w-100">
+                                                            <i class="fa-solid fa-trash d-block"></i> Trash
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </td>
 
                                     </tr>

@@ -24,9 +24,8 @@
                                         <th width="1%">No</th>
                                         <th>Picture</th>
                                         <th>Full Name</th>
-                                        <th>Phone</th>
-                                        <th>Province</th>
                                         <th>Program</th>
+                                        {{-- <th>Province</th> --}}
                                         <th width="280px"></th>
                                     </tr>
                                     @forelse($datas as $data)
@@ -43,19 +42,14 @@
                                                 <small class="text-muted d-block"><i class="fa-solid fa-envelope"></i>
                                                     {{ $data->email ?? '' }}</small>
                                             </td>
-                                            <td>{{ $data->phone ?? '' }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 {{ $data->student->provinsi->name ?? '' }}
-                                            </td>
+                                            </td> --}}
                                             <td>
-
-                                                {{-- {{ $ProgramStudent }} --}}
                                                 @if ($data->student)
                                                     @if ($data->student->program)
                                                         @forelse ($data->student->program as $item)
-                                                            <div class="badge border">
-                                                                {{ $item->program_title ?? '' }}
-                                                            </div>
+                                                        <a href="{{ url('dashboard/programs/show/'. $item->id) }}" class="btn btn-sm btn-link">{{ $item->program_title ?? '' }}</a>
                                                         @empty
                                                             no data
                                                         @endforelse
