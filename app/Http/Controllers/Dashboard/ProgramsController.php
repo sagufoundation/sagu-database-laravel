@@ -40,6 +40,28 @@ class ProgramsController extends Controller
         return view('dashboard.database.programs.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    // PROGRAMS BY YEAR
+    public function indexByYear($year)
+    {
+        $datas = Program::where([
+            ['program_title', '!=', Null],
+            [function ($query) {
+                if (($s = request()->s)) {
+                    $query->orWhere('program_title', 'LIKE', '%' . $s . '%')
+                        ->orWhere('short_description', 'LIKE', '%' . $s . '%')
+                        ->get();
+                }
+            }]
+        ])->where('program_year', $year)->where('status', 'Publish')->latest()->paginate();
+
+        $jumlahtrash = Program::onlyTrashed()->count();
+        $jumlahdraft = Program::where('status', 'Draft')->count();
+        $datapublish = Program::where('status', 'Publish')->count();
+
+        return view('dashboard.database.programs.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+
     // DRAFT VIEW
     public function draft()
     {

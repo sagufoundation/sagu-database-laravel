@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth']], function () {
         // index
         Route::get('programs', 'index')->name('dashboard.programs');
 
+        Route::get('programs/{year}', 'indexByYear')->name('dashboard.programs.byYear');
+
 
 
         Route::group(['middleware' => ['role:administrator','auth']], function () {

@@ -18,6 +18,14 @@
 
                             @include('dashboard.layout.includes.form-input.search')
 
+                            <div>
+                                <a href="{{ url('dashboard/programs/2024') }}" class="btn btn-sm @if(Request::segment(3) == '2024') btn-primary @else btn-outline-primary @endif ">2024</a>
+                                <a href="{{ url('dashboard/programs/2023') }}" class="btn btn-sm @if(Request::segment(3) == '2023') btn-primary @else btn-outline-primary @endif ">2023</a>
+                                <a href="{{ url('dashboard/programs/2022') }}" class="btn btn-sm @if(Request::segment(3) == '2022') btn-primary @else btn-outline-primary @endif ">2022</a>
+                                <a href="{{ url('dashboard/programs/2021') }}" class="btn btn-sm @if(Request::segment(3) == '2021') btn-primary @else btn-outline-primary @endif ">2021</a>
+                                <a href="{{ url('dashboard/programs/2020') }}" class="btn btn-sm @if(Request::segment(3) == '2020') btn-primary @else btn-outline-primary @endif ">2020</a>
+                            </div>
+
                             <div class="mt-3 table-responsive">
                                 <table class="table table-bordered">
                                     <tr>
